@@ -1,0 +1,3013 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>The Method Co. — Clarity-First Digital Strategy</title>
+  <meta name="description" content="The Method Co. is a clarity-first digital strategy consultancy. Positioning, copy, funnels, landing pages, and ad direction for serious business owners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&amp;family=Barlow+Condensed:wght@700;800;900&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#060a11;
+      --bg2:#080e1a;
+      --card:#0b1324cc;
+      --line:#1a2640;
+      --text:#e8f0ff;
+      --muted:#8899bb;
+      --accent:#2563eb;
+      --accent2:#38bdf8;
+      --glow: rgba(37,99,235,.35);
+      --shadow: 0 24px 64px rgba(0,0,0,.55);
+      --radius: 16px;
+      --max: 1140px;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background-image: url("https://res.cloudinary.com/dsriscylr/image/upload/v1772066806/freepik__dark-modern-abstract-background-for-a-digital-mark__77622_azwrht.jpg");
+      background-size: cover;
+      background-position: center top;
+      opacity:.12;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(56,189,248,.10) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(6,10,17,0) 0%, var(--bg2) 100%);
+      pointer-events:none;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 24px 100px; position:relative; z-index:1}
+
+    /* NAV */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      position:sticky; top:0; z-index:100;
+      background: rgba(6,10,17,.88);
+      backdrop-filter: blur(20px);
+      margin:0 -24px; padding:18px 24px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight:800; font-size:18px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .logoImg{
+      height:36px; width:auto;
+      opacity:.92;
+      object-fit:contain;
+      
+    }
+    .navlinks{display:flex; gap:22px; font-size:13px; font-weight:500; letter-spacing:.04em; text-transform:uppercase}
+    .navlinks a{color:var(--muted); transition:color .2s}
+    .navlinks a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 20px; border-radius:10px; font-weight:700; font-size:13px;
+      letter-spacing:.04em; text-transform:uppercase;
+      border:1px solid transparent;
+      transition: all .18s ease;
+      cursor:pointer; user-select:none; white-space:nowrap;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), rgba(56,189,248,.7));
+      color:#020b1a;
+      transition: all .18s ease, box-shadow .3s ease;
+    }
+    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(56,189,248,.3);}
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.1);
+      color: var(--text);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.07); border-color:rgba(255,255,255,.2)}
+
+    /* HERO */
+    .hero{
+      margin-top:52px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.03) inset;
+      position:relative;
+      background: linear-gradient(135deg, rgba(11,19,36,.95), rgba(8,14,26,.98));
+      animation: fadeUp .8s ease both;
+    }
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(24px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+    .heroContent{
+      padding:52px 48px 52px;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2);
+      font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .kicker::before{
+      content:"";
+      display:block; width:22px; height:1px;
+      background: var(--accent2); opacity:.7;
+    }
+    h1{
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight:900; line-height:.95;
+      letter-spacing:-.01em; text-transform:uppercase;
+    }
+    .h1-line2{
+      display:block;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .sub{
+      margin:20px 0 28px;
+      color:var(--muted); font-size:16px; line-height:1.6; max-width:50ch;
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap}
+    .miniNote{
+      margin-top:20px;
+      color:rgba(136,153,187,.75);
+      font-size:12px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .miniNote strong{color: var(--accent2); font-weight:600}
+
+    .heroImg{
+      position:relative; min-height:520px; overflow:hidden;
+    }
+    .heroImg img{
+      width:100%; height:100%; object-fit:cover; object-position:center top;
+      display:block; filter: contrast(1.05) saturate(0.95);
+    }
+    .heroImg::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,14,26,.9) 0%, rgba(8,14,26,.2) 40%, transparent 100%),
+        linear-gradient(180deg, transparent 60%, rgba(8,14,26,.5));
+      pointer-events:none;
+    }
+
+    /* SECTIONS */
+    .section{margin-top:72px}
+    .sectionHead{margin-bottom:28px}
+    .sectionLabel{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2); font-size:11px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px;
+    }
+    .sectionLabel::before{
+      content:""; display:block; width:18px; height:1px; background:var(--accent2); opacity:.7;
+    }
+    .sectionHead h2{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:clamp(28px, 4vw, 40px); font-weight:900;
+      letter-spacing:-.01em; text-transform:uppercase; line-height:1;
+    }
+    .sectionHead p{color:var(--muted); font-size:15px; margin-top:8px; max-width:60ch}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,.01) 100%);
+      border-radius: var(--radius);
+      padding:20px 22px;
+      position:relative; overflow:hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover{border-color: rgba(37,99,235,.4); transform: translateY(-2px);}
+    .card::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+    }
+    .card h3{font-size:16px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em}
+    .card p{color:var(--muted); font-size:14px; line-height:1.6}
+
+    .tag{
+      display:inline-block; font-size:11px; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; padding:5px 10px; border-radius:6px;
+      border:1px solid rgba(37,99,235,.4);
+      background: rgba(37,99,235,.1); color:var(--accent2); margin-bottom:12px;
+    }
+    .tag.free{border-color:rgba(56,189,248,.4); background:rgba(56,189,248,.1)}
+    .tag.exec{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:var(--muted)}
+
+    .price{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:22px; font-weight:900; letter-spacing:-.01em; color:var(--text);
+    }
+    .offerHead{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:4px}
+
+    .list{list-style:none; padding:0; margin:14px 0 0}
+    .list li{
+      color:var(--muted); font-size:13px; padding:7px 0;
+      border-bottom:1px solid rgba(255,255,255,.04);
+      display:flex; align-items:flex-start; gap:8px;
+    }
+    .list li:last-child{border-bottom:none}
+    .list li::before{content:"→"; color:var(--accent2); font-size:11px; margin-top:2px; flex-shrink:0}
+    .offerCta{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .fitGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .check{list-style:none; padding:0; margin:14px 0 0}
+    .check li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.05);
+      background: rgba(0,0,0,.15);
+      color:var(--muted); font-size:14px; margin-bottom:8px;
+      transition: border-color .2s;
+    }
+    .check li:hover{border-color:rgba(37,99,235,.3)}
+    .ico-check{color:#22c55e; font-size:13px; flex-shrink:0; margin-top:1px}
+    .ico-x{color:#ef4444; font-size:13px; flex-shrink:0; margin-top:1px}
+
+    .process{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .stepNum{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:52px; font-weight:900; line-height:1;
+      color:rgba(37,99,235,.22); margin-bottom:8px; letter-spacing:-.02em;
+    }
+    .card:hover .stepNum{color:rgba(37,99,235,.4)}
+
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px}
+    .imgCard{
+      border-radius:var(--radius); overflow:hidden;
+      border:1px solid var(--line); min-height:300px; position:relative;
+    }
+    .imgCard img{width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.05)}
+    .imgCard::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 50%, rgba(6,10,17,.5));
+      pointer-events:none;
+    }
+
+    .aboutSplit{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch}
+
+    /* FORM */
+    .final{
+      margin-top:72px; padding:52px 48px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px; position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(11,19,36,.98), rgba(8,14,26,.98));
+      box-shadow: var(--shadow);
+    }
+    .final::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(ellipse 800px 400px at 0% 50%, rgba(37,99,235,.18), transparent 60%),
+                  radial-gradient(ellipse 500px 300px at 100% 0%, rgba(56,189,248,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .final h2{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(32px,5vw,52px); font-weight:900;
+      text-transform:uppercase; letter-spacing:-.01em;
+      line-height:1; margin-bottom:14px; position:relative;
+    }
+    .final > p{color:var(--muted); font-size:16px; margin-bottom:28px; max-width:60ch; position:relative}
+
+    .formWrap{
+      max-width:680px; margin:32px auto 0;
+      display:flex; flex-direction:column; gap:16px; position:relative;
+    }
+    .formRow{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .formGroup{display:flex; flex-direction:column; gap:7px}
+    .formGroup label{
+      font-size:12px; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--muted);
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select{
+      background: rgba(6,10,17,.7);
+      border:1px solid var(--line);
+      border-radius:10px; padding:13px 16px;
+      color:var(--text); font-family:'Barlow',sans-serif; font-size:14px;
+      transition: border-color .2s, box-shadow .2s; outline:none; -webkit-appearance:none;
+    }
+    .formGroup input:focus,
+    .formGroup textarea:focus,
+    .formGroup select:focus{
+      border-color:var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.18);
+    }
+    .formGroup input::placeholder,
+    .formGroup textarea::placeholder{color:rgba(136,153,187,.4)}
+    .formGroup select option{background:#0b1220; color:var(--text)}
+    .formGroup textarea{resize:vertical; min-height:100px}
+    .formSubmit{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap; margin-top:6px;
+    }
+    .formNote{font-size:12px; color:rgba(136,153,187,.55); max-width:38ch}
+
+    footer{
+      margin-top:60px; padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.05);
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap; color:var(--muted); font-size:13px;
+    }
+    .footerBrand{
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:800; font-size:16px; letter-spacing:.06em;
+      text-transform:uppercase; color:var(--text);
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .heroImg{min-height:300px; order:-1}
+      .heroImg::after{background:linear-gradient(180deg,transparent 40%,rgba(8,14,26,.9))}
+      .heroContent{padding:32px 28px}
+      .grid3,.grid2,.process,.fitGrid,.split,.aboutSplit{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .final{padding:32px 24px}
+      .formRow{grid-template-columns:1fr}
+    }
+
+    .reveal{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1; transform:none}
+  
+    /* WHATSAPP FLOATING BUTTON */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+  </style>
+
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#offers">Offers</a>
+      <a href="#fit">Fit</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="#contact">Apply Now</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="heroContent">
+      <div class="kicker">Clarity-first digital strategy</div>
+      <h1>Stop Posting.<br><span class="h1-line2">Start Positioning.</span></h1>
+      <p class="sub">
+        We help small businesses and entrepreneurs clarify their message, fix online positioning,
+        and build simple funnels and landing pages that generate real enquiries.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#contact">Get a Free Clarity Audit</a>
+        <a class="btn ghost" href="#offers">See Offers</a>
+      </div>
+      <div class="miniNote"><strong>No hype.</strong> No guru promises. Just structure and execution.</div>
+    </div>
+    <div class="heroImg">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg" alt="The Method Co.">
+    </div>
+  </section>
+
+  <section class="section reveal" id="problem">
+    <div class="sectionHead">
+      <div class="sectionLabel">The real problem</div>
+      <h2>You don't need more content.</h2>
+      <p>You need clarity and a system that converts attention into enquiries.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Confusing offer</h3>
+        <p>People don't understand what you do or why you're different. So they don't buy.</p>
+      </div>
+      <div class="card">
+        <h3>Weak website flow</h3>
+        <p>Your page doesn't guide visitors toward a decision. They leave with no next step.</p>
+      </div>
+      <div class="card">
+        <h3>Ads with no strategy</h3>
+        <p>Traffic without positioning is wasted spend. Clicks don't equal conversions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="capabilities">
+    <div class="sectionHead">
+      <div class="sectionLabel">What we actually fix</div>
+      <h2>Practical improvements that convert.</h2>
+      <p>Clarity. Trust. Conversion. In that order.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Positioning &amp; offer clarity</h3>
+        <p>Make it obvious what you sell, who it's for, and why it's worth it.</p>
+      </div>
+      <div class="card">
+        <h3>Copywriting</h3>
+        <p>Clear messaging for website and socials that doesn't sound like marketing fluff.</p>
+      </div>
+      <div class="card">
+        <h3>Landing page structure</h3>
+        <p>Flow, sections, hierarchy, and CTA logic that makes sense and converts.</p>
+      </div>
+      <div class="card">
+        <h3>Visual hierarchy</h3>
+        <p>Layout, spacing, and typography that improves perception and readability.</p>
+      </div>
+      <div class="card">
+        <h3>Simple funnel logic</h3>
+        <p>Attention. Trust. Enquiry. No overcomplication. Just what works.</p>
+      </div>
+      <div class="card">
+        <h3>Paid ads direction</h3>
+        <p>Meta/Google alignment. Message, offer and landing page all working together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="offers">
+    <div class="sectionHead">
+      <div class="sectionLabel">Offers</div>
+      <h2>Pick the level of help you need.</h2>
+      <p>From clarity audit to full execution. No fluff, no retainers, no bullshit.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <span class="tag free">Free</span>
+        <div class="offerHead">
+          <h3>Digital Clarity Audit</h3>
+          <span class="price">Free</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Perfect if you're unsure what's blocking enquiries.</p>
+        <ul class="list">
+          <li>Review of website / Instagram</li>
+          <li>What's broken and why</li>
+          <li>Clear priorities on what to fix first</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+        <span class="tag">Core offer</span>
+        <div class="offerHead">
+          <h3>AI Strategy Sprint</h3>
+          <span class="price">€200–300</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">For businesses ready to fix the foundation properly.</p>
+        <ul class="list">
+          <li>Offer and positioning refinement</li>
+          <li>Messaging angles and copy direction</li>
+          <li>Simple funnel recommendation</li>
+          <li>Landing page structure / wireframe</li>
+          <li>30-day action plan</li>
+          <li>Ad direction (Meta/Google)</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Sprint</a>
+          <a class="btn ghost" href="#process">How it works</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
+        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+        <div class="offerHead">
+          <h3>Method Launch System</h3>
+          <span class="price">€1,000</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Full strategy + landing page build + ads launch setup. Built fast, built right.</p>
+        <ul class="list">
+          <li>Deep positioning + offer refinement</li>
+          <li>Full funnel plan (before/after the page)</li>
+          <li>High-converting landing page (copy + structure + build)</li>
+          <li>3–5 ad angles + creative direction</li>
+          <li>Meta/Google campaign setup plan (you run it, I architect it)</li>
+          <li>Tracking guidance (pixels/events/UTMs)</li>
+          <li>14-day launch support + iterations</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Launch</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="fit">
+    <div class="sectionHead">
+      <div class="sectionLabel">Selective fit</div>
+      <h2>Not every business is a fit.</h2>
+      <p>This keeps the work high-quality and the results real.</p>
+    </div>
+    <div class="fitGrid">
+      <div class="card">
+        <h3 style="color:#22c55e; margin-bottom:14px">Good fit</h3>
+        <ul class="check">
+          <li><span class="ico-check">✓</span><span>You're serious about improving positioning and conversions.</span></li>
+          <li><span class="ico-check">✓</span><span>You're willing to implement, not just collect ideas.</span></li>
+          <li><span class="ico-check">✓</span><span>You want clear structure over "more content".</span></li>
+          <li><span class="ico-check">✓</span><span>You value honest feedback and direct priorities.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ef4444; margin-bottom:14px">Not a fit</h3>
+        <ul class="check">
+          <li><span class="ico-x">✕</span><span>You want viral hacks or overnight miracles.</span></li>
+          <li><span class="ico-x">✕</span><span>You expect someone to "save" your business with magic.</span></li>
+          <li><span class="ico-x">✕</span><span>You won't change the offer, the page, or the message.</span></li>
+          <li><span class="ico-x">✕</span><span>You just want posting with no strategy behind it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="process">
+    <div class="sectionHead">
+      <div class="sectionLabel">How it works</div>
+      <h2>Simple process. Real execution.</h2>
+      <p>Clarity first. Then we build the system around it.</p>
+    </div>
+    <div class="process">
+      <div class="card">
+        <div class="stepNum">01</div>
+        <h3>Audit</h3>
+        <p style="color:var(--muted); font-size:14px">We diagnose what's blocking trust and enquiries. No assumptions.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">02</div>
+        <h3>Strategy</h3>
+        <p style="color:var(--muted); font-size:14px">Offer, message, funnel direction and priorities all mapped out.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">03</div>
+        <h3>Build &amp; Iterate</h3>
+        <p style="color:var(--muted); font-size:14px">Landing page and copy aligned with ads and organic content.</p>
+      </div>
+    </div>
+
+    <div class="imgCard" style="margin-top:14px; min-height:200px;">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg" alt="Growth trajectory" style="object-position:center;">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,17,.7) 0%,transparent 40%,rgba(6,10,17,.7) 100%),linear-gradient(180deg,transparent 40%,rgba(6,10,17,.5));pointer-events:none;z-index:1;"></div>
+      <div style="position:absolute;bottom:24px;left:32px;z-index:2;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;">Clarity. Structure. Execution.</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;">The Method. Step by step.</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt="Digital strategy work">
+      </div>
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__ultrarealistic-portrait-dark-studio-as-digital-str__43901_c5ebjh.jpg" alt="The Method Co. working">
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="sectionHead">
+      <div class="sectionLabel">About</div>
+      <h2>We're practical. We build structure.</h2>
+      <p>No hype. No fluff. Just what actually moves the needle.</p>
+    </div>
+    <div class="aboutSplit">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:16px">What you can expect</h3>
+          <ul class="list">
+            <li>Clear feedback. No fluff, no sugarcoating</li>
+            <li>Strong positioning direction</li>
+            <li>Better copy and page flow</li>
+            <li>Smarter ad and message alignment</li>
+            <li>Simple systems you can actually run</li>
+          </ul>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line)">
+          Based in Dublin. Working with serious founders and small businesses who want results, not vanity metrics.
+        </p>
+      </div>
+      <div class="imgCard" style="min-height:380px">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__professional-consultant-at-laptop-clean-modern-loo__56025_x4vnoo.jpg" alt="The Method Co." style="object-position:center top">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <h2>Ready to fix<br><span class="h1-line2">your positioning?</span></h2>
+    <p>Apply below. We work with a small number of clients at a time to keep quality high.</p>
+
+    <form method="POST" class="formWrap" action="https://formspree.io/f/xkovloyk">
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your name" required="">
+        </div>
+        <div class="formGroup">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required="">
+        </div>
+      </div>
+      <div class="formGroup">
+        <label>Website or Instagram (optional)</label>
+        <input type="text" name="link" placeholder="https://yourwebsite.com or @yourhandle">
+      </div>
+      <div class="formGroup">
+        <label>What does your business do? *</label>
+        <textarea name="business" placeholder="Briefly describe what you sell and who to..." required=""></textarea>
+      </div>
+      <div class="formGroup">
+        <label>What's your biggest growth problem right now? *</label>
+        <textarea name="problem" placeholder="What's blocking you? More leads, better conversions, unclear messaging..." required=""></textarea>
+      </div>
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Monthly revenue (approx.)</label>
+          <select name="revenue">
+            <option value="">Select one</option>
+            <option>Pre-revenue</option>
+            <option>€1k–€5k</option>
+            <option>€5k–€20k</option>
+            <option>€20k+</option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Ready to invest in strategy?</label>
+          <select name="budget">
+            <option value="">Select one</option>
+            <option>Yes – €200–€500</option>
+            <option>Yes – €500+</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="formSubmit">
+        <button type="submit" class="btn primary" style="font-size:14px; padding:14px 28px;">Apply for The Method →</button>
+        <p class="formNote">We review every application and respond within 48 hours. Serious businesses only.</p>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div style="display:flex; align-items:center; gap: 16px;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div>© <span id="year">2026</span> — Dublin, Ireland</div>
+    <div>Built for clarity. Not noise.</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.564 4.237 1.636 6.082L.006 24l6.02-1.58A11.968 11.968 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.016c-1.815 0-3.593-.467-5.15-1.353l-.37-.218-3.823 1.002 1.022-3.73-.24-.38A10.024 10.024 0 0 1 1.984 12.03c0-5.542 4.512-10.054 10.047-10.054 5.535 0 10.046 4.512 10.046 10.054 0 5.542-4.511 10.054-10.046 10.054zm5.513-7.535c-.302-.152-1.788-.88-2.065-.98-.276-.102-.478-.152-.678.152-.201.302-.782.98-.958 1.181-.176.202-.352.228-.654.076-.302-.152-1.275-.469-2.43-1.32-.898-.66-1.503-1.474-1.68-1.776-.176-.302-.019-.465.132-.616.135-.135.302-.352.453-.528.151-.176.201-.302.302-.503.1-.202.05-.378-.025-.528-.076-.152-.678-1.634-.929-2.24-.243-.591-.491-.51-.678-.52-.176-.009-.378-.009-.578-.009-.2 0-.528.076-.805.378-.276.302-1.056 1.03-1.056 2.515s1.082 2.918 1.233 3.12c.151.202 2.13 3.251 5.156 4.557.72.311 1.282.497 1.722.636.723.23 1.382.197 1.902.12.584-.087 1.788-.731 2.039-1.436.251-.706.251-1.312.176-1.437-.076-.126-.276-.202-.578-.353z"></path>
+  </svg>
+</a>
+
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+
+</body></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>The Method Co. — Clarity-First Digital Strategy</title>
+  <meta name="description" content="The Method Co. is a clarity-first digital strategy consultancy. Positioning, copy, funnels, landing pages, and ad direction for serious business owners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&amp;family=Barlow+Condensed:wght@700;800;900&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#060a11;
+      --bg2:#080e1a;
+      --card:#0b1324cc;
+      --line:#1a2640;
+      --text:#e8f0ff;
+      --muted:#8899bb;
+      --accent:#2563eb;
+      --accent2:#38bdf8;
+      --glow: rgba(37,99,235,.35);
+      --shadow: 0 24px 64px rgba(0,0,0,.55);
+      --radius: 16px;
+      --max: 1140px;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background-image: url("https://res.cloudinary.com/dsriscylr/image/upload/v1772066806/freepik__dark-modern-abstract-background-for-a-digital-mark__77622_azwrht.jpg");
+      background-size: cover;
+      background-position: center top;
+      opacity:.12;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(56,189,248,.10) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(6,10,17,0) 0%, var(--bg2) 100%);
+      pointer-events:none;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 24px 100px; position:relative; z-index:1}
+
+    /* NAV */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      position:sticky; top:0; z-index:100;
+      background: rgba(6,10,17,.88);
+      backdrop-filter: blur(20px);
+      margin:0 -24px; padding:18px 24px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight:800; font-size:18px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .logoImg{
+      height:36px; width:auto;
+      opacity:.92;
+      object-fit:contain;
+      
+    }
+    .navlinks{display:flex; gap:22px; font-size:13px; font-weight:500; letter-spacing:.04em; text-transform:uppercase}
+    .navlinks a{color:var(--muted); transition:color .2s}
+    .navlinks a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 20px; border-radius:10px; font-weight:700; font-size:13px;
+      letter-spacing:.04em; text-transform:uppercase;
+      border:1px solid transparent;
+      transition: all .18s ease;
+      cursor:pointer; user-select:none; white-space:nowrap;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), rgba(56,189,248,.7));
+      color:#020b1a;
+      transition: all .18s ease, box-shadow .3s ease;
+    }
+    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(56,189,248,.3);}
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.1);
+      color: var(--text);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.07); border-color:rgba(255,255,255,.2)}
+
+    /* HERO */
+    .hero{
+      margin-top:52px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.03) inset;
+      position:relative;
+      background: linear-gradient(135deg, rgba(11,19,36,.95), rgba(8,14,26,.98));
+      animation: fadeUp .8s ease both;
+    }
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(24px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+    .heroContent{
+      padding:52px 48px 52px;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2);
+      font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .kicker::before{
+      content:"";
+      display:block; width:22px; height:1px;
+      background: var(--accent2); opacity:.7;
+    }
+    h1{
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight:900; line-height:.95;
+      letter-spacing:-.01em; text-transform:uppercase;
+    }
+    .h1-line2{
+      display:block;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .sub{
+      margin:20px 0 28px;
+      color:var(--muted); font-size:16px; line-height:1.6; max-width:50ch;
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap}
+    .miniNote{
+      margin-top:20px;
+      color:rgba(136,153,187,.75);
+      font-size:12px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .miniNote strong{color: var(--accent2); font-weight:600}
+
+    .heroImg{
+      position:relative; min-height:520px; overflow:hidden;
+    }
+    .heroImg img{
+      width:100%; height:100%; object-fit:cover; object-position:center top;
+      display:block; filter: contrast(1.05) saturate(0.95);
+    }
+    .heroImg::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,14,26,.9) 0%, rgba(8,14,26,.2) 40%, transparent 100%),
+        linear-gradient(180deg, transparent 60%, rgba(8,14,26,.5));
+      pointer-events:none;
+    }
+
+    /* SECTIONS */
+    .section{margin-top:72px}
+    .sectionHead{margin-bottom:28px}
+    .sectionLabel{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2); font-size:11px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px;
+    }
+    .sectionLabel::before{
+      content:""; display:block; width:18px; height:1px; background:var(--accent2); opacity:.7;
+    }
+    .sectionHead h2{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:clamp(28px, 4vw, 40px); font-weight:900;
+      letter-spacing:-.01em; text-transform:uppercase; line-height:1;
+    }
+    .sectionHead p{color:var(--muted); font-size:15px; margin-top:8px; max-width:60ch}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,.01) 100%);
+      border-radius: var(--radius);
+      padding:20px 22px;
+      position:relative; overflow:hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover{border-color: rgba(37,99,235,.4); transform: translateY(-2px);}
+    .card::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+    }
+    .card h3{font-size:16px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em}
+    .card p{color:var(--muted); font-size:14px; line-height:1.6}
+
+    .tag{
+      display:inline-block; font-size:11px; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; padding:5px 10px; border-radius:6px;
+      border:1px solid rgba(37,99,235,.4);
+      background: rgba(37,99,235,.1); color:var(--accent2); margin-bottom:12px;
+    }
+    .tag.free{border-color:rgba(56,189,248,.4); background:rgba(56,189,248,.1)}
+    .tag.exec{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:var(--muted)}
+
+    .price{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:22px; font-weight:900; letter-spacing:-.01em; color:var(--text);
+    }
+    .offerHead{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:4px}
+
+    .list{list-style:none; padding:0; margin:14px 0 0}
+    .list li{
+      color:var(--muted); font-size:13px; padding:7px 0;
+      border-bottom:1px solid rgba(255,255,255,.04);
+      display:flex; align-items:flex-start; gap:8px;
+    }
+    .list li:last-child{border-bottom:none}
+    .list li::before{content:"→"; color:var(--accent2); font-size:11px; margin-top:2px; flex-shrink:0}
+    .offerCta{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .fitGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .check{list-style:none; padding:0; margin:14px 0 0}
+    .check li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.05);
+      background: rgba(0,0,0,.15);
+      color:var(--muted); font-size:14px; margin-bottom:8px;
+      transition: border-color .2s;
+    }
+    .check li:hover{border-color:rgba(37,99,235,.3)}
+    .ico-check{color:#22c55e; font-size:13px; flex-shrink:0; margin-top:1px}
+    .ico-x{color:#ef4444; font-size:13px; flex-shrink:0; margin-top:1px}
+
+    .process{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .stepNum{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:52px; font-weight:900; line-height:1;
+      color:rgba(37,99,235,.22); margin-bottom:8px; letter-spacing:-.02em;
+    }
+    .card:hover .stepNum{color:rgba(37,99,235,.4)}
+
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px}
+    .imgCard{
+      border-radius:var(--radius); overflow:hidden;
+      border:1px solid var(--line); min-height:300px; position:relative;
+    }
+    .imgCard img{width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.05)}
+    .imgCard::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 50%, rgba(6,10,17,.5));
+      pointer-events:none;
+    }
+
+    .aboutSplit{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch}
+
+    /* FORM */
+    .final{
+      margin-top:72px; padding:52px 48px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px; position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(11,19,36,.98), rgba(8,14,26,.98));
+      box-shadow: var(--shadow);
+    }
+    .final::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(ellipse 800px 400px at 0% 50%, rgba(37,99,235,.18), transparent 60%),
+                  radial-gradient(ellipse 500px 300px at 100% 0%, rgba(56,189,248,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .final h2{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(32px,5vw,52px); font-weight:900;
+      text-transform:uppercase; letter-spacing:-.01em;
+      line-height:1; margin-bottom:14px; position:relative;
+    }
+    .final > p{color:var(--muted); font-size:16px; margin-bottom:28px; max-width:60ch; position:relative}
+
+    .formWrap{
+      max-width:680px; margin:32px auto 0;
+      display:flex; flex-direction:column; gap:16px; position:relative;
+    }
+    .formRow{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .formGroup{display:flex; flex-direction:column; gap:7px}
+    .formGroup label{
+      font-size:12px; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--muted);
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select{
+      background: rgba(6,10,17,.7);
+      border:1px solid var(--line);
+      border-radius:10px; padding:13px 16px;
+      color:var(--text); font-family:'Barlow',sans-serif; font-size:14px;
+      transition: border-color .2s, box-shadow .2s; outline:none; -webkit-appearance:none;
+    }
+    .formGroup input:focus,
+    .formGroup textarea:focus,
+    .formGroup select:focus{
+      border-color:var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.18);
+    }
+    .formGroup input::placeholder,
+    .formGroup textarea::placeholder{color:rgba(136,153,187,.4)}
+    .formGroup select option{background:#0b1220; color:var(--text)}
+    .formGroup textarea{resize:vertical; min-height:100px}
+    .formSubmit{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap; margin-top:6px;
+    }
+    .formNote{font-size:12px; color:rgba(136,153,187,.55); max-width:38ch}
+
+    footer{
+      margin-top:60px; padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.05);
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap; color:var(--muted); font-size:13px;
+    }
+    .footerBrand{
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:800; font-size:16px; letter-spacing:.06em;
+      text-transform:uppercase; color:var(--text);
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .heroImg{min-height:300px; order:-1}
+      .heroImg::after{background:linear-gradient(180deg,transparent 40%,rgba(8,14,26,.9))}
+      .heroContent{padding:32px 28px}
+      .grid3,.grid2,.process,.fitGrid,.split,.aboutSplit{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .final{padding:32px 24px}
+      .formRow{grid-template-columns:1fr}
+    }
+
+    .reveal{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1; transform:none}
+  
+    /* WHATSAPP FLOATING BUTTON */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+  </style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#offers">Offers</a>
+      <a href="#fit">Fit</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="#contact">Apply Now</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="heroContent">
+      <div class="kicker">Clarity-first digital strategy</div>
+      <h1>Stop Posting.<br><span class="h1-line2">Start Positioning.</span></h1>
+      <p class="sub">
+        We help small businesses and entrepreneurs clarify their message, fix online positioning,
+        and build simple funnels and landing pages that generate real enquiries.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#contact">Get a Free Clarity Audit</a>
+        <a class="btn ghost" href="#offers">See Offers</a>
+      </div>
+      <div class="miniNote"><strong>No hype.</strong> No guru promises. Just structure and execution.</div>
+    </div>
+    <div class="heroImg">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg" alt="The Method Co.">
+    </div>
+  </section>
+
+  <section class="section reveal" id="problem">
+    <div class="sectionHead">
+      <div class="sectionLabel">The real problem</div>
+      <h2>You don't need more content.</h2>
+      <p>You need clarity and a system that converts attention into enquiries.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Confusing offer</h3>
+        <p>People don't understand what you do or why you're different. So they don't buy.</p>
+      </div>
+      <div class="card">
+        <h3>Weak website flow</h3>
+        <p>Your page doesn't guide visitors toward a decision. They leave with no next step.</p>
+      </div>
+      <div class="card">
+        <h3>Ads with no strategy</h3>
+        <p>Traffic without positioning is wasted spend. Clicks don't equal conversions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="capabilities">
+    <div class="sectionHead">
+      <div class="sectionLabel">What we actually fix</div>
+      <h2>Practical improvements that convert.</h2>
+      <p>Clarity. Trust. Conversion. In that order.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Positioning &amp; offer clarity</h3>
+        <p>Make it obvious what you sell, who it's for, and why it's worth it.</p>
+      </div>
+      <div class="card">
+        <h3>Copywriting</h3>
+        <p>Clear messaging for website and socials that doesn't sound like marketing fluff.</p>
+      </div>
+      <div class="card">
+        <h3>Landing page structure</h3>
+        <p>Flow, sections, hierarchy, and CTA logic that makes sense and converts.</p>
+      </div>
+      <div class="card">
+        <h3>Visual hierarchy</h3>
+        <p>Layout, spacing, and typography that improves perception and readability.</p>
+      </div>
+      <div class="card">
+        <h3>Simple funnel logic</h3>
+        <p>Attention. Trust. Enquiry. No overcomplication. Just what works.</p>
+      </div>
+      <div class="card">
+        <h3>Paid ads direction</h3>
+        <p>Meta/Google alignment. Message, offer and landing page all working together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="offers">
+    <div class="sectionHead">
+      <div class="sectionLabel">Offers</div>
+      <h2>Pick the level of help you need.</h2>
+      <p>From clarity audit to full execution. No fluff, no retainers, no bullshit.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <span class="tag free">Free</span>
+        <div class="offerHead">
+          <h3>Digital Clarity Audit</h3>
+          <span class="price">Free</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Perfect if you're unsure what's blocking enquiries.</p>
+        <ul class="list">
+          <li>Review of website / Instagram</li>
+          <li>What's broken and why</li>
+          <li>Clear priorities on what to fix first</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+        <span class="tag">Core offer</span>
+        <div class="offerHead">
+          <h3>AI Strategy Sprint</h3>
+          <span class="price">€200–300</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">For businesses ready to fix the foundation properly.</p>
+        <ul class="list">
+          <li>Offer and positioning refinement</li>
+          <li>Messaging angles and copy direction</li>
+          <li>Simple funnel recommendation</li>
+          <li>Landing page structure / wireframe</li>
+          <li>30-day action plan</li>
+          <li>Ad direction (Meta/Google)</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Sprint</a>
+          <a class="btn ghost" href="#process">How it works</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
+        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+        <div class="offerHead">
+          <h3>Method Launch System</h3>
+          <span class="price">€1,000</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Full strategy + landing page build + ads launch setup. Built fast, built right.</p>
+        <ul class="list">
+          <li>Deep positioning + offer refinement</li>
+          <li>Full funnel plan (before/after the page)</li>
+          <li>High-converting landing page (copy + structure + build)</li>
+          <li>3–5 ad angles + creative direction</li>
+          <li>Meta/Google campaign setup plan (you run it, I architect it)</li>
+          <li>Tracking guidance (pixels/events/UTMs)</li>
+          <li>14-day launch support + iterations</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Launch</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="fit">
+    <div class="sectionHead">
+      <div class="sectionLabel">Selective fit</div>
+      <h2>Not every business is a fit.</h2>
+      <p>This keeps the work high-quality and the results real.</p>
+    </div>
+    <div class="fitGrid">
+      <div class="card">
+        <h3 style="color:#22c55e; margin-bottom:14px">Good fit</h3>
+        <ul class="check">
+          <li><span class="ico-check">✓</span><span>You're serious about improving positioning and conversions.</span></li>
+          <li><span class="ico-check">✓</span><span>You're willing to implement, not just collect ideas.</span></li>
+          <li><span class="ico-check">✓</span><span>You want clear structure over "more content".</span></li>
+          <li><span class="ico-check">✓</span><span>You value honest feedback and direct priorities.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ef4444; margin-bottom:14px">Not a fit</h3>
+        <ul class="check">
+          <li><span class="ico-x">✕</span><span>You want viral hacks or overnight miracles.</span></li>
+          <li><span class="ico-x">✕</span><span>You expect someone to "save" your business with magic.</span></li>
+          <li><span class="ico-x">✕</span><span>You won't change the offer, the page, or the message.</span></li>
+          <li><span class="ico-x">✕</span><span>You just want posting with no strategy behind it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="process">
+    <div class="sectionHead">
+      <div class="sectionLabel">How it works</div>
+      <h2>Simple process. Real execution.</h2>
+      <p>Clarity first. Then we build the system around it.</p>
+    </div>
+    <div class="process">
+      <div class="card">
+        <div class="stepNum">01</div>
+        <h3>Audit</h3>
+        <p style="color:var(--muted); font-size:14px">We diagnose what's blocking trust and enquiries. No assumptions.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">02</div>
+        <h3>Strategy</h3>
+        <p style="color:var(--muted); font-size:14px">Offer, message, funnel direction and priorities all mapped out.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">03</div>
+        <h3>Build &amp; Iterate</h3>
+        <p style="color:var(--muted); font-size:14px">Landing page and copy aligned with ads and organic content.</p>
+      </div>
+    </div>
+
+    <div class="imgCard" style="margin-top:14px; min-height:200px;">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg" alt="Growth trajectory" style="object-position:center;">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,17,.7) 0%,transparent 40%,rgba(6,10,17,.7) 100%),linear-gradient(180deg,transparent 40%,rgba(6,10,17,.5));pointer-events:none;z-index:1;"></div>
+      <div style="position:absolute;bottom:24px;left:32px;z-index:2;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;">Clarity. Structure. Execution.</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;">The Method. Step by step.</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt="Digital strategy work">
+      </div>
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__ultrarealistic-portrait-dark-studio-as-digital-str__43901_c5ebjh.jpg" alt="The Method Co. working">
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="sectionHead">
+      <div class="sectionLabel">About</div>
+      <h2>We're practical. We build structure.</h2>
+      <p>No hype. No fluff. Just what actually moves the needle.</p>
+    </div>
+    <div class="aboutSplit">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:16px">What you can expect</h3>
+          <ul class="list">
+            <li>Clear feedback. No fluff, no sugarcoating</li>
+            <li>Strong positioning direction</li>
+            <li>Better copy and page flow</li>
+            <li>Smarter ad and message alignment</li>
+            <li>Simple systems you can actually run</li>
+          </ul>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line)">
+          Based in Dublin. Working with serious founders and small businesses who want results, not vanity metrics.
+        </p>
+      </div>
+      <div class="imgCard" style="min-height:380px">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__professional-consultant-at-laptop-clean-modern-loo__56025_x4vnoo.jpg" alt="The Method Co." style="object-position:center top">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <h2>Ready to fix<br><span class="h1-line2">your positioning?</span></h2>
+    <p>Apply below. We work with a small number of clients at a time to keep quality high.</p>
+
+    <form method="POST" class="formWrap" action="https://formspree.io/f/xkovloyk">
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your name" required="">
+        </div>
+        <div class="formGroup">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required="">
+        </div>
+      </div>
+      <div class="formGroup">
+        <label>Website or Instagram (optional)</label>
+        <input type="text" name="link" placeholder="https://yourwebsite.com or @yourhandle">
+      </div>
+      <div class="formGroup">
+        <label>What does your business do? *</label>
+        <textarea name="business" placeholder="Briefly describe what you sell and who to..." required=""></textarea>
+      </div>
+      <div class="formGroup">
+        <label>What's your biggest growth problem right now? *</label>
+        <textarea name="problem" placeholder="What's blocking you? More leads, better conversions, unclear messaging..." required=""></textarea>
+      </div>
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Monthly revenue (approx.)</label>
+          <select name="revenue">
+            <option value="">Select one</option>
+            <option>Pre-revenue</option>
+            <option>€1k–€5k</option>
+            <option>€5k–€20k</option>
+            <option>€20k+</option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Ready to invest in strategy?</label>
+          <select name="budget">
+            <option value="">Select one</option>
+            <option>Yes – €200–€500</option>
+            <option>Yes – €500+</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="formSubmit">
+        <button type="submit" class="btn primary" style="font-size:14px; padding:14px 28px;">Apply for The Method →</button>
+        <p class="formNote">We review every application and respond within 48 hours. Serious businesses only.</p>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div style="display:flex; align-items:center; gap: 16px;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div>© <span id="year">2026</span> — Dublin, Ireland</div>
+    <div>Built for clarity. Not noise.</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.564 4.237 1.636 6.082L.006 24l6.02-1.58A11.968 11.968 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.016c-1.815 0-3.593-.467-5.15-1.353l-.37-.218-3.823 1.002 1.022-3.73-.24-.38A10.024 10.024 0 0 1 1.984 12.03c0-5.542 4.512-10.054 10.047-10.054 5.535 0 10.046 4.512 10.046 10.054 0 5.542-4.511 10.054-10.046 10.054zm5.513-7.535c-.302-.152-1.788-.88-2.065-.98-.276-.102-.478-.152-.678.152-.201.302-.782.98-.958 1.181-.176.202-.352.228-.654.076-.302-.152-1.275-.469-2.43-1.32-.898-.66-1.503-1.474-1.68-1.776-.176-.302-.019-.465.132-.616.135-.135.302-.352.453-.528.151-.176.201-.302.302-.503.1-.202.05-.378-.025-.528-.076-.152-.678-1.634-.929-2.24-.243-.591-.491-.51-.678-.52-.176-.009-.378-.009-.578-.009-.2 0-.528.076-.805.378-.276.302-1.056 1.03-1.056 2.515s1.082 2.918 1.233 3.12c.151.202 2.13 3.251 5.156 4.557.72.311 1.282.497 1.722.636.723.23 1.382.197 1.902.12.584-.087 1.788-.731 2.039-1.436.251-.706.251-1.312.176-1.437-.076-.126-.276-.202-.578-.353z"></path>
+  </svg>
+</a>
+
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+
+</body>
+<<pseudo>></<pseudo>>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#offers">Offers</a>
+      <a href="#fit">Fit</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="#contact">Apply Now</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="heroContent">
+      <div class="kicker">Clarity-first digital strategy</div>
+      <h1>Stop Posting.<br><span class="h1-line2">Start Positioning.</span></h1>
+      <p class="sub">
+        We help small businesses and entrepreneurs clarify their message, fix online positioning,
+        and build simple funnels and landing pages that generate real enquiries.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#contact">Get a Free Clarity Audit</a>
+        <a class="btn ghost" href="#offers">See Offers</a>
+      </div>
+      <div class="miniNote"><strong>No hype.</strong> No guru promises. Just structure and execution.</div>
+    </div>
+    <div class="heroImg">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg" alt="The Method Co.">
+    </div>
+  </section>
+
+  <section class="section reveal" id="problem">
+    <div class="sectionHead">
+      <div class="sectionLabel">The real problem</div>
+      <h2>You don't need more content.</h2>
+      <p>You need clarity and a system that converts attention into enquiries.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Confusing offer</h3>
+        <p>People don't understand what you do or why you're different. So they don't buy.</p>
+      </div>
+      <div class="card">
+        <h3>Weak website flow</h3>
+        <p>Your page doesn't guide visitors toward a decision. They leave with no next step.</p>
+      </div>
+      <div class="card">
+        <h3>Ads with no strategy</h3>
+        <p>Traffic without positioning is wasted spend. Clicks don't equal conversions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="capabilities">
+    <div class="sectionHead">
+      <div class="sectionLabel">What we actually fix</div>
+      <h2>Practical improvements that convert.</h2>
+      <p>Clarity. Trust. Conversion. In that order.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Positioning &amp; offer clarity</h3>
+        <p>Make it obvious what you sell, who it's for, and why it's worth it.</p>
+      </div>
+      <div class="card">
+        <h3>Copywriting</h3>
+        <p>Clear messaging for website and socials that doesn't sound like marketing fluff.</p>
+      </div>
+      <div class="card">
+        <h3>Landing page structure</h3>
+        <p>Flow, sections, hierarchy, and CTA logic that makes sense and converts.</p>
+      </div>
+      <div class="card">
+        <h3>Visual hierarchy</h3>
+        <p>Layout, spacing, and typography that improves perception and readability.</p>
+      </div>
+      <div class="card">
+        <h3>Simple funnel logic</h3>
+        <p>Attention. Trust. Enquiry. No overcomplication. Just what works.</p>
+      </div>
+      <div class="card">
+        <h3>Paid ads direction</h3>
+        <p>Meta/Google alignment. Message, offer and landing page all working together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="offers">
+    <div class="sectionHead">
+      <div class="sectionLabel">Offers</div>
+      <h2>Pick the level of help you need.</h2>
+      <p>From clarity audit to full execution. No fluff, no retainers, no bullshit.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <span class="tag free">Free</span>
+        <div class="offerHead">
+          <h3>Digital Clarity Audit</h3>
+          <span class="price">Free</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Perfect if you're unsure what's blocking enquiries.</p>
+        <ul class="list">
+          <li>Review of website / Instagram</li>
+          <li>What's broken and why</li>
+          <li>Clear priorities on what to fix first</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+        <span class="tag">Core offer</span>
+        <div class="offerHead">
+          <h3>AI Strategy Sprint</h3>
+          <span class="price">€200–300</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">For businesses ready to fix the foundation properly.</p>
+        <ul class="list">
+          <li>Offer and positioning refinement</li>
+          <li>Messaging angles and copy direction</li>
+          <li>Simple funnel recommendation</li>
+          <li>Landing page structure / wireframe</li>
+          <li>30-day action plan</li>
+          <li>Ad direction (Meta/Google)</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Sprint</a>
+          <a class="btn ghost" href="#process">How it works</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
+        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+        <div class="offerHead">
+          <h3>Method Launch System</h3>
+          <span class="price">€1,000</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Full strategy + landing page build + ads launch setup. Built fast, built right.</p>
+        <ul class="list">
+          <li>Deep positioning + offer refinement</li>
+          <li>Full funnel plan (before/after the page)</li>
+          <li>High-converting landing page (copy + structure + build)</li>
+          <li>3–5 ad angles + creative direction</li>
+          <li>Meta/Google campaign setup plan (you run it, I architect it)</li>
+          <li>Tracking guidance (pixels/events/UTMs)</li>
+          <li>14-day launch support + iterations</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Launch</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="fit">
+    <div class="sectionHead">
+      <div class="sectionLabel">Selective fit</div>
+      <h2>Not every business is a fit.</h2>
+      <p>This keeps the work high-quality and the results real.</p>
+    </div>
+    <div class="fitGrid">
+      <div class="card">
+        <h3 style="color:#22c55e; margin-bottom:14px">Good fit</h3>
+        <ul class="check">
+          <li><span class="ico-check">✓</span><span>You're serious about improving positioning and conversions.</span></li>
+          <li><span class="ico-check">✓</span><span>You're willing to implement, not just collect ideas.</span></li>
+          <li><span class="ico-check">✓</span><span>You want clear structure over "more content".</span></li>
+          <li><span class="ico-check">✓</span><span>You value honest feedback and direct priorities.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ef4444; margin-bottom:14px">Not a fit</h3>
+        <ul class="check">
+          <li><span class="ico-x">✕</span><span>You want viral hacks or overnight miracles.</span></li>
+          <li><span class="ico-x">✕</span><span>You expect someone to "save" your business with magic.</span></li>
+          <li><span class="ico-x">✕</span><span>You won't change the offer, the page, or the message.</span></li>
+          <li><span class="ico-x">✕</span><span>You just want posting with no strategy behind it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="process">
+    <div class="sectionHead">
+      <div class="sectionLabel">How it works</div>
+      <h2>Simple process. Real execution.</h2>
+      <p>Clarity first. Then we build the system around it.</p>
+    </div>
+    <div class="process">
+      <div class="card">
+        <div class="stepNum">01</div>
+        <h3>Audit</h3>
+        <p style="color:var(--muted); font-size:14px">We diagnose what's blocking trust and enquiries. No assumptions.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">02</div>
+        <h3>Strategy</h3>
+        <p style="color:var(--muted); font-size:14px">Offer, message, funnel direction and priorities all mapped out.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">03</div>
+        <h3>Build &amp; Iterate</h3>
+        <p style="color:var(--muted); font-size:14px">Landing page and copy aligned with ads and organic content.</p>
+      </div>
+    </div>
+
+    <div class="imgCard" style="margin-top:14px; min-height:200px;">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg" alt="Growth trajectory" style="object-position:center;">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,17,.7) 0%,transparent 40%,rgba(6,10,17,.7) 100%),linear-gradient(180deg,transparent 40%,rgba(6,10,17,.5));pointer-events:none;z-index:1;"></div>
+      <div style="position:absolute;bottom:24px;left:32px;z-index:2;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;">Clarity. Structure. Execution.</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;">The Method. Step by step.</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt="Digital strategy work">
+      </div>
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__ultrarealistic-portrait-dark-studio-as-digital-str__43901_c5ebjh.jpg" alt="The Method Co. working">
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="sectionHead">
+      <div class="sectionLabel">About</div>
+      <h2>We're practical. We build structure.</h2>
+      <p>No hype. No fluff. Just what actually moves the needle.</p>
+    </div>
+    <div class="aboutSplit">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:16px">What you can expect</h3>
+          <ul class="list">
+            <li>Clear feedback. No fluff, no sugarcoating</li>
+            <li>Strong positioning direction</li>
+            <li>Better copy and page flow</li>
+            <li>Smarter ad and message alignment</li>
+            <li>Simple systems you can actually run</li>
+          </ul>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line)">
+          Based in Dublin. Working with serious founders and small businesses who want results, not vanity metrics.
+        </p>
+      </div>
+      <div class="imgCard" style="min-height:380px">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__professional-consultant-at-laptop-clean-modern-loo__56025_x4vnoo.jpg" alt="The Method Co." style="object-position:center top">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <h2>Ready to fix<br><span class="h1-line2">your positioning?</span></h2>
+    <p>Apply below. We work with a small number of clients at a time to keep quality high.</p>
+
+    <form method="POST" class="formWrap" action="https://formspree.io/f/xkovloyk">
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your name" required="">
+        </div>
+        <div class="formGroup">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required="">
+        </div>
+      </div>
+      <div class="formGroup">
+        <label>Website or Instagram (optional)</label>
+        <input type="text" name="link" placeholder="https://yourwebsite.com or @yourhandle">
+      </div>
+      <div class="formGroup">
+        <label>What does your business do? *</label>
+        <textarea name="business" placeholder="Briefly describe what you sell and who to..." required=""></textarea>
+      </div>
+      <div class="formGroup">
+        <label>What's your biggest growth problem right now? *</label>
+        <textarea name="problem" placeholder="What's blocking you? More leads, better conversions, unclear messaging..." required=""></textarea>
+      </div>
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Monthly revenue (approx.)</label>
+          <select name="revenue">
+            <option value="">Select one</option>
+            <option>Pre-revenue</option>
+            <option>€1k–€5k</option>
+            <option>€5k–€20k</option>
+            <option>€20k+</option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Ready to invest in strategy?</label>
+          <select name="budget">
+            <option value="">Select one</option>
+            <option>Yes – €200–€500</option>
+            <option>Yes – €500+</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="formSubmit">
+        <button type="submit" class="btn primary" style="font-size:14px; padding:14px 28px;">Apply for The Method →</button>
+        <p class="formNote">We review every application and respond within 48 hours. Serious businesses only.</p>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div style="display:flex; align-items:center; gap: 16px;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div>© <span id="year">2026</span> — Dublin, Ireland</div>
+    <div>Built for clarity. Not noise.</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+  </footer>
+
+</div>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.564 4.237 1.636 6.082L.006 24l6.02-1.58A11.968 11.968 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.016c-1.815 0-3.593-.467-5.15-1.353l-.37-.218-3.823 1.002 1.022-3.73-.24-.38A10.024 10.024 0 0 1 1.984 12.03c0-5.542 4.512-10.054 10.047-10.054 5.535 0 10.046 4.512 10.046 10.054 0 5.542-4.511 10.054-10.046 10.054zm5.513-7.535c-.302-.152-1.788-.88-2.065-.98-.276-.102-.478-.152-.678.152-.201.302-.782.98-.958 1.181-.176.202-.352.228-.654.076-.302-.152-1.275-.469-2.43-1.32-.898-.66-1.503-1.474-1.68-1.776-.176-.302-.019-.465.132-.616.135-.135.302-.352.453-.528.151-.176.201-.302.302-.503.1-.202.05-.378-.025-.528-.076-.152-.678-1.634-.929-2.24-.243-.591-.491-.51-.678-.52-.176-.009-.378-.009-.578-.009-.2 0-.528.076-.805.378-.276.302-1.056 1.03-1.056 2.515s1.082 2.918 1.233 3.12c.151.202 2.13 3.251 5.156 4.557.72.311 1.282.497 1.722.636.723.23 1.382.197 1.902.12.584-.087 1.788-.731 2.039-1.436.251-.706.251-1.312.176-1.437-.076-.126-.276-.202-.578-.353z"></path>
+  </svg>
+</a>
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+<a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+<<pseudo>></<pseudo>>
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#offers">Offers</a>
+      <a href="#fit">Fit</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="#contact">Apply Now</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="heroContent">
+      <div class="kicker">Clarity-first digital strategy</div>
+      <h1>Stop Posting.<br><span class="h1-line2">Start Positioning.</span></h1>
+      <p class="sub">
+        We help small businesses and entrepreneurs clarify their message, fix online positioning,
+        and build simple funnels and landing pages that generate real enquiries.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#contact">Get a Free Clarity Audit</a>
+        <a class="btn ghost" href="#offers">See Offers</a>
+      </div>
+      <div class="miniNote"><strong>No hype.</strong> No guru promises. Just structure and execution.</div>
+    </div>
+    <div class="heroImg">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg" alt="The Method Co.">
+    </div>
+  </section>
+
+  <section class="section reveal" id="problem">
+    <div class="sectionHead">
+      <div class="sectionLabel">The real problem</div>
+      <h2>You don't need more content.</h2>
+      <p>You need clarity and a system that converts attention into enquiries.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Confusing offer</h3>
+        <p>People don't understand what you do or why you're different. So they don't buy.</p>
+      </div>
+      <div class="card">
+        <h3>Weak website flow</h3>
+        <p>Your page doesn't guide visitors toward a decision. They leave with no next step.</p>
+      </div>
+      <div class="card">
+        <h3>Ads with no strategy</h3>
+        <p>Traffic without positioning is wasted spend. Clicks don't equal conversions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="capabilities">
+    <div class="sectionHead">
+      <div class="sectionLabel">What we actually fix</div>
+      <h2>Practical improvements that convert.</h2>
+      <p>Clarity. Trust. Conversion. In that order.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Positioning &amp; offer clarity</h3>
+        <p>Make it obvious what you sell, who it's for, and why it's worth it.</p>
+      </div>
+      <div class="card">
+        <h3>Copywriting</h3>
+        <p>Clear messaging for website and socials that doesn't sound like marketing fluff.</p>
+      </div>
+      <div class="card">
+        <h3>Landing page structure</h3>
+        <p>Flow, sections, hierarchy, and CTA logic that makes sense and converts.</p>
+      </div>
+      <div class="card">
+        <h3>Visual hierarchy</h3>
+        <p>Layout, spacing, and typography that improves perception and readability.</p>
+      </div>
+      <div class="card">
+        <h3>Simple funnel logic</h3>
+        <p>Attention. Trust. Enquiry. No overcomplication. Just what works.</p>
+      </div>
+      <div class="card">
+        <h3>Paid ads direction</h3>
+        <p>Meta/Google alignment. Message, offer and landing page all working together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="offers">
+    <div class="sectionHead">
+      <div class="sectionLabel">Offers</div>
+      <h2>Pick the level of help you need.</h2>
+      <p>From clarity audit to full execution. No fluff, no retainers, no bullshit.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <span class="tag free">Free</span>
+        <div class="offerHead">
+          <h3>Digital Clarity Audit</h3>
+          <span class="price">Free</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Perfect if you're unsure what's blocking enquiries.</p>
+        <ul class="list">
+          <li>Review of website / Instagram</li>
+          <li>What's broken and why</li>
+          <li>Clear priorities on what to fix first</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+        <span class="tag">Core offer</span>
+        <div class="offerHead">
+          <h3>AI Strategy Sprint</h3>
+          <span class="price">€200–300</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">For businesses ready to fix the foundation properly.</p>
+        <ul class="list">
+          <li>Offer and positioning refinement</li>
+          <li>Messaging angles and copy direction</li>
+          <li>Simple funnel recommendation</li>
+          <li>Landing page structure / wireframe</li>
+          <li>30-day action plan</li>
+          <li>Ad direction (Meta/Google)</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Sprint</a>
+          <a class="btn ghost" href="#process">How it works</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
+        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+        <div class="offerHead">
+          <h3>Method Launch System</h3>
+          <span class="price">€1,000</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Full strategy + landing page build + ads launch setup. Built fast, built right.</p>
+        <ul class="list">
+          <li>Deep positioning + offer refinement</li>
+          <li>Full funnel plan (before/after the page)</li>
+          <li>High-converting landing page (copy + structure + build)</li>
+          <li>3–5 ad angles + creative direction</li>
+          <li>Meta/Google campaign setup plan (you run it, I architect it)</li>
+          <li>Tracking guidance (pixels/events/UTMs)</li>
+          <li>14-day launch support + iterations</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Launch</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="fit">
+    <div class="sectionHead">
+      <div class="sectionLabel">Selective fit</div>
+      <h2>Not every business is a fit.</h2>
+      <p>This keeps the work high-quality and the results real.</p>
+    </div>
+    <div class="fitGrid">
+      <div class="card">
+        <h3 style="color:#22c55e; margin-bottom:14px">Good fit</h3>
+        <ul class="check">
+          <li><span class="ico-check">✓</span><span>You're serious about improving positioning and conversions.</span></li>
+          <li><span class="ico-check">✓</span><span>You're willing to implement, not just collect ideas.</span></li>
+          <li><span class="ico-check">✓</span><span>You want clear structure over "more content".</span></li>
+          <li><span class="ico-check">✓</span><span>You value honest feedback and direct priorities.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ef4444; margin-bottom:14px">Not a fit</h3>
+        <ul class="check">
+          <li><span class="ico-x">✕</span><span>You want viral hacks or overnight miracles.</span></li>
+          <li><span class="ico-x">✕</span><span>You expect someone to "save" your business with magic.</span></li>
+          <li><span class="ico-x">✕</span><span>You won't change the offer, the page, or the message.</span></li>
+          <li><span class="ico-x">✕</span><span>You just want posting with no strategy behind it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="process">
+    <div class="sectionHead">
+      <div class="sectionLabel">How it works</div>
+      <h2>Simple process. Real execution.</h2>
+      <p>Clarity first. Then we build the system around it.</p>
+    </div>
+    <div class="process">
+      <div class="card">
+        <div class="stepNum">01</div>
+        <h3>Audit</h3>
+        <p style="color:var(--muted); font-size:14px">We diagnose what's blocking trust and enquiries. No assumptions.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">02</div>
+        <h3>Strategy</h3>
+        <p style="color:var(--muted); font-size:14px">Offer, message, funnel direction and priorities all mapped out.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">03</div>
+        <h3>Build &amp; Iterate</h3>
+        <p style="color:var(--muted); font-size:14px">Landing page and copy aligned with ads and organic content.</p>
+      </div>
+    </div>
+
+    <div class="imgCard" style="margin-top:14px; min-height:200px;">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg" alt="Growth trajectory" style="object-position:center;">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,17,.7) 0%,transparent 40%,rgba(6,10,17,.7) 100%),linear-gradient(180deg,transparent 40%,rgba(6,10,17,.5));pointer-events:none;z-index:1;"></div>
+      <div style="position:absolute;bottom:24px;left:32px;z-index:2;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;">Clarity. Structure. Execution.</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;">The Method. Step by step.</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt="Digital strategy work">
+      </div>
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__ultrarealistic-portrait-dark-studio-as-digital-str__43901_c5ebjh.jpg" alt="The Method Co. working">
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="sectionHead">
+      <div class="sectionLabel">About</div>
+      <h2>We're practical. We build structure.</h2>
+      <p>No hype. No fluff. Just what actually moves the needle.</p>
+    </div>
+    <div class="aboutSplit">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:16px">What you can expect</h3>
+          <ul class="list">
+            <li>Clear feedback. No fluff, no sugarcoating</li>
+            <li>Strong positioning direction</li>
+            <li>Better copy and page flow</li>
+            <li>Smarter ad and message alignment</li>
+            <li>Simple systems you can actually run</li>
+          </ul>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line)">
+          Based in Dublin. Working with serious founders and small businesses who want results, not vanity metrics.
+        </p>
+      </div>
+      <div class="imgCard" style="min-height:380px">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__professional-consultant-at-laptop-clean-modern-loo__56025_x4vnoo.jpg" alt="The Method Co." style="object-position:center top">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <h2>Ready to fix<br><span class="h1-line2">your positioning?</span></h2>
+    <p>Apply below. We work with a small number of clients at a time to keep quality high.</p>
+
+    <form method="POST" class="formWrap" action="https://formspree.io/f/xkovloyk">
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your name" required="">
+        </div>
+        <div class="formGroup">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required="">
+        </div>
+      </div>
+      <div class="formGroup">
+        <label>Website or Instagram (optional)</label>
+        <input type="text" name="link" placeholder="https://yourwebsite.com or @yourhandle">
+      </div>
+      <div class="formGroup">
+        <label>What does your business do? *</label>
+        <textarea name="business" placeholder="Briefly describe what you sell and who to..." required=""></textarea>
+      </div>
+      <div class="formGroup">
+        <label>What's your biggest growth problem right now? *</label>
+        <textarea name="problem" placeholder="What's blocking you? More leads, better conversions, unclear messaging..." required=""></textarea>
+      </div>
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Monthly revenue (approx.)</label>
+          <select name="revenue">
+            <option value="">Select one</option>
+            <option>Pre-revenue</option>
+            <option>€1k–€5k</option>
+            <option>€5k–€20k</option>
+            <option>€20k+</option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Ready to invest in strategy?</label>
+          <select name="budget">
+            <option value="">Select one</option>
+            <option>Yes – €200–€500</option>
+            <option>Yes – €500+</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="formSubmit">
+        <button type="submit" class="btn primary" style="font-size:14px; padding:14px 28px;">Apply for The Method →</button>
+        <p class="formNote">We review every application and respond within 48 hours. Serious businesses only.</p>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div style="display:flex; align-items:center; gap: 16px;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div>© <span id="year">2026</span> — Dublin, Ireland</div>
+    <div>Built for clarity. Not noise.</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.564 4.237 1.636 6.082L.006 24l6.02-1.58A11.968 11.968 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.016c-1.815 0-3.593-.467-5.15-1.353l-.37-.218-3.823 1.002 1.022-3.73-.24-.38A10.024 10.024 0 0 1 1.984 12.03c0-5.542 4.512-10.054 10.047-10.054 5.535 0 10.046 4.512 10.046 10.054 0 5.542-4.511 10.054-10.046 10.054zm5.513-7.535c-.302-.152-1.788-.88-2.065-.98-.276-.102-.478-.152-.678.152-.201.302-.782.98-.958 1.181-.176.202-.352.228-.654.076-.302-.152-1.275-.469-2.43-1.32-.898-.66-1.503-1.474-1.68-1.776-.176-.302-.019-.465.132-.616.135-.135.302-.352.453-.528.151-.176.201-.302.302-.503.1-.202.05-.378-.025-.528-.076-.152-.678-1.634-.929-2.24-.243-.591-.491-.51-.678-.52-.176-.009-.378-.009-.578-.009-.2 0-.528.076-.805.378-.276.302-1.056 1.03-1.056 2.515s1.082 2.918 1.233 3.12c.151.202 2.13 3.251 5.156 4.557.72.311 1.282.497 1.722.636.723.23 1.382.197 1.902.12.584-.087 1.788-.731 2.039-1.436.251-.706.251-1.312.176-1.437-.076-.126-.276-.202-.578-.353z"></path>
+  </svg>
+</a>
+
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+
+</body>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>The Method Co. — Clarity-First Digital Strategy</title>
+  <meta name="description" content="The Method Co. is a clarity-first digital strategy consultancy. Positioning, copy, funnels, landing pages, and ad direction for serious business owners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&amp;family=Barlow+Condensed:wght@700;800;900&amp;display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#060a11;
+      --bg2:#080e1a;
+      --card:#0b1324cc;
+      --line:#1a2640;
+      --text:#e8f0ff;
+      --muted:#8899bb;
+      --accent:#2563eb;
+      --accent2:#38bdf8;
+      --glow: rgba(37,99,235,.35);
+      --shadow: 0 24px 64px rgba(0,0,0,.55);
+      --radius: 16px;
+      --max: 1140px;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background-image: url("https://res.cloudinary.com/dsriscylr/image/upload/v1772066806/freepik__dark-modern-abstract-background-for-a-digital-mark__77622_azwrht.jpg");
+      background-size: cover;
+      background-position: center top;
+      opacity:.12;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(56,189,248,.10) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(6,10,17,0) 0%, var(--bg2) 100%);
+      pointer-events:none;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 24px 100px; position:relative; z-index:1}
+
+    /* NAV */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      position:sticky; top:0; z-index:100;
+      background: rgba(6,10,17,.88);
+      backdrop-filter: blur(20px);
+      margin:0 -24px; padding:18px 24px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight:800; font-size:18px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .logoImg{
+      height:36px; width:auto;
+      opacity:.92;
+      object-fit:contain;
+      
+    }
+    .navlinks{display:flex; gap:22px; font-size:13px; font-weight:500; letter-spacing:.04em; text-transform:uppercase}
+    .navlinks a{color:var(--muted); transition:color .2s}
+    .navlinks a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 20px; border-radius:10px; font-weight:700; font-size:13px;
+      letter-spacing:.04em; text-transform:uppercase;
+      border:1px solid transparent;
+      transition: all .18s ease;
+      cursor:pointer; user-select:none; white-space:nowrap;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), rgba(56,189,248,.7));
+      color:#020b1a;
+      transition: all .18s ease, box-shadow .3s ease;
+    }
+    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(56,189,248,.3);}
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.1);
+      color: var(--text);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.07); border-color:rgba(255,255,255,.2)}
+
+    /* HERO */
+    .hero{
+      margin-top:52px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.03) inset;
+      position:relative;
+      background: linear-gradient(135deg, rgba(11,19,36,.95), rgba(8,14,26,.98));
+      animation: fadeUp .8s ease both;
+    }
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(24px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+    .heroContent{
+      padding:52px 48px 52px;
+      display:flex; flex-direction:column; justify-content:center;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2);
+      font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .kicker::before{
+      content:"";
+      display:block; width:22px; height:1px;
+      background: var(--accent2); opacity:.7;
+    }
+    h1{
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight:900; line-height:.95;
+      letter-spacing:-.01em; text-transform:uppercase;
+    }
+    .h1-line2{
+      display:block;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .sub{
+      margin:20px 0 28px;
+      color:var(--muted); font-size:16px; line-height:1.6; max-width:50ch;
+    }
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap}
+    .miniNote{
+      margin-top:20px;
+      color:rgba(136,153,187,.75);
+      font-size:12px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .miniNote strong{color: var(--accent2); font-weight:600}
+
+    .heroImg{
+      position:relative; min-height:520px; overflow:hidden;
+    }
+    .heroImg img{
+      width:100%; height:100%; object-fit:cover; object-position:center top;
+      display:block; filter: contrast(1.05) saturate(0.95);
+    }
+    .heroImg::after{
+      content:""; position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,14,26,.9) 0%, rgba(8,14,26,.2) 40%, transparent 100%),
+        linear-gradient(180deg, transparent 60%, rgba(8,14,26,.5));
+      pointer-events:none;
+    }
+
+    /* SECTIONS */
+    .section{margin-top:72px}
+    .sectionHead{margin-bottom:28px}
+    .sectionLabel{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--accent2); font-size:11px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px;
+    }
+    .sectionLabel::before{
+      content:""; display:block; width:18px; height:1px; background:var(--accent2); opacity:.7;
+    }
+    .sectionHead h2{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:clamp(28px, 4vw, 40px); font-weight:900;
+      letter-spacing:-.01em; text-transform:uppercase; line-height:1;
+    }
+    .sectionHead p{color:var(--muted); font-size:15px; margin-top:8px; max-width:60ch}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,.01) 100%);
+      border-radius: var(--radius);
+      padding:20px 22px;
+      position:relative; overflow:hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover{border-color: rgba(37,99,235,.4); transform: translateY(-2px);}
+    .card::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:1px;
+      background: linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+    }
+    .card h3{font-size:16px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em}
+    .card p{color:var(--muted); font-size:14px; line-height:1.6}
+
+    .tag{
+      display:inline-block; font-size:11px; font-weight:700; letter-spacing:.1em;
+      text-transform:uppercase; padding:5px 10px; border-radius:6px;
+      border:1px solid rgba(37,99,235,.4);
+      background: rgba(37,99,235,.1); color:var(--accent2); margin-bottom:12px;
+    }
+    .tag.free{border-color:rgba(56,189,248,.4); background:rgba(56,189,248,.1)}
+    .tag.exec{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:var(--muted)}
+
+    .price{
+      font-family:'Barlow Condensed', sans-serif;
+      font-size:22px; font-weight:900; letter-spacing:-.01em; color:var(--text);
+    }
+    .offerHead{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:4px}
+
+    .list{list-style:none; padding:0; margin:14px 0 0}
+    .list li{
+      color:var(--muted); font-size:13px; padding:7px 0;
+      border-bottom:1px solid rgba(255,255,255,.04);
+      display:flex; align-items:flex-start; gap:8px;
+    }
+    .list li:last-child{border-bottom:none}
+    .list li::before{content:"→"; color:var(--accent2); font-size:11px; margin-top:2px; flex-shrink:0}
+    .offerCta{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+
+    .fitGrid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .check{list-style:none; padding:0; margin:14px 0 0}
+    .check li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px; border-radius:10px;
+      border:1px solid rgba(255,255,255,.05);
+      background: rgba(0,0,0,.15);
+      color:var(--muted); font-size:14px; margin-bottom:8px;
+      transition: border-color .2s;
+    }
+    .check li:hover{border-color:rgba(37,99,235,.3)}
+    .ico-check{color:#22c55e; font-size:13px; flex-shrink:0; margin-top:1px}
+    .ico-x{color:#ef4444; font-size:13px; flex-shrink:0; margin-top:1px}
+
+    .process{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .stepNum{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:52px; font-weight:900; line-height:1;
+      color:rgba(37,99,235,.22); margin-bottom:8px; letter-spacing:-.02em;
+    }
+    .card:hover .stepNum{color:rgba(37,99,235,.4)}
+
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px}
+    .imgCard{
+      border-radius:var(--radius); overflow:hidden;
+      border:1px solid var(--line); min-height:300px; position:relative;
+    }
+    .imgCard img{width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.05)}
+    .imgCard::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 50%, rgba(6,10,17,.5));
+      pointer-events:none;
+    }
+
+    .aboutSplit{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch}
+
+    /* FORM */
+    .final{
+      margin-top:72px; padding:52px 48px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px; position:relative; overflow:hidden;
+      background: linear-gradient(135deg, rgba(11,19,36,.98), rgba(8,14,26,.98));
+      box-shadow: var(--shadow);
+    }
+    .final::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(ellipse 800px 400px at 0% 50%, rgba(37,99,235,.18), transparent 60%),
+                  radial-gradient(ellipse 500px 300px at 100% 0%, rgba(56,189,248,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .final h2{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(32px,5vw,52px); font-weight:900;
+      text-transform:uppercase; letter-spacing:-.01em;
+      line-height:1; margin-bottom:14px; position:relative;
+    }
+    .final > p{color:var(--muted); font-size:16px; margin-bottom:28px; max-width:60ch; position:relative}
+
+    .formWrap{
+      max-width:680px; margin:32px auto 0;
+      display:flex; flex-direction:column; gap:16px; position:relative;
+    }
+    .formRow{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .formGroup{display:flex; flex-direction:column; gap:7px}
+    .formGroup label{
+      font-size:12px; font-weight:700; letter-spacing:.08em;
+      text-transform:uppercase; color:var(--muted);
+    }
+    .formGroup input,
+    .formGroup textarea,
+    .formGroup select{
+      background: rgba(6,10,17,.7);
+      border:1px solid var(--line);
+      border-radius:10px; padding:13px 16px;
+      color:var(--text); font-family:'Barlow',sans-serif; font-size:14px;
+      transition: border-color .2s, box-shadow .2s; outline:none; -webkit-appearance:none;
+    }
+    .formGroup input:focus,
+    .formGroup textarea:focus,
+    .formGroup select:focus{
+      border-color:var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.18);
+    }
+    .formGroup input::placeholder,
+    .formGroup textarea::placeholder{color:rgba(136,153,187,.4)}
+    .formGroup select option{background:#0b1220; color:var(--text)}
+    .formGroup textarea{resize:vertical; min-height:100px}
+    .formSubmit{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap; margin-top:6px;
+    }
+    .formNote{font-size:12px; color:rgba(136,153,187,.55); max-width:38ch}
+
+    footer{
+      margin-top:60px; padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.05);
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap; color:var(--muted); font-size:13px;
+    }
+    .footerBrand{
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:800; font-size:16px; letter-spacing:.06em;
+      text-transform:uppercase; color:var(--text);
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .heroImg{min-height:300px; order:-1}
+      .heroImg::after{background:linear-gradient(180deg,transparent 40%,rgba(8,14,26,.9))}
+      .heroContent{padding:32px 28px}
+      .grid3,.grid2,.process,.fitGrid,.split,.aboutSplit{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .final{padding:32px 24px}
+      .formRow{grid-template-columns:1fr}
+    }
+
+    .reveal{opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1; transform:none}
+  
+    /* WHATSAPP FLOATING BUTTON */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+  </style>
+
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <div class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#offers">Offers</a>
+      <a href="#fit">Fit</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="#contact">Apply Now</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="heroContent">
+      <div class="kicker">Clarity-first digital strategy</div>
+      <h1>Stop Posting.<br><span class="h1-line2">Start Positioning.</span></h1>
+      <p class="sub">
+        We help small businesses and entrepreneurs clarify their message, fix online positioning,
+        and build simple funnels and landing pages that generate real enquiries.
+      </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="#contact">Get a Free Clarity Audit</a>
+        <a class="btn ghost" href="#offers">See Offers</a>
+      </div>
+      <div class="miniNote"><strong>No hype.</strong> No guru promises. Just structure and execution.</div>
+    </div>
+    <div class="heroImg">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg" alt="The Method Co.">
+    </div>
+  </section>
+
+  <section class="section reveal" id="problem">
+    <div class="sectionHead">
+      <div class="sectionLabel">The real problem</div>
+      <h2>You don't need more content.</h2>
+      <p>You need clarity and a system that converts attention into enquiries.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Confusing offer</h3>
+        <p>People don't understand what you do or why you're different. So they don't buy.</p>
+      </div>
+      <div class="card">
+        <h3>Weak website flow</h3>
+        <p>Your page doesn't guide visitors toward a decision. They leave with no next step.</p>
+      </div>
+      <div class="card">
+        <h3>Ads with no strategy</h3>
+        <p>Traffic without positioning is wasted spend. Clicks don't equal conversions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="capabilities">
+    <div class="sectionHead">
+      <div class="sectionLabel">What we actually fix</div>
+      <h2>Practical improvements that convert.</h2>
+      <p>Clarity. Trust. Conversion. In that order.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <h3>Positioning &amp; offer clarity</h3>
+        <p>Make it obvious what you sell, who it's for, and why it's worth it.</p>
+      </div>
+      <div class="card">
+        <h3>Copywriting</h3>
+        <p>Clear messaging for website and socials that doesn't sound like marketing fluff.</p>
+      </div>
+      <div class="card">
+        <h3>Landing page structure</h3>
+        <p>Flow, sections, hierarchy, and CTA logic that makes sense and converts.</p>
+      </div>
+      <div class="card">
+        <h3>Visual hierarchy</h3>
+        <p>Layout, spacing, and typography that improves perception and readability.</p>
+      </div>
+      <div class="card">
+        <h3>Simple funnel logic</h3>
+        <p>Attention. Trust. Enquiry. No overcomplication. Just what works.</p>
+      </div>
+      <div class="card">
+        <h3>Paid ads direction</h3>
+        <p>Meta/Google alignment. Message, offer and landing page all working together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="offers">
+    <div class="sectionHead">
+      <div class="sectionLabel">Offers</div>
+      <h2>Pick the level of help you need.</h2>
+      <p>From clarity audit to full execution. No fluff, no retainers, no bullshit.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <span class="tag free">Free</span>
+        <div class="offerHead">
+          <h3>Digital Clarity Audit</h3>
+          <span class="price">Free</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Perfect if you're unsure what's blocking enquiries.</p>
+        <ul class="list">
+          <li>Review of website / Instagram</li>
+          <li>What's broken and why</li>
+          <li>Clear priorities on what to fix first</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+        <span class="tag">Core offer</span>
+        <div class="offerHead">
+          <h3>AI Strategy Sprint</h3>
+          <span class="price">€200–300</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">For businesses ready to fix the foundation properly.</p>
+        <ul class="list">
+          <li>Offer and positioning refinement</li>
+          <li>Messaging angles and copy direction</li>
+          <li>Simple funnel recommendation</li>
+          <li>Landing page structure / wireframe</li>
+          <li>30-day action plan</li>
+          <li>Ad direction (Meta/Google)</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Sprint</a>
+          <a class="btn ghost" href="#process">How it works</a>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
+        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+        <div class="offerHead">
+          <h3>Method Launch System</h3>
+          <span class="price">€1,000</span>
+        </div>
+        <p style="color:var(--muted); font-size:14px">Full strategy + landing page build + ads launch setup. Built fast, built right.</p>
+        <ul class="list">
+          <li>Deep positioning + offer refinement</li>
+          <li>Full funnel plan (before/after the page)</li>
+          <li>High-converting landing page (copy + structure + build)</li>
+          <li>3–5 ad angles + creative direction</li>
+          <li>Meta/Google campaign setup plan (you run it, I architect it)</li>
+          <li>Tracking guidance (pixels/events/UTMs)</li>
+          <li>14-day launch support + iterations</li>
+        </ul>
+        <div class="offerCta">
+          <a class="btn primary" href="#contact">Apply for Launch</a>
+          <a class="btn ghost" href="#fit">See fit criteria</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="fit">
+    <div class="sectionHead">
+      <div class="sectionLabel">Selective fit</div>
+      <h2>Not every business is a fit.</h2>
+      <p>This keeps the work high-quality and the results real.</p>
+    </div>
+    <div class="fitGrid">
+      <div class="card">
+        <h3 style="color:#22c55e; margin-bottom:14px">Good fit</h3>
+        <ul class="check">
+          <li><span class="ico-check">✓</span><span>You're serious about improving positioning and conversions.</span></li>
+          <li><span class="ico-check">✓</span><span>You're willing to implement, not just collect ideas.</span></li>
+          <li><span class="ico-check">✓</span><span>You want clear structure over "more content".</span></li>
+          <li><span class="ico-check">✓</span><span>You value honest feedback and direct priorities.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:#ef4444; margin-bottom:14px">Not a fit</h3>
+        <ul class="check">
+          <li><span class="ico-x">✕</span><span>You want viral hacks or overnight miracles.</span></li>
+          <li><span class="ico-x">✕</span><span>You expect someone to "save" your business with magic.</span></li>
+          <li><span class="ico-x">✕</span><span>You won't change the offer, the page, or the message.</span></li>
+          <li><span class="ico-x">✕</span><span>You just want posting with no strategy behind it.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="process">
+    <div class="sectionHead">
+      <div class="sectionLabel">How it works</div>
+      <h2>Simple process. Real execution.</h2>
+      <p>Clarity first. Then we build the system around it.</p>
+    </div>
+    <div class="process">
+      <div class="card">
+        <div class="stepNum">01</div>
+        <h3>Audit</h3>
+        <p style="color:var(--muted); font-size:14px">We diagnose what's blocking trust and enquiries. No assumptions.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">02</div>
+        <h3>Strategy</h3>
+        <p style="color:var(--muted); font-size:14px">Offer, message, funnel direction and priorities all mapped out.</p>
+      </div>
+      <div class="card">
+        <div class="stepNum">03</div>
+        <h3>Build &amp; Iterate</h3>
+        <p style="color:var(--muted); font-size:14px">Landing page and copy aligned with ads and organic content.</p>
+      </div>
+    </div>
+
+    <div class="imgCard" style="margin-top:14px; min-height:200px;">
+      <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg" alt="Growth trajectory" style="object-position:center;">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,17,.7) 0%,transparent 40%,rgba(6,10,17,.7) 100%),linear-gradient(180deg,transparent 40%,rgba(6,10,17,.5));pointer-events:none;z-index:1;"></div>
+      <div style="position:absolute;bottom:24px;left:32px;z-index:2;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;">Clarity. Structure. Execution.</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;">The Method. Step by step.</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt="Digital strategy work">
+      </div>
+      <div class="imgCard">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__ultrarealistic-portrait-dark-studio-as-digital-str__43901_c5ebjh.jpg" alt="The Method Co. working">
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="sectionHead">
+      <div class="sectionLabel">About</div>
+      <h2>We're practical. We build structure.</h2>
+      <p>No hype. No fluff. Just what actually moves the needle.</p>
+    </div>
+    <div class="aboutSplit">
+      <div class="card" style="display:flex; flex-direction:column; justify-content:space-between">
+        <div>
+          <h3 style="margin-bottom:16px">What you can expect</h3>
+          <ul class="list">
+            <li>Clear feedback. No fluff, no sugarcoating</li>
+            <li>Strong positioning direction</li>
+            <li>Better copy and page flow</li>
+            <li>Smarter ad and message alignment</li>
+            <li>Simple systems you can actually run</li>
+          </ul>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--line)">
+          Based in Dublin. Working with serious founders and small businesses who want results, not vanity metrics.
+        </p>
+      </div>
+      <div class="imgCard" style="min-height:380px">
+        <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066808/freepik__professional-consultant-at-laptop-clean-modern-loo__56025_x4vnoo.jpg" alt="The Method Co." style="object-position:center top">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <h2>Ready to fix<br><span class="h1-line2">your positioning?</span></h2>
+    <p>Apply below. We work with a small number of clients at a time to keep quality high.</p>
+
+    <form method="POST" class="formWrap" action="https://formspree.io/f/xkovloyk">
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your name" required="">
+        </div>
+        <div class="formGroup">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="your@email.com" required="">
+        </div>
+      </div>
+      <div class="formGroup">
+        <label>Website or Instagram (optional)</label>
+        <input type="text" name="link" placeholder="https://yourwebsite.com or @yourhandle">
+      </div>
+      <div class="formGroup">
+        <label>What does your business do? *</label>
+        <textarea name="business" placeholder="Briefly describe what you sell and who to..." required=""></textarea>
+      </div>
+      <div class="formGroup">
+        <label>What's your biggest growth problem right now? *</label>
+        <textarea name="problem" placeholder="What's blocking you? More leads, better conversions, unclear messaging..." required=""></textarea>
+      </div>
+      <div class="formRow">
+        <div class="formGroup">
+          <label>Monthly revenue (approx.)</label>
+          <select name="revenue">
+            <option value="">Select one</option>
+            <option>Pre-revenue</option>
+            <option>€1k–€5k</option>
+            <option>€5k–€20k</option>
+            <option>€20k+</option>
+          </select>
+        </div>
+        <div class="formGroup">
+          <label>Ready to invest in strategy?</label>
+          <select name="budget">
+            <option value="">Select one</option>
+            <option>Yes – €200–€500</option>
+            <option>Yes – €500+</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="formSubmit">
+        <button type="submit" class="btn primary" style="font-size:14px; padding:14px 28px;">Apply for The Method →</button>
+        <p class="formNote">We review every application and respond within 48 hours. Serious businesses only.</p>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div style="display:flex; align-items:center; gap: 16px;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div>© <span id="year">2026</span> — Dublin, Ireland</div>
+    <div>Built for clarity. Not noise.</div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+      </a>
+      <a href="mailto:support@themethodco.co">support@themethodco.co</a>
+    </div>
+  </footer>
+
+</div>
+
+
+<!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.146.564 4.237 1.636 6.082L.006 24l6.02-1.58A11.968 11.968 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.016c-1.815 0-3.593-.467-5.15-1.353l-.37-.218-3.823 1.002 1.022-3.73-.24-.38A10.024 10.024 0 0 1 1.984 12.03c0-5.542 4.512-10.054 10.047-10.054 5.535 0 10.046 4.512 10.046 10.054 0 5.542-4.511 10.054-10.046 10.054zm5.513-7.535c-.302-.152-1.788-.88-2.065-.98-.276-.102-.478-.152-.678.152-.201.302-.782.98-.958 1.181-.176.202-.352.228-.654.076-.302-.152-1.275-.469-2.43-1.32-.898-.66-1.503-1.474-1.68-1.776-.176-.302-.019-.465.132-.616.135-.135.302-.352.453-.528.151-.176.201-.302.302-.503.1-.202.05-.378-.025-.528-.076-.152-.678-1.634-.929-2.24-.243-.591-.491-.51-.678-.52-.176-.009-.378-.009-.578-.009-.2 0-.528.076-.805.378-.276.302-1.056 1.03-1.056 2.515s1.082 2.918 1.233 3.12c.151.202 2.13 3.251 5.156 4.557.72.311 1.282.497 1.722.636.723.23 1.382.197 1.902.12.584-.087 1.788-.731 2.039-1.436.251-.706.251-1.312.176-1.437-.076-.126-.276-.202-.578-.353z"></path>
+  </svg>
+</a>
+
+<script>
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+  <a href="https://wa.me/353899522094" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.6-6.5 8.3-9.8 2.8-3.3 3.7-5.6 5.6-9.3 1.8-3.7.9-6.9-.5-9.8-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+  </a>
+
+</body></html>
