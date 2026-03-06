@@ -1,0 +1,63 @@
+Update the SEO configuration of the landing page.
+Do NOT change any visible content, layout, styling, or scripts.
+Only modify the <head> section and ensure proper SEO structure.
+
+1. Improve the page title for SEO
+
+Replace the current <title> tag with:
+
+<title>Digital Strategy Consultant | Brand Positioning & Funnels | The Method Co.</title>
+What is this?
+2. Update the meta description
+
+Replace the existing description with:
+
+<meta name="description" content="The Method Co. is a digital strategy consultancy helping businesses with brand positioning, landing pages, funnels and growth strategy. Clarity-first marketing systems for serious founders.">
+What is this?
+3. Add robots tag
+
+Add this inside <head>:
+
+<meta name="robots" content="index, follow">
+What is this?
+4. Add canonical URL
+<link rel="canonical" href="https://themethodco.co/">
+What is this?
+5. Add author metadata
+<meta name="author" content="The Method Co.">
+What is this?
+6. Ensure Open Graph tags remain correct
+
+Ensure the following tags exist and do not duplicate them:
+
+<meta property="og:title" content="Digital Strategy Consultant | The Method Co.">
+<meta property="og:description" content="Clarity-first digital strategy consultancy helping businesses with positioning, funnels, landing pages and growth strategy.">
+<meta property="og:url" content="https://themethodco.co/">
+<meta property="og:type" content="website">
+What is this?
+7. Add structured data for Google (Schema.org)
+
+Insert this right before the closing </head> tag:
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Method Co.",
+  "url": "https://themethodco.co",
+  "logo": "https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/4BFF8B5A-6D71-4E80-B781-FFC9D05FED0F_ulnk60.png",
+  "description": "Digital strategy consultancy helping businesses with brand positioning, funnels, landing pages and marketing direction."
+}
+</script>
+What is this?
+8. Validate structure
+
+Ensure:
+
+All SEO tags remain inside <head>
+
+There are no duplicate meta tags
+
+The HTML structure remains valid
+
+No visible content changes
