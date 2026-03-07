@@ -1,0 +1,87 @@
+Make a minimal code patch to my existing site.
+
+IMPORTANT:
+- Do NOT redesign anything.
+- Do NOT change spacing, typography, colors, layout, hero, sections, or footer design.
+- Do NOT rewrite any article content.
+- Only add a working mobile navigation and make article pages reuse the exact homepage footer.
+
+TASK 1 — ADD A REAL MOBILE MENU
+My current desktop nav exists, but on mobile the nav links are hidden and there is no hamburger menu implementation.
+
+Implement this with minimal changes:
+
+1. Keep the existing desktop nav exactly as it is.
+2. Add a hamburger button that only appears on screens below 900px.
+3. Add a mobile menu panel containing these links:
+   - Offers -> #offers
+   - Fit -> #fit
+   - Process -> #process
+   - About -> #about
+   - Insights -> /insights/index.html
+   - Instagram -> https://www.instagram.com/themethodco.co/
+   - Apply Now -> #contact
+4. The mobile menu must open and close when the hamburger is tapped.
+5. The mobile menu must match the current dark style of the site.
+6. Do not alter desktop navigation styling.
+
+TASK 2 — ARTICLE PAGE FOOTER CONSISTENCY
+For:
+/insights/index.html
+/insights/ai-digital-strategy-sprint.html
+/insights/why-landing-pages-fail.html
+/insights/ai-marketing-small-business.html
+/insights/high-converting-landing-page.html
+/insights/future-of-ai-marketing.html
+
+Use the EXACT SAME footer as the homepage, including:
+- Insights link
+- Instagram link
+- support@themethodco.co
+- Dublin, Ireland
+- Built for clarity. Not noise.
+
+Do not create a new footer variation.
+Reuse the same HTML/CSS/footer component from the homepage.
+
+TASK 3 — ARTICLE FEATURE IMAGES
+Add ONE featured image near the top of each article page, below the headline or hero area.
+
+Rules:
+- Use royalty-free images from Unsplash or Pexels only.
+- Do not use random Google Images.
+- Compress and lazy-load images.
+- Add descriptive alt text based on the article topic.
+- Use SEO-friendly filenames.
+- Keep image styling consistent with my existing dark premium aesthetic.
+- Do not slow down the page with oversized images.
+
+Suggested image themes:
+1. AI Digital Strategy Sprint:
+   business strategy session / laptop / analytics / planning
+2. Why Most Landing Pages Fail:
+   website wireframe / conversion analysis / UX audit
+3. AI Marketing for Small Businesses:
+   small business owner working on laptop / digital marketing dashboard
+4. High-Converting Landing Page:
+   landing page mockup / wireframe / CRO concept
+5. Future of AI-Driven Marketing:
+   AI automation / dashboards / modern digital workflow
+
+TASK 4 — IMAGE SEO
+For every article image:
+- add descriptive alt text
+- keep the image near relevant text
+- use loading="lazy"
+- ensure image is crawlable in normal HTML
+- avoid using CSS background images for the main article image if possible
+
+TASK 5 — VERIFY BEFORE SAVING
+Confirm all of this before saving:
+- desktop layout unchanged
+- mobile now shows a hamburger menu
+- mobile menu opens and closes
+- Insights is visible in the mobile menu
+- article pages still contain full content
+- article pages show the exact same footer as homepage
+- each article has one featured image
