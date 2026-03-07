@@ -237,11 +237,53 @@
       text-transform:uppercase; color:var(--text);
     }
 
+  <style>
+    /* CSS additions for Hamburger Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px;
+    }
+    .mobile-menu-btn svg { width: 24px; height: 24px; fill: currentColor; }
+    
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--bg);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      padding: 16px 24px;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .desktop-only-btn { display: inline-flex; }
+
     @media(max-width:900px){
       body::before, body::after{ display:none !important; }
       .nav{ backdrop-filter: none !important; background: var(--bg); }
       .navlinks{display:none}
       .blog-grid { grid-template-columns: 1fr; }
+      
+      /* Mobile nav overrides */
+      .mobile-menu-btn { display: block; }
+      .desktop-only-btn { display: none; }
     }
   </style>
 
@@ -255,15 +297,38 @@
       <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
       <span>The Method Co.</span>
     </a>
+    
     <nav class="navlinks">
       <a href="/#offers">Offers</a>
       <a href="/#process">Process</a>
-      <a href="/blog/index.html" style="color:var(--text)">Insights</a>
+      <a href="/insights/index.html" style="color:var(--text)">Insights</a>
       <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
         <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       </a>
     </nav>
-    <a class="btn ghost" href="/#contact">Apply Now</a>
+    
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a class="btn ghost desktop-only-btn" href="/#contact">Apply Now</a>
+      <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+    </div>
+
+      <a href="/" onclick="document.getElementById('mobileMenu').classList.remove('active')">Home</a>
+      <a href="/#offers" onclick="document.getElementById('mobileMenu').classList.remove('active')">Offers</a>
+      <a href="/#process" onclick="document.getElementById('mobileMenu').classList.remove('active')">Process</a>
+      <a href="/insights/index.html">Insights</a>
+      <a href="/#contact" onclick="document.getElementById('mobileMenu').classList.remove('active')">Contact</a>
+    </div>
+  
+    <div class="mobile-nav" id="mobileMenu">
+      <a href="/" onclick="document.getElementById('mobileMenu').classList.remove('active')">Home</a>
+      <a href="/#offers" onclick="document.getElementById('mobileMenu').classList.remove('active')">Offers</a>
+      <a href="/#process" onclick="document.getElementById('mobileMenu').classList.remove('active')">Process</a>
+      <a href="/#about" onclick="document.getElementById('mobileMenu').classList.remove('active')">About</a>
+      <a href="/insights/index.html">Insights</a>
+      <a href="/#contact" onclick="document.getElementById('mobileMenu').classList.remove('active')">Contact</a>
+    </div>
   </header>
 
   <section class="blog-header">
@@ -272,35 +337,35 @@
   </section>
 
   <div class="blog-grid">
-    <a href="/blog/what-is-an-ai-digital-strategy-sprint.html" class="blog-card">
+    <a href="/insights/what-is-an-ai-digital-strategy-sprint.html" class="blog-card">
       <span class="blog-tag">Strategy</span>
       <h2>What Is an AI Digital Strategy Sprint?</h2>
       <p>Learn what an AI digital strategy sprint is, how it works, and why small businesses use it to launch landing pages, funnels, and growth systems faster.</p>
       <span class="read-more">Read article</span>
     </a>
 
-    <a href="/blog/why-most-landing-pages-fail.html" class="blog-card">
+    <a href="/insights/why-most-landing-pages-fail.html" class="blog-card">
       <span class="blog-tag">Conversion</span>
       <h2>Why Most Landing Pages Fail (And How to Fix Them)</h2>
       <p>Discover why most landing pages fail to convert and learn how to fix weak messaging, poor structure, and missing trust signals with a smarter strategy.</p>
       <span class="read-more">Read article</span>
     </a>
 
-    <a href="/blog/ai-marketing-for-small-businesses.html" class="blog-card">
+    <a href="/insights/ai-marketing-for-small-businesses.html" class="blog-card">
       <span class="blog-tag">AI Marketing</span>
       <h2>AI Marketing for Small Businesses</h2>
       <p>Learn how AI marketing helps small businesses compete with bigger brands through faster copy, better landing pages, clearer offers, and smarter systems.</p>
       <span class="read-more">Read article</span>
     </a>
 
-    <a href="/blog/how-to-build-a-high-converting-landing-page.html" class="blog-card">
+    <a href="/insights/how-to-build-a-high-converting-landing-page.html" class="blog-card">
       <span class="blog-tag">Landing Pages</span>
       <h2>How to Build a High-Converting Landing Page</h2>
       <p>Learn how to build a high-converting landing page with a stronger headline, clearer offer, trust signals, and better calls to action.</p>
       <span class="read-more">Read article</span>
     </a>
 
-    <a href="/blog/the-future-of-ai-driven-marketing.html" class="blog-card">
+    <a href="/insights/the-future-of-ai-driven-marketing.html" class="blog-card">
       <span class="blog-tag">Future Trends</span>
       <h2>The Future of AI-Driven Marketing</h2>
       <p>Explore the future of AI-driven marketing and learn what smart businesses should focus on next, from faster execution to sharper strategy and personalization.</p>

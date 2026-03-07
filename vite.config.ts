@@ -43,12 +43,12 @@ export default defineConfig({
       input: {
         main: path.resolve(import.meta.dirname, "client/index.html"),
         the_method_co: path.resolve(import.meta.dirname, "client/the_method_co.html"),
-        blog_index: path.resolve(import.meta.dirname, "client/blog/index.html"),
-        blog_sprint: path.resolve(import.meta.dirname, "client/blog/what-is-an-ai-digital-strategy-sprint.html"),
-        blog_landing_pages: path.resolve(import.meta.dirname, "client/blog/why-most-landing-pages-fail.html"),
-        blog_ai_marketing: path.resolve(import.meta.dirname, "client/blog/ai-marketing-for-small-businesses.html"),
-        blog_high_converting: path.resolve(import.meta.dirname, "client/blog/how-to-build-a-high-converting-landing-page.html"),
-        blog_future: path.resolve(import.meta.dirname, "client/blog/the-future-of-ai-driven-marketing.html")
+        blog_index: path.resolve(import.meta.dirname, "client/insights/index.html"),
+        blog_sprint: path.resolve(import.meta.dirname, "client/insights/what-is-an-ai-digital-strategy-sprint.html"),
+        blog_landing_pages: path.resolve(import.meta.dirname, "client/insights/why-most-landing-pages-fail.html"),
+        blog_ai_marketing: path.resolve(import.meta.dirname, "client/insights/ai-marketing-for-small-businesses.html"),
+        blog_high_converting: path.resolve(import.meta.dirname, "client/insights/how-to-build-a-high-converting-landing-page.html"),
+        blog_future: path.resolve(import.meta.dirname, "client/insights/the-future-of-ai-driven-marketing.html")
       }
     }
   },
