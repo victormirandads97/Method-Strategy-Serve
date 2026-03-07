@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — The Method Co. Digital Strategy</title>
+  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=6">
+  <meta name="description" content="Insights, strategies, and playbooks for modern businesses. Positioning, copy, landing pages, and AI marketing." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Blog — The Method Co.">
+  <meta property="og:description" content="Insights and strategies for digital growth, landing pages, and AI marketing.">
+  <meta property="og:url" content="https://themethodco.co/blog">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://res.cloudinary.com/dsriscylr/image/upload/w_1200,h_630,c_pad,b_rgb:060a11,f_png,q_auto/v1772066807/4BFF8B5A-6D71-4E80-B781-FFC9D05FED0F_ulnk60.png">
+  <meta property="og:image:secure_url" content="https://res.cloudinary.com/dsriscylr/image/upload/w_1200,h_630,c_pad,b_rgb:060a11,f_png,q_auto/v1772066807/4BFF8B5A-6D71-4E80-B781-FFC9D05FED0F_ulnk60.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog — The Method Co.">
+  <meta name="twitter:description" content="Insights and strategies for digital growth, landing pages, and AI marketing.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dsriscylr/image/upload/w_1200,h_630,c_pad,b_rgb:060a11,f_png,q_auto/v1772066807/4BFF8B5A-6D71-4E80-B781-FFC9D05FED0F_ulnk60.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#060a11;
+      --bg2:#080e1a;
+      --card:#0b1324cc;
+      --line:#1a2640;
+      --text:#e8f0ff;
+      --muted:#8899bb;
+      --accent:#2563eb;
+      --accent2:#38bdf8;
+      --glow: rgba(37,99,235,.35);
+      --shadow: 0 24px 64px rgba(0,0,0,.55);
+      --radius: 16px;
+      --max: 1140px;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background-image: url("https://res.cloudinary.com/dsriscylr/image/upload/v1772066806/freepik__dark-modern-abstract-background-for-a-digital-mark__77622_azwrht.jpg");
+      background-size: cover;
+      background-position: center top;
+      opacity:.12;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:fixed; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(56,189,248,.10) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(6,10,17,0) 0%, var(--bg2) 100%);
+      pointer-events:none;
+    }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 24px 100px; position:relative; z-index:1}
+
+    /* NAV */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      position:sticky; top:0; z-index:100;
+      background: rgba(6,10,17,.88);
+      backdrop-filter: blur(20px);
+      margin:0 -24px; padding:18px 24px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight:800; font-size:18px; letter-spacing:.04em; text-transform:uppercase;
+    }
+    .logoImg{
+      height:36px; width:auto;
+      opacity:.92;
+      object-fit:contain;
+    }
+    .navlinks{display:flex; gap:22px; font-size:13px; font-weight:500; letter-spacing:.04em; text-transform:uppercase}
+    .navlinks a{color:var(--muted); transition:color .2s}
+    .navlinks a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 20px; border-radius:10px; font-weight:700; font-size:13px;
+      letter-spacing:.04em; text-transform:uppercase;
+      border:1px solid transparent;
+      transition: all .18s ease;
+      cursor:pointer; user-select:none; white-space:nowrap;
+      font-family: 'Barlow', sans-serif;
+    }
+    .btn:hover{transform: translateY(-2px)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), rgba(56,189,248,.7));
+      color:#020b1a;
+      transition: all .18s ease, box-shadow .3s ease;
+    }
+    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(56,189,248,.3);}
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.1);
+      color: var(--text);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.07); border-color:rgba(255,255,255,.2)}
+
+    /* BLOG HEADER */
+    .blog-header {
+      margin: 60px 0 40px;
+      text-align: center;
+      animation: fadeUp .8s ease both;
+    }
+    .blog-header h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .blog-header p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 60ch;
+      margin: 0 auto;
+    }
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(24px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    /* BLOG GRID */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .blog-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.03) 0%, rgba(255,255,255,.01) 100%);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .blog-card:hover {
+      border-color: rgba(37,99,235,.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.3);
+    }
+    .blog-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+    }
+    
+    .blog-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+    
+    .blog-card h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -.01em;
+    }
+    
+    .blog-card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color .2s;
+      margin-top: auto;
+    }
+    .read-more:hover { color: var(--accent2); }
+    .read-more::after {
+      content: "→";
+      font-size: 14px;
+      transition: transform .2s;
+    }
+    .blog-card:hover .read-more::after {
+      transform: translateX(4px);
+    }
+
+    footer{
+      margin-top:60px; padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.05);
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; flex-wrap:wrap; color:var(--muted); font-size:13px;
+    }
+    .footerBrand{
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:800; font-size:16px; letter-spacing:.06em;
+      text-transform:uppercase; color:var(--text);
+    }
+
+    @media(max-width:900px){
+      body::before, body::after{ display:none !important; }
+      .nav{ backdrop-filter: none !important; background: var(--bg); }
+      .navlinks{display:none}
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <a href="/" class="brand">
+      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <span>The Method Co.</span>
+    </a>
+    <nav class="navlinks">
+      <a href="/#offers">Offers</a>
+      <a href="/#process">Process</a>
+      <a href="/blog/index.html" style="color:var(--text)">Insights</a>
+      <a href="https://www.instagram.com/themethodco.co/" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor; margin-top:2px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </nav>
+    <a class="btn ghost" href="/#contact">Apply Now</a>
+  </header>
+
+  <section class="blog-header">
+    <h1>Strategic Insights</h1>
+    <p>Thoughts on digital strategy, landing pages, and systems that convert attention into business.</p>
+  </section>
+
+  <div class="blog-grid">
+    <a href="/blog/what-is-an-ai-digital-strategy-sprint.html" class="blog-card">
+      <span class="blog-tag">Strategy</span>
+      <h2>What Is an AI Digital Strategy Sprint?</h2>
+      <p>Learn what an AI digital strategy sprint is, how it works, and why small businesses use it to launch landing pages, funnels, and growth systems faster.</p>
+      <span class="read-more">Read article</span>
+    </a>
+
+    <a href="/blog/why-most-landing-pages-fail.html" class="blog-card">
+      <span class="blog-tag">Conversion</span>
+      <h2>Why Most Landing Pages Fail (And How to Fix Them)</h2>
+      <p>Discover why most landing pages fail to convert and learn how to fix weak messaging, poor structure, and missing trust signals with a smarter strategy.</p>
+      <span class="read-more">Read article</span>
+    </a>
+
+    <a href="/blog/ai-marketing-for-small-businesses.html" class="blog-card">
+      <span class="blog-tag">AI Marketing</span>
+      <h2>AI Marketing for Small Businesses</h2>
+      <p>Learn how AI marketing helps small businesses compete with bigger brands through faster copy, better landing pages, clearer offers, and smarter systems.</p>
+      <span class="read-more">Read article</span>
+    </a>
+
+    <a href="/blog/how-to-build-a-high-converting-landing-page.html" class="blog-card">
+      <span class="blog-tag">Landing Pages</span>
+      <h2>How to Build a High-Converting Landing Page</h2>
+      <p>Learn how to build a high-converting landing page with a stronger headline, clearer offer, trust signals, and better calls to action.</p>
+      <span class="read-more">Read article</span>
+    </a>
+
+    <a href="/blog/the-future-of-ai-driven-marketing.html" class="blog-card">
+      <span class="blog-tag">Future Trends</span>
+      <h2>The Future of AI-Driven Marketing</h2>
+      <p>Explore the future of AI-driven marketing and learn what smart businesses should focus on next, from faster execution to sharper strategy and personalization.</p>
+      <span class="read-more">Read article</span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="footerBrand">The Method Co.</div>
+    <div>&copy; 2026 The Method Co. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>
