@@ -48,7 +48,8 @@ export default defineConfig({
         blog_landing_pages: path.resolve(import.meta.dirname, "client/insights/why-most-landing-pages-fail.html"),
         blog_ai_marketing: path.resolve(import.meta.dirname, "client/insights/ai-marketing-for-small-businesses.html"),
         blog_high_converting: path.resolve(import.meta.dirname, "client/insights/how-to-build-a-high-converting-landing-page.html"),
-        blog_future: path.resolve(import.meta.dirname, "client/insights/the-future-of-ai-driven-marketing.html")
+        blog_future: path.resolve(import.meta.dirname, "client/insights/the-future-of-ai-driven-marketing.html"),
+        blog_method_explained: path.resolve(import.meta.dirname, "client/insights/the-method-explained.html")
       }
     }
   },
