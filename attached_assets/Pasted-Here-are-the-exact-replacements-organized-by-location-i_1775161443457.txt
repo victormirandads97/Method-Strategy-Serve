@@ -1,0 +1,50 @@
+Here are the exact replacements, organized by location in the code:
+1. Hero headline
+
+Old: Stop Posting.<br/><span class="h1-line2">Start Positioning.</span>
+New: Stop Guessing.<br/><span class="h1-line2">Start Positioning.</span>
+
+2. Hero subtitle
+
+Old: clarify their message, fix online positioning, and build simple funnels and landing pages that generate real enquiries.
+New: clarify their message, fix their positioning, and build simple funnels and landing pages that generate real enquiries.
+
+3. Section "The real problem" title
+
+Old: You don't need more content.
+New: You don't need more visibility.
+
+4. Section "The real problem" subtitle
+
+Old: You need clarity and a system that converts attention into enquiries.
+New: You need clarity and a system that turns visitors into enquiries.
+
+5. Digital Clarity Audit list item
+
+Old: Review of website / Instagram
+New: Review of your digital presence
+
+6. Copywriting card description
+
+Old: Clear messaging for website and socials that doesn't sound like marketing fluff.
+New: Clear messaging for your website, ads, and key touchpoints. No fluff.
+
+7. Not a fit list item
+
+Old: You just want posting with no strategy behind it.
+New: You want tactics without fixing the foundation first.
+
+
+Here's the Replit prompt:
+
+I need you to make the following text replacements in my index.html file. Do not change any styling, structure, or other code. Only replace these exact strings:
+
+Replace Stop Posting.<br/><span class="h1-line2">Start Positioning.</span> with Stop Guessing.<br/><span class="h1-line2">Start Positioning.</span>
+Replace clarify their message, fix online positioning, and build simple funnels and landing pages that generate real enquiries. with clarify their message, fix their positioning, and build simple funnels and landing pages that generate real enquiries.
+Replace You don't need more content. with You don't need more visibility.
+Replace You need clarity and a system that converts attention into enquiries. with You need clarity and a system that turns visitors into enquiries.
+Replace Review of website / Instagram with Review of your digital presence
+Replace Clear messaging for website and socials that doesn't sound like marketing fluff. with Clear messaging for your website, ads, and key touchpoints. No fluff.
+Replace You just want posting with no strategy behind it. with You want tactics without fixing the foundation first.
+
+That's it. No other changes.
