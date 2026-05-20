@@ -28,8 +28,8 @@ const C = {
   red:      "#F06060",
 } as const;
 
-const MONO:  React.CSSProperties = { fontFamily: "'Space Mono', 'JetBrains Mono', monospace" };
-const BEBAS: React.CSSProperties = { fontFamily: "'Bebas Neue', 'Arial Narrow', sans-serif" };
+const MONO:  React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em" };
+const BEBAS: React.CSSProperties = { fontFamily: "'Geist', system-ui, sans-serif", fontWeight: 800 };
 const INTER: React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif" };
 
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
@@ -522,6 +522,7 @@ export default function Landing() {
           .nav-center { display: none !important; }
           .hamburger  { display: flex !important; }
           .hero-inner { padding: 110px 5vw 60px !important; }
+          .hero-cols  { flex-direction: column !important; }
           .stat-strip { grid-template-columns: repeat(2,1fr) !important; }
           .fix-grid   { grid-template-columns: repeat(2,1fr) !important; }
           .offers-row { flex-direction: column !important; }
@@ -575,7 +576,7 @@ export default function Landing() {
               {label}
             </a>
           ))}
-          <a href="https://www.instagram.com/themethodco" target="_blank" rel="noreferrer"
+          <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
             style={{ color: C.sub, padding: "0.35rem 0.45rem", display: "flex",
               alignItems: "center", transition: "color 0.15s" }} className="nav-link">
             <Ic n="ig" sz={15} col="currentColor" />
@@ -636,64 +637,99 @@ export default function Landing() {
           objectFit: "cover", opacity: 0.04, zIndex: 0, pointerEvents: "none",
         }} />
 
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 860 }}>
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}>
-            <span style={{
-              ...MONO, color: C.cyan, fontSize: "0.65rem", letterSpacing: "0.12em",
-              border: `1px solid ${C.border}`, padding: "0.3rem 0.75rem",
-              borderRadius: 2, display: "inline-block", marginBottom: "2rem",
+        {/* 2-column hero layout */}
+        <div className="hero-cols" style={{
+          position: "relative", zIndex: 1,
+          display: "flex", gap: "4rem", alignItems: "center",
+        }}>
+
+          {/* Left: copy */}
+          <div style={{ flex: "1 1 0", minWidth: 0 }}>
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 }}>
+              <span style={{
+                ...MONO, color: C.cyan, fontSize: "0.65rem", letterSpacing: "0.12em",
+                border: `1px solid ${C.border}`, padding: "0.3rem 0.75rem",
+                borderRadius: 2, display: "inline-block", marginBottom: "2rem",
+              }}>
+                // CLARITY-FIRST DIGITAL STRATEGY
+              </span>
+            </motion.div>
+
+            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              style={{ ...BEBAS, fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.0,
+                letterSpacing: "0.01em", color: C.text, marginBottom: "0.1em" }}
+              className="uppercase">
+              STOP GUESSING.
+            </motion.h1>
+            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              style={{ ...BEBAS, fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.0,
+                letterSpacing: "0.01em", color: C.cyan, marginBottom: "2rem" }}
+              className="uppercase">
+              START POSITIONING.
+            </motion.h1>
+
+            <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ ...INTER, color: C.sub, fontSize: "1.05rem", lineHeight: 1.7,
+                maxWidth: 520, marginBottom: "2.5rem" }}>
+              Most service businesses do not have a traffic problem. They have a clarity problem.
+              We fix the message, the positioning, and the funnel so the right people understand
+              you and take action.
+            </motion.p>
+
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.4 }}
+              style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "0.85rem" }}>
+              <a href="#apply" style={{
+                ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
+                fontSize: "0.78rem", letterSpacing: "0.1em",
+                padding: "0.85rem 1.75rem", borderRadius: 3,
+                transition: "opacity 0.15s",
+              }}>GET_FREE_AUDIT</a>
+              <a href="#offers" className="ghost" style={{
+                ...MONO, color: C.sub,
+                border: `1px solid ${C.border}`, fontSize: "0.78rem", letterSpacing: "0.1em",
+                padding: "0.85rem 1.75rem", borderRadius: 3,
+                transition: "color 0.15s, border-color 0.15s",
+              }}>SEE_OFFERS</a>
+            </motion.div>
+
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              style={{ ...MONO, color: C.dim, fontSize: "0.6rem", letterSpacing: "0.08em" }}>
+              // no hype. no guru promises. just structure and execution.
+            </motion.p>
+          </div>
+
+          {/* HERO VIDEO: replace this block with <video> or <iframe> when ready. */}
+          <div style={{ flex: "0 0 44%", minWidth: 0 }}>
+            <div style={{
+              position: "relative",
+              paddingTop: "56.25%",
+              background: C.panel,
+              border: "1px solid rgba(61,214,245,0.3)",
+              borderRadius: 16,
+              boxShadow: "0 0 48px rgba(61,214,245,0.06)",
+              overflow: "hidden",
             }}>
-              // CLARITY-FIRST DIGITAL STRATEGY
-            </span>
-          </motion.div>
+              <div style={{
+                position: "absolute", inset: 0,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: "0.75rem",
+              }}>
+                <svg width="48" height="48" viewBox="0 0 48 48">
+                  <polygon points="18,14 38,24 18,34" fill="#3DD6F5" />
+                </svg>
+                <p style={{ ...INTER, color: C.sub, fontSize: "0.78rem", letterSpacing: "0.04em" }}>
+                  Video coming soon
+                </p>
+              </div>
+            </div>
+          </div>
 
-          <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            style={{ ...BEBAS, fontSize: "clamp(4rem, 11vw, 9.5rem)", lineHeight: 0.88,
-              letterSpacing: "0.01em", color: C.text, marginBottom: "0.1em" }}
-            className="uppercase">
-            STOP GUESSING.
-          </motion.h1>
-          <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{ ...BEBAS, fontSize: "clamp(4rem, 11vw, 9.5rem)", lineHeight: 0.88,
-              letterSpacing: "0.01em", color: C.cyan, marginBottom: "2rem" }}
-            className="uppercase">
-            START POSITIONING.
-          </motion.h1>
-
-          <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            style={{ ...INTER, color: C.sub, fontSize: "1.05rem", lineHeight: 1.7,
-              maxWidth: 520, marginBottom: "2.5rem" }}>
-            Most service businesses do not have a traffic problem. They have a clarity problem.
-            We fix the message, the positioning, and the funnel so the right people understand
-            you and take action.
-          </motion.p>
-
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.4 }}
-            style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "0.85rem" }}>
-            <a href="#apply" style={{
-              ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
-              fontSize: "0.78rem", letterSpacing: "0.1em",
-              padding: "0.85rem 1.75rem", borderRadius: 3,
-              transition: "opacity 0.15s",
-            }}>GET_FREE_AUDIT</a>
-            <a href="#offers" className="ghost" style={{
-              ...MONO, color: C.sub,
-              border: `1px solid ${C.border}`, fontSize: "0.78rem", letterSpacing: "0.1em",
-              padding: "0.85rem 1.75rem", borderRadius: 3,
-              transition: "color 0.15s, border-color 0.15s",
-            }}>SEE_OFFERS</a>
-          </motion.div>
-
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            style={{ ...MONO, color: C.dim, fontSize: "0.6rem", letterSpacing: "0.08em" }}>
-            // no hype. no guru promises. just structure and execution.
-          </motion.p>
         </div>
 
         {/* Stat strip */}
@@ -1306,7 +1342,7 @@ export default function Landing() {
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-          <a href="https://www.instagram.com/themethodco" target="_blank" rel="noreferrer"
+          <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
             style={{ color: C.dim, transition: "color 0.15s" }} className="ghost">
             <Ic n="ig" sz={16} col="currentColor" />
           </a>
