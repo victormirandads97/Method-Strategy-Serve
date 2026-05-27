@@ -56,7 +56,9 @@ function SH({ children, style: s }: { children: React.ReactNode; style?: React.C
     <h2 style={{
       ...EP, fontWeight: 900, lineHeight: 0.93, letterSpacing: "-0.01em", color: C.text,
       fontSize: "clamp(2.4rem, 5vw, 3.8rem)", marginBottom: "0.9rem",
-      textTransform: "uppercase", ...s,
+      textTransform: "uppercase",
+      textShadow: "0 0 80px rgba(61,214,245,0.15)",
+      ...s,
     }}>{children}</h2>
   );
 }
@@ -74,12 +76,17 @@ function HR() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   return (
-    <div ref={ref} style={{ height: 1, background: C.border, overflow: "hidden" }}>
+    <div ref={ref} style={{ height: 1, overflow: "hidden", position: "relative" }}>
       <motion.div
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        style={{ height: "100%", background: C.border, transformOrigin: "left" }}
+        style={{
+          height: "100%",
+          background: `linear-gradient(90deg, transparent 0%, ${C.accent}4d 20%, ${C.accent}4d 80%, transparent 100%)`,
+          boxShadow: `0 0 8px ${C.accent}30`,
+          transformOrigin: "left",
+        }}
       />
     </div>
   );
@@ -385,6 +392,33 @@ export default function Landing() {
   return (
     <div style={{ background: C.bg, minHeight: "100vh", color: C.text, overflowX: "hidden" }}>
 
+      {/* ── GLOBAL AMBIENT BACKGROUND ──────────────────────────────────────── */}
+      <div style={{ position: "fixed", inset: 0, zIndex: -1, pointerEvents: "none", overflow: "hidden" }}>
+        <div style={{
+          position: "absolute", width: "55vw", height: "55vw", maxWidth: 900, maxHeight: 900,
+          top: "-15%", left: "-10%",
+          background: `radial-gradient(circle, ${C.glow}1e 0%, transparent 70%)`,
+          animation: "orbGlobal1 45s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute", width: "45vw", height: "45vw", maxWidth: 720, maxHeight: 720,
+          top: "40%", right: "-8%",
+          background: `radial-gradient(circle, ${C.hi}14 0%, transparent 70%)`,
+          animation: "orbGlobal2 60s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute", width: "50vw", height: "50vw", maxWidth: 800, maxHeight: 800,
+          bottom: "10%", left: "25%",
+          background: `radial-gradient(circle, ${C.accent}0f 0%, transparent 70%)`,
+          animation: "orbGlobal3 52s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          opacity: 0.03, mixBlendMode: "overlay",
+        }} />
+      </div>
+
       <style>{`
         @keyframes typingDot {
           0%,75%,100% { transform: scale(0.35); opacity: 0.25; }
@@ -398,6 +432,26 @@ export default function Landing() {
           0%,100% { transform: translate(0,0) scale(1); }
           50%     { transform: translate(-50px,35px) scale(0.95); }
         }
+        @keyframes orbGlobal1 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          33%     { transform: translate(80px,-60px) scale(1.08); }
+          66%     { transform: translate(-40px,40px) scale(0.96); }
+        }
+        @keyframes orbGlobal2 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          40%     { transform: translate(-70px,50px) scale(1.06); }
+          70%     { transform: translate(50px,-30px) scale(0.98); }
+        }
+        @keyframes orbGlobal3 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          30%     { transform: translate(60px,70px) scale(1.04); }
+          60%     { transform: translate(-80px,-40px) scale(0.97); }
+        }
+        @keyframes ctaPulse {
+          0%,100% { box-shadow: 0 0 20px rgba(61,214,245,0.20), 0 0 40px rgba(61,214,245,0.08); }
+          50%     { box-shadow: 0 0 30px rgba(61,214,245,0.40), 0 0 60px rgba(61,214,245,0.15); }
+        }
+        .cta-glow { animation: ctaPulse 3s ease-in-out infinite; }
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -477,7 +531,7 @@ export default function Landing() {
               display: "inline-block", boxShadow: `0 0 7px ${C.green}` }} />
             OPEN
           </span>
-          <a href="#apply" style={{
+          <a href="#apply" className="cta-glow" style={{
             ...EP, fontWeight: 700, color: C.bg, background: C.accent,
             fontSize: "0.72rem", letterSpacing: "0.08em",
             padding: "0.5rem 1.2rem", borderRadius: 5,
@@ -577,6 +631,7 @@ export default function Landing() {
                   fontSize: "clamp(3rem, 7vw, 5.5rem)",
                   color: C.text, textTransform: "uppercase",
                   letterSpacing: "-0.02em", marginBottom: "1.5rem",
+                  textShadow: "0 0 80px rgba(61,214,245,0.18)",
                 }}>
                 STOP<br />GUESSING.<br />
                 <span style={{ color: C.accent }}>START</span><br />
@@ -598,7 +653,7 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.42 }}
                 style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "2rem" }}>
-                <a href="#apply" style={{
+                <a href="#apply" className="cta-glow" style={{
                   ...EP, fontWeight: 700, color: C.bg, background: C.accent,
                   fontSize: "0.82rem", letterSpacing: "0.08em",
                   padding: "0.85rem 2rem", borderRadius: 6,
@@ -639,46 +694,48 @@ export default function Landing() {
               </motion.p>
             </div>
 
-            {/* Right column - video placeholder */}
-            {/* HERO VIDEO: replace this div with <video> or <iframe> when ready */}
+            {/* Right column - atmospheric image with play overlay */}
+            {/* HERO VIDEO: replace the img below with <video> or <iframe> when ready */}
             <motion.div
               className="hero-video"
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              style={{ flex: "0 0 44%", minWidth: 0 }}>
+              style={{ flex: "0 0 44%", minWidth: 0, position: "relative", alignSelf: "stretch", minHeight: 380 }}>
+              {/* Full-bleed image */}
+              <img
+                src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
+                alt=""
+                style={{
+                  position: "absolute", inset: 0,
+                  width: "100%", height: "100%", objectFit: "cover",
+                  filter: "grayscale(15%) contrast(1.08)",
+                }}
+              />
+              {/* Left-to-right gradient: bg at 60% on left, transparent on right */}
               <div style={{
-                position: "relative", paddingTop: "56.25%",
-                background: C.panel,
-                border: `1.5px solid ${C.accent}40`,
-                borderRadius: 16,
-                boxShadow: `0 0 60px ${C.accent}0a, inset 0 0 40px ${C.accent}04`,
-                overflow: "hidden",
+                position: "absolute", inset: 0,
+                background: `linear-gradient(90deg, ${C.bg}99 0%, ${C.bg}30 40%, transparent 100%)`,
+              }} />
+              {/* Play button overlay */}
+              <div style={{
+                position: "absolute", inset: 0,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: "0.75rem",
               }}>
                 <div style={{
-                  position: "absolute", inset: 0,
-                  display: "flex", flexDirection: "column",
-                  alignItems: "center", justifyContent: "center", gap: "0.85rem",
+                  width: 56, height: 56, borderRadius: "50%",
+                  border: `1.5px solid ${C.accent}80`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: `${C.bg}a0`, backdropFilter: "blur(6px)",
                 }}>
-                  <div style={{
-                    width: 56, height: 56, borderRadius: "50%",
-                    border: `1.5px solid ${C.accent}60`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    background: `${C.accent}10`,
-                  }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                      <polygon points="9,7 19,12 9,17" fill={C.accent} />
-                    </svg>
-                  </div>
-                  <p style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.82rem", letterSpacing: "0.04em" }}>
-                    Video coming soon
-                  </p>
+                  <svg width="20" height="20" viewBox="0 0 24 24">
+                    <polygon points="9,7 19,12 9,17" fill={C.accent} />
+                  </svg>
                 </div>
-                {/* Corner accent lines */}
-                <div style={{ position: "absolute", top: 12, left: 12, width: 20, height: 20,
-                  borderTop: `1.5px solid ${C.accent}60`, borderLeft: `1.5px solid ${C.accent}60` }} />
-                <div style={{ position: "absolute", bottom: 12, right: 12, width: 20, height: 20,
-                  borderBottom: `1.5px solid ${C.accent}60`, borderRight: `1.5px solid ${C.accent}60` }} />
+                <p style={{ ...DM, fontWeight: 400, color: `${C.text}90`, fontSize: "0.78rem", letterSpacing: "0.04em" }}>
+                  Video coming soon
+                </p>
               </div>
             </motion.div>
           </div>
@@ -717,7 +774,7 @@ export default function Landing() {
             ].map((card, i) => (
               <Reveal key={card.num} delay={i * 0.1}>
                 <motion.div
-                  whileHover={{ y: -4, borderTopColor: C.accent }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                   transition={{ duration: 0.2 }}
                   style={{
                     background: C.panel, padding: "2rem",
@@ -753,11 +810,33 @@ export default function Landing() {
       <HR />
 
       {/* ── WHAT WE FIX ──────────────────────────────────────────────────────── */}
-      <section id="fix" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+      <section id="fix" style={{ position: "relative", zIndex: 1 }}>
+        {/* Full-width atmospheric image strip with floating headline */}
+        <div style={{ position: "relative", height: 320, overflow: "hidden", marginBottom: 0 }}>
+          <img
+            src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
+            alt=""
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
+              objectFit: "cover", filter: "grayscale(10%) contrast(1.08)" }}
+            loading="lazy"
+          />
+          {/* Top-to-bottom gradient so bottom bleeds into section bg */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: `linear-gradient(180deg, ${C.bg}60 0%, ${C.bg}00 40%, ${C.bg}e0 80%, ${C.bg} 100%)`,
+          }} />
+          {/* Floating headline */}
+          <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column",
+            justifyContent: "flex-end", padding: "0 5vw 2.5rem" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+              <SLabel>WHAT WE FIX</SLabel>
+              <SH style={{ marginBottom: 0 }}>PRACTICAL CHANGES THAT CONVERT.</SH>
+            </div>
+          </div>
+        </div>
+        <div style={{ padding: "0 5vw 96px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <SLabel>WHAT WE FIX</SLabel>
-            <SH>PRACTICAL CHANGES THAT CONVERT.</SH>
             <Sub>Not advice. Actual work. Six areas where clarity compounds into revenue.</Sub>
           </Reveal>
           <div className="fix-grid" style={{ display: "grid",
@@ -774,7 +853,7 @@ export default function Landing() {
             ].map((card, i) => (
               <Reveal key={card.title} delay={i * 0.07}>
                 <motion.div
-                  whileHover={{ y: -4, boxShadow: `0 8px 32px ${C.accent}12` }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                   transition={{ duration: 0.2 }}
                   style={{
                     background: C.panel, padding: "1.85rem",
@@ -811,19 +890,7 @@ export default function Landing() {
             ))}
           </div>
 
-          {/* Image */}
-          <Reveal>
-            <div style={{ borderRadius: 12, overflow: "hidden", maxHeight: 400,
-              border: `1px solid ${C.border}` }}>
-              <img
-                src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
-                alt="Professional workspace"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block",
-                  filter: "grayscale(15%) contrast(1.05)" }}
-                loading="lazy"
-              />
-            </div>
-          </Reveal>
+        </div>
         </div>
       </section>
 
@@ -891,7 +958,7 @@ export default function Landing() {
             ].map((offer, i) => (
               <Reveal key={offer.title} delay={i * 0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                   transition={{ duration: 0.2 }}
                   style={{
                     background: offer.featured ? `${C.accent}07` : C.panel,
@@ -1030,7 +1097,18 @@ export default function Landing() {
       <HR />
 
       {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
-      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
+        {/* Faint textural background image */}
+        <img
+          src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute", inset: 0, width: "100%", height: "100%",
+            objectFit: "cover", opacity: 0.08, filter: "blur(4px) grayscale(40%)",
+            pointerEvents: "none", zIndex: 0,
+          }}
+        />
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <SLabel>HOW IT WORKS</SLabel>
@@ -1125,12 +1203,12 @@ export default function Landing() {
               </Reveal>
             </div>
 
-            <Reveal delay={0.15} style={{ flex: "0 0 360px", maxWidth: 360 }}>
+            <Reveal delay={0.15} style={{ flex: "0 0 480px", maxWidth: 480 }}>
               <div style={{
                 borderRadius: 16, overflow: "hidden",
                 border: `1.5px solid ${C.accent}30`,
-                boxShadow: `0 0 40px ${C.accent}08`,
-                maxHeight: 480,
+                boxShadow: `0 0 60px ${C.accent}33`,
+                maxHeight: 560,
               }}>
                 <img
                   src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
@@ -1208,7 +1286,7 @@ export default function Landing() {
             ].map((t, i) => (
               <Reveal key={t.name} delay={i * 0.1} style={{ flex: 1 }}>
                 <motion.div
-                  whileHover={{ y: -3 }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                   transition={{ duration: 0.2 }}
                   style={{
                     background: C.panel, padding: "2rem",
@@ -1261,10 +1339,11 @@ export default function Landing() {
               paddingBottom: "1rem" }}>
               {/* Method Consultancy */}
               <motion.div
-                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}15` }}
+                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                 transition={{ duration: 0.2 }}
                 style={{
-                  flex: "0 0 340px", background: C.panel,
+                  flex: "0 0 340px",
+                  background: `radial-gradient(circle at top left, ${C.accent}18 0%, ${C.panel} 55%)`,
                   border: `1px solid ${C.border}`, borderRadius: 12,
                   padding: "1.75rem", cursor: "default", minWidth: 0,
                 }}>
@@ -1310,10 +1389,11 @@ export default function Landing() {
 
               {/* The Method Chat */}
               <motion.div
-                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}15` }}
+                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}4d, 0 0 0 1px ${C.accent}80` }}
                 transition={{ duration: 0.2 }}
                 style={{
-                  flex: "0 0 340px", background: C.panel,
+                  flex: "0 0 340px",
+                  background: `radial-gradient(circle at center, ${C.accent}18 0%, ${C.panel} 60%)`,
                   border: `1px solid ${C.accent}40`,
                   borderRadius: 12, padding: "1.75rem", cursor: "default", minWidth: 0,
                   boxShadow: `0 0 30px ${C.accent}0a`,
@@ -1361,10 +1441,11 @@ export default function Landing() {
 
               {/* Second Brain */}
               <motion.div
-                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}08` }}
+                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}30, 0 0 0 1px ${C.accent}40` }}
                 transition={{ duration: 0.2 }}
                 style={{
-                  flex: "0 0 340px", background: C.panel,
+                  flex: "0 0 340px",
+                  background: `radial-gradient(circle at bottom right, ${C.accent}12 0%, ${C.panel} 55%)`,
                   border: `1px solid ${C.border}`, borderRadius: 12,
                   padding: "1.75rem", cursor: "default", minWidth: 0,
                   opacity: 0.75,
@@ -1482,6 +1563,7 @@ export default function Landing() {
                 <motion.button
                   type="submit"
                   disabled={sending}
+                  className={sending ? undefined : "cta-glow"}
                   whileHover={{ opacity: 0.9 }}
                   whileTap={{ scale: 0.99 }}
                   style={{
