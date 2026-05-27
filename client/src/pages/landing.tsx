@@ -1,58 +1,51 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
-// ─── Cloudinary ───────────────────────────────────────────────────────────────
-const CDN = "https://res.cloudinary.com/dsriscylr/image/upload";
-const CDN_METHOD = "https://res.cloudinary.com/dsriscylr/image/upload/method-co";
-
-// METHOD CHAT: set CHAT_API_ENDPOINT to connect the live chatbot.
+// METHOD CHAT: set CHAT_API_ENDPOINT to go live
 const CHAT_API_ENDPOINT = "";
 
-// ─── Brand ───────────────────────────────────────────────────────────────────
+// ── Brand tokens ──────────────────────────────────────────────────────────────
 const C = {
-  bg:       "#0C0C0C",
-  panel:    "#141414",
-  card:     "#181818",
-  surface:  "#1F1F1F",
-  cyan:     "#3DD6F5",
-  cyanD:    "#1FB8E6",
-  cyanDim:  "#3DD6F530",
-  text:     "#F0F0F0",
-  sub:      "#888888",
-  dim:      "#444444",
-  border:   "#232323",
-  borderHi: "#333333",
-  green:    "#3DDA84",
-  amber:    "#F0A500",
-  red:      "#F06060",
+  bg:     "#070A16",
+  panel:  "#0C1226",
+  elev:   "#101935",
+  accent: "#3DD6F5",
+  glow:   "#1FB8E6",
+  hi:     "#5BE6FF",
+  text:   "#EDF2F7",
+  muted:  "#8A97B4",
+  border: "#1D2A4D",
+  green:  "#3DDA84",
+  amber:  "#F0A500",
+  red:    "#F06060",
 } as const;
 
-const MONO:  React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em" };
-const BEBAS: React.CSSProperties = { fontFamily: "'Geist', system-ui, sans-serif", fontWeight: 800 };
-const INTER: React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif" };
+const EP: React.CSSProperties = { fontFamily: "'Epilogue', system-ui, sans-serif" };
+const DM: React.CSSProperties = { fontFamily: "'DM Sans', system-ui, sans-serif" };
+const LBL: React.CSSProperties = { ...DM, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.13em" };
 
-// ─── Scroll reveal ────────────────────────────────────────────────────────────
+// ── Shared components ─────────────────────────────────────────────────────────
+
 function Reveal({ children, delay = 0, style: s }: {
   children: React.ReactNode; delay?: number; style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <div ref={ref} style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? "translateY(0)" : "translateY(20px)",
-      transition: `opacity 0.55s ease ${delay}s, transform 0.55s ease ${delay}s`,
-      ...s,
-    }}>{children}</div>
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={s}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-// ─── Section header system ────────────────────────────────────────────────────
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ ...MONO, color: C.cyan, fontSize: "0.65rem", letterSpacing: "0.06em",
-      marginBottom: "0.85rem", opacity: 0.9 }}>
+    <p style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.14em",
+      marginBottom: "0.85rem" }}>
       // {children}
     </p>
   );
@@ -61,36 +54,38 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function SH({ children, style: s }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <h2 style={{
-      ...BEBAS, lineHeight: 0.92, letterSpacing: "0.02em", color: C.text,
-      fontSize: "clamp(2.4rem, 5vw, 4rem)", marginBottom: "0.9rem", ...s,
-    }} className="uppercase">{children}</h2>
+      ...EP, fontWeight: 900, lineHeight: 0.93, letterSpacing: "-0.01em", color: C.text,
+      fontSize: "clamp(2.4rem, 5vw, 3.8rem)", marginBottom: "0.9rem",
+      textTransform: "uppercase", ...s,
+    }}>{children}</h2>
   );
 }
 
-function Sub({ children }: { children: React.ReactNode }) {
+function Sub({ children, style: s }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
-    <p style={{ ...INTER, color: C.sub, fontSize: "1rem", lineHeight: 1.7,
-      maxWidth: 580, marginBottom: "2.75rem" }}>
+    <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "1rem", lineHeight: 1.7,
+      maxWidth: 580, marginBottom: "2.75rem", ...s }}>
       {children}
     </p>
   );
 }
 
-// ─── Horizontal rule ──────────────────────────────────────────────────────────
 function HR() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   return (
-    <div ref={ref} style={{
-      height: 1, background: C.border,
-      transform: inView ? "scaleX(1)" : "scaleX(0)",
-      transformOrigin: "left",
-      transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)",
-    }} />
+    <div ref={ref} style={{ height: 1, background: C.border, overflow: "hidden" }}>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        style={{ height: "100%", background: C.border, transformOrigin: "left" }}
+      />
+    </div>
   );
 }
 
-// ─── Inline icons ─────────────────────────────────────────────────────────────
+// ── Icon system ───────────────────────────────────────────────────────────────
 function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?: string }) {
   const p: Record<string, React.ReactNode> = {
     target:  <><circle cx="12" cy="12" r="9" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="12" cy="12" r="5" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="12" cy="12" r="1.5" fill={col}/></>,
@@ -108,11 +103,18 @@ function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?
     send:    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
     warning: <><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" strokeWidth="1.5" fill="none" stroke={col}/><line x1="12" y1="9" x2="12" y2="13" strokeWidth="1.5" strokeLinecap="round" stroke={col}/><line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2" strokeLinecap="round" stroke={col}/></>,
     arrow:   <path d="M5 12h14M12 5l7 7-7 7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
+    chat:    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke={col} strokeWidth="1.5" strokeLinejoin="round"/>,
+    brain:   <><path d="M12 2a7 7 0 00-7 7c0 2 .8 3.8 2 5l1 8h8l1-8a7 7 0 002-5 7 7 0 00-7-7z" fill="none" stroke={col} strokeWidth="1.5"/><path d="M9 14h6M10 17h4" stroke={col} strokeWidth="1.5" strokeLinecap="round"/></>,
   };
-  return <svg viewBox="0 0 24 24" style={{ width: sz, height: sz, display: "block", flexShrink: 0 }}>{p[n] ?? null}</svg>;
+  return (
+    <svg viewBox="0 0 24 24" style={{ width: sz, height: sz, display: "block", flexShrink: 0 }}>
+      {p[n] ?? null}
+    </svg>
+  );
 }
 
-// ─── Demo loop ────────────────────────────────────────────────────────────────
+// ── Demo components for Ecosystem ─────────────────────────────────────────────
+
 function useDemoLoop(totalMs: number) {
   const [loopKey, setLoopKey] = useState(0);
   const [fading, setFading] = useState(false);
@@ -124,19 +126,6 @@ function useDemoLoop(totalMs: number) {
   return { loopKey, fading };
 }
 
-function DemoWin({ children, fading, minH = 120 }: {
-  children: React.ReactNode; fading: boolean; minH?: number;
-}) {
-  return (
-    <div style={{
-      background: C.bg, border: `1px solid ${C.border}`, borderRadius: 4,
-      padding: "0.85rem", marginBottom: "0.85rem", minHeight: minH,
-      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease", overflow: "hidden",
-    }}>{children}</div>
-  );
-}
-
-// ─── Consultancy card demo ────────────────────────────────────────────────────
 const AUDIT_BARS = [
   { label: "POSITIONING", v: 41 },
   { label: "MESSAGE",     v: 67 },
@@ -145,7 +134,7 @@ const AUDIT_BARS = [
 
 function AuditInner() {
   const [count, setCount] = useState(0);
-  const [bars, setBars]   = useState([0, 0, 0]);
+  const [bars, setBars] = useState([0, 0, 0]);
   useEffect(() => {
     const bt = setTimeout(() => setBars([41, 67, 33]), 60);
     const dur = 1450; let t0 = 0; let raf: number;
@@ -161,31 +150,38 @@ function AuditInner() {
   return (
     <div>
       <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: "0.65rem" }}>
-        <span style={{ ...MONO, color: C.cyan, fontSize: "2rem", lineHeight: 1 }}>{count}</span>
-        <span style={{ ...MONO, color: C.dim, fontSize: "0.75rem" }}>/100</span>
-        <span style={{ ...MONO, color: C.sub, fontSize: "0.6rem", marginLeft: "auto", letterSpacing: "0.1em" }}>CLARITY_SCORE</span>
+        <span style={{ ...EP, fontWeight: 900, color: C.accent, fontSize: "2rem", lineHeight: 1 }}>{count}</span>
+        <span style={{ ...DM, color: C.border, fontSize: "0.75rem" }}>/100</span>
+        <span style={{ ...LBL, color: C.muted, fontSize: "0.55rem", marginLeft: "auto" }}>CLARITY_SCORE</span>
       </div>
       {AUDIT_BARS.map((bar, i) => (
         <div key={bar.label} style={{ marginBottom: "0.5rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-            <span style={{ ...MONO, color: C.sub, fontSize: "0.55rem", letterSpacing: "0.12em" }}>{bar.label}</span>
-            <span style={{ ...MONO, color: C.cyan, fontSize: "0.55rem" }}>{bars[i]}%</span>
+            <span style={{ ...LBL, color: C.muted, fontSize: "0.52rem" }}>{bar.label}</span>
+            <span style={{ ...LBL, color: C.accent, fontSize: "0.52rem" }}>{bars[i]}%</span>
           </div>
           <div style={{ height: 3, background: C.border, borderRadius: 1, overflow: "hidden" }}>
             <div style={{ height: "100%", width: `${bars[i]}%`,
-              background: C.cyan, transition: `width 1.4s ease-out ${i * 0.14}s` }} />
+              background: `linear-gradient(90deg, ${C.accent}, ${C.glow})`,
+              transition: `width 1.4s ease-out ${i * 0.14}s` }} />
           </div>
         </div>
       ))}
     </div>
   );
 }
+
 function ConsultancyDemo() {
   const { loopKey, fading } = useDemoLoop(3900);
-  return <DemoWin fading={fading}><AuditInner key={loopKey} /></DemoWin>;
+  return (
+    <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
+      padding: "0.85rem", marginBottom: "0.85rem",
+      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+      <AuditInner key={loopKey} />
+    </div>
+  );
 }
 
-// ─── Method Chat widget ───────────────────────────────────────────────────────
 interface ChatMsg { role: "user" | "bot"; text: string; }
 
 const DEMO_MSGS: ChatMsg[] = [
@@ -194,133 +190,67 @@ const DEMO_MSGS: ChatMsg[] = [
   { role: "bot",  text: "Then we fix the offer before anything else. What do you actually sell?" },
 ];
 
-function LiveChat() {
-  const [msgs, setMsgs] = useState<ChatMsg[]>([{ role: "bot", text: "What are you trying to fix?" }]);
-  const [input, setInput] = useState("");
-  const [busy, setBusy] = useState(false);
-  const endRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs]);
-
-  async function send() {
-    const text = input.trim();
-    if (!text || busy) return;
-    setInput("");
-    setMsgs(p => [...p, { role: "user", text }]);
-    setBusy(true);
-    try {
-      const res = await fetch(CHAT_API_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
-      });
-      const data = await res.json();
-      setMsgs(p => [...p, { role: "bot", text: data.reply ?? data.message ?? "..." }]);
-    } catch {
-      setMsgs(p => [...p, { role: "bot", text: "Something went wrong. Try again." }]);
-    }
-    setBusy(false);
-  }
-
-  return (
-    <div style={{ display: "flex", flexDirection: "column", height: 210, background: C.bg,
-      border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden", marginBottom: "0.85rem" }}>
-      <div style={{ ...MONO, fontSize: "0.55rem", color: C.dim, padding: "0.45rem 0.75rem",
-        borderBottom: `1px solid ${C.border}`, letterSpacing: "0.1em" }}>
-        METHOD_CHAT_v1.0
-      </div>
-      <div style={{ flex: 1, overflowY: "auto", padding: "0.75rem",
-        display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-        {msgs.map((m, i) => (
-          <div key={i} style={{
-            alignSelf: m.role === "user" ? "flex-end" : "flex-start", maxWidth: "88%",
-            background: m.role === "user" ? `${C.cyan}12` : C.panel,
-            border: `1px solid ${m.role === "user" ? `${C.cyan}30` : C.border}`,
-            borderRadius: 3, padding: "0.3rem 0.6rem",
-          }}>
-            <p style={{ ...INTER, fontSize: "0.63rem", lineHeight: 1.5, margin: 0,
-              color: m.role === "user" ? C.text : C.sub }}>{m.text}</p>
-          </div>
-        ))}
-        {busy && (
-          <div style={{ alignSelf: "flex-start", display: "flex", gap: 3,
-            padding: "0.3rem 0.6rem", background: C.panel,
-            border: `1px solid ${C.border}`, borderRadius: 3 }}>
-            {[0,1,2].map(i => <div key={i} style={{ width: 4, height: 4, borderRadius: "50%",
-              background: C.dim, animation: `typingDot 1.1s ${i*0.17}s ease-in-out infinite` }} />)}
-          </div>
-        )}
-        <div ref={endRef} />
-      </div>
-      <div style={{ display: "flex", borderTop: `1px solid ${C.border}`,
-        padding: "0.4rem 0.5rem", gap: "0.4rem", background: C.panel }}>
-        <input value={input} onChange={e => setInput(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && send()}
-          placeholder="> type here..."
-          style={{ ...MONO, flex: 1, background: "transparent", border: "none",
-            outline: "none", color: C.text, fontSize: "0.6rem", padding: "0 0.3rem" }} />
-        <button onClick={send} style={{
-          background: C.cyan, border: "none", borderRadius: 3,
-          padding: "0.28rem 0.55rem", cursor: "pointer", display: "flex", alignItems: "center" }}>
-          <Ic n="send" sz={11} col={C.bg} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function DemoChatInner() {
   const [phase, setPhase] = useState(0);
   useEffect(() => {
     const ts = [
-      setTimeout(() => setPhase(1), 500),
-      setTimeout(() => setPhase(2), 1750),
-      setTimeout(() => setPhase(3), 2900),
+      setTimeout(() => setPhase(1), 300),
+      setTimeout(() => setPhase(2), 1400),
+      setTimeout(() => setPhase(3), 2200),
+      setTimeout(() => setPhase(4), 3400),
     ];
     return () => ts.forEach(clearTimeout);
   }, []);
-  const bub = (role: "user" | "bot", vis: boolean, text: string) => (
-    <div style={{
-      alignSelf: role === "user" ? "flex-end" : "flex-start", maxWidth: "88%",
-      background: role === "user" ? `${C.cyan}12` : C.panel,
-      border: `1px solid ${role === "user" ? `${C.cyan}30` : C.border}`,
-      borderRadius: 3, padding: "0.3rem 0.6rem",
-      opacity: vis ? 1 : 0,
-      transform: vis ? "translateX(0)" : role === "user" ? "translateX(10px)" : "translateX(-10px)",
-      transition: "opacity 0.3s ease, transform 0.3s ease",
-    }}>
-      <p style={{ ...INTER, fontSize: "0.63rem", lineHeight: 1.5, margin: 0,
-        color: role === "user" ? C.text : C.sub }}>{text}</p>
-    </div>
-  );
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem",
-      padding: "0.75rem", overflow: "hidden", height: 170 }}>
-      {bub("bot",  phase >= 0, DEMO_MSGS[0].text)}
-      {bub("user", phase >= 1, DEMO_MSGS[1].text)}
-      <div style={{
-        display: "flex", gap: 3, padding: "0.3rem 0.6rem", background: C.panel,
-        border: `1px solid ${C.border}`, borderRadius: 3, width: "fit-content",
-        opacity: phase === 2 ? 1 : 0, transition: "opacity 0.25s",
-      }}>
-        {[0,1,2].map(i => <div key={i} style={{ width: 4, height: 4, borderRadius: "50%",
-          background: C.dim, animation: phase === 2 ? `typingDot 1.1s ${i*0.17}s ease-in-out infinite` : "none" }} />)}
+  function bub(role: "user" | "bot", show: boolean, text: string) {
+    return (
+      <div style={{ display: show ? "flex" : "none", justifyContent: role === "user" ? "flex-end" : "flex-start",
+        marginBottom: "0.5rem", padding: "0 0.75rem", opacity: show ? 1 : 0, transition: "opacity 0.25s" }}>
+        <div style={{ maxWidth: "78%", background: role === "user" ? C.accent : C.elev,
+          color: role === "user" ? C.bg : C.text,
+          borderRadius: role === "user" ? "10px 10px 2px 10px" : "10px 10px 10px 2px",
+          padding: "0.45rem 0.75rem", fontSize: "0.78rem", lineHeight: 1.5, ...DM, fontWeight: 400 }}>
+          {text}
+        </div>
       </div>
-      {bub("bot", phase >= 3, DEMO_MSGS[2].text)}
+    );
+  }
+  return (
+    <div style={{ padding: "0.5rem 0", minHeight: 112 }}>
+      {bub("bot", phase >= 1, DEMO_MSGS[0].text)}
+      {bub("user", phase >= 2, DEMO_MSGS[1].text)}
+      <div style={{ display: phase === 3 ? "flex" : "none", justifyContent: "flex-start",
+        padding: "0 0.75rem", marginBottom: "0.5rem" }}>
+        <div style={{ display: "flex", gap: 3, padding: "0.3rem 0.6rem", background: C.elev,
+          border: `1px solid ${C.border}`, borderRadius: 8 }}>
+          {[0,1,2].map(i => <div key={i} style={{ width: 5, height: 5, borderRadius: "50%",
+            background: C.muted, animation: phase === 3 ? `typingDot 1.1s ${i*0.17}s ease-in-out infinite` : "none" }} />)}
+        </div>
+      </div>
+      {bub("bot", phase >= 4, DEMO_MSGS[2].text)}
     </div>
   );
 }
 
 function ChatEcoDemo() {
   const { loopKey, fading } = useDemoLoop(4200);
-  if (CHAT_API_ENDPOINT) return <LiveChat />;
+  if (CHAT_API_ENDPOINT) {
+    return (
+      <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
+        marginBottom: "0.85rem", overflow: "hidden" }}>
+        <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
+          padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
+          METHOD_CHAT_v1.0 / LIVE
+        </div>
+        <iframe src={CHAT_API_ENDPOINT} style={{ width: "100%", height: 140, border: "none" }} title="Method Chat" />
+      </div>
+    );
+  }
   return (
-    <div style={{
-      background: C.bg, border: `1px solid ${C.border}`, borderRadius: 4,
+    <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
       marginBottom: "0.85rem", overflow: "hidden",
-      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease",
-    }}>
-      <div style={{ ...MONO, fontSize: "0.55rem", color: C.dim,
-        padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}`, letterSpacing: "0.1em" }}>
+      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+      <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
+        padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
         METHOD_CHAT_v1.0
       </div>
       <DemoChatInner key={loopKey} />
@@ -328,7 +258,7 @@ function ChatEcoDemo() {
   );
 }
 
-// ─── Node graph (Second Brain) ────────────────────────────────────────────────
+// ── Node graph (Second Brain) ─────────────────────────────────────────────────
 const G_NODES = [
   { cx: 0.14, cy: 0.28 }, { cx: 0.50, cy: 0.10 }, { cx: 0.84, cy: 0.28 },
   { cx: 0.74, cy: 0.72 }, { cx: 0.26, cy: 0.76 }, { cx: 0.50, cy: 0.52 },
@@ -341,9 +271,9 @@ function NodeGraph({ w = 220, h = 110, loopKey }: { w?: number; h?: number; loop
   const [pulse, setPulse] = useState(false);
   useEffect(() => {
     const ts: ReturnType<typeof setTimeout>[] = [];
-    G_NODES.forEach((_, i) => ts.push(setTimeout(() => setNVis(i+1), 80 + i*160)));
+    G_NODES.forEach((_, i) => ts.push(setTimeout(() => setNVis(i + 1), 80 + i * 160)));
     const es = 80 + G_NODES.length * 160 + 180;
-    G_EDGES.forEach((_, i) => ts.push(setTimeout(() => setEVis(i+1), es + i*260)));
+    G_EDGES.forEach((_, i) => ts.push(setTimeout(() => setEVis(i + 1), es + i * 260)));
     const pa = es + G_EDGES.length * 260 + 260;
     ts.push(setTimeout(() => setPulse(true),  pa));
     ts.push(setTimeout(() => setPulse(false), pa + 800));
@@ -352,130 +282,76 @@ function NodeGraph({ w = 220, h = 110, loopKey }: { w?: number; h?: number; loop
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}
       style={{ overflow: "visible", transition: "filter 0.4s ease",
-        filter: pulse ? `drop-shadow(0 0 6px ${C.cyan}80)` : "none" }}>
+        filter: pulse ? `drop-shadow(0 0 6px ${C.accent}80)` : "none" }}>
       {G_EDGES.map(([a, b], i) => {
-        const x1 = G_NODES[a].cx*w, y1 = G_NODES[a].cy*h;
-        const x2 = G_NODES[b].cx*w, y2 = G_NODES[b].cy*h;
-        const len = Math.hypot(x2-x1, y2-y1);
-        const vis = eVis > i;
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-          stroke={C.cyan} strokeWidth={0.75}
-          strokeOpacity={pulse ? 0.8 : 0.35}
-          strokeDasharray={len} strokeDashoffset={vis ? 0 : len}
-          style={{ transition: vis ? "stroke-dashoffset 0.42s ease, stroke-opacity 0.3s" : "none" }}
-        />;
-      })}
-      {G_NODES.map((n, i) => {
-        const cx = n.cx*w, cy = n.cy*h, hub = i === 5, vis = nVis > i;
+        const x1 = G_NODES[a].cx * w, y1 = G_NODES[a].cy * h;
+        const x2 = G_NODES[b].cx * w, y2 = G_NODES[b].cy * h;
+        const len = Math.hypot(x2 - x1, y2 - y1);
         return (
-          <g key={i}>
-            {hub && <circle cx={cx} cy={cy} r={7} fill="none" stroke={C.cyan}
-              strokeWidth={0.75} strokeOpacity={pulse ? 0.5 : 0.18} />}
-            <circle cx={cx} cy={cy} r={hub ? 4 : 3}
-              fill={hub ? C.cyan : C.cyanD} fillOpacity={pulse ? 1 : 0.7}
-              style={{ transform: `scale(${vis?1:0})`, transformOrigin: `${cx}px ${cy}px`,
-                transition: vis ? "transform 0.28s cubic-bezier(0.34,1.56,0.64,1)" : "none" }} />
-          </g>
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+            stroke={C.accent} strokeWidth="1"
+            strokeDasharray={len} strokeDashoffset={eVis > i ? 0 : len}
+            opacity={eVis > i ? 0.35 : 0}
+            style={{ transition: eVis > i ? "stroke-dashoffset 0.5s ease, opacity 0.3s" : "none" }} />
         );
       })}
+      {G_NODES.map((n, i) => (
+        <circle key={i} cx={n.cx * w} cy={n.cy * h} r={i === 5 ? 7 : 4}
+          fill={i === 5 ? C.accent : C.elev}
+          stroke={C.accent} strokeWidth={i === 5 ? 1.5 : 1}
+          opacity={nVis > i ? (i === 5 ? 1 : 0.7) : 0}
+          style={{ transition: `opacity 0.4s ease ${i * 0.04}s` }} />
+      ))}
     </svg>
   );
 }
+
 function SecondBrainDemo() {
-  const { loopKey, fading } = useDemoLoop(6200);
-  return <DemoWin fading={fading} minH={110}><NodeGraph w={222} h={100} loopKey={loopKey} /></DemoWin>;
-}
-
-// ─── Ecosystem cards ──────────────────────────────────────────────────────────
-interface EcoCardData {
-  id: string; title: string; desc: string; status: "live" | "soon";
-  anchor: string; featured?: boolean;
-}
-const ECO_CARDS: EcoCardData[] = [
-  { id: "consultancy", title: "Method Consultancy", status: "live", anchor: "#offers",
-    desc: "Positioning, copy, funnels, and launch systems for service businesses." },
-  { id: "chat", title: "The Method Chat", status: "live", anchor: "#ecosystem", featured: true,
-    desc: "Your AI strategist, trained on your business. Sharp answers in your voice, available now." },
-  { id: "brain", title: "Second Brain", status: "soon", anchor: "#ecosystem",
-    desc: "Every decision, insight, and piece of copy. Connected and remembered." },
-];
-
-function CardDemo({ id }: { id: string }) {
-  if (id === "consultancy") return <ConsultancyDemo />;
-  if (id === "chat")        return <ChatEcoDemo />;
-  if (id === "brain")       return <SecondBrainDemo />;
-  return null;
-}
-
-function EcoCard({ card }: { card: EcoCardData }) {
-  const [hover, setHover] = useState(false);
+  const { loopKey, fading } = useDemoLoop(4800);
   return (
-    <a href={card.anchor}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={{
-        flex: `0 0 ${card.featured ? 340 : 300}px`, scrollSnapAlign: "start",
-        background: C.card,
-        border: `1px solid ${hover ? C.borderHi : C.border}`,
-        borderTop: `2px solid ${card.status === "live" ? C.cyan : C.dim}`,
-        borderRadius: 4,
-        padding: "1.5rem",
-        display: "flex", flexDirection: "column",
-        cursor: "pointer", textDecoration: "none",
-        transform: hover ? "translateY(-4px)" : "translateY(0)",
-        transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
-        boxShadow: hover ? `0 8px 32px rgba(0,0,0,0.6)` : "none",
-      }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
-        <span style={{
-          ...MONO,
-          color: card.status === "live" ? C.green : C.dim,
-          fontSize: "0.58rem", letterSpacing: "0.1em",
-        }}>
-          ● {card.status === "live" ? "LIVE" : "COMING_SOON"}
-        </span>
-        {card.featured && (
-          <span style={{ ...MONO, color: C.cyan, fontSize: "0.58rem", letterSpacing: "0.1em",
-            marginLeft: "auto" }}>[ FEATURED ]</span>
-        )}
-      </div>
-      <CardDemo id={card.id} />
-      <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.3rem", letterSpacing: "0.05em",
-        lineHeight: 1.1, marginBottom: "0.4rem" }}>{card.title}</h3>
-      <p style={{ ...INTER, color: C.sub, fontSize: "0.8rem", lineHeight: 1.6,
-        flex: 1, marginBottom: "1rem" }}>{card.desc}</p>
-      <div style={{ display: "flex", alignItems: "center", gap: "0.4rem",
-        opacity: hover ? 1 : 0.45, transition: "opacity 0.25s" }}>
-        <span style={{ ...MONO, color: C.cyan, fontSize: "0.62rem" }}>
-          {card.status === "soon" ? "learn_more" : "explore"}
-        </span>
-        <Ic n="arrow" sz={13} col={C.cyan} />
-      </div>
-    </a>
+    <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
+      marginBottom: "0.85rem", padding: "0.85rem",
+      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease",
+      display: "flex", alignItems: "center", justifyContent: "center", minHeight: 120 }}>
+      <NodeGraph loopKey={loopKey} />
+    </div>
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ── ProcessLine: animated left-to-right on scroll ─────────────────────────────
+function ProcessLine() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  return (
+    <div ref={ref} className="process-line" style={{
+      position: "absolute", top: 19,
+      left: "calc(12.5% + 20px)", right: "calc(12.5% + 20px)",
+      height: 1, background: C.border, zIndex: 0, overflow: "hidden",
+    }}>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+        style={{
+          height: "100%",
+          background: `linear-gradient(90deg, ${C.accent}, ${C.glow})`,
+          transformOrigin: "left",
+          boxShadow: `0 0 10px ${C.accent}60`,
+        }}
+      />
+    </div>
+  );
+}
+
+// ── Main component ────────────────────────────────────────────────────────────
 export default function Landing() {
   const [navOpen, setNavOpen] = useState(false);
-  const ecoRef = useRef<HTMLDivElement>(null);
-  const [ecoLeft,  setEcoLeft]  = useState(false);
-  const [ecoRight, setEcoRight] = useState(true);
   const [form, setForm] = useState({ name: "", email: "", website: "", business: "", problem: "" });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
-  useEffect(() => { document.title = "The Method Co. — Clarity Before Strategy"; }, []);
+  useEffect(() => { document.title = "The Method Co. | Clarity Before Strategy"; }, []);
 
-  function updateEco() {
-    const el = ecoRef.current;
-    if (!el) return;
-    setEcoLeft(el.scrollLeft > 10);
-    setEcoRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  }
-  function scrollEco(dir: "l" | "r") {
-    ecoRef.current?.scrollBy({ left: dir === "r" ? 340 : -340, behavior: "smooth" });
-  }
   function setField(k: keyof typeof form, v: string) { setForm(p => ({ ...p, [k]: v })); }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -487,14 +363,24 @@ export default function Landing() {
   }
 
   const inp: React.CSSProperties = {
-    ...INTER, width: "100%", background: C.panel, border: `1px solid ${C.border}`,
-    borderRadius: 4, color: C.text, fontSize: "0.88rem", padding: "0.75rem 1rem",
-    outline: "none", boxSizing: "border-box" as const,
+    ...DM, fontWeight: 400, width: "100%", background: C.panel,
+    border: `1px solid ${C.border}`, borderRadius: 6, color: C.text,
+    fontSize: "0.9rem", padding: "0.8rem 1rem", outline: "none",
+    boxSizing: "border-box",
   };
   const lbl: React.CSSProperties = {
-    ...MONO, color: C.sub, fontSize: "0.65rem", letterSpacing: "0.08em",
-    display: "block", marginBottom: "0.4rem",
+    ...LBL, color: C.muted, fontSize: "0.62rem", letterSpacing: "0.1em",
+    display: "block", marginBottom: "0.45rem",
   };
+
+  const NAV_LINKS = [
+    { label: "Offers",     href: "#offers"    },
+    { label: "Fit",        href: "#fit"       },
+    { label: "Process",    href: "#process"   },
+    { label: "About",      href: "#about"     },
+    { label: "Ecosystem",  href: "#ecosystem" },
+    { label: "Insights",   href: "/insights/" },
+  ];
 
   return (
     <div style={{ background: C.bg, minHeight: "100vh", color: C.text, overflowX: "hidden" }}>
@@ -504,303 +390,360 @@ export default function Landing() {
           0%,75%,100% { transform: scale(0.35); opacity: 0.25; }
           38%          { transform: scale(1);    opacity: 1; }
         }
-        @keyframes scanline {
-          0%   { transform: translateY(-100%); }
-          100% { transform: translateY(100vh); }
+        @keyframes orbDrift1 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          50%     { transform: translate(60px,-40px) scale(1.1); }
         }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
+        @keyframes orbDrift2 {
+          0%,100% { transform: translate(0,0) scale(1); }
+          50%     { transform: translate(-50px,35px) scale(0.95); }
         }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-inner { animation: marquee 28s linear infinite; }
+        .marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
         .eco-row::-webkit-scrollbar { display: none; }
         .eco-row { scrollbar-width: none; }
-        .ghost:hover { color: #F0F0F0 !important; border-color: #3DD6F540 !important; }
-        .nav-link:hover { color: #F0F0F0 !important; }
-        .fix-card:hover { border-top-color: #3DD6F5 !important; transform: translateY(-3px); }
-        a { text-decoration: none; }
+        .nav-link:hover { color: #EDF2F7 !important; }
+        a { text-decoration: none; color: inherit; }
+        * { box-sizing: border-box; }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-inner { animation: none !important; }
+          * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+        }
         @media (max-width: 900px) {
-          .nav-center { display: none !important; }
-          .hamburger  { display: flex !important; }
-          .hero-inner { padding: 110px 5vw 60px !important; }
-          .hero-cols  { flex-direction: column !important; }
-          .stat-strip { grid-template-columns: repeat(2,1fr) !important; }
-          .fix-grid   { grid-template-columns: repeat(2,1fr) !important; }
-          .offers-row { flex-direction: column !important; }
-          .fit-cols   { flex-direction: column !important; }
-          .about-row  { flex-direction: column !important; }
-          .process-row { flex-direction: column !important; }
+          .nav-center  { display: none !important; }
+          .hamburger   { display: flex !important; }
+          .hero-cols   { flex-direction: column !important; }
+          .hero-video  { width: 100% !important; flex: unset !important; }
+          .fix-grid    { grid-template-columns: repeat(2,1fr) !important; }
+          .offers-row  { flex-direction: column !important; }
+          .fit-cols    { flex-direction: column !important; }
+          .about-row   { flex-direction: column !important; }
+          .process-row { grid-template-columns: repeat(2,1fr) !important; }
           .process-line { display: none !important; }
-          .proof-row  { flex-direction: column !important; }
         }
         @media (max-width: 540px) {
-          .fix-grid  { grid-template-columns: 1fr !important; }
-          .stat-strip { grid-template-columns: repeat(2,1fr) !important; }
+          .fix-grid    { grid-template-columns: 1fr !important; }
+          .process-row { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
-      {/* Very subtle scanline texture */}
-      <div style={{
-        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
-        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px)`,
-      }} />
-
-      {/* ── NAV ──────────────────────────────────────────────────────────── */}
+      {/* ── NAV ──────────────────────────────────────────────────────────────── */}
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 5vw", height: 56,
-        background: `${C.bg}f0`, backdropFilter: "blur(12px)",
-        borderBottom: `1px solid ${C.border}`,
+        padding: "0 5vw", height: 58,
+        background: `${C.bg}d8`,
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: `1px solid ${C.border}40`,
       }}>
-        <Link href="/">
-          <a style={{ display: "flex", alignItems: "center", gap: "0.7rem", textDecoration: "none" }}>
-            <img src={`https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg`} alt="" style={{ height: 28, width: 28 }} />
-            <span style={{ ...MONO, color: C.cyan, fontSize: "0.9rem", letterSpacing: "0.04em", fontWeight: 700 }}>
-              The Method Co.
-            </span>
-          </a>
-        </Link>
+        {/* Logo */}
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+          <img
+            src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
+            alt="The Method Co."
+            style={{ height: 26, width: 26 }}
+          />
+          <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.88rem", letterSpacing: "0.03em" }}>
+            The Method Co.
+          </span>
+        </a>
 
+        {/* Desktop links */}
         <div className="nav-center" style={{ display: "flex", alignItems: "center", gap: "0.1rem" }}>
-          {[
-            { label: "offers",    href: "#offers"    },
-            { label: "fit",       href: "#fit"       },
-            { label: "process",   href: "#process"   },
-            { label: "about",     href: "#about"     },
-            { label: "ecosystem", href: "#ecosystem" },
-            { label: "proof",     href: "#proof"     },
-          ].map(({ label, href }) => (
+          {NAV_LINKS.map(({ label, href }) => (
             <a key={label} href={href} className="nav-link"
-              style={{ ...MONO, color: C.sub, fontSize: "0.7rem",
-                padding: "0.35rem 0.65rem", borderRadius: 3, transition: "color 0.15s" }}>
+              style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.82rem",
+                padding: "0.35rem 0.7rem", borderRadius: 4, transition: "color 0.15s" }}>
               {label}
             </a>
           ))}
           <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
-            style={{ color: C.sub, padding: "0.35rem 0.45rem", display: "flex",
-              alignItems: "center", transition: "color 0.15s" }} className="nav-link">
+            style={{ color: C.muted, padding: "0.35rem 0.5rem", display: "flex",
+              alignItems: "center", transition: "color 0.15s", cursor: "pointer" }} className="nav-link">
             <Ic n="ig" sz={15} col="currentColor" />
           </a>
         </div>
 
+        {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <span style={{ ...MONO, color: C.green, fontSize: "0.6rem", letterSpacing: "0.1em",
+          <span style={{ ...LBL, color: C.green, fontSize: "0.58rem",
             display: "flex", alignItems: "center", gap: "0.4rem" }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.green,
-              display: "inline-block", boxShadow: `0 0 6px ${C.green}` }} />
+              display: "inline-block", boxShadow: `0 0 7px ${C.green}` }} />
             OPEN
           </span>
           <a href="#apply" style={{
-            ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
-            fontSize: "0.7rem", letterSpacing: "0.1em",
-            padding: "0.45rem 1.1rem", borderRadius: 3,
-            transition: "opacity 0.15s",
-          }} className="cta-btn">APPLY_NOW</a>
-          <button className="hamburger"
-            style={{ display: "none", background: "transparent", border: "none",
-              cursor: "pointer", color: C.sub, padding: "0.2rem" }}
-            onClick={() => setNavOpen(o => !o)}>
-            <Ic n={navOpen ? "close" : "menu"} sz={20} col={C.sub} />
+            ...EP, fontWeight: 700, color: C.bg, background: C.accent,
+            fontSize: "0.72rem", letterSpacing: "0.08em",
+            padding: "0.5rem 1.2rem", borderRadius: 5,
+            transition: "opacity 0.15s, transform 0.15s",
+            cursor: "pointer",
+          }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
+            APPLY NOW
+          </a>
+          <button
+            className="hamburger"
+            onClick={() => setNavOpen(o => !o)}
+            style={{ display: "none", background: "none", border: "none",
+              color: C.muted, cursor: "pointer", padding: "0.35rem" }}>
+            <Ic n={navOpen ? "close" : "menu"} sz={20} col="currentColor" />
           </button>
         </div>
       </nav>
 
-      {/* Mobile overlay */}
-      {navOpen && (
-        <div onClick={() => setNavOpen(false)} style={{
-          position: "fixed", inset: 0, zIndex: 99,
-          background: `${C.bg}f8`, display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center", gap: "1.75rem",
-        }}>
-          {["offers","fit","process","about","ecosystem","proof"].map(label => (
-            <a key={label} href={`#${label}`} onClick={() => setNavOpen(false)}
-              style={{ ...MONO, color: C.text, fontSize: "1.4rem", letterSpacing: "0.08em" }}>
-              {`> ${label}`}
+      {/* Mobile nav drawer */}
+      <AnimatePresence>
+        {navOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: "fixed", top: 58, left: 0, right: 0, zIndex: 190,
+              background: `${C.panel}f8`, backdropFilter: "blur(20px)",
+              borderBottom: `1px solid ${C.border}`, padding: "1rem 5vw 1.5rem",
+              display: "flex", flexDirection: "column", gap: "0.25rem",
+            }}>
+            {NAV_LINKS.map(({ label, href }) => (
+              <a key={label} href={href} onClick={() => setNavOpen(false)}
+                style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "1rem",
+                  padding: "0.65rem 0", borderBottom: `1px solid ${C.border}40`,
+                  transition: "color 0.15s" }}>
+                {label}
+              </a>
+            ))}
+            <a href="#apply" onClick={() => setNavOpen(false)}
+              style={{ ...EP, fontWeight: 700, color: C.bg, background: C.accent,
+                textAlign: "center", padding: "0.85rem", borderRadius: 6,
+                marginTop: "0.75rem", fontSize: "0.85rem", letterSpacing: "0.06em" }}>
+              APPLY NOW
             </a>
-          ))}
-          <a href="#apply" onClick={() => setNavOpen(false)} style={{
-            ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
-            fontSize: "0.9rem", letterSpacing: "0.1em",
-            padding: "0.65rem 2rem", borderRadius: 3, marginTop: "0.5rem",
-          }}>APPLY_NOW</a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
+      <section style={{ position: "relative", padding: "140px 5vw 100px", overflow: "hidden", zIndex: 1 }}>
+
+        {/* Background orbs */}
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
+          <div style={{
+            position: "absolute", width: 600, height: 600,
+            top: "-10%", left: "-5%",
+            background: `radial-gradient(circle, ${C.accent}14 0%, transparent 70%)`,
+            animation: "orbDrift1 18s ease-in-out infinite",
+          }} />
+          <div style={{
+            position: "absolute", width: 500, height: 500,
+            top: "20%", right: "-8%",
+            background: `radial-gradient(circle, ${C.glow}10 0%, transparent 70%)`,
+            animation: "orbDrift2 22s ease-in-out infinite",
+          }} />
+          {/* Grain texture */}
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            opacity: 0.028, mixBlendMode: "overlay",
+          }} />
         </div>
-      )}
 
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="hero-inner" style={{ position: "relative", zIndex: 1,
-        padding: "130px 5vw 80px", minHeight: "100vh",
-        display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div className="hero-cols" style={{ display: "flex", gap: "4rem", alignItems: "center" }}>
 
-        {/* Hero background image at low opacity */}
-        <img src={`https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik_assistant_1771454204222_lj7vgn.jpg`} alt="" style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", opacity: 0.04, zIndex: 0, pointerEvents: "none",
-        }} />
+            {/* Left column - staggered load */}
+            <div style={{ flex: "1 1 520px", minWidth: 0 }}>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.14em", marginBottom: "1.1rem" }}>
+                // POSITIONING SYSTEM FOR SERVICE BUSINESSES
+              </motion.p>
 
-        {/* 2-column hero layout */}
-        <div className="hero-cols" style={{
-          position: "relative", zIndex: 1,
-          display: "flex", gap: "4rem", alignItems: "center",
-        }}>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  ...EP, fontWeight: 900, lineHeight: 0.9,
+                  fontSize: "clamp(3rem, 7vw, 5.5rem)",
+                  color: C.text, textTransform: "uppercase",
+                  letterSpacing: "-0.02em", marginBottom: "1.5rem",
+                }}>
+                STOP<br />GUESSING.<br />
+                <span style={{ color: C.accent }}>START</span><br />
+                POSITIONING.
+              </motion.h1>
 
-          {/* Left: copy */}
-          <div style={{ flex: "1 1 0", minWidth: 0 }}>
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 }}>
-              <span style={{
-                ...MONO, color: C.cyan, fontSize: "0.65rem", letterSpacing: "0.12em",
-                border: `1px solid ${C.border}`, padding: "0.3rem 0.75rem",
-                borderRadius: 2, display: "inline-block", marginBottom: "2rem",
-              }}>
-                // CLARITY-FIRST DIGITAL STRATEGY
-              </span>
-            </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.3 }}
+                style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "1.05rem",
+                  lineHeight: 1.7, maxWidth: 480, marginBottom: "2rem" }}>
+                Most service businesses don't have a visibility problem.
+                They have a clarity problem. The Method builds the structure that fixes it.
+              </motion.p>
 
-            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              style={{ ...BEBAS, fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.0,
-                letterSpacing: "0.01em", color: C.text, marginBottom: "0.1em" }}
-              className="uppercase">
-              STOP GUESSING.
-            </motion.h1>
-            <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              style={{ ...BEBAS, fontSize: "clamp(2.5rem, 6vw, 5rem)", lineHeight: 1.0,
-                letterSpacing: "0.01em", color: C.cyan, marginBottom: "2rem" }}
-              className="uppercase">
-              START POSITIONING.
-            </motion.h1>
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.42 }}
+                style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "2rem" }}>
+                <a href="#apply" style={{
+                  ...EP, fontWeight: 700, color: C.bg, background: C.accent,
+                  fontSize: "0.82rem", letterSpacing: "0.08em",
+                  padding: "0.85rem 2rem", borderRadius: 6,
+                  transition: "opacity 0.15s, transform 0.15s",
+                  cursor: "pointer",
+                }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
+                  APPLY NOW
+                </a>
+                <a href="#offers" style={{
+                  ...DM, fontWeight: 500, color: C.muted,
+                  fontSize: "0.82rem",
+                  padding: "0.85rem 1.75rem", borderRadius: 6,
+                  border: `1px solid ${C.border}`,
+                  transition: "color 0.15s, border-color 0.15s",
+                  cursor: "pointer",
+                }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.color = C.text; el.style.borderColor = `${C.accent}50`;
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.color = C.muted; el.style.borderColor = C.border;
+                  }}>
+                  See Offers
+                </a>
+              </motion.div>
 
-            <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              style={{ ...INTER, color: C.sub, fontSize: "1.05rem", lineHeight: 1.7,
-                maxWidth: 520, marginBottom: "2.5rem" }}>
-              Most service businesses do not have a traffic problem. They have a clarity problem.
-              We fix the message, the positioning, and the funnel so the right people understand
-              you and take action.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.56 }}
+                style={{ ...DM, fontWeight: 400, color: C.border, fontSize: "0.78rem",
+                  letterSpacing: "0.04em" }}>
+                // No hype. No guru promises. Just structure and execution.
+              </motion.p>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.4 }}
-              style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "0.85rem" }}>
-              <a href="#apply" style={{
-                ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
-                fontSize: "0.78rem", letterSpacing: "0.1em",
-                padding: "0.85rem 1.75rem", borderRadius: 3,
-                transition: "opacity 0.15s",
-              }}>GET_FREE_AUDIT</a>
-              <a href="#offers" className="ghost" style={{
-                ...MONO, color: C.sub,
-                border: `1px solid ${C.border}`, fontSize: "0.78rem", letterSpacing: "0.1em",
-                padding: "0.85rem 1.75rem", borderRadius: 3,
-                transition: "color 0.15s, border-color 0.15s",
-              }}>SEE_OFFERS</a>
-            </motion.div>
-
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-              style={{ ...MONO, color: C.dim, fontSize: "0.6rem", letterSpacing: "0.08em" }}>
-              // no hype. no guru promises. just structure and execution.
-            </motion.p>
-          </div>
-
-          {/* HERO VIDEO: replace this block with <video> or <iframe> when ready. */}
-          <div style={{ flex: "0 0 44%", minWidth: 0 }}>
-            <div style={{
-              position: "relative",
-              paddingTop: "56.25%",
-              background: C.panel,
-              border: "1px solid rgba(61,214,245,0.3)",
-              borderRadius: 16,
-              boxShadow: "0 0 48px rgba(61,214,245,0.06)",
-              overflow: "hidden",
-            }}>
+            {/* Right column - video placeholder */}
+            {/* HERO VIDEO: replace this div with <video> or <iframe> when ready */}
+            <motion.div
+              className="hero-video"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              style={{ flex: "0 0 44%", minWidth: 0 }}>
               <div style={{
-                position: "absolute", inset: 0,
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", gap: "0.75rem",
+                position: "relative", paddingTop: "56.25%",
+                background: C.panel,
+                border: `1.5px solid ${C.accent}40`,
+                borderRadius: 16,
+                boxShadow: `0 0 60px ${C.accent}0a, inset 0 0 40px ${C.accent}04`,
+                overflow: "hidden",
               }}>
-                <svg width="48" height="48" viewBox="0 0 48 48">
-                  <polygon points="18,14 38,24 18,34" fill="#3DD6F5" />
-                </svg>
-                <p style={{ ...INTER, color: C.sub, fontSize: "0.78rem", letterSpacing: "0.04em" }}>
-                  Video coming soon
-                </p>
+                <div style={{
+                  position: "absolute", inset: 0,
+                  display: "flex", flexDirection: "column",
+                  alignItems: "center", justifyContent: "center", gap: "0.85rem",
+                }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: "50%",
+                    border: `1.5px solid ${C.accent}60`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: `${C.accent}10`,
+                  }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                      <polygon points="9,7 19,12 9,17" fill={C.accent} />
+                    </svg>
+                  </div>
+                  <p style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.82rem", letterSpacing: "0.04em" }}>
+                    Video coming soon
+                  </p>
+                </div>
+                {/* Corner accent lines */}
+                <div style={{ position: "absolute", top: 12, left: 12, width: 20, height: 20,
+                  borderTop: `1.5px solid ${C.accent}60`, borderLeft: `1.5px solid ${C.accent}60` }} />
+                <div style={{ position: "absolute", bottom: 12, right: 12, width: 20, height: 20,
+                  borderBottom: `1.5px solid ${C.accent}60`, borderRight: `1.5px solid ${C.accent}60` }} />
               </div>
-            </div>
+            </motion.div>
           </div>
-
         </div>
-
-        {/* Stat strip */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.65 }}
-          className="stat-strip"
-          style={{ position: "relative", zIndex: 1, marginTop: "4rem",
-            display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden",
-            maxWidth: 720 }}>
-          {[
-            { label: "CLIENTS_HELPED",  value: "47+" },
-            { label: "AVG_SCORE_LIFT",  value: "+41 pts" },
-            { label: "LAUNCH_TIME",     value: "14 days" },
-            { label: "ACTIVE_PROJECTS", value: "3" },
-          ].map((s, i) => (
-            <div key={s.label} style={{
-              background: C.panel, padding: "1.25rem 1.5rem",
-              borderRight: i < 3 ? `1px solid ${C.border}` : "none",
-            }}>
-              <p style={{ ...MONO, color: C.dim, fontSize: "0.55rem", letterSpacing: "0.12em",
-                marginBottom: "0.4rem" }}>{s.label}</p>
-              <p style={{ ...BEBAS, color: C.text, fontSize: "1.7rem", lineHeight: 1 }}>{s.value}</p>
-            </div>
-          ))}
-        </motion.div>
       </section>
 
       <HR />
 
-      {/* ── REAL PROBLEM ─────────────────────────────────────────────────── */}
+      {/* ── THE PROBLEM ──────────────────────────────────────────────────────── */}
       <section id="problem" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>THE REAL PROBLEM</SectionLabel>
+            <SLabel>THE REAL PROBLEM</SLabel>
             <SH>YOU DON'T NEED MORE VISIBILITY.</SH>
-            <Sub>You need clarity, and a system that turns attention into enquiries.</Sub>
+            <Sub>You need a clear offer and a system that turns attention into enquiries. More content is not the answer.</Sub>
           </Reveal>
           <div className="fix-grid" style={{ display: "grid",
             gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden" }}>
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
             {[
-              { icon: "warning", label: "ISSUE_01", title: "Confusing offer",
-                body: "People cannot tell what you do or why you are the obvious choice. So they scroll past." },
-              { icon: "layout",  label: "ISSUE_02", title: "Weak website flow",
-                body: "Your page does not lead anyone to a decision. Visitors leave without taking a single step." },
-              { icon: "cursor",  label: "ISSUE_03", title: "Ads with no strategy",
-                body: "Spend without positioning is spend wasted. Clicks are not the same as clients." },
+              {
+                icon: "warning", num: "01",
+                title: "Confusing offer",
+                body: "People cannot tell what you do or why you're the obvious choice. So they scroll past.",
+              },
+              {
+                icon: "layout", num: "02",
+                title: "Weak website flow",
+                body: "Your page doesn't lead anyone to a decision. Visitors leave without taking a single step.",
+              },
+              {
+                icon: "cursor", num: "03",
+                title: "Spend without strategy",
+                body: "Paid spend without positioning is spend wasted. Clicks are not the same as clients.",
+              },
             ].map((card, i) => (
-              <Reveal key={card.label} delay={i * 0.1}>
-                <div className="fix-card" style={{
-                  background: C.card, padding: "2rem",
-                  borderRight: i < 2 ? `1px solid ${C.border}` : "none",
-                  borderTop: `2px solid transparent`,
-                  transition: "border-top-color 0.2s, transform 0.2s",
-                }}>
+              <Reveal key={card.num} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -4, borderTopColor: C.accent }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    background: C.panel, padding: "2rem",
+                    borderRight: i < 2 ? `1px solid ${C.border}` : "none",
+                    borderTop: `2px solid transparent`,
+                    cursor: "default",
+                  }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
                     marginBottom: "1.25rem" }}>
-                    <div style={{ width: 40, height: 40, borderRadius: 3,
-                      background: C.surface, border: `1px solid ${C.border}`,
-                      display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Ic n={card.icon} sz={18} col={C.sub} />
+                    <div style={{
+                      width: 42, height: 42, borderRadius: 8,
+                      background: `${C.accent}12`, border: `1px solid ${C.accent}30`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <Ic n={card.icon} sz={18} col={C.accent} />
                     </div>
-                    <span style={{ ...MONO, color: C.dim, fontSize: "0.6rem", letterSpacing: "0.1em" }}>
-                      {card.label}
-                    </span>
+                    <span style={{ ...LBL, color: C.border, fontSize: "0.58rem" }}>ISSUE_{card.num}</span>
                   </div>
-                  <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.4rem", letterSpacing: "0.04em",
-                    lineHeight: 1.1, marginBottom: "0.65rem" }}>{card.title}</h3>
-                  <p style={{ ...INTER, color: C.sub, fontSize: "0.88rem", lineHeight: 1.65 }}>{card.body}</p>
-                </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
+                    letterSpacing: "0.01em", marginBottom: "0.65rem", textTransform: "uppercase" }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.9rem", lineHeight: 1.65 }}>
+                    {card.body}
+                  </p>
+                </motion.div>
               </Reveal>
             ))}
           </div>
@@ -809,79 +752,76 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── WHAT WE FIX ──────────────────────────────────────────────────── */}
+      {/* ── WHAT WE FIX ──────────────────────────────────────────────────────── */}
       <section id="fix" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>WHAT WE ACTUALLY FIX</SectionLabel>
+            <SLabel>WHAT WE FIX</SLabel>
             <SH>PRACTICAL CHANGES THAT CONVERT.</SH>
-            <Sub>Clarity. Trust. Conversion. In that order.</Sub>
+            <Sub>Not advice. Actual work. Six areas where clarity compounds into revenue.</Sub>
           </Reveal>
-
           <div className="fix-grid" style={{ display: "grid",
             gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
-            border: `1px solid ${C.border}`, overflow: "hidden", borderRadius: 4,
-            marginBottom: "1px" }}>
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden",
+            marginBottom: "3rem" }}>
             {[
-              { icon: "target",  idx: "01", tag: null,    title: "Positioning and Strategy",
-                body: "We make it obvious what you sell, who it is for, and why it is worth it." },
-              { icon: "pen",     idx: "02", tag: null,    title: "Copywriting",
-                body: "Clear, direct messaging for your site, ads, and key touchpoints. No filler." },
-              { icon: "layout",  idx: "03", tag: null,    title: "Landing Page Build",
-                body: "Structure, flow, and CTA logic that guides visitors to a decision." },
-              { icon: "funnel",  idx: "04", tag: null,    title: "Funnel Planning",
-                body: "Attention to enquiry, mapped to your offer. No overcomplication." },
-              { icon: "cursor",  idx: "05", tag: null,    title: "Paid Ads Direction",
-                body: "Meta and Google aligned so message, offer, and page work as one." },
-              { icon: "search",  idx: "06", tag: "FREE",  title: "Digital Clarity Audit",
-                body: "We pinpoint exactly what is blocking enquiries. No assumptions." },
+              { icon: "target", title: "Positioning",           body: "Make your offer undeniable to the right people." },
+              { icon: "pen",    title: "Copywriting",           body: "Words that move people from curious to committed." },
+              { icon: "layout", title: "Landing Page Build",    body: "Pages built to convert, not to impress your cousin." },
+              { icon: "funnel", title: "Funnel Planning",       body: "A clear path from awareness to enquiry to client." },
+              { icon: "cursor", title: "Paid Ads Direction",    body: "Ad strategy aligned to positioning, not just budgets." },
+              { icon: "search", title: "Digital Clarity Audit", body: "Start free. Find out exactly what is blocking enquiries.", tag: "FREE" },
             ].map((card, i) => (
-              <Reveal key={card.idx} delay={i * 0.06}>
-                <div className="fix-card" style={{
-                  background: C.card, padding: "1.75rem",
-                  borderRight: i % 3 < 2 ? `1px solid ${C.border}` : "none",
-                  borderBottom: i < 3 ? `1px solid ${C.border}` : "none",
-                  borderTop: `2px solid transparent`,
-                  transition: "border-top-color 0.2s, transform 0.2s",
-                  position: "relative",
-                }}>
-                  <div style={{ display: "flex", justifyContent: "space-between",
-                    alignItems: "flex-start", marginBottom: "1rem" }}>
-                    <div style={{ width: 38, height: 38, borderRadius: 3,
-                      background: C.surface, border: `1px solid ${C.border}`,
-                      display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Ic n={card.icon} sz={17} col={C.sub} />
-                    </div>
-                    <span style={{ ...MONO, color: C.dim, fontSize: "0.58rem", letterSpacing: "0.1em" }}>
-                      {card.idx}
-                    </span>
+              <Reveal key={card.title} delay={i * 0.07}>
+                <motion.div
+                  whileHover={{ y: -4, boxShadow: `0 8px 32px ${C.accent}12` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    background: C.panel, padding: "1.85rem",
+                    borderRight: i % 3 < 2 ? `1px solid ${C.border}` : "none",
+                    borderBottom: i < 3 ? `1px solid ${C.border}` : "none",
+                    cursor: "default", position: "relative",
+                  }}>
+                  {card.tag && (
+                    <span style={{
+                      position: "absolute", top: "1.2rem", right: "1.2rem",
+                      ...LBL, fontSize: "0.52rem", color: C.amber,
+                      border: `1px solid ${C.amber}40`, padding: "0.1rem 0.45rem",
+                      borderRadius: 3,
+                    }}>{card.tag}</span>
+                  )}
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 10,
+                    background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: "1rem",
+                    boxShadow: `0 0 16px ${C.accent}15`,
+                  }}>
+                    <Ic n={card.icon} sz={20} col={C.accent} />
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.45rem" }}>
-                    <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.15rem", letterSpacing: "0.04em",
-                      lineHeight: 1.1 }}>{card.title}</h3>
-                    {card.tag && (
-                      <span style={{ ...MONO, color: C.cyan, fontSize: "0.52rem", letterSpacing: "0.1em",
-                        border: `1px solid ${C.cyan}40`, padding: "0.1rem 0.4rem",
-                        borderRadius: 2 }}>{card.tag}</span>
-                    )}
-                  </div>
-                  <p style={{ ...INTER, color: C.sub, fontSize: "0.84rem", lineHeight: 1.6 }}>{card.body}</p>
-                </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "0.95rem",
+                    letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.85rem", lineHeight: 1.6 }}>
+                    {card.body}
+                  </p>
+                </motion.div>
               </Reveal>
             ))}
           </div>
 
-          {/* Dashboard image */}
+          {/* Image */}
           <Reveal>
-            <div style={{ maxWidth: 600, margin: "2rem auto 0", borderRadius: 16, overflow: "hidden",
-              border: "1px solid rgba(61,214,245,0.2)", position: "relative" }}>
-              <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt=""
-                style={{ width: "100%", display: "block",
-                  filter: "brightness(0.75) contrast(1.1)" }} />
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "linear-gradient(to bottom, transparent 50%, rgba(12,12,12,0.7) 100%)",
-              }} />
+            <div style={{ borderRadius: 12, overflow: "hidden", maxHeight: 400,
+              border: `1px solid ${C.border}` }}>
+              <img
+                src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
+                alt="Professional workspace"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block",
+                  filter: "grayscale(15%) contrast(1.05)" }}
+                loading="lazy"
+              />
             </div>
           </Reveal>
         </div>
@@ -889,93 +829,135 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── OFFERS ───────────────────────────────────────────────────────── */}
+      {/* ── OFFERS ───────────────────────────────────────────────────────────── */}
       <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>OFFERS</SectionLabel>
+            <SLabel>OFFERS</SLabel>
             <SH>PICK THE LEVEL OF HELP YOU NEED.</SH>
-            <Sub>From a free clarity audit to full execution. No retainers, no fluff.</Sub>
+            <Sub>Every offer starts with the audit. You can go as deep as the work requires.</Sub>
           </Reveal>
-
           <div className="offers-row" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden" }}>
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
             {[
               {
                 tag: "FREE", tagCol: C.amber, title: "Digital Clarity Audit", price: "Free",
-                priceCol: C.amber, desc: "Perfect if you are unsure what is blocking enquiries.",
-                bullets: ["Review of your digital presence","What is broken and why","Clear priorities on what to fix first"],
-                bulletCol: C.sub, cta: "APPLY", ctaStyle: "outline",
+                priceCol: C.amber,
+                desc: "Perfect if you're unsure what is blocking enquiries. No commitment required.",
+                bullets: ["Review of your digital presence", "What is broken and why", "Clear priorities on what to fix first"],
+                cta: "GET THE AUDIT", ctaStyle: "outline", featured: false, popular: false,
               },
               {
-                tag: "CORE", tagCol: C.cyan, title: "AI Strategy Sprint", price: "EUR 200-300",
-                priceCol: C.cyan, popular: true,
+                tag: "CORE", tagCol: C.accent, title: "AI Strategy Sprint", price: "EUR 200-300",
+                priceCol: C.accent, popular: true,
                 desc: "For businesses ready to fix the foundation properly.",
-                bullets: ["Offer and positioning refinement","Messaging and copy direction","Simple funnel recommendation","Landing page structure","30-day action plan","Ad direction (Meta and Google)"],
-                bulletCol: C.sub, cta: "APPLY FOR SPRINT", ctaStyle: "solid",
+                bullets: [
+                  "Offer and positioning refinement",
+                  "Messaging and copy direction",
+                  "Simple funnel recommendation",
+                  "Landing page structure",
+                  "30-day action plan",
+                  "Ad direction (Meta and Google)",
+                ],
+                cta: "APPLY FOR SPRINT", ctaStyle: "solid", featured: false,
               },
               {
                 tag: "PREMIUM", tagCol: C.text, title: "Method Launch System", price: "EUR 1,000",
                 priceCol: C.text,
                 desc: "Full strategy plus landing page build plus ads launch. Built fast, built right.",
-                bullets: ["Deep positioning and offer refinement","Full funnel plan","High-converting landing page","3-5 ad angles plus creative direction","Meta/Google campaign setup plan","Tracking guidance","14-day launch support"],
-                bulletCol: C.sub, cta: "APPLY FOR LAUNCH", ctaStyle: "outline",
+                bullets: [
+                  "Deep positioning and offer refinement",
+                  "Full funnel plan",
+                  "High-converting landing page",
+                  "3-5 ad angles plus creative direction",
+                  "Meta and Google campaign setup plan",
+                  "Tracking guidance",
+                  "14-day launch support",
+                ],
+                cta: "APPLY FOR LAUNCH", ctaStyle: "outline", featured: false, popular: false,
               },
               {
-                tag: "NEW", tagCol: C.cyan, title: "Method Chat Bundle", price: "POA",
-                priceCol: C.cyan, featured: true,
-                desc: "Everything in a Launch System, plus your own Method Chat: trained on your business, your offer, and your voice. Live and on-message.",
-                bullets: ["Everything in Method Launch System","Custom Method Chat trained on your business","Live now, not coming soon","Ongoing positioning support through the assistant"],
-                bulletCol: C.sub, cta: "ENQUIRE", ctaStyle: "cyan",
+                tag: "NEW", tagCol: C.accent, title: "Method Chat Bundle", price: "Price on application",
+                priceCol: C.accent, featured: true,
+                desc: "Everything in a Launch System, plus your own Method Chat: trained on your business, your offer, and your voice.",
+                bullets: [
+                  "Everything in Method Launch System",
+                  "Custom Method Chat trained on your business",
+                  "Live now, not coming soon",
+                  "Ongoing positioning support through the assistant",
+                ],
+                cta: "ENQUIRE", ctaStyle: "cyan", popular: false,
               },
             ].map((offer, i) => (
               <Reveal key={offer.title} delay={i * 0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{
-                  background: offer.featured ? `${C.cyan}08` : C.card,
-                  borderRight: i < 3 ? `1px solid ${C.border}` : "none",
-                  borderTop: `2px solid ${offer.featured ? C.cyan : C.border}`,
-                  padding: "1.75rem", height: "100%", display: "flex", flexDirection: "column",
-                }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    background: offer.featured ? `${C.accent}07` : C.panel,
+                    borderRight: i < 3 ? `1px solid ${C.border}` : "none",
+                    borderTop: `2px solid ${offer.featured ? C.accent : (offer.popular ? C.accent + "60" : C.border)}`,
+                    padding: "1.85rem", height: "100%",
+                    display: "flex", flexDirection: "column",
+                    boxShadow: offer.featured ? `inset 0 0 60px ${C.accent}06` : "none",
+                  }}>
                   <div style={{ display: "flex", justifyContent: "space-between",
                     alignItems: "center", marginBottom: "1rem" }}>
-                    <span style={{ ...MONO, color: offer.tagCol, fontSize: "0.6rem",
-                      letterSpacing: "0.12em", border: `1px solid ${offer.tagCol}40`,
-                      padding: "0.15rem 0.55rem", borderRadius: 2 }}>[ {offer.tag} ]</span>
+                    <span style={{ ...LBL, color: offer.tagCol, fontSize: "0.58rem",
+                      border: `1px solid ${offer.tagCol}40`,
+                      padding: "0.12rem 0.5rem", borderRadius: 3 }}>
+                      [ {offer.tag} ]
+                    </span>
                     {offer.popular && (
-                      <span style={{ ...MONO, color: C.green, fontSize: "0.58rem",
-                        letterSpacing: "0.1em" }}>● POPULAR</span>
+                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
+                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green, display: "inline-block" }} />
+                        POPULAR
+                      </span>
                     )}
                   </div>
-                  <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.3rem", letterSpacing: "0.04em",
-                    lineHeight: 1.1, marginBottom: "0.3rem" }}>{offer.title}</h3>
-                  <p style={{ ...MONO, color: offer.priceCol, fontSize: "1.4rem",
-                    letterSpacing: "0.03em", marginBottom: "0.85rem" }}>{offer.price}</p>
-                  <p style={{ ...INTER, color: C.sub, fontSize: "0.82rem", lineHeight: 1.6,
-                    marginBottom: "1.25rem", flex: 1 }}>{offer.desc}</p>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.15rem",
+                    letterSpacing: "0.01em", lineHeight: 1.1, marginBottom: "0.4rem",
+                    textTransform: "uppercase" }}>
+                    {offer.title}
+                  </h3>
+                  <p style={{ ...EP, fontWeight: 700, color: offer.priceCol, fontSize: "1.25rem",
+                    letterSpacing: "0.02em", marginBottom: "0.85rem" }}>
+                    {offer.price}
+                  </p>
+                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                    lineHeight: 1.65, marginBottom: "1.25rem", flex: 1 }}>
+                    {offer.desc}
+                  </p>
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem",
-                    display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+                    display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                     {offer.bullets.map(b => (
                       <li key={b} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
                         <span style={{ flexShrink: 0, marginTop: 3 }}>
-                          <Ic n="check" sz={13} col={offer.featured ? C.cyan : C.dim} />
+                          <Ic n="check" sz={13} col={offer.featured ? C.accent : C.muted} />
                         </span>
-                        <span style={{ ...INTER, color: offer.bulletCol, fontSize: "0.78rem",
-                          lineHeight: 1.5 }}>{b}</span>
+                        <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.8rem", lineHeight: 1.5 }}>
+                          {b}
+                        </span>
                       </li>
                     ))}
                   </ul>
                   <a href="#apply" style={{
-                    ...MONO, fontSize: "0.7rem", letterSpacing: "0.1em",
-                    padding: "0.65rem 1rem", borderRadius: 3, textAlign: "center",
-                    display: "block", fontWeight: 700,
-                    ...(offer.ctaStyle === "solid"
-                      ? { color: C.bg, background: C.surface, border: `1px solid ${C.borderHi}` }
-                      : offer.ctaStyle === "cyan"
-                      ? { color: C.bg, background: C.cyan, border: `1px solid ${C.cyan}` }
-                      : { color: C.sub, background: "transparent", border: `1px solid ${C.border}` }),
-                    transition: "opacity 0.15s",
-                  }} className="ghost">{offer.cta}</a>
-                </div>
+                    ...EP, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em",
+                    padding: "0.7rem 1rem", borderRadius: 6, textAlign: "center",
+                    display: "block", transition: "opacity 0.15s",
+                    textTransform: "uppercase",
+                    ...(offer.ctaStyle === "cyan"
+                      ? { color: C.bg, background: C.accent, border: `1px solid ${C.accent}` }
+                      : offer.ctaStyle === "solid"
+                      ? { color: C.text, background: C.elev, border: `1px solid ${C.border}` }
+                      : { color: C.muted, background: "transparent", border: `1px solid ${C.border}` }),
+                  }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.8"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
+                    {offer.cta}
+                  </a>
+                </motion.div>
               </Reveal>
             ))}
           </div>
@@ -984,58 +966,57 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── FIT ──────────────────────────────────────────────────────────── */}
+      {/* ── FIT ──────────────────────────────────────────────────────────────── */}
       <section id="fit" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 860, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>SELECTIVE FIT</SectionLabel>
+            <SLabel>SELECTIVE FIT</SLabel>
             <SH>NOT EVERY BUSINESS IS A FIT.</SH>
-            <Sub style={{ marginBottom: "2.5rem" }}>This keeps the work sharp and the results real.</Sub>
+            <Sub>This keeps the work sharp and the results real.</Sub>
           </Reveal>
           <div className="fit-cols" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden" }}>
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
             {[
               {
-                label: "GOOD_FIT", col: C.green,
+                label: "GOOD_FIT", col: C.green, icon: "check",
                 items: [
                   "You are serious about positioning and conversions",
                   "You will implement, not just collect ideas",
                   "You want clear structure over more content",
                   "You value direct, honest feedback",
                 ],
-                icon: "check",
               },
               {
-                label: "NOT_A_FIT", col: C.red,
+                label: "NOT_A_FIT", col: C.red, icon: "x",
                 items: [
                   "You want viral hacks or overnight miracles",
                   "You expect someone to save the business with magic",
                   "You will not change the offer, page, or message",
                   "You want tactics without fixing the foundation first",
                 ],
-                icon: "x",
               },
             ].map((col, i) => (
               <Reveal key={col.label} delay={i * 0.1} style={{ flex: 1 }}>
-                <div style={{ background: C.card, padding: "2rem",
-                  borderLeft: i === 1 ? `1px solid ${C.border}` : "none" }}>
-                  <p style={{ ...MONO, color: col.col, fontSize: "0.65rem",
-                    letterSpacing: "0.12em", marginBottom: "1.5rem",
-                    display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                    <span style={{ width: 6, height: 6, borderRadius: "50%",
-                      background: col.col, display: "inline-block" }} />
-                    {col.label}
-                  </p>
-                  <ul style={{ listStyle: "none", padding: 0, display: "flex",
-                    flexDirection: "column", gap: "0.9rem" }}>
+                <div style={{
+                  background: C.panel, padding: "2.5rem",
+                  borderRight: i < 1 ? `1px solid ${C.border}` : "none",
+                  borderTop: `2px solid ${col.col}40`,
+                  height: "100%",
+                }}>
+                  <span style={{ ...LBL, color: col.col, fontSize: "0.62rem",
+                    display: "block", marginBottom: "1.5rem" }}>
+                    {col.label.replace("_", " ")}
+                  </span>
+                  <ul style={{ listStyle: "none", padding: 0,
+                    display: "flex", flexDirection: "column", gap: "0.85rem" }}>
                     {col.items.map(item => (
-                      <li key={item} style={{ display: "flex", alignItems: "flex-start",
-                        gap: "0.7rem" }}>
+                      <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                         <span style={{ flexShrink: 0, marginTop: 2 }}>
                           <Ic n={col.icon} sz={15} col={col.col} />
                         </span>
-                        <span style={{ ...INTER, color: C.sub, fontSize: "0.9rem",
-                          lineHeight: 1.55 }}>{item}</span>
+                        <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.92rem", lineHeight: 1.6 }}>
+                          {item}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -1048,43 +1029,59 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── PROCESS ──────────────────────────────────────────────────────── */}
+      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
       <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>HOW IT WORKS</SectionLabel>
+            <SLabel>HOW IT WORKS</SLabel>
             <SH>SIMPLE PROCESS. REAL EXECUTION.</SH>
             <Sub>Clarity first. Then we build the system around it.</Sub>
           </Reveal>
           <div style={{ position: "relative" }}>
-            <div className="process-line" style={{
-              position: "absolute", top: 19, left: "calc(16.67% + 20px)", right: "calc(16.67% + 20px)",
-              height: 1, background: C.border, zIndex: 0,
-            }} />
+            <ProcessLine />
             <div className="process-row" style={{ display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr", gap: "2rem", position: "relative" }}>
+              gridTemplateColumns: "repeat(4,1fr)", gap: "1.5rem", position: "relative" }}>
               {[
-                { num: "01", title: "AUDIT",            body: "We diagnose what is blocking trust and enquiries. No assumptions." },
-                { num: "02", title: "STRATEGY",         body: "Offer, message, funnel direction, and priorities mapped out." },
-                { num: "03", title: "BUILD + ITERATE",  body: "Landing page and copy aligned with ads and organic, then refined." },
+                { num: "01", title: "DIAGNOSE", body: "We identify exactly what is blocking trust and enquiries. No assumptions, no guessing." },
+                { num: "02", title: "DESIGN",   body: "Offer, message, funnel structure, and priorities mapped to your business and market." },
+                { num: "03", title: "DEPLOY",   body: "Landing page and copy aligned with your ads and organic presence, then launched." },
+                { num: "04", title: "DELIVER",  body: "Support through the first cycle. Iterate on what the numbers tell us." },
               ].map((step, i) => (
-                <Reveal key={step.num} delay={i * 0.15} style={{ textAlign: "center" }}>
-                  <div style={{
-                    width: 40, height: 40, borderRadius: "50%",
-                    border: `1px solid ${C.borderHi}`,
-                    background: C.panel,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    margin: "0 auto 1.5rem", position: "relative", zIndex: 1,
-                  }}>
-                    <span style={{ ...MONO, color: C.cyan, fontSize: "0.65rem", fontWeight: 700 }}>
-                      {step.num}
-                    </span>
+                <Reveal key={step.num} delay={i * 0.12}>
+                  <div style={{ textAlign: "center", position: "relative" }}>
+                    {/* Large dim numeral */}
+                    <span style={{
+                      position: "absolute", bottom: 0, right: "0.5rem",
+                      ...EP, fontWeight: 900,
+                      fontSize: "5rem", lineHeight: 1,
+                      color: C.border, opacity: 0.45, userSelect: "none",
+                      zIndex: 0,
+                    }}>{step.num}</span>
+
+                    {/* Circle */}
+                    <div style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      border: `1px solid ${C.border}`,
+                      background: C.panel,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      margin: "0 auto 1.5rem", position: "relative", zIndex: 1,
+                      boxShadow: `0 0 0 4px ${C.bg}`,
+                    }}>
+                      <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.65rem" }}>
+                        {step.num}
+                      </span>
+                    </div>
+
+                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.3rem",
+                      letterSpacing: "0.05em", marginBottom: "0.65rem",
+                      textTransform: "uppercase", position: "relative", zIndex: 1 }}>
+                      {step.title}
+                    </h3>
+                    <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.87rem",
+                      lineHeight: 1.65, position: "relative", zIndex: 1 }}>
+                      {step.body}
+                    </p>
                   </div>
-                  <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.5rem", letterSpacing: "0.05em",
-                    marginBottom: "0.6rem" }}>{step.title}</h3>
-                  <p style={{ ...INTER, color: C.sub, fontSize: "0.87rem", lineHeight: 1.65 }}>
-                    {step.body}
-                  </p>
                 </Reveal>
               ))}
             </div>
@@ -1094,22 +1091,21 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── ABOUT ────────────────────────────────────────────────────────── */}
+      {/* ── WHO WE ARE ───────────────────────────────────────────────────────── */}
       <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1020, margin: "0 auto" }}>
           <div className="about-row" style={{ display: "flex", gap: "4rem", alignItems: "flex-start" }}>
             <div style={{ flex: "1 1 460px", minWidth: 0 }}>
               <Reveal>
-                <SectionLabel>ABOUT</SectionLabel>
+                <SLabel>ABOUT</SLabel>
                 <SH>WE'RE PRACTICAL. WE BUILD STRUCTURE.</SH>
-                <p style={{ ...INTER, color: C.sub, fontSize: "1rem", lineHeight: 1.7,
-                  marginBottom: "2rem" }}>No hype. No fluff. Just what moves the needle.</p>
+                <Sub>No hype. No fluff. Just what moves the needle.</Sub>
               </Reveal>
               <Reveal delay={0.1}>
-                <p style={{ ...MONO, color: C.cyan, fontSize: "0.62rem", letterSpacing: "0.12em",
+                <p style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.12em",
                   marginBottom: "0.85rem" }}>// WHAT_YOU_CAN_EXPECT</p>
-                <ul style={{ listStyle: "none", padding: 0, display: "flex",
-                  flexDirection: "column", gap: "0.7rem", marginBottom: "2rem" }}>
+                <ul style={{ listStyle: "none", padding: 0,
+                  display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "2rem" }}>
                   {[
                     "Clear feedback, no sugarcoating",
                     "Strong positioning direction",
@@ -1118,26 +1114,31 @@ export default function Landing() {
                     "Simple systems you can actually run",
                   ].map(item => (
                     <li key={item} style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-                      <Ic n="check" sz={14} col={C.cyan} />
-                      <span style={{ ...INTER, color: C.sub, fontSize: "0.9rem" }}>{item}</span>
+                      <Ic n="check" sz={14} col={C.accent} />
+                      <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.92rem" }}>{item}</span>
                     </li>
                   ))}
                 </ul>
-                <p style={{ ...MONO, color: C.dim, fontSize: "0.65rem", lineHeight: 1.7,
-                  letterSpacing: "0.03em" }}>
-                  // Based in Dublin. Working with serious founders and small businesses who want
-                  clarity over noise.
+                <p style={{ ...DM, fontWeight: 300, color: C.border, fontSize: "0.82rem", lineHeight: 1.75 }}>
+                  Based in Dublin. Working with serious founders who want clarity over noise.
                 </p>
               </Reveal>
             </div>
+
             <Reveal delay={0.15} style={{ flex: "0 0 360px", maxWidth: 360 }}>
-              <div style={{ borderRadius: 16, overflow: "hidden",
-                border: `1px solid ${C.border}`,
-                filter: "grayscale(20%) contrast(1.05)",
-                maxHeight: 500,
+              <div style={{
+                borderRadius: 16, overflow: "hidden",
+                border: `1.5px solid ${C.accent}30`,
+                boxShadow: `0 0 40px ${C.accent}08`,
+                maxHeight: 480,
               }}>
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80" alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img
+                  src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
+                  alt="The Method Co."
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block",
+                    filter: "grayscale(10%) contrast(1.05)" }}
+                  loading="lazy"
+                />
               </div>
             </Reveal>
           </div>
@@ -1146,56 +1147,99 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── PROOF ────────────────────────────────────────────────────────── */}
+      {/* ── PROOF ────────────────────────────────────────────────────────────── */}
       <section id="proof" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1020, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>PROOF</SectionLabel>
+            <SLabel>PROOF</SLabel>
             <SH>WHAT CLIENTS SAY.</SH>
           </Reveal>
+
+          {/* Marquee */}
           <Reveal delay={0.08}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem 3rem",
-              margin: "2rem 0 3.5rem", borderBottom: `1px solid ${C.border}`,
-              paddingBottom: "2.5rem" }}>
-              {["Lumen Studio","Northpath Dental","Vela Physio","Orla Wellness","Brightseed","Cobh Coaching"].map(name => (
-                <span key={name} style={{ ...MONO, color: C.dim, fontSize: "0.65rem",
-                  letterSpacing: "0.12em", textTransform: "uppercase" }}>{name}</span>
-              ))}
+            <div className="marquee-wrap" style={{
+              overflow: "hidden", position: "relative",
+              marginBottom: "3.5rem",
+              maskImage: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+              borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`,
+              padding: "1.25rem 0",
+            }}>
+              <div className="marquee-inner" style={{ display: "flex", gap: "4rem", width: "max-content" }}>
+                {[...Array(2)].flatMap((_, ri) =>
+                  ["Lumen Studio", "Northpath Dental", "Vela Physio", "Orla Wellness", "Brightseed", "Cobh Coaching"]
+                    .map((name, ni) => (
+                      <span key={`${ri}-${ni}`}
+                        style={{ ...LBL, color: C.border, fontSize: "0.7rem", letterSpacing: "0.14em",
+                          whiteSpace: "nowrap" }}>
+                        {name}
+                      </span>
+                    ))
+                )}
+              </div>
             </div>
           </Reveal>
+
+          {/* Testimonials */}
           <div className="proof-row" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden" }}>
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
             {[
-              { initials: "MD", name: "Mark D.", role: "Founder", co: "Brightseed",
-                quote: "We had been getting clicks but no enquiries. After the Strategy Sprint, our landing page actually worked. Enquiries picked up within two weeks." },
-              { initials: "CB", name: "Claire B.", role: "Director", co: "Northpath Dental",
-                quote: "We knew our offer was confusing but did not know how to fix it. The positioning work made a real difference to how we explain ourselves online." },
-              { initials: "TH", name: "Tom H.", role: "Owner", co: "Cobh Coaching",
-                quote: "The clarity audit flagged exactly what I already sensed was wrong, and gave me a clear plan to fix it. Direct feedback, no fluff." },
+              {
+                initials: "MD",
+                name: "Mark D.",
+                role: "Founder",
+                co: "Brightseed",
+                quote: "We had traffic but nothing was converting. Within two weeks the structure made sense and so did our numbers. Clear thinking, no nonsense.",
+              },
+              {
+                initials: "SV",
+                name: "Sarah V.",
+                role: "Owner",
+                co: "Vela Physio",
+                quote: "The audit alone was worth it. We changed two things on our page and saw a real difference in enquiry quality. Worth every cent.",
+              },
+              {
+                initials: "CO",
+                name: "Ciara O.",
+                role: "Director",
+                co: "Cobh Coaching",
+                quote: "The Method gave us a clear offer and a page that actually said what we do. First time in three years clients said they understood us immediately.",
+              },
             ].map((t, i) => (
               <Reveal key={t.name} delay={i * 0.1} style={{ flex: 1 }}>
-                <div style={{ background: C.card, padding: "2rem",
-                  borderRight: i < 2 ? `1px solid ${C.border}` : "none",
-                  height: "100%", display: "flex", flexDirection: "column" }}>
-                  <p style={{ ...INTER, color: C.sub, fontSize: "0.87rem", lineHeight: 1.7,
-                    flex: 1, marginBottom: "1.5rem", fontStyle: "italic" }}>
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    background: C.panel, padding: "2rem",
+                    borderRight: i < 2 ? `1px solid ${C.border}` : "none",
+                    height: "100%", display: "flex", flexDirection: "column",
+                    cursor: "default",
+                  }}>
+                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.9rem",
+                    lineHeight: 1.75, flex: 1, marginBottom: "1.5rem" }}>
                     "{t.quote}"
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.7rem" }}>
-                    <div style={{ width: 34, height: 34, borderRadius: 3, flexShrink: 0,
-                      background: C.surface, border: `1px solid ${C.border}`,
-                      display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <span style={{ ...MONO, color: C.cyan, fontSize: "0.6rem",
-                        fontWeight: 700 }}>{t.initials}</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                    <div style={{
+                      width: 36, height: 36, borderRadius: 6, flexShrink: 0,
+                      background: `${C.accent}15`, border: `1px solid ${C.accent}30`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.62rem" }}>
+                        {t.initials}
+                      </span>
                     </div>
                     <div>
-                      <p style={{ ...MONO, color: C.text, fontSize: "0.65rem",
-                        fontWeight: 700, margin: 0, letterSpacing: "0.05em" }}>{t.name}</p>
-                      <p style={{ ...MONO, color: C.dim, fontSize: "0.58rem",
-                        margin: 0, letterSpacing: "0.05em" }}>{t.role} / {t.co}</p>
+                      <p style={{ ...DM, fontWeight: 500, color: C.text, fontSize: "0.82rem", margin: 0 }}>
+                        {t.name}
+                      </p>
+                      <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.72rem", margin: 0 }}>
+                        {t.role} / {t.co}
+                      </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </Reveal>
             ))}
           </div>
@@ -1204,43 +1248,159 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── ECOSYSTEM ────────────────────────────────────────────────────── */}
+      {/* ── ECOSYSTEM ────────────────────────────────────────────────────────── */}
       <section id="ecosystem" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>THE ECOSYSTEM</SectionLabel>
+            <SLabel>THE ECOSYSTEM</SLabel>
             <SH>ONE SYSTEM. BUILT TO GROW.</SH>
             <Sub>The consultancy is the core. These are what we are building around it.</Sub>
           </Reveal>
           <Reveal delay={0.1}>
-            <div style={{ position: "relative" }}>
-              <button onClick={() => scrollEco("l")} style={{
-                position: "absolute", left: -18, top: "50%", transform: "translateY(-50%)",
-                zIndex: 10, background: C.panel, border: `1px solid ${C.border}`,
-                borderRadius: 3, width: 36, height: 36,
-                display: ecoLeft ? "flex" : "none",
-                alignItems: "center", justifyContent: "center",
-                cursor: "pointer", color: C.sub,
-              }}>
-                <svg viewBox="0 0 24 24" width={16} height={16}><path d="M15 18l-6-6 6-6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor"/></svg>
-              </button>
-              <button onClick={() => scrollEco("r")} style={{
-                position: "absolute", right: -18, top: "50%", transform: "translateY(-50%)",
-                zIndex: 10, background: C.panel, border: `1px solid ${C.border}`,
-                borderRadius: 3, width: 36, height: 36,
-                display: ecoRight ? "flex" : "none",
-                alignItems: "center", justifyContent: "center",
-                cursor: "pointer", color: C.sub,
-              }}>
-                <svg viewBox="0 0 24 24" width={16} height={16}><path d="M9 18l6-6-6-6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor"/></svg>
-              </button>
-              <div ref={ecoRef} className="eco-row"
-                onScroll={updateEco}
-                style={{ display: "flex", gap: "1px", overflowX: "auto",
-                  scrollSnapType: "x mandatory", paddingBottom: "0.5rem",
-                  border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden" }}>
-                {ECO_CARDS.map(card => <EcoCard key={card.id} card={card} />)}
-              </div>
+            <div className="eco-row" style={{ display: "flex", gap: "16px", overflowX: "auto",
+              paddingBottom: "1rem" }}>
+              {/* Method Consultancy */}
+              <motion.div
+                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}15` }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  flex: "0 0 340px", background: C.panel,
+                  border: `1px solid ${C.border}`, borderRadius: 12,
+                  padding: "1.75rem", cursor: "default", minWidth: 0,
+                }}>
+                <div style={{ display: "flex", justifyContent: "space-between",
+                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
+                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
+                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green,
+                          display: "inline-block", boxShadow: `0 0 6px ${C.green}` }} />
+                        LIVE
+                      </span>
+                    </div>
+                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
+                      textTransform: "uppercase", margin: 0 }}>
+                      Method Consultancy
+                    </h3>
+                  </div>
+                  <div style={{ width: 36, height: 36, borderRadius: 8,
+                    background: `${C.accent}12`, border: `1px solid ${C.accent}25`,
+                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Ic n="target" sz={16} col={C.accent} />
+                  </div>
+                </div>
+                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
+                  Positioning, copy, and funnel direction for service businesses that want clarity before scale.
+                </p>
+                <ConsultancyDemo />
+                <a href="#apply" style={{
+                  ...EP, fontWeight: 700, display: "block", textAlign: "center",
+                  color: C.accent, fontSize: "0.72rem", letterSpacing: "0.1em",
+                  padding: "0.65rem", borderRadius: 6, border: `1px solid ${C.accent}30`,
+                  transition: "background 0.15s",
+                  textTransform: "uppercase",
+                }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = `${C.accent}10`; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}>
+                  APPLY NOW
+                </a>
+              </motion.div>
+
+              {/* The Method Chat */}
+              <motion.div
+                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}15` }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  flex: "0 0 340px", background: C.panel,
+                  border: `1px solid ${C.accent}40`,
+                  borderRadius: 12, padding: "1.75rem", cursor: "default", minWidth: 0,
+                  boxShadow: `0 0 30px ${C.accent}0a`,
+                }}>
+                <div style={{ display: "flex", justifyContent: "space-between",
+                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
+                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
+                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green,
+                          display: "inline-block", boxShadow: `0 0 6px ${C.green}` }} />
+                        LIVE
+                      </span>
+                    </div>
+                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
+                      textTransform: "uppercase", margin: 0 }}>
+                      The Method Chat
+                    </h3>
+                  </div>
+                  <div style={{ width: 36, height: 36, borderRadius: 8,
+                    background: `${C.accent}12`, border: `1px solid ${C.accent}25`,
+                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Ic n="chat" sz={16} col={C.accent} />
+                  </div>
+                </div>
+                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
+                  An AI assistant trained on your business, your offer, and your voice. Answers like you do. Available 24 hours.
+                  {/* METHOD CHAT: set endpoint to go live */}
+                </p>
+                <ChatEcoDemo />
+                <a href="#apply" style={{
+                  ...EP, fontWeight: 700, display: "block", textAlign: "center",
+                  color: C.bg, fontSize: "0.72rem", letterSpacing: "0.1em",
+                  padding: "0.65rem", borderRadius: 6, background: C.accent,
+                  transition: "opacity 0.15s",
+                  textTransform: "uppercase",
+                }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.85"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
+                  GET METHOD CHAT
+                </a>
+              </motion.div>
+
+              {/* Second Brain */}
+              <motion.div
+                whileHover={{ y: -4, boxShadow: `0 12px 48px ${C.accent}08` }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  flex: "0 0 340px", background: C.panel,
+                  border: `1px solid ${C.border}`, borderRadius: 12,
+                  padding: "1.75rem", cursor: "default", minWidth: 0,
+                  opacity: 0.75,
+                }}>
+                <div style={{ display: "flex", justifyContent: "space-between",
+                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
+                      <span style={{ ...LBL, color: C.muted, fontSize: "0.56rem" }}>
+                        COMING SOON
+                      </span>
+                    </div>
+                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
+                      textTransform: "uppercase", margin: 0 }}>
+                      Second Brain
+                    </h3>
+                  </div>
+                  <div style={{ width: 36, height: 36, borderRadius: 8,
+                    background: C.elev, border: `1px solid ${C.border}`,
+                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Ic n="brain" sz={16} col={C.muted} />
+                  </div>
+                </div>
+                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
+                  A connected knowledge system that captures your positioning, decisions, and content. Builds itself as you work.
+                </p>
+                <SecondBrainDemo />
+                <div style={{
+                  ...DM, fontWeight: 400, display: "block", textAlign: "center",
+                  color: C.muted, fontSize: "0.72rem", letterSpacing: "0.1em",
+                  padding: "0.65rem", borderRadius: 6, border: `1px solid ${C.border}`,
+                }}>
+                  IN DEVELOPMENT
+                </div>
+              </motion.div>
             </div>
           </Reveal>
         </div>
@@ -1248,11 +1408,11 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── APPLY ────────────────────────────────────────────────────────── */}
+      {/* ── APPLY ────────────────────────────────────────────────────────────── */}
       <section id="apply" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <Reveal style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <SectionLabel>APPLY</SectionLabel>
+            <SLabel>APPLY</SLabel>
             <SH>READY TO FIX YOUR POSITIONING?</SH>
             <Sub style={{ margin: "0 auto" }}>
               Apply below. We work with a small number of clients at a time to keep quality high.
@@ -1261,32 +1421,38 @@ export default function Landing() {
 
           {submitted ? (
             <Reveal>
-              <div style={{ background: C.card, border: `1px solid ${C.border}`,
+              <div style={{
+                background: C.panel, border: `1px solid ${C.border}`,
                 borderTop: `2px solid ${C.green}`,
-                borderRadius: 4, padding: "3rem 2rem", textAlign: "center" }}>
-                <span style={{ ...MONO, color: C.green, fontSize: "0.65rem",
-                  letterSpacing: "0.12em", display: "flex", alignItems: "center",
-                  justifyContent: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
+                borderRadius: 10, padding: "3rem 2rem", textAlign: "center",
+              }}>
+                <span style={{ ...LBL, color: C.green, fontSize: "0.62rem",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  gap: "0.5rem", marginBottom: "1.25rem" }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%",
                     background: C.green, display: "inline-block" }} />
                   STATUS: RECEIVED
                 </span>
-                <h3 style={{ ...BEBAS, color: C.text, fontSize: "2rem", letterSpacing: "0.05em",
-                  marginBottom: "0.6rem" }}>Application received.</h3>
-                <p style={{ ...INTER, color: C.sub, fontSize: "0.95rem" }}>We will be in touch.</p>
+                <h3 style={{ ...EP, fontWeight: 900, color: C.text, fontSize: "2rem",
+                  letterSpacing: "0.02em", marginBottom: "0.65rem", textTransform: "uppercase" }}>
+                  Application received.
+                </h3>
+                <p style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.95rem" }}>
+                  We will be in touch within 48 hours.
+                </p>
               </div>
             </Reveal>
           ) : (
             <Reveal delay={0.1}>
               <form onSubmit={handleSubmit} style={{
-                background: C.card, border: `1px solid ${C.border}`,
-                borderTop: `2px solid ${C.cyan}`,
-                borderRadius: 4, padding: "2.5rem",
+                background: C.panel, border: `1px solid ${C.border}`,
+                borderTop: `2px solid ${C.accent}`,
+                borderRadius: 10, padding: "2.5rem",
                 display: "flex", flexDirection: "column", gap: "1.25rem",
               }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                   <div>
-                    <label style={lbl}>FULL_NAME *</label>
+                    <label style={lbl}>FULL NAME *</label>
                     <input type="text" required placeholder="Your name"
                       value={form.name} onChange={e => setField("name", e.target.value)} style={inp} />
                   </div>
@@ -1297,60 +1463,77 @@ export default function Landing() {
                   </div>
                 </div>
                 <div>
-                  <label style={lbl}>WEBSITE_OR_INSTAGRAM</label>
+                  <label style={lbl}>WEBSITE OR INSTAGRAM (optional)</label>
                   <input type="text" placeholder="yoursite.com or @handle"
                     value={form.website} onChange={e => setField("website", e.target.value)} style={inp} />
                 </div>
                 <div>
-                  <label style={lbl}>WHAT_DOES_YOUR_BUSINESS_DO *</label>
+                  <label style={lbl}>WHAT DOES YOUR BUSINESS DO? *</label>
                   <textarea required placeholder="Describe your service and who you help."
                     value={form.business} onChange={e => setField("business", e.target.value)}
                     rows={3} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }} />
                 </div>
                 <div>
-                  <label style={lbl}>BIGGEST_GROWTH_PROBLEM *</label>
+                  <label style={lbl}>BIGGEST GROWTH PROBLEM *</label>
                   <textarea required placeholder="Be specific. The more honest you are, the more useful our response."
                     value={form.problem} onChange={e => setField("problem", e.target.value)}
                     rows={4} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }} />
                 </div>
-                <button type="submit" disabled={sending} style={{
-                  ...MONO, color: C.bg, background: sending ? C.dim : C.cyan,
-                  fontWeight: 700, fontSize: "0.78rem", letterSpacing: "0.12em",
-                  padding: "1rem", borderRadius: 3, border: "none",
-                  cursor: sending ? "wait" : "pointer",
-                  transition: "background 0.2s",
-                }}>
-                  {sending ? "SENDING..." : "APPLY_NOW"}
-                </button>
+                <motion.button
+                  type="submit"
+                  disabled={sending}
+                  whileHover={{ opacity: 0.9 }}
+                  whileTap={{ scale: 0.99 }}
+                  style={{
+                    ...EP, fontWeight: 700, color: C.bg,
+                    background: sending ? C.muted : C.accent,
+                    fontSize: "0.82rem", letterSpacing: "0.12em",
+                    padding: "1rem", borderRadius: 6, border: "none",
+                    cursor: sending ? "wait" : "pointer",
+                    transition: "background 0.2s",
+                    textTransform: "uppercase",
+                  }}>
+                  {sending ? "SENDING..." : "APPLY NOW"}
+                </motion.button>
               </form>
             </Reveal>
           )}
         </div>
       </section>
 
-      {/* ── FOOTER ───────────────────────────────────────────────────────── */}
+      {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
       <footer style={{
-        position: "relative", zIndex: 1, borderTop: `1px solid ${C.border}`,
+        position: "relative", zIndex: 1,
+        borderTop: `1px solid ${C.border}`,
         padding: "1.75rem 5vw",
         display: "flex", flexWrap: "wrap",
         alignItems: "center", justifyContent: "space-between", gap: "1rem",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-          <img src={`https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg`} alt="" style={{ height: 24, width: 24 }} />
-          <span style={{ ...MONO, color: C.dim, fontSize: "0.65rem", letterSpacing: "0.08em" }}>
-            The Method Co. // CLARITY BEFORE STRATEGY.
+          <img
+            src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
+            alt=""
+            style={{ height: 22, width: 22 }}
+          />
+          <span style={{ ...DM, fontWeight: 300, color: C.border, fontSize: "0.72rem", letterSpacing: "0.04em" }}>
+            The Method Co. Clarity before strategy.
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
           <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
-            style={{ color: C.dim, transition: "color 0.15s" }} className="ghost">
+            style={{ color: C.border, transition: "color 0.15s", cursor: "pointer" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.muted; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.border; }}>
             <Ic n="ig" sz={16} col="currentColor" />
           </a>
-          {[{ label: "privacy", href: "/privacy" }, { label: "terms", href: "/terms" }].map(({ label, href }) => (
-            <Link key={label} href={href}>
-              <a style={{ ...MONO, color: C.dim, fontSize: "0.62rem",
-                letterSpacing: "0.08em", transition: "color 0.15s" }} className="ghost">{label}</a>
-            </Link>
+          {[{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }].map(({ label, href }) => (
+            <a key={label} href={href}
+              style={{ ...DM, fontWeight: 400, color: C.border, fontSize: "0.78rem",
+                transition: "color 0.15s" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.muted; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.border; }}>
+              {label}
+            </a>
           ))}
         </div>
       </footer>
