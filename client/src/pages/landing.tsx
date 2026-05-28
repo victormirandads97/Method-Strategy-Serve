@@ -364,9 +364,28 @@ export default function Landing() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSending(true);
-    await new Promise(r => setTimeout(r, 900));
-    setSending(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("https://formspree.io/f/xkovloyk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name:     form.name,
+          email:    form.email,
+          website:  form.website,
+          business: form.business,
+          problem:  form.problem,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Something went wrong. Please email us directly at support@themethodco.co");
+      }
+    } catch {
+      alert("Network error. Please email us directly at support@themethodco.co");
+    } finally {
+      setSending(false);
+    }
   }
 
   const inp: React.CSSProperties = {
@@ -1699,11 +1718,11 @@ export default function Landing() {
                 <Ic n="ig" sz={16} col="currentColor" />
                 <span style={{ ...DM, fontWeight: 400, fontSize: "0.88rem" }}>@themethodco.co</span>
               </a>
-              <a href="mailto:hello@themethodco.co"
+              <a href="mailto:support@themethodco.co"
                 className="nav-link"
                 style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.88rem",
                   transition: "color 0.15s", textDecoration: "none" }}>
-                hello@themethodco.co
+                support@themethodco.co
               </a>
               <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.84rem",
                 lineHeight: 1.6, margin: 0 }}>
