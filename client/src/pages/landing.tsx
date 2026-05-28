@@ -159,7 +159,7 @@ function AuditInner() {
       <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: "0.65rem" }}>
         <span style={{ ...EP, fontWeight: 900, color: C.accent, fontSize: "2rem", lineHeight: 1 }}>{count}</span>
         <span style={{ ...DM, color: C.border, fontSize: "0.75rem" }}>/100</span>
-        <span style={{ ...LBL, color: C.muted, fontSize: "0.55rem", marginLeft: "auto" }}>CLARITY_SCORE</span>
+        <span style={{ ...LBL, color: C.muted, fontSize: "0.55rem", marginLeft: "auto" }}>CLARITY SCORE</span>
       </div>
       {AUDIT_BARS.map((bar, i) => (
         <div key={bar.label} style={{ marginBottom: "0.5rem" }}>
@@ -246,7 +246,7 @@ function ChatEcoDemo() {
         marginBottom: "0.85rem", overflow: "hidden" }}>
         <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
           padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
-          METHOD_CHAT_v1.0 / LIVE
+          METHOD CHAT V1.0 / LIVE
         </div>
         <iframe src={CHAT_API_ENDPOINT} style={{ width: "100%", height: 140, border: "none" }} title="Method Chat" />
       </div>
@@ -258,7 +258,7 @@ function ChatEcoDemo() {
       opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
       <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
         padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
-        METHOD_CHAT_v1.0
+        METHOD CHAT V1.0
       </div>
       <DemoChatInner key={loopKey} />
     </div>
@@ -371,12 +371,12 @@ export default function Landing() {
 
   const inp: React.CSSProperties = {
     ...DM, fontWeight: 400, width: "100%", background: C.panel,
-    border: `1px solid ${C.border}`, borderRadius: 6, color: C.text,
+    border: "1px solid rgba(61,214,245,0.3)", borderRadius: 6, color: C.text,
     fontSize: "0.9rem", padding: "0.8rem 1rem", outline: "none",
     boxSizing: "border-box",
   };
   const lbl: React.CSSProperties = {
-    ...LBL, color: C.muted, fontSize: "0.62rem", letterSpacing: "0.1em",
+    ...LBL, color: C.text, fontSize: "0.62rem", letterSpacing: "0.1em",
     display: "block", marginBottom: "0.45rem",
   };
 
@@ -451,7 +451,17 @@ export default function Landing() {
           0%,100% { box-shadow: 0 0 20px rgba(61,214,245,0.20), 0 0 40px rgba(61,214,245,0.08); }
           50%     { box-shadow: 0 0 30px rgba(61,214,245,0.40), 0 0 60px rgba(61,214,245,0.15); }
         }
+        @keyframes svgRotate {
+          0%   { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
         .cta-glow { animation: ctaPulse 3s ease-in-out infinite; }
+        .form-input:focus {
+          border-color: #3DD6F5 !important;
+          box-shadow: 0 0 0 3px rgba(61,214,245,0.12) !important;
+          outline: none;
+        }
+        .form-input::placeholder { color: #8A97B4; opacity: 1; }
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -460,7 +470,7 @@ export default function Landing() {
         .marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
         .eco-row::-webkit-scrollbar { display: none; }
         .eco-row { scrollbar-width: none; }
-        .nav-link:hover { color: #EDF2F7 !important; }
+        .nav-link:hover { color: #3DD6F5 !important; }
         a { text-decoration: none; color: inherit; }
         * { box-sizing: border-box; }
         @media (prefers-reduced-motion: reduce) {
@@ -478,6 +488,10 @@ export default function Landing() {
           .about-row   { flex-direction: column !important; }
           .process-row { grid-template-columns: repeat(2,1fr) !important; }
           .process-line { display: none !important; }
+          .footer-cols { flex-direction: column !important; }
+        }
+        @media (max-width: 768px) {
+          .team-row    { flex-direction: column !important; align-items: center !important; }
         }
         @media (max-width: 540px) {
           .fix-grid    { grid-template-columns: 1fr !important; }
@@ -502,7 +516,7 @@ export default function Landing() {
             alt="The Method Co."
             style={{ height: 26, width: 26 }}
           />
-          <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.88rem", letterSpacing: "0.03em" }}>
+          <span style={{ ...DM, fontWeight: 600, color: C.accent, fontSize: "0.88rem", letterSpacing: "0.02em" }}>
             The Method Co.
           </span>
         </a>
@@ -511,7 +525,7 @@ export default function Landing() {
         <div className="nav-center" style={{ display: "flex", alignItems: "center", gap: "0.1rem" }}>
           {NAV_LINKS.map(({ label, href }) => (
             <a key={label} href={href} className="nav-link"
-              style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.82rem",
+              style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.82rem",
                 padding: "0.35rem 0.7rem", borderRadius: 4, transition: "color 0.15s" }}>
               {label}
             </a>
@@ -525,12 +539,6 @@ export default function Landing() {
 
         {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <span style={{ ...LBL, color: C.green, fontSize: "0.58rem",
-            display: "flex", alignItems: "center", gap: "0.4rem" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.green,
-              display: "inline-block", boxShadow: `0 0 7px ${C.green}` }} />
-            OPEN
-          </span>
           <a href="#apply" className="cta-glow" style={{
             ...EP, fontWeight: 700, color: C.bg, background: C.accent,
             fontSize: "0.72rem", letterSpacing: "0.08em",
@@ -642,7 +650,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.3 }}
-                style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "1.05rem",
+                style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "1.05rem",
                   lineHeight: 1.7, maxWidth: 480, marginBottom: "2rem" }}>
                 Most service businesses don't have a visibility problem.
                 They have a clarity problem. The Method builds the structure that fixes it.
@@ -688,7 +696,7 @@ export default function Landing() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.56 }}
-                style={{ ...DM, fontWeight: 400, color: C.border, fontSize: "0.78rem",
+                style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
                   letterSpacing: "0.04em" }}>
                 // No hype. No guru promises. Just structure and execution.
               </motion.p>
@@ -791,13 +799,13 @@ export default function Landing() {
                     }}>
                       <Ic n={card.icon} sz={18} col={C.accent} />
                     </div>
-                    <span style={{ ...LBL, color: C.border, fontSize: "0.58rem" }}>ISSUE_{card.num}</span>
+                    <span style={{ ...LBL, color: C.muted, fontSize: "0.58rem", opacity: 0.7 }}>{`ISSUE ${card.num}`}</span>
                   </div>
                   <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
                     letterSpacing: "0.01em", marginBottom: "0.65rem", textTransform: "uppercase" }}>
                     {card.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.9rem", lineHeight: 1.65 }}>
+                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.9rem", lineHeight: 1.65 }}>
                     {card.body}
                   </p>
                 </motion.div>
@@ -842,7 +850,9 @@ export default function Landing() {
           <div className="fix-grid" style={{ display: "grid",
             gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
             border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden",
-            marginBottom: "3rem" }}>
+            marginBottom: "3rem",
+            background: C.border }}>
+            {/* background: C.border fills the 1px grid gaps so no dark bands show through */}
             {[
               { icon: "target", title: "Positioning",           body: "Make your offer undeniable to the right people." },
               { icon: "pen",    title: "Copywriting",           body: "Words that move people from curious to committed." },
@@ -882,7 +892,7 @@ export default function Landing() {
                     letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
                     {card.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.85rem", lineHeight: 1.6 }}>
+                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.85rem", lineHeight: 1.6 }}>
                     {card.body}
                   </p>
                 </motion.div>
@@ -897,8 +907,19 @@ export default function Landing() {
       <HR />
 
       {/* ── OFFERS ───────────────────────────────────────────────────────────── */}
-      <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
+        {/* Rotating concentric circles background */}
+        <div style={{ position: "absolute", top: "50%", left: "50%",
+          transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 0 }}>
+          <svg width="700" height="700" viewBox="0 0 700 700"
+            style={{ animation: "svgRotate 60s linear infinite", opacity: 1 }}>
+            {[60,120,180,240,300,340].map(r => (
+              <circle key={r} cx="350" cy="350" r={r} fill="none"
+                stroke="#3DD6F5" strokeWidth="1" opacity="0.05" />
+            ))}
+          </svg>
+        </div>
+        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <SLabel>OFFERS</SLabel>
             <SH>PICK THE LEVEL OF HELP YOU NEED.</SH>
@@ -992,7 +1013,7 @@ export default function Landing() {
                     letterSpacing: "0.02em", marginBottom: "0.85rem" }}>
                     {offer.price}
                   </p>
-                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
                     lineHeight: 1.65, marginBottom: "1.25rem", flex: 1 }}>
                     {offer.desc}
                   </p>
@@ -1003,7 +1024,7 @@ export default function Landing() {
                         <span style={{ flexShrink: 0, marginTop: 3 }}>
                           <Ic n="check" sz={13} col={offer.featured ? C.accent : C.muted} />
                         </span>
-                        <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.8rem", lineHeight: 1.5 }}>
+                        <span style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.8rem", lineHeight: 1.5 }}>
                           {b}
                         </span>
                       </li>
@@ -1034,8 +1055,24 @@ export default function Landing() {
       <HR />
 
       {/* ── FIT ──────────────────────────────────────────────────────────────── */}
-      <section id="fit" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
+      <section id="fit" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
+        {/* Radial lines SVG top-left — 5% opacity, slow rotation */}
+        <div style={{ position: "absolute", top: -120, left: -120, pointerEvents: "none", zIndex: 0 }}>
+          <svg width="500" height="500" viewBox="0 0 500 500"
+            style={{ animation: "svgRotate 72s linear infinite reverse", opacity: 1 }}>
+            {Array.from({ length: 16 }, (_, i) => {
+              const angle = (i / 16) * Math.PI * 2;
+              return <line key={i} x1="250" y1="250"
+                x2={250 + Math.cos(angle) * 230} y2={250 + Math.sin(angle) * 230}
+                stroke="#3DD6F5" strokeWidth="1" opacity="0.05" />;
+            })}
+            {[60, 120, 180, 230].map(r => (
+              <circle key={r} cx="250" cy="250" r={r} fill="none"
+                stroke="#3DD6F5" strokeWidth="0.75" opacity="0.04" />
+            ))}
+          </svg>
+        </div>
+        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <SLabel>SELECTIVE FIT</SLabel>
             <SH>NOT EVERY BUSINESS IS A FIT.</SH>
@@ -1072,7 +1109,7 @@ export default function Landing() {
                 }}>
                   <span style={{ ...LBL, color: col.col, fontSize: "0.62rem",
                     display: "block", marginBottom: "1.5rem" }}>
-                    {col.label.replace("_", " ")}
+                    {col.label.replace(/_/g, " ")}
                   </span>
                   <ul style={{ listStyle: "none", padding: 0,
                     display: "flex", flexDirection: "column", gap: "0.85rem" }}>
@@ -1081,7 +1118,7 @@ export default function Landing() {
                         <span style={{ flexShrink: 0, marginTop: 2 }}>
                           <Ic n={col.icon} sz={15} col={col.col} />
                         </span>
-                        <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.92rem", lineHeight: 1.6 }}>
+                        <span style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.92rem", lineHeight: 1.6 }}>
                           {item}
                         </span>
                       </li>
@@ -1098,17 +1135,13 @@ export default function Landing() {
 
       {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
       <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
-        {/* Faint textural background image */}
-        <img
-          src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: "absolute", inset: 0, width: "100%", height: "100%",
-            objectFit: "cover", opacity: 0.08, filter: "blur(4px) grayscale(40%)",
-            pointerEvents: "none", zIndex: 0,
-          }}
-        />
+        {/* PROCESS BG: replace with proper "strategy/planning" Cloudinary image when ready.
+            CSS grid pattern is a clean placeholder. */}
+        <div aria-hidden="true" style={{
+          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+          backgroundImage: "linear-gradient(rgba(61,214,245,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(61,214,245,0.06) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }} />
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
             <SLabel>HOW IT WORKS</SLabel>
@@ -1155,7 +1188,7 @@ export default function Landing() {
                       textTransform: "uppercase", position: "relative", zIndex: 1 }}>
                       {step.title}
                     </h3>
-                    <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.87rem",
+                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.87rem",
                       lineHeight: 1.65, position: "relative", zIndex: 1 }}>
                       {step.body}
                     </p>
@@ -1172,53 +1205,61 @@ export default function Landing() {
       {/* ── WHO WE ARE ───────────────────────────────────────────────────────── */}
       <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1020, margin: "0 auto" }}>
-          <div className="about-row" style={{ display: "flex", gap: "4rem", alignItems: "flex-start" }}>
-            <div style={{ flex: "1 1 460px", minWidth: 0 }}>
-              <Reveal>
-                <SLabel>ABOUT</SLabel>
-                <SH>WE'RE PRACTICAL. WE BUILD STRUCTURE.</SH>
-                <Sub>No hype. No fluff. Just what moves the needle.</Sub>
+          <Reveal style={{ textAlign: "center", marginBottom: "4rem" }}>
+            <SLabel>THE TEAM</SLabel>
+            <SH>BUILT BY OPERATORS, NOT MARKETERS.</SH>
+            <Sub style={{ margin: "0 auto", color: "#C5CFE0" }}>
+              Small team. Real experience. Hands on every project.
+            </Sub>
+          </Reveal>
+          <div className="team-row" style={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
+            {[
+              {
+                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg",
+                name: "VICTOR MIRANDA",
+                role: "FOUNDER + STRATEGY",
+                bio: "Brazilian. Dublin-based. Eight years running kitchens before turning to marketing. Builds the positioning and the system.",
+              },
+              {
+                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1779996691/D51F608D-881C-4009-81B8-8DAC3C5C86A4_n2i2sx.png",
+                name: "KAZAMI ONISHI",
+                role: "OPERATIONS + CLIENT RELATIONS",
+                bio: "Restaurant manager inside Dublin's hospitality scene. Has lived the kind of service business we work with. Handles onboarding, accounts, and keeps every project on track.",
+              },
+              {
+                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1779996692/magnific_create-a-professional-cor_8vaQeg6IrU_nsdsek.png",
+                name: "ANGELO ROCHA",
+                role: "DEVELOPER",
+                bio: "Builds the landing pages, funnels, and systems behind every strategy. Turns plans into working product.",
+              },
+            ].map((member, i) => (
+              <Reveal key={member.name} delay={i * 0.12} style={{ flex: "1 1 280px", maxWidth: 320 }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                  <div style={{
+                    width: 200, height: 200, borderRadius: "50%", overflow: "hidden", flexShrink: 0,
+                    border: `2px solid ${C.accent}`,
+                    boxShadow: "0 0 40px rgba(61,214,245,0.25)",
+                    marginBottom: "1.5rem",
+                  }}>
+                    <img src={member.photo} alt={member.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      loading="lazy" />
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 700, color: C.text, fontSize: "1.1rem",
+                    letterSpacing: "0.03em", marginBottom: "0.4rem", textTransform: "uppercase" }}>
+                    {member.name}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 600, color: C.accent, fontSize: "0.62rem",
+                    letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.85rem" }}>
+                    {member.role}
+                  </p>
+                  <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.88rem",
+                    lineHeight: 1.65, maxWidth: 260 }}>
+                    {member.bio}
+                  </p>
+                </div>
               </Reveal>
-              <Reveal delay={0.1}>
-                <p style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.12em",
-                  marginBottom: "0.85rem" }}>// WHAT_YOU_CAN_EXPECT</p>
-                <ul style={{ listStyle: "none", padding: 0,
-                  display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "2rem" }}>
-                  {[
-                    "Clear feedback, no sugarcoating",
-                    "Strong positioning direction",
-                    "Better copy and page flow",
-                    "Smarter ad and message alignment",
-                    "Simple systems you can actually run",
-                  ].map(item => (
-                    <li key={item} style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-                      <Ic n="check" sz={14} col={C.accent} />
-                      <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.92rem" }}>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p style={{ ...DM, fontWeight: 300, color: C.border, fontSize: "0.82rem", lineHeight: 1.75 }}>
-                  Based in Dublin. Working with serious founders who want clarity over noise.
-                </p>
-              </Reveal>
-            </div>
-
-            <Reveal delay={0.15} style={{ flex: "0 0 480px", maxWidth: 480 }}>
-              <div style={{
-                borderRadius: 16, overflow: "hidden",
-                border: `1.5px solid ${C.accent}30`,
-                boxShadow: `0 0 60px ${C.accent}33`,
-                maxHeight: 560,
-              }}>
-                <img
-                  src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
-                  alt="The Method Co."
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block",
-                    filter: "grayscale(10%) contrast(1.05)" }}
-                  loading="lazy"
-                />
-              </div>
-            </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -1248,8 +1289,8 @@ export default function Landing() {
                   ["Lumen Studio", "Northpath Dental", "Vela Physio", "Orla Wellness", "Brightseed", "Cobh Coaching"]
                     .map((name, ni) => (
                       <span key={`${ri}-${ni}`}
-                        style={{ ...LBL, color: C.border, fontSize: "0.7rem", letterSpacing: "0.14em",
-                          whiteSpace: "nowrap" }}>
+                        style={{ ...LBL, color: C.muted, fontSize: "0.7rem", letterSpacing: "0.14em",
+                          whiteSpace: "nowrap", opacity: 0.7 }}>
                         {name}
                       </span>
                     ))
@@ -1294,7 +1335,7 @@ export default function Landing() {
                     height: "100%", display: "flex", flexDirection: "column",
                     cursor: "default",
                   }}>
-                  <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.9rem",
+                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.9rem",
                     lineHeight: 1.75, flex: 1, marginBottom: "1.5rem" }}>
                     "{t.quote}"
                   </p>
@@ -1312,7 +1353,7 @@ export default function Landing() {
                       <p style={{ ...DM, fontWeight: 500, color: C.text, fontSize: "0.82rem", margin: 0 }}>
                         {t.name}
                       </p>
-                      <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.72rem", margin: 0 }}>
+                      <p style={{ ...DM, fontWeight: 300, color: "#A8B5CC", fontSize: "0.72rem", margin: 0 }}>
                         {t.role} / {t.co}
                       </p>
                     </div>
@@ -1369,7 +1410,7 @@ export default function Landing() {
                     <Ic n="target" sz={16} col={C.accent} />
                   </div>
                 </div>
-                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
                   lineHeight: 1.65, marginBottom: "1.25rem" }}>
                   Positioning, copy, and funnel direction for service businesses that want clarity before scale.
                 </p>
@@ -1420,7 +1461,7 @@ export default function Landing() {
                     <Ic n="chat" sz={16} col={C.accent} />
                   </div>
                 </div>
-                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
                   lineHeight: 1.65, marginBottom: "1.25rem" }}>
                   An AI assistant trained on your business, your offer, and your voice. Answers like you do. Available 24 hours.
                   {/* METHOD CHAT: set endpoint to go live */}
@@ -1454,7 +1495,7 @@ export default function Landing() {
                   alignItems: "flex-start", marginBottom: "1.25rem" }}>
                   <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                      <span style={{ ...LBL, color: C.muted, fontSize: "0.56rem" }}>
+                      <span style={{ ...LBL, color: C.muted, fontSize: "0.56rem", opacity: 0.8 }}>
                         COMING SOON
                       </span>
                     </div>
@@ -1469,7 +1510,7 @@ export default function Landing() {
                     <Ic n="brain" sz={16} col={C.muted} />
                   </div>
                 </div>
-                <p style={{ ...DM, fontWeight: 300, color: C.muted, fontSize: "0.84rem",
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
                   lineHeight: 1.65, marginBottom: "1.25rem" }}>
                   A connected knowledge system that captures your positioning, decisions, and content. Builds itself as you work.
                 </p>
@@ -1493,10 +1534,10 @@ export default function Landing() {
       <section id="apply" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <Reveal style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <SLabel>APPLY</SLabel>
-            <SH>READY TO FIX YOUR POSITIONING?</SH>
-            <Sub style={{ margin: "0 auto" }}>
-              Apply below. We work with a small number of clients at a time to keep quality high.
+            <SLabel>THE NEXT MOVE</SLabel>
+            <SH>STOP READING. START FIXING.</SH>
+            <Sub style={{ margin: "0 auto", color: "#C5CFE0" }}>
+              If your service business deserves clarity, apply. We take on a small number of clients each month. The audit is free. The work is honest. The results compound.
             </Sub>
           </Reveal>
 
@@ -1535,30 +1576,35 @@ export default function Landing() {
                   <div>
                     <label style={lbl}>FULL NAME *</label>
                     <input type="text" required placeholder="Your name"
-                      value={form.name} onChange={e => setField("name", e.target.value)} style={inp} />
+                      value={form.name} onChange={e => setField("name", e.target.value)}
+                      style={inp} className="form-input" />
                   </div>
                   <div>
                     <label style={lbl}>EMAIL *</label>
                     <input type="email" required placeholder="you@example.com"
-                      value={form.email} onChange={e => setField("email", e.target.value)} style={inp} />
+                      value={form.email} onChange={e => setField("email", e.target.value)}
+                      style={inp} className="form-input" />
                   </div>
                 </div>
                 <div>
                   <label style={lbl}>WEBSITE OR INSTAGRAM (optional)</label>
                   <input type="text" placeholder="yoursite.com or @handle"
-                    value={form.website} onChange={e => setField("website", e.target.value)} style={inp} />
+                    value={form.website} onChange={e => setField("website", e.target.value)}
+                    style={inp} className="form-input" />
                 </div>
                 <div>
                   <label style={lbl}>WHAT DOES YOUR BUSINESS DO? *</label>
                   <textarea required placeholder="Describe your service and who you help."
                     value={form.business} onChange={e => setField("business", e.target.value)}
-                    rows={3} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }} />
+                    rows={3} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }}
+                    className="form-input" />
                 </div>
                 <div>
                   <label style={lbl}>BIGGEST GROWTH PROBLEM *</label>
                   <textarea required placeholder="Be specific. The more honest you are, the more useful our response."
                     value={form.problem} onChange={e => setField("problem", e.target.value)}
-                    rows={4} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }} />
+                    rows={4} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }}
+                    className="form-input" />
                 </div>
                 <motion.button
                   type="submit"
@@ -1577,6 +1623,10 @@ export default function Landing() {
                   }}>
                   {sending ? "SENDING..." : "APPLY NOW"}
                 </motion.button>
+                <p style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
+                  textAlign: "center", margin: 0 }}>
+                  We reply within 48 hours. No automated nonsense.
+                </p>
               </form>
             </Reveal>
           )}
@@ -1586,37 +1636,107 @@ export default function Landing() {
       {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
       <footer style={{
         position: "relative", zIndex: 1,
-        borderTop: `1px solid ${C.border}`,
-        padding: "1.75rem 5vw",
-        display: "flex", flexWrap: "wrap",
-        alignItems: "center", justifyContent: "space-between", gap: "1rem",
+        background: C.panel,
+        borderTop: `1px solid ${C.accent}33`,
+        padding: "80px 5vw 40px",
       }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-          <img
-            src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
-            alt=""
-            style={{ height: 22, width: 22 }}
-          />
-          <span style={{ ...DM, fontWeight: 300, color: C.border, fontSize: "0.72rem", letterSpacing: "0.04em" }}>
-            The Method Co. Clarity before strategy.
-          </span>
+        <div className="footer-cols" style={{
+          maxWidth: 1100, margin: "0 auto",
+          display: "flex", gap: "4rem", flexWrap: "wrap", marginBottom: "3rem",
+        }}>
+          {/* Column 1: Brand */}
+          <div style={{ flex: "1 1 260px", minWidth: 200 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "1rem" }}>
+              <img
+                src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
+                alt=""
+                style={{ height: 26, width: 26 }}
+              />
+              <span style={{
+                ...DM, fontWeight: 600, fontSize: "1rem", letterSpacing: "0.02em",
+                background: `linear-gradient(90deg, ${C.accent}, ${C.hi})`,
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              }}>
+                The Method Co.
+              </span>
+            </div>
+            <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 280 }}>
+              Clarity before strategy. Strategy before noise.
+            </p>
+          </div>
+
+          {/* Column 2: Navigate */}
+          <div style={{ flex: "1 1 160px", minWidth: 140 }}>
+            <p style={{ ...LBL, color: C.accent, fontSize: "0.6rem", letterSpacing: "0.12em",
+              marginBottom: "1.25rem" }}>NAVIGATE</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {[
+                { label: "Offers",    href: "#offers"    },
+                { label: "Fit",       href: "#fit"       },
+                { label: "Process",   href: "#process"   },
+                { label: "Ecosystem", href: "#ecosystem" },
+                { label: "Apply",     href: "#apply"     },
+              ].map(({ label, href }) => (
+                <a key={label} href={href}
+                  className="nav-link"
+                  style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.88rem",
+                    transition: "color 0.15s", textDecoration: "none" }}>
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 3: Connect */}
+          <div style={{ flex: "1 1 200px", minWidth: 180 }}>
+            <p style={{ ...LBL, color: C.accent, fontSize: "0.6rem", letterSpacing: "0.12em",
+              marginBottom: "1.25rem" }}>CONNECT</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+              <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
+                className="nav-link"
+                style={{ display: "flex", alignItems: "center", gap: "0.5rem",
+                  color: C.text, transition: "color 0.15s", textDecoration: "none" }}>
+                <Ic n="ig" sz={16} col="currentColor" />
+                <span style={{ ...DM, fontWeight: 400, fontSize: "0.88rem" }}>@themethodco.co</span>
+              </a>
+              <a href="mailto:hello@themethodco.co"
+                className="nav-link"
+                style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.88rem",
+                  transition: "color 0.15s", textDecoration: "none" }}>
+                hello@themethodco.co
+              </a>
+              <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.84rem",
+                lineHeight: 1.6, margin: 0 }}>
+                Based in Dublin. Working worldwide.
+              </p>
+            </div>
+          </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-          <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
-            style={{ color: C.border, transition: "color 0.15s", cursor: "pointer" }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.muted; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.border; }}>
-            <Ic n="ig" sz={16} col="currentColor" />
-          </a>
-          {[{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }].map(({ label, href }) => (
-            <a key={label} href={href}
-              style={{ ...DM, fontWeight: 400, color: C.border, fontSize: "0.78rem",
-                transition: "color 0.15s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.muted; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = C.border; }}>
-              {label}
-            </a>
-          ))}
+
+        {/* Bottom bar */}
+        <div style={{
+          maxWidth: 1100, margin: "0 auto",
+          borderTop: `1px solid ${C.accent}26`,
+          paddingTop: "1.5rem",
+          display: "flex", flexWrap: "wrap",
+          alignItems: "center", justifyContent: "space-between", gap: "1rem",
+        }}>
+          <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.78rem" }}>
+            &copy; 2026 The Method Co. All rights reserved.
+          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            {[{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }].map(({ label, href }, i) => (
+              <span key={label} style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                {i > 0 && <span style={{ color: C.border, fontSize: "0.7rem" }}>|</span>}
+                <a href={href}
+                  className="nav-link"
+                  style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.78rem",
+                    transition: "color 0.15s", textDecoration: "none" }}>
+                  {label}
+                </a>
+              </span>
+            ))}
+          </div>
         </div>
       </footer>
     </div>
