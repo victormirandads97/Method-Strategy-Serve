@@ -4,3 +4,5 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+private/*.pdf
+!private/The_Last_Human_Job_-_ebook.pdf
