@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — The Last Human Job</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --black:  #0A0A0A;
+      --panel:  #111111;
+      --card:   #161616;
+      --cream:  #F5F0E8;
+      --cream2: #D4CBBA;
+      --muted:  #8A8070;
+      --border: #232323;
+      --blue:   #4A6CF7;
+      --blue-d: #3A5AE0;
+      --blue-glow: rgba(74,108,247,.22);
+      --green:  #3DDA84;
+      --mono:   'JetBrains Mono', monospace;
+      --bebas:  'Bebas Neue', sans-serif;
+      --inter:  'Inter', system-ui, sans-serif;
+      --news:   'Newsreader', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--inter);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 5vw;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(circle, rgba(74,108,247,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      border-radius: 10px;
+      padding: 56px 48px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .check-icon {
+      width: 64px; height: 64px;
+      background: rgba(61,218,132,.12);
+      border: 1px solid rgba(61,218,132,.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-family: var(--bebas);
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    .standfirst {
+      font-family: var(--news);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--cream2);
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 32px 0;
+    }
+
+    .instruction {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .instruction-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .instruction p {
+      font-size: 0.92rem;
+      color: var(--cream2);
+      line-height: 1.65;
+    }
+
+    .btn-download {
+      display: inline-block;
+      font-family: var(--bebas);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: var(--blue);
+      padding: 14px 36px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.18s;
+      border: none;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .btn-download:hover {
+      background: var(--blue-d);
+      transform: translateY(-2px);
+    }
+    .btn-download.loading {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .btn-back {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 10px 20px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+      text-decoration: none;
+    }
+    .btn-back:hover { color: var(--cream2); border-color: rgba(74,108,247,.3); }
+
+    .guarantee {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    .error-msg {
+      background: rgba(240,96,96,.1);
+      border: 1px solid rgba(240,96,96,.25);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: #F09090;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .error-msg.visible { display: block; }
+
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .footer-note {
+      margin-top: 32px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+    .footer-note a { color: var(--cream2); text-decoration: underline; text-decoration-color: var(--border); }
+    .footer-note a:hover { color: var(--blue); }
+
+    @media (max-width: 600px) {
+      .card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="mainCard">
+
+    <div class="check-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M5 13l4 4L19 7" stroke="#3DDA84" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow">// PAYMENT CONFIRMED</p>
+    <h1 class="title">Thank you.<br>Your copy of The Last<br>Human Job is on the way.</h1>
+    <p class="standfirst">
+      One clear read. Five honest questions. The guide is ready.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="instruction" id="emailInstruction">
+      <p class="instruction-label">// CHECK YOUR EMAIL</p>
+      <p>Stripe has sent a receipt to the email you used at checkout. Your download link is included in that receipt. If you do not see it within five minutes, check your spam folder.</p>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <!-- Download button — shown only if server-side verification works -->
+    <a href="#" class="btn-download" id="downloadBtn" style="display:none;">
+      Download The Last Human Job (PDF)
+    </a>
+
+    <a href="/last-human-job" class="btn-back">← Back to the book page</a>
+
+    <p class="guarantee">
+      Your 7-day money-back guarantee runs from today's receipt date.<br>
+      Any issues: <a href="mailto:support@themethodco.co" style="color:var(--cream2);">support@themethodco.co</a>
+    </p>
+
+  </div>
+
+  <p class="footer-note">
+    <a href="https://themethodco.co">← The Method Co.</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    © 2026 The Method Co. All rights reserved.
+  </p>
+
+  <script>
+    (function () {
+      // Parse session_id from URL
+      var params = new URLSearchParams(window.location.search);
+      var sessionId = params.get("session_id");
+
+      // Fire purchase analytics event
+      function firePurchaseEvent() {
+        if (typeof gtag === "function") {
+          gtag("event", "purchase", {
+            transaction_id: sessionId || "unknown",
+            currency: "EUR",
+            value: 6.97,
+            items: [{ item_id: "last-human-job", item_name: "The Last Human Job", price: 6.97 }]
+          });
+        }
+        if (typeof fbq === "function") {
+          fbq("track", "Purchase", { value: 6.97, currency: "EUR" });
+        }
+      }
+
+      firePurchaseEvent();
+
+      // If we have a session_id, try to get a download link from the server
+      if (sessionId) {
+        var downloadBtn = document.getElementById("downloadBtn");
+        downloadBtn.style.display = "block";
+        downloadBtn.href = "/api/ebook-download?session_id=" + encodeURIComponent(sessionId);
+      }
+
+      // TODO: Add your GA4 / Meta Pixel analytics snippet above this script block
+    })();
+  </script>
+
+</body>
+</html>

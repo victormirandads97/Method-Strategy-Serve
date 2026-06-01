@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Last Human Job — The Method Co. Field Guide</title>
+  <meta name="description" content="The careers AI is replacing before 2030, and the five questions that tell you if yours is safe. A short, sharp field guide by The Method Co. Read in under an hour." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Last Human Job — Field Guide by The Method Co." />
+  <meta property="og:description" content="The careers AI is replacing before 2030, and the five questions that tell you if yours is safe." />
+  <meta property="og:url" content="https://themethodco.co/last-human-job" />
+  <meta property="og:type" content="website" />
+  <!-- TODO: Replace with actual share image when available -->
+  <!-- <meta property="og:image" content="https://themethodco.co/images/last-human-job-og.jpg" /> -->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Last Human Job — Field Guide" />
+  <meta name="twitter:description" content="The careers AI is replacing before 2030, and the five questions that tell you if yours is safe." />
+
+  <!-- Fonts - DO NOT REMOVE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --black:   #0A0A0A;
+      --panel:   #111111;
+      --card:    #161616;
+      --cream:   #F5F0E8;
+      --cream2:  #D4CBBA;
+      --muted:   #8A8070;
+      --border:  #232323;
+      --blue:    #4A6CF7;
+      --blue-d:  #3A5AE0;
+      --blue-glow: rgba(74,108,247,.22);
+      --mono:    'JetBrains Mono', monospace;
+      --bebas:   'Bebas Neue', sans-serif;
+      --inter:   'Inter', system-ui, sans-serif;
+      --news:    'Newsreader', serif;
+      --max:     1080px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--inter);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Sticky buy bar ───────────────────────────────────────────── */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(10,10,10,.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(74,108,247,.3);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar-text { font-family: var(--mono); font-size: 0.72rem; color: var(--cream2); letter-spacing: 0.04em; }
+    .sticky-bar-price { font-family: var(--bebas); font-size: 1.4rem; color: var(--cream); letter-spacing: 0.05em; }
+    .sticky-bar-price s { color: var(--muted); font-size: 1rem; margin-right: 6px; }
+    .sticky-bar-right { display: flex; align-items: center; gap: 16px; }
+
+    /* ── Navigation ───────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--cream2);
+      letter-spacing: 0.08em;
+    }
+    .nav-brand span { color: var(--blue); }
+
+    /* ── Buttons ──────────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--bebas);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: var(--blue);
+      padding: 14px 32px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-primary:hover {
+      background: var(--blue-d);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--blue-glow);
+    }
+    .btn-sm {
+      font-size: 0.9rem;
+      padding: 10px 22px;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 5vw; }
+
+    /* ── Tags / labels ─────────────────────────────────────────────── */
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      border: 1px solid rgba(74,108,247,.35);
+      padding: 3px 9px;
+      border-radius: 3px;
+    }
+
+    /* ── Section divider ──────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(74,108,247,.2) 30%, rgba(74,108,247,.2) 70%, transparent 100%);
+      margin: 0;
+    }
+
+    /* ───────────────────────────────────────────────────────────────
+       HERO
+    ─────────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 100px 5vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px; right: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(74,108,247,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--bebas);
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .hero-standfirst {
+      font-family: var(--news);
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      color: var(--cream2);
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .hero-meta-item strong { color: var(--cream2); }
+
+    /* Buy box */
+    .buybox {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--blue);
+      border-radius: 8px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .buybox-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .buybox-title {
+      font-family: var(--bebas);
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .buybox-desc {
+      font-size: 0.85rem;
+      color: var(--cream2);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .buybox-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .price-was {
+      font-family: var(--mono);
+      font-size: 1rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .price-now {
+      font-family: var(--bebas);
+      font-size: 2.4rem;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .buybox-guarantee {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ───────────────────────────────────────────────────────────────
+       WHAT'S INSIDE
+    ─────────────────────────────────────────────────────────────── */
+    .section { padding: 80px 5vw; }
+
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--bebas);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--cream2);
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+
+    .chapters {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--border);
+    }
+    .chapter {
+      background: var(--panel);
+      padding: 28px 24px;
+    }
+    .chapter-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .chapter-title {
+      font-family: var(--bebas);
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .chapter-body {
+      font-size: 0.88rem;
+      color: var(--cream2);
+      line-height: 1.65;
+    }
+
+    /* ───────────────────────────────────────────────────────────────
+       THE FIVE QUESTIONS
+    ─────────────────────────────────────────────────────────────── */
+    .questions {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .question {
+      background: var(--panel);
+      padding: 24px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .question-num {
+      font-family: var(--bebas);
+      font-size: 2rem;
+      color: rgba(74,108,247,.3);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+    .question-text {
+      font-size: 1rem;
+      color: var(--cream);
+      line-height: 1.55;
+    }
+    .question-sub {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ───────────────────────────────────────────────────────────────
+       OFFER CARD
+    ─────────────────────────────────────────────────────────────── */
+    .offer-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--blue);
+      border-radius: 8px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .offer-left-title {
+      font-family: var(--bebas);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .offer-left-body {
+      font-size: 1rem;
+      color: var(--cream2);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .offer-right { text-align: center; }
+    .offer-price-was {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .offer-price-now {
+      font-family: var(--bebas);
+      font-size: 4rem;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .offer-includes {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .offer-includes li { list-style: none; margin-bottom: 4px; }
+    .offer-includes li::before { content: "/ "; color: var(--blue); }
+
+    /* ───────────────────────────────────────────────────────────────
+       FINAL CTA
+    ─────────────────────────────────────────────────────────────── */
+    .cta-band {
+      padding: 100px 5vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 800px 400px at 50% 50%, rgba(74,108,247,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-band-title {
+      font-family: var(--bebas);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+    .cta-band-sub {
+      font-size: 1rem;
+      color: var(--cream2);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .cta-band-price {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 16px;
+    }
+    .cta-band-price s { color: var(--muted); }
+    .cta-band-price strong { color: var(--blue); }
+
+    /* ───────────────────────────────────────────────────────────────
+       FOOTER
+    ─────────────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--panel);
+      border-top: 1px solid rgba(74,108,247,.2);
+      padding: 40px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--cream2); }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .buybox { order: -1; }
+      .offer-card {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 32px;
+      }
+      .offer-right { text-align: left; }
+      .sticky-bar-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Sticky buy bar (5) ────────────────────────────────────────── -->
+  <div class="sticky-bar" id="stickyBar">
+    <div>
+      <div class="sticky-bar-text">// FIELD GUIDE 01</div>
+      <div class="sticky-bar-price"><s>€19</s> €6.97</div>
+    </div>
+    <div class="sticky-bar-right">
+      <span class="sticky-bar-text">7-day money-back guarantee</span>
+      <a href="/api/create-checkout-session"
+         data-checkout="last-human-job"
+         class="btn-primary btn-sm"
+         onclick="trackCheckout()">
+        Get the Guide — €6.97
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Navigation ────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="https://themethodco.co" class="nav-brand">
+      THE METHOD CO. <span>/ FIELD GUIDES</span>
+    </a>
+    <a href="/api/create-checkout-session"
+       data-checkout="last-human-job"
+       class="btn-primary btn-sm"
+       onclick="trackCheckout()">
+      Get the Guide — €6.97
+    </a>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div>
+        <p class="hero-eyebrow">// FIELD GUIDE 01 &nbsp;&nbsp; THE AI AND WORK SERIES</p>
+        <h1 class="hero-title">The Last<br>Human<br>Job</h1>
+        <p class="hero-standfirst">
+          The careers AI is replacing before 2030, and the five questions that tell you if yours is safe.
+        </p>
+        <div class="hero-meta">
+          <span class="hero-meta-item"><strong>READ TIME</strong> / under 60 min</span>
+          <span class="hero-meta-item"><strong>FORMAT</strong> / PDF ebook</span>
+          <span class="hero-meta-item"><strong>AUTHOR</strong> / The Method Co.</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--cream2); line-height:1.65; max-width:480px; margin-bottom:28px;">
+          Not a think-piece. Not a LinkedIn post stretched to 80 pages. A clear, honest field guide to where AI is moving, which roles are already gone, and what actually makes you hard to replace.
+        </p>
+      </div>
+
+      <!-- Buy box (1) -->
+      <div class="buybox">
+        <div class="buybox-tag">// AVAILABLE NOW</div>
+        <div class="buybox-title">The Last Human Job</div>
+        <p class="buybox-desc">
+          One read. Five questions. A clear answer on whether your career is built to last.
+        </p>
+        <div class="buybox-price">
+          <span class="price-was">€19</span>
+          <span class="price-now">€6.97</span>
+        </div>
+        <a href="/api/create-checkout-session"
+           data-checkout="last-human-job"
+           class="btn-primary"
+           style="width:100%;text-align:center;"
+           onclick="trackCheckout()">
+          Read it Now — €6.97
+        </a>
+        <p class="buybox-guarantee">7-day money-back guarantee, no questions asked</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── What's inside ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="section-eyebrow">// INSIDE THE GUIDE</p>
+      <h2 class="section-title">What you<br>will learn</h2>
+      <p class="section-lead">
+        No filler. No padding. Four focused chapters and a diagnostic framework you can use today.
+      </p>
+      <div class="chapters">
+        <div class="chapter">
+          <div class="chapter-num">01 / THE LANDSCAPE</div>
+          <div class="chapter-title">Where AI Is Right Now</div>
+          <p class="chapter-body">A clear map of what AI can already do reliably, what it is getting better at fast, and where the boundary actually sits. Not speculation. Pattern.</p>
+        </div>
+        <div class="chapter">
+          <div class="chapter-num">02 / THE LIST</div>
+          <div class="chapter-title">Roles Already Replaced</div>
+          <p class="chapter-body">Specific job categories that are contracting right now due to AI automation. Not hypotheticals. Actual industries, actual roles, actual timelines.</p>
+        </div>
+        <div class="chapter">
+          <div class="chapter-num">03 / THE SIGNAL</div>
+          <div class="chapter-title">What Makes Work Durable</div>
+          <p class="chapter-body">The four characteristics of work AI struggles to replicate. Not skills. Structural traits. Understanding these changes what you develop next.</p>
+        </div>
+        <div class="chapter">
+          <div class="chapter-num">04 / THE TEST</div>
+          <div class="chapter-title">The Five Questions</div>
+          <p class="chapter-body">A diagnostic you can run on your own role in under ten minutes. Blunt questions with a scoring system that gives you a real answer, not a reassuring one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── The five questions ─────────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <p class="section-eyebrow">// THE DIAGNOSTIC</p>
+      <h2 class="section-title">Five questions.<br>One honest answer.</h2>
+      <p class="section-lead">Run this on your role. The guide walks you through each one with context and scoring.</p>
+      <div class="questions">
+        <div class="question">
+          <div class="question-num">01</div>
+          <div>
+            <p class="question-text">Does your work require judgment calls that change based on context you cannot document in advance?</p>
+            <p class="question-sub">Pattern-based tasks with fixed outputs are already automatable.</p>
+          </div>
+        </div>
+        <div class="question">
+          <div class="question-num">02</div>
+          <div>
+            <p class="question-text">Do people pay for your presence, not just your output?</p>
+            <p class="question-sub">Relationships and trust transfer slower than tasks.</p>
+          </div>
+        </div>
+        <div class="question">
+          <div class="question-num">03</div>
+          <div>
+            <p class="question-text">Is your value in doing the work or in knowing what work matters?</p>
+            <p class="question-sub">Execution is being commoditised. Curation and direction are not, yet.</p>
+          </div>
+        </div>
+        <div class="question">
+          <div class="question-num">04</div>
+          <div>
+            <p class="question-text">Can you describe your role in a way that changes significantly based on who you are talking to?</p>
+            <p class="question-sub">Nuance and adaptability are harder to replicate than process.</p>
+          </div>
+        </div>
+        <div class="question">
+          <div class="question-num">05</div>
+          <div>
+            <p class="question-text">Does your work become more valuable the longer you do it, in ways a new hire with the same tools cannot match?</p>
+            <p class="question-sub">Accumulated context compounds. Generic skill sets do not.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Main offer card (3) ───────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="offer-card">
+        <div>
+          <p class="section-eyebrow" style="margin-bottom:14px;">// BOOK 01 / THE AI AND WORK SERIES</p>
+          <h2 class="offer-left-title">The Last<br>Human Job</h2>
+          <p class="offer-left-body">
+            A short, sharp field guide to surviving and repositioning in the age of AI. Built to be true, not loud. Read in under an hour, apply the same day.
+          </p>
+          <a href="/api/create-checkout-session"
+             data-checkout="last-human-job"
+             class="btn-primary"
+             onclick="trackCheckout()">
+            Get the Guide Now — €6.97
+          </a>
+          <p style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);margin-top:10px;letter-spacing:.06em;">
+            7-day money-back guarantee / instant PDF download
+          </p>
+        </div>
+        <div class="offer-right">
+          <p class="offer-price-was">Was €19</p>
+          <p class="offer-price-now">€6.97</p>
+          <ul class="offer-includes">
+            <li>PDF ebook, 60-minute read</li>
+            <li>The five-question diagnostic</li>
+            <li>Role durability scoring framework</li>
+            <li>Instant delivery to your inbox</li>
+            <li>7-day money-back guarantee</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Final CTA (4) ─────────────────────────────────────────────── -->
+  <section class="cta-band">
+    <p class="section-eyebrow" style="margin-bottom:14px;">// YOUR NEXT MOVE</p>
+    <h2 class="cta-band-title">Know before<br>the market decides<br>for you.</h2>
+    <p class="cta-band-sub">
+      €6.97. One read. One clear answer. The careers that survive the next five years are not the ones that get lucky. They are the ones that adjusted early.
+    </p>
+    <a href="/api/create-checkout-session"
+       data-checkout="last-human-job"
+       class="btn-primary"
+       style="font-size:1.25rem;padding:18px 48px;"
+       onclick="trackCheckout()">
+      Get the Guide — €6.97
+    </a>
+    <p class="cta-band-price"><s>€19</s> &nbsp;/<strong> €6.97 today</strong> &nbsp;/ 7-day money-back guarantee</p>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span class="footer-brand">© 2026 THE METHOD CO. / ALL RIGHTS RESERVED</span>
+    <div class="footer-links">
+      <a href="https://themethodco.co">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@themethodco.co">Support</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── Sticky bar visibility ─────────────────────────────────────────
+    (function () {
+      var bar = document.getElementById("stickyBar");
+      var heroBottom = 0;
+      function measure() {
+        var hero = document.querySelector(".hero");
+        if (hero) heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+      }
+      measure();
+      window.addEventListener("resize", measure);
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > heroBottom - 80) {
+          bar.classList.add("visible");
+        } else {
+          bar.classList.remove("visible");
+        }
+      }, { passive: true });
+    })();
+
+    // ── Analytics: begin_checkout event ──────────────────────────────
+    function trackCheckout() {
+      // TODO: Replace with your analytics implementation if not using GA4 / gtag
+      if (typeof gtag === "function") {
+        gtag("event", "begin_checkout", {
+          currency: "EUR",
+          value: 6.97,
+          items: [{ item_id: "last-human-job", item_name: "The Last Human Job", price: 6.97 }]
+        });
+      }
+      if (typeof fbq === "function") {
+        fbq("track", "InitiateCheckout", { value: 6.97, currency: "EUR" });
+      }
+    }
+
+    // ── Analytics: page view ──────────────────────────────────────────
+    // TODO: Add your GA4 / Meta Pixel snippet here if not already in a global header
+    // Example GA4 page view fires automatically on gtag.js load.
+    // Example Meta Pixel: fbq('track', 'PageView');
+  </script>
+
+</body>
+</html>

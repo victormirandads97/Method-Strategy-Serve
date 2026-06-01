@@ -49,7 +49,9 @@ export default defineConfig({
         blog_ai_marketing: path.resolve(import.meta.dirname, "client/insights/ai-marketing-for-small-businesses.html"),
         blog_high_converting: path.resolve(import.meta.dirname, "client/insights/how-to-build-a-high-converting-landing-page.html"),
         blog_future: path.resolve(import.meta.dirname, "client/insights/the-future-of-ai-driven-marketing.html"),
-        blog_method_explained: path.resolve(import.meta.dirname, "client/insights/the-method-explained.html")
+        blog_method_explained: path.resolve(import.meta.dirname, "client/insights/the-method-explained.html"),
+        landing_last_human_job: path.resolve(import.meta.dirname, "client/landing-last-human-job.html"),
+        thank_you_last_human_job: path.resolve(import.meta.dirname, "client/thank-you-last-human-job.html")
       }
     }
   },

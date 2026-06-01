@@ -20,9 +20,11 @@ const C = {
   red:    "#F06060",
 } as const;
 
-const EP: React.CSSProperties = { fontFamily: "'Epilogue', system-ui, sans-serif" };
-const DM: React.CSSProperties = { fontFamily: "'DM Sans', system-ui, sans-serif" };
-const LBL: React.CSSProperties = { ...DM, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.13em" };
+const EP:    React.CSSProperties = { fontFamily: "'Epilogue', system-ui, sans-serif" };
+const DM:    React.CSSProperties = { fontFamily: "'DM Sans', system-ui, sans-serif" };
+const LBL:   React.CSSProperties = { ...DM, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.13em" };
+const MONO:  React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" };
+const BEBAS: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" };
 
 // ── Shared components ─────────────────────────────────────────────────────────
 
@@ -920,6 +922,109 @@ export default function Landing() {
           </div>
 
         </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── FIELD GUIDES ─────────────────────────────────────────────────────── */}
+      <section id="field-guides" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <p style={{ ...MONO, color: "#4A6CF7", fontSize: "0.62rem", letterSpacing: "0.1em",
+              marginBottom: "0.85rem" }}>// FIELD GUIDES</p>
+            <SH>The AI and Work Series</SH>
+            <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontStyle: "italic",
+              fontWeight: 400, color: C.muted, fontSize: "1.05rem", lineHeight: 1.7,
+              maxWidth: 560, marginBottom: "3rem" }}>
+              Short, sharp field guides to surviving and repositioning in the age of AI. Read in under an hour. Built to be true, not loud.
+            </p>
+          </Reveal>
+
+          <div className="fix-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)",
+            gap: "1.5rem" }}>
+
+            {/* Card 1 — Live */}
+            <Reveal delay={0.05}>
+              <motion.a
+                href="/last-human-job"
+                whileHover={{ y: -6, boxShadow: `0 16px 40px rgba(74,108,247,0.22), 0 0 0 1px rgba(74,108,247,0.5)` }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  display: "block", textDecoration: "none",
+                  background: C.panel,
+                  border: `1px solid ${C.border}`,
+                  borderTop: "2px solid #4A6CF7",
+                  borderRadius: 8, padding: "2.25rem",
+                  cursor: "pointer",
+                }}>
+                <div style={{ display: "flex", justifyContent: "space-between",
+                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
+                  <span style={{ ...MONO, fontSize: "0.58rem", color: "#4A6CF7",
+                    border: "1px solid rgba(74,108,247,.35)", padding: "3px 9px",
+                    borderRadius: 3, letterSpacing: "0.08em" }}>
+                    BOOK 01 // AVAILABLE NOW
+                  </span>
+                </div>
+                <h3 style={{ ...BEBAS, color: C.text, fontSize: "2rem",
+                  letterSpacing: "0.04em", marginBottom: "0.75rem" }}>
+                  The Last Human Job
+                </h3>
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.92rem",
+                  lineHeight: 1.65, marginBottom: "1.75rem" }}>
+                  The careers AI is replacing before 2030, and the five questions that tell you if yours is safe.
+                </p>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: "1.5rem" }}>
+                  <span style={{ ...MONO, fontSize: "0.9rem", color: C.muted,
+                    textDecoration: "line-through" }}>€19</span>
+                  <span style={{ ...BEBAS, fontSize: "1.8rem", color: "#4A6CF7",
+                    letterSpacing: "0.04em" }}>€6.97</span>
+                </div>
+                <span style={{ ...DM, fontWeight: 600, color: "#4A6CF7",
+                  fontSize: "0.85rem", letterSpacing: "0.04em" }}>
+                  Read more →
+                </span>
+              </motion.a>
+            </Reveal>
+
+            {/* Card 2 — Coming soon */}
+            <Reveal delay={0.12}>
+              <div style={{
+                background: C.panel,
+                border: `1px solid ${C.border}`,
+                borderTop: `2px solid ${C.border}`,
+                borderRadius: 8, padding: "2.25rem",
+                opacity: 0.7, cursor: "default",
+              }}>
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <span style={{ ...MONO, fontSize: "0.58rem", color: C.muted,
+                    border: `1px solid ${C.border}`, padding: "3px 9px",
+                    borderRadius: 3, letterSpacing: "0.08em" }}>
+                    BOOK 02 // COMING SOON
+                  </span>
+                </div>
+                <h3 style={{ ...BEBAS, color: C.text, fontSize: "2rem",
+                  letterSpacing: "0.04em", marginBottom: "0.75rem" }}>
+                  Stay Hireable
+                </h3>
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.92rem",
+                  lineHeight: 1.65, marginBottom: "1.75rem" }}>
+                  The 90-day plan to reposition yourself before AI decides your worth.
+                </p>
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <span style={{ ...MONO, fontSize: "0.82rem", color: C.muted,
+                    letterSpacing: "0.04em" }}>Coming soon</span>
+                </div>
+                <a href="mailto:support@themethodco.co?subject=Notify me: Stay Hireable"
+                  style={{ ...DM, fontWeight: 600, color: C.muted,
+                    fontSize: "0.85rem", letterSpacing: "0.04em",
+                    textDecoration: "none" }}>
+                  Notify me →
+                </a>
+              </div>
+            </Reveal>
+
+          </div>
         </div>
       </section>
 
