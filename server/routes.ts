@@ -26,15 +26,7 @@ export async function registerRoutes(
     msg: "Stripe env vars present",
   }));
 
-  // ── /last-human-job ────────────────────────────────────────────────
-  // Serve the ebook landing page at the clean path (no .html extension)
-  app.get("/last-human-job", (_req, res) => {
-    const filePath = path.resolve(__dirname, "public", "landing-last-human-job.html");
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).send("Page not found");
-    }
-    res.sendFile(filePath);
-  });
+  // /last-human-job is handled by the React SPA (LastHumanJobLanding component)
 
   // ── /thank-you-last-human-job ──────────────────────────────────────
   app.get("/thank-you-last-human-job", (_req, res) => {
