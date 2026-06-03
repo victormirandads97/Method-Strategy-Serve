@@ -18,6 +18,14 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
 
+  // Log Stripe env var presence at startup (never log actual values)
+  console.log(JSON.stringify({
+    STRIPE_SECRET_KEY: !!process.env.STRIPE_SECRET_KEY,
+    STRIPE_PRICE_ID: !!process.env.STRIPE_PRICE_ID,
+    BASE_URL: !!process.env.BASE_URL,
+    msg: "Stripe env vars present",
+  }));
+
   // ── /last-human-job ────────────────────────────────────────────────
   // Serve the ebook landing page at the clean path (no .html extension)
   app.get("/last-human-job", (_req, res) => {
