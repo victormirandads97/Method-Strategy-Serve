@@ -30,5 +30,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function() {
+        var excluded = ['/last-human-job', '/thank-you-last-human-job'];
+        if (excluded.indexOf(window.location.pathname) === -1) {
+          var s = document.createElement('script');
+          s.src = 'https://mybot-lagc.onrender.com/widget.js?id=wgt_ce08ebe6568c9245';
+          s.defer = true;
+          document.body.appendChild(s);
+        }
+      })();
+    </script>
   </body>
 </html>
