@@ -573,12 +573,12 @@ export default function Landing() {
 
         <div className="nav-center" style={{ display: "flex", alignItems: "center", gap: "0.1rem" }}>
           {[
-            { label: "offers",    href: "#offers"    },
-            { label: "fit",       href: "#fit"       },
-            { label: "process",   href: "#process"   },
-            { label: "about",     href: "#about"     },
-            { label: "ecosystem", href: "#ecosystem" },
-            { label: "proof",     href: "#proof"     },
+            { label: "offers",       href: "#offers"    },
+            { label: "who it's for", href: "#fit"       },
+            { label: "process",      href: "#process"   },
+            { label: "about",        href: "#about"     },
+            { label: "services",     href: "#ecosystem" },
+            { label: "proof",        href: "#proof"     },
           ].map(({ label, href }) => (
             <a key={label} href={href} className="nav-link"
               style={{ ...MONO, color: C.sub, fontSize: "0.7rem",
@@ -605,7 +605,7 @@ export default function Landing() {
             fontSize: "0.7rem", letterSpacing: "0.1em",
             padding: "0.45rem 1.1rem", borderRadius: 3,
             transition: "opacity 0.15s",
-          }} className="cta-btn">APPLY_NOW</a>
+          }} className="cta-btn">BOOK A CALL</a>
           <button className="hamburger"
             style={{ display: "none", background: "transparent", border: "none",
               cursor: "pointer", color: C.sub, padding: "0.2rem" }}
@@ -622,8 +622,15 @@ export default function Landing() {
           background: `${C.bg}f8`, display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", gap: "1.75rem",
         }}>
-          {["offers","fit","process","about","ecosystem","proof"].map(label => (
-            <a key={label} href={`#${label}`} onClick={() => setNavOpen(false)}
+          {[
+            { label: "offers",       href: "#offers"    },
+            { label: "who it's for", href: "#fit"       },
+            { label: "process",      href: "#process"   },
+            { label: "about",        href: "#about"     },
+            { label: "services",     href: "#ecosystem" },
+            { label: "proof",        href: "#proof"     },
+          ].map(({ label, href }) => (
+            <a key={label} href={href} onClick={() => setNavOpen(false)}
               style={{ ...MONO, color: C.text, fontSize: "1.4rem", letterSpacing: "0.08em" }}>
               {`> ${label}`}
             </a>
@@ -632,7 +639,7 @@ export default function Landing() {
             ...MONO, color: C.bg, background: C.cyan, fontWeight: 700,
             fontSize: "0.9rem", letterSpacing: "0.1em",
             padding: "0.65rem 2rem", borderRadius: 3, marginTop: "0.5rem",
-          }}>APPLY_NOW</a>
+          }}>BOOK A CALL</a>
         </div>
       )}
 
@@ -655,7 +662,7 @@ export default function Landing() {
               border: `1px solid ${C.border}`, padding: "0.3rem 0.75rem",
               borderRadius: 2, display: "inline-block", marginBottom: "2rem",
             }}>
-              // CLARITY-FIRST DIGITAL STRATEGY
+              // FOR SERVICE BUSINESSES IN IRELAND & THE UK
             </span>
           </motion.div>
 
@@ -664,23 +671,22 @@ export default function Landing() {
             style={{ ...BEBAS, fontSize: "clamp(4rem, 11vw, 9.5rem)", lineHeight: 0.88,
               letterSpacing: "0.01em", color: C.text, marginBottom: "0.1em" }}
             className="uppercase">
-            STOP GUESSING.
+            YOU'RE GOOD AT WHAT YOU DO.
           </motion.h1>
           <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             style={{ ...BEBAS, fontSize: "clamp(4rem, 11vw, 9.5rem)", lineHeight: 0.88,
               letterSpacing: "0.01em", color: C.cyan, marginBottom: "2rem" }}
             className="uppercase">
-            START POSITIONING.
+            SO WHY DOESN'T THE MARKET SEE IT?
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             style={{ ...INTER, color: C.sub, fontSize: "1.05rem", lineHeight: 1.7,
               maxWidth: 520, marginBottom: "2.5rem" }}>
-            Most service businesses do not have a traffic problem. They have a clarity problem.
-            We fix the message, the positioning, and the funnel so the right people understand
-            you and take action.
+            Most service businesses don't have a marketing problem. They have a clarity problem.
+            The Method fixes how you are seen, so the right clients finally pick you.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
@@ -691,19 +697,19 @@ export default function Landing() {
               fontSize: "0.78rem", letterSpacing: "0.1em",
               padding: "0.85rem 1.75rem", borderRadius: 3,
               transition: "opacity 0.15s",
-            }}>GET_FREE_AUDIT</a>
+            }}>BOOK A FREE CLARITY CALL</a>
             <a href="#offers" className="ghost" style={{
               ...MONO, color: C.sub,
               border: `1px solid ${C.border}`, fontSize: "0.78rem", letterSpacing: "0.1em",
               padding: "0.85rem 1.75rem", borderRadius: 3,
               transition: "color 0.15s, border-color 0.15s",
-            }}>SEE_OFFERS</a>
+            }}>SEE HOW IT WORKS</a>
           </motion.div>
 
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.5 }}
             style={{ ...MONO, color: C.dim, fontSize: "0.6rem", letterSpacing: "0.08em" }}>
-            // no hype. no guru promises. just structure and execution.
+            // No hype. No guru promises. Just structure that works.
           </motion.p>
         </div>
 
@@ -731,6 +737,47 @@ export default function Landing() {
             </div>
           ))}
         </motion.div>
+      </section>
+
+      <HR />
+
+      {/* ── PAIN ─────────────────────────────────────────────────────────── */}
+      <section id="pain" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SH>SOUND FAMILIAR?</SH>
+          </Reveal>
+          <div className="fix-grid" style={{ display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
+            border: `1px solid ${C.border}`, borderRadius: 4, overflow: "hidden",
+            marginBottom: "2rem" }}>
+            {[
+              { label: "PAIN_01", body: "You post, you show up, you work hard. The leads still don't come." },
+              { label: "PAIN_02", body: "People say \"nice work\" but pick someone cheaper or louder." },
+              { label: "PAIN_03", body: "You know you're good. You just can't make the market see it fast." },
+            ].map((card, i) => (
+              <Reveal key={card.label} delay={i * 0.1}>
+                <div className="fix-card" style={{
+                  background: C.card, padding: "2rem",
+                  borderRight: i < 2 ? `1px solid ${C.border}` : "none",
+                  borderTop: `2px solid transparent`,
+                  transition: "border-top-color 0.2s, transform 0.2s",
+                }}>
+                  <span style={{ ...MONO, color: C.dim, fontSize: "0.6rem",
+                    letterSpacing: "0.1em", display: "block", marginBottom: "1rem" }}>
+                    {card.label}
+                  </span>
+                  <p style={{ ...INTER, color: C.sub, fontSize: "0.88rem", lineHeight: 1.65 }}>{card.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.3}>
+            <p style={{ ...INTER, color: C.sub, fontSize: "1rem", lineHeight: 1.7 }}>
+              That's not a you problem. That's a clarity problem. And clarity can be built.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <HR />
@@ -788,30 +835,25 @@ export default function Landing() {
       <section id="fix" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>WHAT WE ACTUALLY FIX</SectionLabel>
-            <SH>PRACTICAL CHANGES THAT CONVERT.</SH>
-            <Sub>Clarity. Trust. Conversion. In that order.</Sub>
+            <SectionLabel>WHAT THE METHOD DOES</SectionLabel>
+            <SH>WE MAKE YOU THE OBVIOUS CHOICE.</SH>
           </Reveal>
 
           <div className="fix-grid" style={{ display: "grid",
             gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
             border: `1px solid ${C.border}`, overflow: "hidden", borderRadius: 4,
-            marginBottom: "1px" }}>
+            marginBottom: "1.5rem" }}>
             {[
-              { icon: "target",  idx: "01", tag: null,    title: "Positioning and Strategy",
-                body: "We make it obvious what you sell, who it is for, and why it is worth it." },
-              { icon: "pen",     idx: "02", tag: null,    title: "Copywriting",
-                body: "Clear, direct messaging for your site, ads, and key touchpoints. No filler." },
-              { icon: "layout",  idx: "03", tag: null,    title: "Landing Page Build",
-                body: "Structure, flow, and CTA logic that guides visitors to a decision." },
-              { icon: "funnel",  idx: "04", tag: null,    title: "Funnel Planning",
-                body: "Attention to enquiry, mapped to your offer. No overcomplication." },
-              { icon: "cursor",  idx: "05", tag: null,    title: "Paid Ads Direction",
-                body: "Meta and Google aligned so message, offer, and page work as one." },
-              { icon: "search",  idx: "06", tag: "FREE",  title: "Digital Clarity Audit",
-                body: "We pinpoint exactly what is blocking enquiries. No assumptions." },
+              { icon: "target", idx: "01", title: "Positioning",
+                body: "We get clear on what you offer and why it matters, so you stop sounding like everyone else." },
+              { icon: "pen",    idx: "02", title: "Copy & messaging",
+                body: "We fix the words on your site and funnel so they actually sell." },
+              { icon: "layout", idx: "03", title: "Funnels & landing pages",
+                body: "We build the path that turns a click into a booked client, on our own platform." },
+              { icon: "search", idx: "04", title: "Clarity audit",
+                body: "We find what's broken in your online presence and tell you exactly what to fix." },
             ].map((card, i) => (
-              <Reveal key={card.idx} delay={i * 0.06}>
+              <Reveal key={card.idx} delay={i * 0.08}>
                 <div className="fix-card" style={{
                   background: C.card, padding: "1.75rem",
                   borderRight: i % 3 < 2 ? `1px solid ${C.border}` : "none",
@@ -831,20 +873,18 @@ export default function Landing() {
                       {card.idx}
                     </span>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.45rem" }}>
-                    <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.15rem", letterSpacing: "0.04em",
-                      lineHeight: 1.1 }}>{card.title}</h3>
-                    {card.tag && (
-                      <span style={{ ...MONO, color: C.cyan, fontSize: "0.52rem", letterSpacing: "0.1em",
-                        border: `1px solid ${C.cyan}40`, padding: "0.1rem 0.4rem",
-                        borderRadius: 2 }}>{card.tag}</span>
-                    )}
-                  </div>
+                  <h3 style={{ ...BEBAS, color: C.text, fontSize: "1.15rem", letterSpacing: "0.04em",
+                    lineHeight: 1.1, marginBottom: "0.45rem" }}>{card.title}</h3>
                   <p style={{ ...INTER, color: C.sub, fontSize: "0.84rem", lineHeight: 1.6 }}>{card.body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.2}>
+            <p style={{ ...MONO, color: C.dim, fontSize: "0.65rem", letterSpacing: "0.06em" }}>
+              // Not a social-media agency. We do not post for you. We build the structure underneath everything.
+            </p>
+          </Reveal>
 
           {/* Dashboard image */}
           <Reveal>
@@ -880,28 +920,28 @@ export default function Landing() {
                 tag: "FREE", tagCol: C.amber, title: "Digital Clarity Audit", price: "Free",
                 priceCol: C.amber, desc: "Perfect if you are unsure what is blocking enquiries.",
                 bullets: ["Review of your digital presence","What is broken and why","Clear priorities on what to fix first"],
-                bulletCol: C.sub, cta: "APPLY", ctaStyle: "outline",
+                bulletCol: C.sub, cta: "BOOK A FREE CLARITY CALL", ctaStyle: "outline",
               },
               {
                 tag: "CORE", tagCol: C.cyan, title: "AI Strategy Sprint", price: "EUR 200-300",
                 priceCol: C.cyan, popular: true,
                 desc: "For businesses ready to fix the foundation properly.",
                 bullets: ["Offer and positioning refinement","Messaging and copy direction","Simple funnel recommendation","Landing page structure","30-day action plan","Ad direction (Meta and Google)"],
-                bulletCol: C.sub, cta: "APPLY FOR SPRINT", ctaStyle: "solid",
+                bulletCol: C.sub, cta: "BOOK A CALL", ctaStyle: "solid",
               },
               {
                 tag: "PREMIUM", tagCol: C.text, title: "Method Launch System", price: "EUR 1,000",
                 priceCol: C.text,
                 desc: "Full strategy plus landing page build plus ads launch. Built fast, built right.",
                 bullets: ["Deep positioning and offer refinement","Full funnel plan","High-converting landing page","3-5 ad angles plus creative direction","Meta/Google campaign setup plan","Tracking guidance","14-day launch support"],
-                bulletCol: C.sub, cta: "APPLY FOR LAUNCH", ctaStyle: "outline",
+                bulletCol: C.sub, cta: "BOOK A CALL", ctaStyle: "outline",
               },
               {
                 tag: "NEW", tagCol: C.cyan, title: "Method Chat Bundle", price: "POA",
                 priceCol: C.cyan, featured: true,
                 desc: "Everything in a Launch System, plus your own Method Chat: trained on your business, your offer, and your voice. Live and on-message.",
                 bullets: ["Everything in Method Launch System","Custom Method Chat trained on your business","Live now, not coming soon","Ongoing positioning support through the assistant"],
-                bulletCol: C.sub, cta: "ENQUIRE", ctaStyle: "cyan",
+                bulletCol: C.sub, cta: "BOOK A CALL", ctaStyle: "cyan",
               },
             ].map((offer, i) => (
               <Reveal key={offer.title} delay={i * 0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
@@ -1027,21 +1067,21 @@ export default function Landing() {
       <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <Reveal>
-            <SectionLabel>HOW IT WORKS</SectionLabel>
-            <SH>SIMPLE PROCESS. REAL EXECUTION.</SH>
-            <Sub>Clarity first. Then we build the system around it.</Sub>
+            <SectionLabel>THE PROCESS</SectionLabel>
+            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
           </Reveal>
           <div style={{ position: "relative" }}>
             <div className="process-line" style={{
-              position: "absolute", top: 19, left: "calc(16.67% + 20px)", right: "calc(16.67% + 20px)",
+              position: "absolute", top: 19, left: "calc(12.5% + 20px)", right: "calc(12.5% + 20px)",
               height: 1, background: C.border, zIndex: 0,
             }} />
             <div className="process-row" style={{ display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr", gap: "2rem", position: "relative" }}>
+              gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "2rem", position: "relative" }}>
               {[
-                { num: "01", title: "AUDIT",            body: "We diagnose what is blocking trust and enquiries. No assumptions." },
-                { num: "02", title: "STRATEGY",         body: "Offer, message, funnel direction, and priorities mapped out." },
-                { num: "03", title: "BUILD + ITERATE",  body: "Landing page and copy aligned with ads and organic, then refined." },
+                { num: "01", title: "DIAGNOSE", body: "We find what's actually getting in the way." },
+                { num: "02", title: "DESIGN",   body: "We build your positioning and message." },
+                { num: "03", title: "DEPLOY",   body: "We put it live: site, copy, funnel." },
+                { num: "04", title: "DELIVER",  body: "You show up clear, and the right clients notice." },
               ].map((step, i) => (
                 <Reveal key={step.num} delay={i * 0.15} style={{ textAlign: "center" }}>
                   <div style={{
@@ -1064,6 +1104,39 @@ export default function Landing() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── VIDEO ────────────────────────────────────────────────────────── */}
+      <section id="video" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+          <Reveal>
+            <SectionLabel>60 SECONDS</SectionLabel>
+            <SH style={{ marginBottom: "1.5rem" }}>
+              Why most service businesses stay invisible (and how to fix it)
+            </SH>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div style={{
+              background: C.panel, border: `1px solid ${C.border}`, borderRadius: 8,
+              overflow: "hidden", aspectRatio: "16/9",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              marginBottom: "1.25rem", position: "relative",
+            }}>
+              <div style={{
+                width: 64, height: 64, borderRadius: "50%",
+                background: `${C.cyan}20`, border: `1px solid ${C.cyan}40`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Ic n="play" sz={28} col={C.cyan} />
+              </div>
+            </div>
+            <p style={{ ...MONO, color: C.dim, fontSize: "0.65rem", letterSpacing: "0.08em" }}>
+              // Watch this before you spend another euro on marketing.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -1228,9 +1301,9 @@ export default function Landing() {
         <div style={{ maxWidth: 600, margin: "0 auto" }}>
           <Reveal style={{ textAlign: "center", marginBottom: "2.5rem" }}>
             <SectionLabel>APPLY</SectionLabel>
-            <SH>READY TO FIX YOUR POSITIONING?</SH>
+            <SH>STOP GUESSING. START POSITIONING.</SH>
             <Sub style={{ margin: "0 auto" }}>
-              Apply below. We work with a small number of clients at a time to keep quality high.
+              Book a free 20-minute clarity call. We'll find what's getting in the way, no pitch, no pressure.
             </Sub>
           </Reveal>
 
@@ -1295,7 +1368,7 @@ export default function Landing() {
                   cursor: sending ? "wait" : "pointer",
                   transition: "background 0.2s",
                 }}>
-                  {sending ? "SENDING..." : "APPLY_NOW"}
+                  {sending ? "SENDING..." : "BOOK MY FREE CALL"}
                 </button>
               </form>
             </Reveal>
