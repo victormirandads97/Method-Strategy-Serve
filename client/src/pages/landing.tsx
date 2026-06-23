@@ -402,12 +402,12 @@ export default function Landing() {
   };
 
   const NAV_LINKS = [
-    { label: "Offers",     href: "#offers"    },
-    { label: "Fit",        href: "#fit"       },
-    { label: "Process",    href: "#process"   },
-    { label: "About",      href: "#about"     },
-    { label: "Ecosystem",  href: "#ecosystem" },
-    { label: "Insights",   href: "/insights/" },
+    { label: "Offers",       href: "#offers"    },
+    { label: "Who it's for", href: "#fit"       },
+    { label: "Process",      href: "#process"   },
+    { label: "About",        href: "#about"     },
+    { label: "Services",     href: "#ecosystem" },
+    { label: "Blog",         href: "/insights/" },
   ];
 
   return (
@@ -569,7 +569,7 @@ export default function Landing() {
           }}
             onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-            APPLY NOW
+            BOOK A CALL
           </a>
           <button
             className="hamburger"
@@ -607,7 +607,7 @@ export default function Landing() {
               style={{ ...EP, fontWeight: 700, color: C.bg, background: C.accent,
                 textAlign: "center", padding: "0.85rem", borderRadius: 6,
                 marginTop: "0.75rem", fontSize: "0.85rem", letterSpacing: "0.06em" }}>
-              APPLY NOW
+              BOOK A CALL
             </a>
           </motion.div>
         )}
@@ -648,7 +648,7 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.14em", marginBottom: "1.1rem" }}>
-                // POSITIONING SYSTEM FOR SERVICE BUSINESSES
+                // FOR SERVICE BUSINESSES IN IRELAND & THE UK
               </motion.p>
 
               <motion.h1
@@ -662,9 +662,8 @@ export default function Landing() {
                   letterSpacing: "-0.02em", marginBottom: "1.5rem",
                   textShadow: "0 0 80px rgba(61,214,245,0.18)",
                 }}>
-                STOP<br />GUESSING.<br />
-                <span style={{ color: C.accent }}>START</span><br />
-                POSITIONING.
+                YOU'RE GOOD AT WHAT YOU DO.<br />
+                <span style={{ color: C.accent }}>SO WHY DOESN'T THE MARKET SEE IT?</span>
               </motion.h1>
 
               <motion.p
@@ -673,8 +672,8 @@ export default function Landing() {
                 transition={{ duration: 0.55, delay: 0.3 }}
                 style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "1.05rem",
                   lineHeight: 1.7, maxWidth: 480, marginBottom: "2rem" }}>
-                Most service businesses don't have a visibility problem.
-                They have a clarity problem. The Method builds the structure that fixes it.
+                Most service businesses don't have a marketing problem.
+                They have a clarity problem. The Method fixes how you are seen, so the right clients finally pick you.
               </motion.p>
 
               <motion.div
@@ -691,7 +690,7 @@ export default function Landing() {
                 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
-                  APPLY NOW
+                  BOOK A FREE CLARITY CALL
                 </a>
                 <a href="#offers" style={{
                   ...DM, fontWeight: 500, color: C.muted,
@@ -709,7 +708,7 @@ export default function Landing() {
                     const el = e.currentTarget as HTMLAnchorElement;
                     el.style.color = C.muted; el.style.borderColor = C.border;
                   }}>
-                  See Offers
+                  SEE HOW IT WORKS
                 </a>
               </motion.div>
 
@@ -719,7 +718,7 @@ export default function Landing() {
                 transition={{ duration: 0.4, delay: 0.56 }}
                 style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
                   letterSpacing: "0.04em" }}>
-                // No hype. No guru promises. Just structure and execution.
+                // No hype. No guru promises. Just structure that works.
               </motion.p>
             </div>
 
@@ -1268,9 +1267,8 @@ export default function Landing() {
         }} />
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <Reveal>
-            <SLabel>HOW IT WORKS</SLabel>
-            <SH>SIMPLE PROCESS. REAL EXECUTION.</SH>
-            <Sub>Clarity first. Then we build the system around it.</Sub>
+            <SLabel>THE PROCESS</SLabel>
+            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
           </Reveal>
           <div style={{ position: "relative" }}>
             <ProcessLine />
@@ -1548,7 +1546,7 @@ export default function Landing() {
                 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = `${C.accent}10`; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}>
-                  APPLY NOW
+                  BOOK A CALL
                 </a>
               </motion.div>
 
@@ -1745,7 +1743,7 @@ export default function Landing() {
                     transition: "background 0.2s",
                     textTransform: "uppercase",
                   }}>
-                  {sending ? "SENDING..." : "APPLY NOW"}
+                  {sending ? "SENDING..." : "BOOK A CALL"}
                 </motion.button>
                 <p style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
                   textAlign: "center", margin: 0 }}>
