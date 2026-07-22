@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
-// METHOD CHAT: set CHAT_API_ENDPOINT to go live
-const CHAT_API_ENDPOINT = "";
+// Personal contact + flagship live URL. Set ONISHI_URL when the deploy is ready.
+const CONTACT_EMAIL = "victormirandads@gmail.com";
+const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
 
 // ── Brand tokens ──────────────────────────────────────────────────────────────
 const C = {
@@ -100,20 +101,21 @@ function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?
     target:  <><circle cx="12" cy="12" r="9" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="12" cy="12" r="5" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="12" cy="12" r="1.5" fill={col}/></>,
     pen:     <><path d="M12 20H21" strokeWidth="1.5" strokeLinecap="round" fill="none" stroke={col}/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/></>,
     layout:  <><rect x="3" y="3" width="18" height="18" rx="2" strokeWidth="1.5" fill="none" stroke={col}/><path d="M3 9h18M9 21V9" strokeWidth="1.5" stroke={col} fill="none"/></>,
-    funnel:  <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
     cursor:  <path d="M5 3l14 9-7 1-4 7-3-17z" strokeWidth="1.5" strokeLinejoin="round" fill="none" stroke={col}/>,
-    search:  <><circle cx="11" cy="11" r="7" strokeWidth="1.5" fill="none" stroke={col}/><path d="M21 21l-4.35-4.35" strokeWidth="1.5" strokeLinecap="round" stroke={col}/></>,
     check:   <path d="M5 13l4 4L19 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
     x:       <><path d="M18 6L6 18" strokeWidth="2" strokeLinecap="round" stroke={col}/><path d="M6 6l12 12" strokeWidth="2" strokeLinecap="round" stroke={col}/></>,
     ig:      <><rect x="2" y="2" width="20" height="20" rx="5" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="12" cy="12" r="4" strokeWidth="1.5" fill="none" stroke={col}/><circle cx="17.5" cy="6.5" r="1.2" fill={col}/></>,
     menu:    <path d="M3 6h18M3 12h18M3 18h18" strokeWidth="1.5" strokeLinecap="round" stroke={col} fill="none"/>,
     close:   <path d="M18 6L6 18M6 6l12 12" strokeWidth="1.5" strokeLinecap="round" stroke={col} fill="none"/>,
-    play:    <><circle cx="12" cy="12" r="10" strokeWidth="1.5" fill="none" stroke={col}/><path d="M10 8l6 4-6 4V8z" fill={col}/></>,
-    send:    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
-    warning: <><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" strokeWidth="1.5" fill="none" stroke={col}/><line x1="12" y1="9" x2="12" y2="13" strokeWidth="1.5" strokeLinecap="round" stroke={col}/><line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2" strokeLinecap="round" stroke={col}/></>,
     arrow:   <path d="M5 12h14M12 5l7 7-7 7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/>,
     chat:    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke={col} strokeWidth="1.5" strokeLinejoin="round"/>,
     brain:   <><path d="M12 2a7 7 0 00-7 7c0 2 .8 3.8 2 5l1 8h8l1-8a7 7 0 002-5 7 7 0 00-7-7z" fill="none" stroke={col} strokeWidth="1.5"/><path d="M9 14h6M10 17h4" stroke={col} strokeWidth="1.5" strokeLinecap="round"/></>,
+    code:    <><path d="M8 6l-6 6 6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/><path d="M16 6l6 6-6 6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke={col}/></>,
+    db:      <><ellipse cx="12" cy="5" rx="8" ry="3" strokeWidth="1.5" fill="none" stroke={col}/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5" strokeWidth="1.5" fill="none" stroke={col}/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" strokeWidth="1.5" fill="none" stroke={col}/></>,
+    rocket:  <><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.86-.86.86-2.14 0-3a2.12 2.12 0 00-3 0z" strokeWidth="1.5" fill="none" stroke={col} strokeLinejoin="round"/><path d="M9 12l3 3c4-1.5 7-5 7-10 0-1-.5-2-1-2-5 0-8.5 3-10 7z" strokeWidth="1.5" fill="none" stroke={col} strokeLinejoin="round"/><circle cx="14.5" cy="9.5" r="1.2" fill={col}/></>,
+    card:    <><rect x="2" y="5" width="20" height="14" rx="2" strokeWidth="1.5" fill="none" stroke={col}/><path d="M2 10h20" strokeWidth="1.5" stroke={col}/></>,
+    link:    <><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/></>,
+    spark:   <path d="M12 2l2.2 6.6L21 12l-6.8 3.4L12 22l-2.2-6.6L3 12l6.8-3.4L12 2z" strokeWidth="1.3" fill="none" stroke={col} strokeLinejoin="round"/>,
   };
   return (
     <svg viewBox="0 0 24 24" style={{ width: sz, height: sz, display: "block", flexShrink: 0 }}>
@@ -122,8 +124,7 @@ function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?
   );
 }
 
-// ── Demo components for Ecosystem ─────────────────────────────────────────────
-
+// ── Demo loop helper (reused by the case-study demos) ─────────────────────────
 function useDemoLoop(totalMs: number) {
   const [loopKey, setLoopKey] = useState(0);
   const [fading, setFading] = useState(false);
@@ -135,68 +136,13 @@ function useDemoLoop(totalMs: number) {
   return { loopKey, fading };
 }
 
-const AUDIT_BARS = [
-  { label: "POSITIONING", v: 41 },
-  { label: "MESSAGE",     v: 67 },
-  { label: "FUNNEL",      v: 33 },
-] as const;
-
-function AuditInner() {
-  const [count, setCount] = useState(0);
-  const [bars, setBars] = useState([0, 0, 0]);
-  useEffect(() => {
-    const bt = setTimeout(() => setBars([41, 67, 33]), 60);
-    const dur = 1450; let t0 = 0; let raf: number;
-    function tick(ts: number) {
-      if (!t0) t0 = ts;
-      const p = Math.min((ts - t0) / dur, 1);
-      setCount(Math.round(p * 62));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    }
-    raf = requestAnimationFrame(tick);
-    return () => { clearTimeout(bt); cancelAnimationFrame(raf); };
-  }, []);
-  return (
-    <div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: "0.65rem" }}>
-        <span style={{ ...EP, fontWeight: 900, color: C.accent, fontSize: "2rem", lineHeight: 1 }}>{count}</span>
-        <span style={{ ...DM, color: C.border, fontSize: "0.75rem" }}>/100</span>
-        <span style={{ ...LBL, color: C.muted, fontSize: "0.55rem", marginLeft: "auto" }}>CLARITY SCORE</span>
-      </div>
-      {AUDIT_BARS.map((bar, i) => (
-        <div key={bar.label} style={{ marginBottom: "0.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 3 }}>
-            <span style={{ ...LBL, color: C.muted, fontSize: "0.52rem" }}>{bar.label}</span>
-            <span style={{ ...LBL, color: C.accent, fontSize: "0.52rem" }}>{bars[i]}%</span>
-          </div>
-          <div style={{ height: 3, background: C.border, borderRadius: 1, overflow: "hidden" }}>
-            <div style={{ height: "100%", width: `${bars[i]}%`,
-              background: `linear-gradient(90deg, ${C.accent}, ${C.glow})`,
-              transition: `width 1.4s ease-out ${i * 0.14}s` }} />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ConsultancyDemo() {
-  const { loopKey, fading } = useDemoLoop(3900);
-  return (
-    <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
-      padding: "0.85rem", marginBottom: "0.85rem",
-      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
-      <AuditInner key={loopKey} />
-    </div>
-  );
-}
-
+// ── Method Chat demo ──────────────────────────────────────────────────────────
 interface ChatMsg { role: "user" | "bot"; text: string; }
 
 const DEMO_MSGS: ChatMsg[] = [
-  { role: "bot",  text: "What are you trying to fix in your business?" },
-  { role: "user", text: "My offer is confusing. I keep losing people on the website." },
-  { role: "bot",  text: "Then we fix the offer before anything else. What do you actually sell?" },
+  { role: "bot",  text: "Hi, thanks for messaging. How can I help?" },
+  { role: "user", text: "Do you have a table for 4 tonight at 8?" },
+  { role: "bot",  text: "Yes, 8pm for 4 works. What name should I put it under?" },
 ];
 
 function DemoChatInner() {
@@ -240,41 +186,28 @@ function DemoChatInner() {
   );
 }
 
-function ChatEcoDemo() {
+function ChatDemo() {
   const { loopKey, fading } = useDemoLoop(4200);
-  if (CHAT_API_ENDPOINT) {
-    return (
-      <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
-        marginBottom: "0.85rem", overflow: "hidden" }}>
-        <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
-          padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
-          METHOD CHAT V1.0 / LIVE
-        </div>
-        <iframe src={CHAT_API_ENDPOINT} style={{ width: "100%", height: 140, border: "none" }} title="Method Chat" />
-      </div>
-    );
-  }
   return (
     <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
-      marginBottom: "0.85rem", overflow: "hidden",
-      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+      overflow: "hidden", opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
       <div style={{ ...LBL, fontSize: "0.52rem", color: C.muted,
         padding: "0.45rem 0.75rem", borderBottom: `1px solid ${C.border}` }}>
-        METHOD CHAT V1.0
+        THE METHOD CHAT / LIVE
       </div>
       <DemoChatInner key={loopKey} />
     </div>
   );
 }
 
-// ── Node graph (Second Brain) ─────────────────────────────────────────────────
+// ── Second Brain node graph demo ──────────────────────────────────────────────
 const G_NODES = [
   { cx: 0.14, cy: 0.28 }, { cx: 0.50, cy: 0.10 }, { cx: 0.84, cy: 0.28 },
   { cx: 0.74, cy: 0.72 }, { cx: 0.26, cy: 0.76 }, { cx: 0.50, cy: 0.52 },
 ] as const;
 const G_EDGES: readonly [number, number][] = [[0,5],[1,5],[2,5],[3,5],[4,5],[0,1],[2,3],[3,4]];
 
-function NodeGraph({ w = 220, h = 110, loopKey }: { w?: number; h?: number; loopKey: number }) {
+function NodeGraph({ w = 240, h = 130, loopKey }: { w?: number; h?: number; loopKey: number }) {
   const [nVis, setNVis] = useState(0);
   const [eVis, setEVis] = useState(0);
   const [pulse, setPulse] = useState(false);
@@ -315,99 +248,354 @@ function NodeGraph({ w = 220, h = 110, loopKey }: { w?: number; h?: number; loop
   );
 }
 
-function SecondBrainDemo() {
-  const { loopKey, fading } = useDemoLoop(4800);
+// ── Browser frame + project visuals ───────────────────────────────────────────
+function BrowserFrame({ url, children, style: s }: {
+  url?: string; children: React.ReactNode; style?: React.CSSProperties;
+}) {
   return (
-    <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 6,
-      marginBottom: "0.85rem", padding: "0.85rem",
-      opacity: fading ? 0 : 1, transition: "opacity 0.5s ease",
-      display: "flex", alignItems: "center", justifyContent: "center", minHeight: 120 }}>
-      <NodeGraph loopKey={loopKey} />
+    <div style={{
+      border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden",
+      background: C.elev, boxShadow: `0 20px 50px rgba(0,0,0,0.4)`, ...s,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem",
+        padding: "0.55rem 0.85rem", borderBottom: `1px solid ${C.border}`,
+        background: C.panel }}>
+        <div style={{ display: "flex", gap: 5 }}>
+          {[C.red, C.amber, C.green].map(c => (
+            <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, opacity: 0.7 }} />
+          ))}
+        </div>
+        {url && (
+          <div style={{ flex: 1, marginLeft: "0.35rem", background: C.bg,
+            border: `1px solid ${C.border}`, borderRadius: 5,
+            padding: "0.2rem 0.6rem", ...MONO, fontSize: "0.62rem", color: C.muted,
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            {url}
+          </div>
+        )}
+      </div>
+      {children}
     </div>
   );
 }
 
-// ── ProcessLine: animated left-to-right on scroll ─────────────────────────────
-function ProcessLine() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+// Shot image cropped to a consistent window, aligned to the top of the app
+function Shot({ src, alt, height }: { src: string; alt: string; height: number | string }) {
   return (
-    <div ref={ref} className="process-line" style={{
-      position: "absolute", top: 19,
-      left: "calc(12.5% + 20px)", right: "calc(12.5% + 20px)",
-      height: 1, background: C.border, zIndex: 0, overflow: "hidden",
-    }}>
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={inView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-        style={{
-          height: "100%",
-          background: `linear-gradient(90deg, ${C.accent}, ${C.glow})`,
-          transformOrigin: "left",
-          boxShadow: `0 0 10px ${C.accent}60`,
-        }}
-      />
+    <div style={{ height, overflow: "hidden", background: C.bg }}>
+      <img src={src} alt={alt} loading="lazy"
+        style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
     </div>
+  );
+}
+
+// The visual shown on a project card: real screenshot, or the live demo
+function ProjectVisual({ project, height }: { project: Project; height: number }) {
+  if (project.cover) {
+    return (
+      <BrowserFrame url={project.frameUrl}>
+        <Shot src={project.cover} alt={`${project.name} screenshot`} height={height} />
+      </BrowserFrame>
+    );
+  }
+  if (project.demo === "chat") {
+    return <div style={{ minHeight: height, display: "flex", alignItems: "stretch" }}><ChatDemo /></div>;
+  }
+  if (project.demo === "graph") {
+    return <GraphCard url={project.frameUrl} height={height} />;
+  }
+  return null;
+}
+
+function GraphCard({ url, height }: { url?: string; height: number }) {
+  const { loopKey, fading } = useDemoLoop(4800);
+  return (
+    <BrowserFrame url={url}>
+      <div style={{ height, display: "flex", alignItems: "center", justifyContent: "center",
+        background: C.bg, opacity: fading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+        <NodeGraph loopKey={loopKey} />
+      </div>
+    </BrowserFrame>
+  );
+}
+
+// ── Project data ──────────────────────────────────────────────────────────────
+type DemoKind = "chat" | "graph" | null;
+
+interface Project {
+  id: string;
+  name: string;
+  icon: string;
+  summary: string;
+  role: string;
+  tech: string;
+  problem: string;
+  built: string;
+  hardPart: string;
+  status: string;
+  statusCol: string;
+  flagship?: boolean;
+  liveUrl?: string;
+  liveLabel?: string;
+  demo?: DemoKind;
+  frameUrl?: string;        // faux address bar label for the browser frame
+  cover?: string;           // hero screenshot shown on the card
+  shots?: { src: string; label: string }[]; // gallery inside the case study
+}
+
+const PROJECTS: Project[] = [
+  {
+    id: "onishi",
+    name: "Onishi",
+    icon: "layout",
+    summary: "A full app for a restaurant floor team, live in production.",
+    role: "Designed and built end to end.",
+    tech: "React, TypeScript, Express, SQLite, deployed on Render as a PWA.",
+    problem:
+      "Floor teams run on WhatsApp and paper for rosters, day off requests, sales ranking, and hours. Nothing lives in one place, and nothing is reliable when it matters.",
+    built:
+      "A single app with roster building, a day off calendar, a sales-per-hour leaderboard, checklists, shared notes, actual-hours and overtime tracking, and a daily quiz game for staff. It has roles for manager and sub-manager, and it installs on phones like a native app.",
+    hardPart:
+      "Getting real hours and overtime tracking right, so contracted staff can actually prove overtime. And making it safe to deploy updates without ever losing live data: persistent storage and safe, additive migrations, so shipping a release never wipes what the team depends on.",
+    status: "Live in production",
+    statusCol: C.green,
+    flagship: true,
+    liveUrl: ONISHI_URL,
+    liveLabel: "Open the live app",
+    frameUrl: "onishi.onrender.com",
+    cover: "/images/projects/onishi-dashboard.jpg",
+    shots: [
+      { src: "/images/projects/onishi-dashboard.jpg", label: "Team dashboard" },
+      { src: "/images/projects/onishi-roster.jpg",    label: "Roster builder" },
+      { src: "/images/projects/onishi-ranking.jpg",   label: "Sales-per-hour leaderboard" },
+      { src: "/images/projects/onishi-hours.jpg",     label: "Hours and overtime tracking" },
+    ],
+  },
+  {
+    id: "method-chat",
+    name: "The Method Chat",
+    icon: "chat",
+    summary: "An AI assistant that answers customer messages across web, Facebook, and WhatsApp.",
+    role: "Built the product and the integrations.",
+    tech: "Node, AI model integration, webhooks, deployed on Render.",
+    problem:
+      "Small service businesses miss leads because they cannot answer messages fast enough. The enquiry arrives, no one is free, and the customer moves on.",
+    built:
+      "A configurable AI agent with its own persona, a website widget, and channel integrations, plus lead capture and a dashboard to see what came in.",
+    hardPart:
+      "Debugging a live widget that hung on load. I traced it down to a single invalid character breaking the script, then handled cold starts and connection edge cases so it stays reliable in the real world.",
+    status: "Live",
+    statusCol: C.green,
+    liveUrl: "",
+    demo: "chat",
+    frameUrl: "themethodco.co",
+  },
+  {
+    id: "second-brain",
+    name: "Second Brain",
+    icon: "brain",
+    summary: "A personal tool combining a task pipeline, notes, an AI chat interface, and a 3D view of a codebase.",
+    role: "Built it for my own workflow.",
+    tech: "Web app, AI integration, code graph visualisation.",
+    problem:
+      "Ideas and code context were scattered across too many places. Keeping the thread of a project in my head was the bottleneck.",
+    built:
+      "A single workspace with a kanban pipeline, notes capture, AI chat, and an embedded interactive code graph, so the work and the context sit side by side.",
+    hardPart:
+      "Generating and rendering a large code graph, thousands of nodes, and keeping it usable rather than a tangled hairball you cannot read.",
+    status: "Personal build",
+    statusCol: C.accent,
+    demo: "graph",
+    frameUrl: "second-brain.local",
+  },
+  {
+    id: "last-human-job",
+    name: "The Last Human Job",
+    icon: "rocket",
+    summary: "A paid ebook with a designed landing page and live payments.",
+    role: "Wrote, designed, built, and launched it.",
+    tech: "React landing page, Stripe checkout, gated digital delivery, on Render.",
+    problem:
+      "Turning an idea into something that actually sells online, end to end, not just a document sitting in a folder.",
+    built:
+      "The whole go-to-market: the writing, the editorial design, a conversion-focused landing page, Stripe payment, and secure PDF delivery after purchase.",
+    hardPart:
+      "Wiring secure paid delivery, so the product is only accessible after payment and cannot be pulled without buying it first.",
+    status: "Live",
+    statusCol: C.green,
+    liveUrl: "/last-human-job",
+    liveLabel: "View the live page",
+    frameUrl: "themethodco.co/last-human-job",
+    cover: "/images/projects/last-human-job.jpg",
+    shots: [
+      { src: "/images/projects/last-human-job.jpg", label: "Conversion-focused landing page" },
+    ],
+  },
+];
+
+// ── Skills data ───────────────────────────────────────────────────────────────
+const SKILLS = [
+  { icon: "code",   title: "Full-stack web apps", body: "React, TypeScript, Node, and Express, from the interface down to the API." },
+  { icon: "db",     title: "Databases",           body: "SQLite and Postgres. Modelling data and keeping it safe through change." },
+  { icon: "rocket", title: "Ship and run live apps", body: "Render, GitHub, and DNS. Deploying, maintaining, and not losing data doing it." },
+  { icon: "spark",  title: "AI in real products", body: "Integrating AI models into products people actually use, not demos." },
+  { icon: "card",   title: "Payments",            body: "Stripe checkout and gated digital delivery that only opens after purchase." },
+  { icon: "arrow",  title: "Fast with AI-assisted dev", body: "Building and shipping quickly by working alongside AI tools every day." },
+] as const;
+
+// ── Case-study modal ──────────────────────────────────────────────────────────
+function CaseStudy({ project, onClose }: { project: Project; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
+
+  const sections: { label: string; body: string }[] = [
+    { label: "The problem", body: project.problem },
+    { label: "What I built", body: project.built },
+    { label: "The hard part", body: project.hardPart },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 300,
+        background: "rgba(3,5,12,0.72)", backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        display: "flex", alignItems: "flex-start", justifyContent: "center",
+        padding: "5vh 5vw", overflowY: "auto",
+      }}>
+      <motion.div
+        role="dialog" aria-modal="true" aria-label={`${project.name} case study`}
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.98 }}
+        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: C.panel, border: `1px solid ${C.border}`,
+          borderTop: `2px solid ${C.accent}`, borderRadius: 12,
+          maxWidth: 720, width: "100%", padding: "clamp(1.5rem, 4vw, 2.75rem)",
+          boxShadow: `0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px ${C.accent}12`,
+          position: "relative",
+        }}>
+        <button
+          onClick={onClose} aria-label="Close case study"
+          style={{ position: "absolute", top: "1.1rem", right: "1.1rem",
+            background: C.elev, border: `1px solid ${C.border}`, borderRadius: 8,
+            color: C.muted, cursor: "pointer", padding: "0.4rem",
+            display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Ic n="close" sz={16} col="currentColor" />
+        </button>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.1rem" }}>
+          <span style={{ ...LBL, color: project.statusCol, fontSize: "0.56rem",
+            display: "flex", alignItems: "center", gap: "0.35rem" }}>
+            <span style={{ width: 5, height: 5, borderRadius: "50%", background: project.statusCol,
+              display: "inline-block", boxShadow: `0 0 6px ${project.statusCol}` }} />
+            {project.status.toUpperCase()}
+          </span>
+          {project.flagship && (
+            <span style={{ ...LBL, color: C.accent, fontSize: "0.54rem",
+              border: `1px solid ${C.accent}40`, padding: "0.1rem 0.45rem", borderRadius: 3 }}>
+              FLAGSHIP
+            </span>
+          )}
+        </div>
+
+        <h3 style={{ ...EP, fontWeight: 900, color: C.text, fontSize: "clamp(1.9rem, 5vw, 2.6rem)",
+          lineHeight: 1, letterSpacing: "-0.01em", textTransform: "uppercase", marginBottom: "0.7rem" }}>
+          {project.name}
+        </h3>
+        <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1rem", lineHeight: 1.6,
+          marginBottom: "1.75rem" }}>
+          {project.summary}
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "0.9rem", marginBottom: "1.75rem" }}>
+          <div>
+            <p style={{ ...LBL, color: C.accent, fontSize: "0.56rem", marginBottom: "0.3rem" }}>MY ROLE</p>
+            <p style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.9rem", lineHeight: 1.55 }}>{project.role}</p>
+          </div>
+          <div>
+            <p style={{ ...LBL, color: C.accent, fontSize: "0.56rem", marginBottom: "0.3rem" }}>TECH</p>
+            <p style={{ ...MONO, color: "#C5CFE0", fontSize: "0.82rem", lineHeight: 1.55 }}>{project.tech}</p>
+          </div>
+        </div>
+
+        {project.shots && project.shots.length > 0 && (
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.75rem" }}>
+            {project.shots.map(shot => (
+              <figure key={shot.src} style={{ margin: 0 }}>
+                <BrowserFrame url={project.frameUrl}>
+                  <Shot src={shot.src} alt={shot.label} height="auto" />
+                </BrowserFrame>
+                <figcaption style={{ ...MONO, color: C.muted, fontSize: "0.66rem",
+                  marginTop: "0.5rem", textAlign: "center" }}>
+                  {shot.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+        {!project.shots && project.demo === "chat" && (
+          <div style={{ marginBottom: "1.75rem" }}><ChatDemo /></div>
+        )}
+        {!project.shots && project.demo === "graph" && (
+          <div style={{ marginBottom: "1.75rem" }}><GraphCard url={project.frameUrl} height={240} /></div>
+        )}
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {sections.map(s => (
+            <div key={s.label}>
+              <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.5rem" }}>
+                {s.label}
+              </p>
+              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                {s.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {project.liveUrl ? (
+          <a href={project.liveUrl}
+            target={project.liveUrl.startsWith("http") ? "_blank" : undefined}
+            rel={project.liveUrl.startsWith("http") ? "noreferrer" : undefined}
+            style={{ ...EP, fontWeight: 700, color: C.bg, background: C.accent,
+              fontSize: "0.74rem", letterSpacing: "0.08em", textTransform: "uppercase",
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.8rem 1.5rem", borderRadius: 6, marginTop: "2rem" }}>
+            {project.liveLabel ?? "View live"} <Ic n="arrow" sz={15} col={C.bg} />
+          </a>
+        ) : (
+          <p style={{ ...MONO, color: C.muted, fontSize: "0.72rem", marginTop: "2rem" }}>
+            // Live link coming soon
+          </p>
+        )}
+      </motion.div>
+    </motion.div>
   );
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function Landing() {
   const [navOpen, setNavOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", website: "", business: "", problem: "" });
-  const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const openProject = PROJECTS.find(p => p.id === openId) ?? null;
 
-  useEffect(() => { document.title = "The Method Co. | Clarity Before Strategy"; }, []);
-
-  function setField(k: keyof typeof form, v: string) { setForm(p => ({ ...p, [k]: v })); }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSending(true);
-    try {
-      const res = await fetch("https://formspree.io/f/xkovloyk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name:     form.name,
-          email:    form.email,
-          website:  form.website,
-          business: form.business,
-          problem:  form.problem,
-        }),
-      });
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        alert("Something went wrong. Please email us directly at support@themethodco.co");
-      }
-    } catch {
-      alert("Network error. Please email us directly at support@themethodco.co");
-    } finally {
-      setSending(false);
-    }
-  }
-
-  const inp: React.CSSProperties = {
-    ...DM, fontWeight: 400, width: "100%", background: C.panel,
-    border: "1px solid rgba(61,214,245,0.3)", borderRadius: 6, color: C.text,
-    fontSize: "0.9rem", padding: "0.8rem 1rem", outline: "none",
-    boxSizing: "border-box",
-  };
-  const lbl: React.CSSProperties = {
-    ...LBL, color: C.text, fontSize: "0.62rem", letterSpacing: "0.1em",
-    display: "block", marginBottom: "0.45rem",
-  };
+  useEffect(() => { document.title = "Victor Miranda | AI Product Builder"; }, []);
 
   const NAV_LINKS = [
-    { label: "Offers",       href: "#offers"    },
-    { label: "Who it's for", href: "#fit"       },
-    { label: "Process",      href: "#process"   },
-    { label: "About",        href: "#about"     },
-    { label: "Services",     href: "#ecosystem" },
-    { label: "Blog",         href: "/insights/" },
+    { label: "Work",    href: "#work"    },
+    { label: "About",   href: "#about"   },
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
@@ -477,46 +665,24 @@ export default function Landing() {
           100% { transform: rotate(360deg); }
         }
         .cta-glow { animation: ctaPulse 3s ease-in-out infinite; }
-        .form-input:focus {
-          border-color: #3DD6F5 !important;
-          box-shadow: 0 0 0 3px rgba(61,214,245,0.12) !important;
-          outline: none;
-        }
-        .form-input::placeholder { color: #8A97B4; opacity: 1; }
-        @keyframes marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-inner { animation: marquee 28s linear infinite; }
-        .marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
-        .eco-row::-webkit-scrollbar { display: none; }
-        .eco-row { scrollbar-width: none; }
         .nav-link:hover { color: #3DD6F5 !important; }
         a { text-decoration: none; color: inherit; }
         * { box-sizing: border-box; }
         @media (prefers-reduced-motion: reduce) {
-          .marquee-inner { animation: none !important; }
           * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
         }
         @media (max-width: 900px) {
           .nav-center  { display: none !important; }
           .hamburger   { display: flex !important; }
-          .hero-cols   { flex-direction: column !important; }
-          .hero-video  { width: 100% !important; flex: unset !important; }
-          .fix-grid    { grid-template-columns: repeat(2,1fr) !important; }
-          .offers-row  { flex-direction: column !important; }
-          .fit-cols    { flex-direction: column !important; }
+          .hero-cols     { flex-direction: column !important; }
+          .hero-media    { width: 100% !important; flex: unset !important; }
+          .flagship-cols { flex-direction: column !important; }
+          .card-grid     { grid-template-columns: repeat(2,1fr) !important; }
           .about-row   { flex-direction: column !important; }
-          .process-row { grid-template-columns: repeat(2,1fr) !important; }
-          .process-line { display: none !important; }
           .footer-cols { flex-direction: column !important; }
         }
-        @media (max-width: 768px) {
-          .team-row    { flex-direction: column !important; align-items: center !important; }
-        }
         @media (max-width: 540px) {
-          .fix-grid    { grid-template-columns: 1fr !important; }
-          .process-row { grid-template-columns: 1fr !important; }
+          .card-grid   { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
@@ -534,11 +700,11 @@ export default function Landing() {
         <a href="/" style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
           <img
             src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
-            alt="The Method Co."
+            alt="Victor Miranda"
             style={{ height: 26, width: 26 }}
           />
           <span style={{ ...DM, fontWeight: 600, color: C.accent, fontSize: "0.88rem", letterSpacing: "0.02em" }}>
-            The Method Co.
+            Victor Miranda
           </span>
         </a>
 
@@ -551,16 +717,11 @@ export default function Landing() {
               {label}
             </a>
           ))}
-          <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
-            style={{ color: C.muted, padding: "0.35rem 0.5rem", display: "flex",
-              alignItems: "center", transition: "color 0.15s", cursor: "pointer" }} className="nav-link">
-            <Ic n="ig" sz={15} col="currentColor" />
-          </a>
         </div>
 
         {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <a href="#apply" className="cta-glow" style={{
+          <a href="#contact" className="cta-glow" style={{
             ...EP, fontWeight: 700, color: C.bg, background: C.accent,
             fontSize: "0.72rem", letterSpacing: "0.08em",
             padding: "0.5rem 1.2rem", borderRadius: 5,
@@ -569,7 +730,7 @@ export default function Landing() {
           }}
             onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-            BOOK A CALL
+            GET IN TOUCH
           </a>
           <button
             className="hamburger"
@@ -603,11 +764,11 @@ export default function Landing() {
                 {label}
               </a>
             ))}
-            <a href="#apply" onClick={() => setNavOpen(false)}
+            <a href="#contact" onClick={() => setNavOpen(false)}
               style={{ ...EP, fontWeight: 700, color: C.bg, background: C.accent,
                 textAlign: "center", padding: "0.85rem", borderRadius: 6,
                 marginTop: "0.75rem", fontSize: "0.85rem", letterSpacing: "0.06em" }}>
-              BOOK A CALL
+              GET IN TOUCH
             </a>
           </motion.div>
         )}
@@ -630,7 +791,6 @@ export default function Landing() {
             background: `radial-gradient(circle, ${C.glow}10 0%, transparent 70%)`,
             animation: "orbDrift2 22s ease-in-out infinite",
           }} />
-          {/* Grain texture */}
           <div style={{
             position: "absolute", inset: 0,
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
@@ -641,14 +801,14 @@ export default function Landing() {
         <div style={{ maxWidth: 1160, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div className="hero-cols" style={{ display: "flex", gap: "4rem", alignItems: "center" }}>
 
-            {/* Left column - staggered load */}
+            {/* Left column */}
             <div style={{ flex: "1 1 520px", minWidth: 0 }}>
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
                 style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.14em", marginBottom: "1.1rem" }}>
-                // FOR SERVICE BUSINESSES IN IRELAND & THE UK
+                // VICTOR MIRANDA / AI PRODUCT BUILDER
               </motion.p>
 
               <motion.h1
@@ -662,8 +822,8 @@ export default function Landing() {
                   letterSpacing: "-0.02em", marginBottom: "1.5rem",
                   textShadow: "0 0 80px rgba(61,214,245,0.18)",
                 }}>
-                YOU'RE GOOD AT WHAT YOU DO.<br />
-                <span style={{ color: C.accent }}>SO WHY DOESN'T THE MARKET SEE IT?</span>
+                I TURN IDEAS INTO<br />
+                <span style={{ color: C.accent }}>WORKING PRODUCTS, FAST.</span>
               </motion.h1>
 
               <motion.p
@@ -672,8 +832,7 @@ export default function Landing() {
                 transition={{ duration: 0.55, delay: 0.3 }}
                 style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "1.05rem",
                   lineHeight: 1.7, maxWidth: 480, marginBottom: "2rem" }}>
-                Most service businesses don't have a marketing problem.
-                They have a clarity problem. The Method fixes how you are seen, so the right clients finally pick you.
+                Chef turned builder. I ship real software with AI, products that real people use every day.
               </motion.p>
 
               <motion.div
@@ -681,7 +840,7 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.42 }}
                 style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "2rem" }}>
-                <a href="#apply" className="cta-glow" style={{
+                <a href="#work" className="cta-glow" style={{
                   ...EP, fontWeight: 700, color: C.bg, background: C.accent,
                   fontSize: "0.82rem", letterSpacing: "0.08em",
                   padding: "0.85rem 2rem", borderRadius: 6,
@@ -690,9 +849,9 @@ export default function Landing() {
                 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
-                  BOOK A FREE CLARITY CALL
+                  SEE MY WORK
                 </a>
-                <a href="#offers" style={{
+                <a href="#contact" style={{
                   ...DM, fontWeight: 500, color: C.muted,
                   fontSize: "0.82rem",
                   padding: "0.85rem 1.75rem", borderRadius: 6,
@@ -708,7 +867,7 @@ export default function Landing() {
                     const el = e.currentTarget as HTMLAnchorElement;
                     el.style.color = C.muted; el.style.borderColor = C.border;
                   }}>
-                  SEE HOW IT WORKS
+                  GET IN TOUCH
                 </a>
               </motion.div>
 
@@ -718,52 +877,41 @@ export default function Landing() {
                 transition={{ duration: 0.4, delay: 0.56 }}
                 style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
                   letterSpacing: "0.04em" }}>
-                // No hype. No guru promises. Just structure that works.
+                // Real products, live in production. Not slideware.
               </motion.p>
             </div>
 
-            {/* Right column - atmospheric image with play overlay */}
-            {/* HERO VIDEO: replace the img below with <video> or <iframe> when ready */}
+            {/* Right column - atmospheric portrait */}
             <motion.div
-              className="hero-video"
+              className="hero-media"
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               style={{ flex: "0 0 44%", minWidth: 0, position: "relative", alignSelf: "stretch", minHeight: 380 }}>
-              {/* Full-bleed image */}
               <img
                 src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
-                alt=""
+                alt="Victor Miranda"
                 style={{
                   position: "absolute", inset: 0,
                   width: "100%", height: "100%", objectFit: "cover",
                   filter: "grayscale(15%) contrast(1.08)",
                 }}
               />
-              {/* Left-to-right gradient: bg at 60% on left, transparent on right */}
               <div style={{
                 position: "absolute", inset: 0,
                 background: `linear-gradient(90deg, ${C.bg}99 0%, ${C.bg}30 40%, transparent 100%)`,
               }} />
-              {/* Play button overlay */}
               <div style={{
-                position: "absolute", inset: 0,
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", gap: "0.75rem",
+                position: "absolute", left: "1.5rem", bottom: "1.5rem",
+                display: "flex", flexDirection: "column", gap: "0.3rem",
               }}>
-                <div style={{
-                  width: 56, height: 56, borderRadius: "50%",
-                  border: `1.5px solid ${C.accent}80`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  background: `${C.bg}a0`, backdropFilter: "blur(6px)",
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24">
-                    <polygon points="9,7 19,12 9,17" fill={C.accent} />
-                  </svg>
-                </div>
-                <p style={{ ...DM, fontWeight: 400, color: `${C.text}90`, fontSize: "0.78rem", letterSpacing: "0.04em" }}>
-                  Video coming soon
-                </p>
+                <span style={{ ...MONO, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.08em" }}>
+                  // BUILDING IN DUBLIN
+                </span>
+                <span style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.1rem",
+                  textTransform: "uppercase", letterSpacing: "0.02em" }}>
+                  Victor Miranda
+                </span>
               </div>
             </motion.div>
           </div>
@@ -772,266 +920,174 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── THE PROBLEM ──────────────────────────────────────────────────────── */}
-      <section id="problem" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* ── ABOUT ────────────────────────────────────────────────────────────── */}
+      <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <Reveal>
-            <SLabel>THE REAL PROBLEM</SLabel>
-            <SH>YOU DON'T NEED MORE VISIBILITY.</SH>
-            <Sub>You need a clear offer and a system that turns attention into enquiries. More content is not the answer.</Sub>
+            <SLabel>ABOUT</SLabel>
+            <SH>CHEF FOR YEARS. BUILDER NOW.</SH>
           </Reveal>
-          <div className="fix-grid" style={{ display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
-            {[
-              {
-                icon: "warning", num: "01",
-                title: "Confusing offer",
-                body: "People cannot tell what you do or why you're the obvious choice. So they scroll past.",
-              },
-              {
-                icon: "layout", num: "02",
-                title: "Weak website flow",
-                body: "Your page doesn't lead anyone to a decision. Visitors leave without taking a single step.",
-              },
-              {
-                icon: "cursor", num: "03",
-                title: "Spend without strategy",
-                body: "Paid spend without positioning is spend wasted. Clicks are not the same as clients.",
-              },
-            ].map((card, i) => (
-              <Reveal key={card.num} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    background: C.panel, padding: "2rem",
-                    borderRight: i < 2 ? `1px solid ${C.border}` : "none",
-                    borderTop: `2px solid transparent`,
-                    cursor: "default",
-                  }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between",
-                    marginBottom: "1.25rem" }}>
-                    <div style={{
-                      width: 42, height: 42, borderRadius: 8,
-                      background: `${C.accent}12`, border: `1px solid ${C.accent}30`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      <Ic n={card.icon} sz={18} col={C.accent} />
-                    </div>
-                    <span style={{ ...LBL, color: C.muted, fontSize: "0.58rem", opacity: 0.7 }}>{`ISSUE ${card.num}`}</span>
-                  </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
-                    letterSpacing: "0.01em", marginBottom: "0.65rem", textTransform: "uppercase" }}>
-                    {card.title}
-                  </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.9rem", lineHeight: 1.65 }}>
-                    {card.body}
-                  </p>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── WHAT WE FIX ──────────────────────────────────────────────────────── */}
-      <section id="fix" style={{ position: "relative", zIndex: 1 }}>
-        {/* Full-width atmospheric image strip with floating headline */}
-        <div style={{ position: "relative", height: 320, overflow: "hidden", marginBottom: 0 }}>
-          <img
-            src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg"
-            alt=""
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
-              objectFit: "cover", filter: "grayscale(10%) contrast(1.08)" }}
-            loading="lazy"
-          />
-          {/* Top-to-bottom gradient so bottom bleeds into section bg */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `linear-gradient(180deg, ${C.bg}60 0%, ${C.bg}00 40%, ${C.bg}e0 80%, ${C.bg} 100%)`,
-          }} />
-          {/* Floating headline */}
-          <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column",
-            justifyContent: "flex-end", padding: "0 5vw 2.5rem" }}>
-            <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
-              <SLabel>WHAT WE FIX</SLabel>
-              <SH style={{ marginBottom: 0 }}>PRACTICAL CHANGES THAT CONVERT.</SH>
-            </div>
-          </div>
-        </div>
-        <div style={{ padding: "0 5vw 96px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <Sub>Not advice. Actual work. Six areas where clarity compounds into revenue.</Sub>
-          </Reveal>
-          <div className="fix-grid" style={{ display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden",
-            marginBottom: "3rem",
-            background: C.border }}>
-            {/* background: C.border fills the 1px grid gaps so no dark bands show through */}
-            {[
-              { icon: "target", title: "Positioning",           body: "Make your offer undeniable to the right people." },
-              { icon: "pen",    title: "Copywriting",           body: "Words that move people from curious to committed." },
-              { icon: "layout", title: "Landing Page Build",    body: "Pages built to convert, not to impress your cousin." },
-              { icon: "funnel", title: "Funnel Planning",       body: "A clear path from awareness to enquiry to client." },
-              { icon: "cursor", title: "Paid Ads Direction",    body: "Ad strategy aligned to positioning, not just budgets." },
-              { icon: "search", title: "Digital Clarity Audit", body: "Start free. Find out exactly what is blocking enquiries.", tag: "FREE" },
-            ].map((card, i) => (
-              <Reveal key={card.title} delay={i * 0.07}>
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    background: C.panel, padding: "1.85rem",
-                    borderRight: i % 3 < 2 ? `1px solid ${C.border}` : "none",
-                    borderBottom: i < 3 ? `1px solid ${C.border}` : "none",
-                    cursor: "default", position: "relative",
-                  }}>
-                  {card.tag && (
-                    <span style={{
-                      position: "absolute", top: "1.2rem", right: "1.2rem",
-                      ...LBL, fontSize: "0.52rem", color: C.amber,
-                      border: `1px solid ${C.amber}40`, padding: "0.1rem 0.45rem",
-                      borderRadius: 3,
-                    }}>{card.tag}</span>
-                  )}
-                  <div style={{
-                    width: 44, height: 44, borderRadius: 10,
-                    background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    marginBottom: "1rem",
-                    boxShadow: `0 0 16px ${C.accent}15`,
-                  }}>
-                    <Ic n={card.icon} sz={20} col={C.accent} />
-                  </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "0.95rem",
-                    letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
-                    {card.title}
-                  </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.85rem", lineHeight: 1.6 }}>
-                    {card.body}
-                  </p>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-
-        </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── FIELD GUIDES ─────────────────────────────────────────────────────── */}
-      <section id="field-guides" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <p style={{ ...MONO, color: "#4A6CF7", fontSize: "0.62rem", letterSpacing: "0.1em",
-              marginBottom: "0.85rem" }}>// FIELD GUIDES</p>
-            <SH>The AI and Work Series</SH>
-            <p style={{ fontFamily: "'Newsreader', Georgia, serif", fontStyle: "italic",
-              fontWeight: 400, color: C.muted, fontSize: "1.05rem", lineHeight: 1.7,
-              maxWidth: 560, marginBottom: "3rem" }}>
-              Short, sharp field guides to surviving and repositioning in the age of AI. Read in under an hour. Built to be true, not loud.
-            </p>
-          </Reveal>
-
-          <div className="fix-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)",
-            gap: "1.5rem" }}>
-
-            {/* Card 1 — Live */}
-            <Reveal delay={0.05}>
-              <motion.a
-                href="/last-human-job"
-                whileHover={{ y: -6, boxShadow: `0 16px 40px rgba(74,108,247,0.22), 0 0 0 1px rgba(74,108,247,0.5)` }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  display: "block", textDecoration: "none",
-                  background: C.panel,
-                  border: `1px solid ${C.border}`,
-                  borderTop: "2px solid #4A6CF7",
-                  borderRadius: 8, padding: "2.25rem",
-                  cursor: "pointer",
-                }}>
-                <div style={{ display: "flex", justifyContent: "space-between",
-                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
-                  <span style={{ ...MONO, fontSize: "0.58rem", color: "#4A6CF7",
-                    border: "1px solid rgba(74,108,247,.35)", padding: "3px 9px",
-                    borderRadius: 3, letterSpacing: "0.08em" }}>
-                    BOOK 01 // AVAILABLE NOW
-                  </span>
-                </div>
-                <h3 style={{ ...BEBAS, color: C.text, fontSize: "2rem",
-                  letterSpacing: "0.04em", marginBottom: "0.75rem" }}>
-                  The Last Human Job
-                </h3>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.92rem",
-                  lineHeight: 1.65, marginBottom: "1.75rem" }}>
-                  The careers AI is replacing before 2030, and the five questions that tell you if yours is safe.
-                </p>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: "1.5rem" }}>
-                  <span style={{ ...MONO, fontSize: "0.9rem", color: C.muted,
-                    textDecoration: "line-through" }}>€19</span>
-                  <span style={{ ...BEBAS, fontSize: "1.8rem", color: "#4A6CF7",
-                    letterSpacing: "0.04em" }}>€6.97</span>
-                </div>
-                <span style={{ ...DM, fontWeight: 600, color: "#4A6CF7",
-                  fontSize: "0.85rem", letterSpacing: "0.04em" }}>
-                  Read more →
-                </span>
-              </motion.a>
+          <div className="about-row" style={{ display: "flex", gap: "3rem", marginTop: "1rem" }}>
+            <Reveal delay={0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
+                I spent years cooking in kitchens across Ireland and Malta. Then I taught myself to build
+                software. Now I design, build, and ship full products using AI tools and modern web tech.
+              </p>
+              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem", lineHeight: 1.8 }}>
+                I care about clarity, and about tools people actually use. I am working toward settling in
+                Ireland and I am open to product and builder roles.
+              </p>
             </Reveal>
-
-            {/* Card 2 — Coming soon */}
-            <Reveal delay={0.12}>
-              <div style={{
-                background: C.panel,
-                border: `1px solid ${C.border}`,
-                borderTop: `2px solid ${C.border}`,
-                borderRadius: 8, padding: "2.25rem",
-                opacity: 0.7, cursor: "default",
-              }}>
-                <div style={{ marginBottom: "1.25rem" }}>
-                  <span style={{ ...MONO, fontSize: "0.58rem", color: C.muted,
-                    border: `1px solid ${C.border}`, padding: "3px 9px",
-                    borderRadius: 3, letterSpacing: "0.08em" }}>
-                    BOOK 02 // COMING SOON
-                  </span>
-                </div>
-                <h3 style={{ ...BEBAS, color: C.text, fontSize: "2rem",
-                  letterSpacing: "0.04em", marginBottom: "0.75rem" }}>
-                  Stay Hireable
-                </h3>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.92rem",
-                  lineHeight: 1.65, marginBottom: "1.75rem" }}>
-                  The 90-day plan to reposition yourself before AI decides your worth.
-                </p>
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <span style={{ ...MONO, fontSize: "0.82rem", color: C.muted,
-                    letterSpacing: "0.04em" }}>Coming soon</span>
-                </div>
-                <a href="mailto:support@themethodco.co?subject=Notify me: Stay Hireable"
-                  style={{ ...DM, fontWeight: 600, color: C.muted,
-                    fontSize: "0.85rem", letterSpacing: "0.04em",
-                    textDecoration: "none" }}>
-                  Notify me →
-                </a>
+            <Reveal delay={0.16} style={{ flex: "0 0 auto" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                {[
+                  { k: "Based", v: "Dublin, Ireland" },
+                  { k: "Was", v: "Chef, Ireland and Malta" },
+                  { k: "Now", v: "AI product builder" },
+                  { k: "Open to", v: "Product and builder roles" },
+                ].map(row => (
+                  <div key={row.k} style={{ display: "flex", gap: "1rem", alignItems: "baseline",
+                    borderBottom: `1px solid ${C.border}`, paddingBottom: "0.75rem", minWidth: 240 }}>
+                    <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem", flex: "0 0 72px" }}>{row.k}</span>
+                    <span style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.9rem" }}>{row.v}</span>
+                  </div>
+                ))}
               </div>
             </Reveal>
-
           </div>
         </div>
       </section>
 
       <HR />
 
-      {/* ── OFFERS ───────────────────────────────────────────────────────────── */}
-      <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
-        {/* Rotating concentric circles background */}
+      {/* ── WORK ─────────────────────────────────────────────────────────────── */}
+      <section id="work" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>WORK</SLabel>
+            <SH>PRODUCTS I HAVE BUILT.</SH>
+            <Sub>Each one shipped end to end. Click any project for the short case study, the real problem, what I built, and the hard part I actually solved.</Sub>
+          </Reveal>
+
+          {/* Flagship: Onishi */}
+          {PROJECTS.filter(p => p.flagship).map(project => (
+            <Reveal key={project.id} delay={0.05}>
+              <motion.button
+                onClick={() => setOpenId(project.id)}
+                whileHover={{ y: -6, boxShadow: `0 26px 64px ${C.accent}2b, 0 0 0 1px ${C.accent}55` }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  width: "100%", textAlign: "left", cursor: "pointer",
+                  background: `radial-gradient(circle at top left, ${C.accent}16 0%, ${C.panel} 58%)`,
+                  border: `1px solid ${C.border}`, borderTop: `2px solid ${C.accent}`,
+                  borderRadius: 14, padding: "clamp(1.5rem, 4vw, 2.5rem)",
+                  marginBottom: "1.5rem", display: "block",
+                }}>
+                <div className="flagship-cols" style={{ display: "flex",
+                  gap: "clamp(1.5rem, 4vw, 3rem)", alignItems: "center" }}>
+                  {/* Text */}
+                  <div style={{ flex: "1 1 360px", minWidth: 0 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem",
+                      marginBottom: "1.1rem", flexWrap: "wrap" }}>
+                      <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem",
+                        border: `1px solid ${C.accent}40`, padding: "0.12rem 0.5rem", borderRadius: 3 }}>
+                        FLAGSHIP
+                      </span>
+                      <span style={{ ...LBL, color: project.statusCol, fontSize: "0.56rem",
+                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: project.statusCol,
+                          display: "inline-block", boxShadow: `0 0 6px ${project.statusCol}` }} />
+                        {project.status.toUpperCase()}
+                      </span>
+                    </div>
+                    <h3 style={{ ...EP, fontWeight: 900, color: C.text, fontSize: "clamp(2.2rem, 5vw, 3.4rem)",
+                      lineHeight: 0.95, letterSpacing: "-0.01em", textTransform: "uppercase",
+                      marginBottom: "0.85rem" }}>
+                      {project.name}
+                    </h3>
+                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem",
+                      lineHeight: 1.6, maxWidth: 460, marginBottom: "1.4rem" }}>
+                      {project.summary}
+                    </p>
+                    <p style={{ ...MONO, color: C.muted, fontSize: "0.76rem", lineHeight: 1.6,
+                      marginBottom: "1.6rem" }}>
+                      {project.tech}
+                    </p>
+                    <span style={{ ...EP, fontWeight: 700, color: C.accent, fontSize: "0.76rem",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                      Read the case study <Ic n="arrow" sz={15} col={C.accent} />
+                    </span>
+                  </div>
+                  {/* Real screenshot */}
+                  <div className="flagship-media" style={{ flex: "1 1 480px", minWidth: 0, width: "100%" }}>
+                    <ProjectVisual project={project} height={300} />
+                  </div>
+                </div>
+              </motion.button>
+            </Reveal>
+          ))}
+
+          {/* Grid: the rest */}
+          <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
+            {PROJECTS.filter(p => !p.flagship).map((project, i) => (
+              <Reveal key={project.id} delay={i * 0.08}>
+                <motion.button
+                  onClick={() => setOpenId(project.id)}
+                  whileHover={{ y: -8, boxShadow: `0 20px 46px ${C.accent}3d, 0 0 0 1px ${C.accent}55` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    width: "100%", height: "100%", textAlign: "left", cursor: "pointer",
+                    background: C.panel, border: `1px solid ${C.border}`, borderRadius: 12,
+                    padding: "1rem", display: "flex", flexDirection: "column", gap: "1.15rem",
+                  }}>
+                  <ProjectVisual project={project} height={168} />
+                  <div style={{ padding: "0 0.55rem 0.65rem", display: "flex",
+                    flexDirection: "column", flex: 1 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",
+                      marginBottom: "0.8rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.55rem" }}>
+                        <div style={{
+                          width: 34, height: 34, borderRadius: 8,
+                          background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                        }}>
+                          <Ic n={project.icon} sz={16} col={C.accent} />
+                        </div>
+                        <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
+                          letterSpacing: "0.01em", textTransform: "uppercase", margin: 0 }}>
+                          {project.name}
+                        </h3>
+                      </div>
+                      <span style={{ ...LBL, color: project.statusCol, fontSize: "0.5rem",
+                        display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                        <span style={{ width: 4, height: 4, borderRadius: "50%", background: project.statusCol,
+                          display: "inline-block" }} />
+                        {project.status.toUpperCase()}
+                      </span>
+                    </div>
+                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.86rem",
+                      lineHeight: 1.6, marginBottom: "1.1rem", flex: 1 }}>
+                      {project.summary}
+                    </p>
+                    <span style={{ ...EP, fontWeight: 700, color: C.accent, fontSize: "0.7rem",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                      Case study <Ic n="arrow" sz={13} col={C.accent} />
+                    </span>
+                  </div>
+                </motion.button>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── SKILLS ───────────────────────────────────────────────────────────── */}
+      <section id="skills" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "50%", left: "50%",
           transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 0 }}>
           <svg width="700" height="700" viewBox="0 0 700 700"
@@ -1042,609 +1098,69 @@ export default function Landing() {
             ))}
           </svg>
         </div>
-        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
-            <SLabel>OFFERS</SLabel>
-            <SH>PICK THE LEVEL OF HELP YOU NEED.</SH>
-            <Sub>Every offer starts with the audit. You can go as deep as the work requires.</Sub>
+            <SLabel>SKILLS</SLabel>
+            <SH>WHAT I ACTUALLY DO.</SH>
+            <Sub>Honest and specific. These are the things I have used to ship real products, not a list of logos.</Sub>
           </Reveal>
-          <div className="offers-row" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
-            {[
-              {
-                tag: "FREE", tagCol: C.amber, title: "Digital Clarity Audit", price: "Free",
-                priceCol: C.amber,
-                desc: "Perfect if you're unsure what is blocking enquiries. No commitment required.",
-                bullets: ["Review of your digital presence", "What is broken and why", "Clear priorities on what to fix first"],
-                cta: "GET THE AUDIT", ctaStyle: "outline", featured: false, popular: false,
-              },
-              {
-                tag: "CORE", tagCol: C.accent, title: "AI Strategy Sprint", price: "EUR 200-300",
-                priceCol: C.accent, popular: true,
-                desc: "For businesses ready to fix the foundation properly.",
-                bullets: [
-                  "Offer and positioning refinement",
-                  "Messaging and copy direction",
-                  "Simple funnel recommendation",
-                  "Landing page structure",
-                  "30-day action plan",
-                  "Ad direction (Meta and Google)",
-                ],
-                cta: "APPLY FOR SPRINT", ctaStyle: "solid", featured: false,
-              },
-              {
-                tag: "PREMIUM", tagCol: C.text, title: "Method Launch System", price: "EUR 1,000",
-                priceCol: C.text,
-                desc: "Full strategy plus landing page build plus ads launch. Built fast, built right.",
-                bullets: [
-                  "Deep positioning and offer refinement",
-                  "Full funnel plan",
-                  "High-converting landing page",
-                  "3-5 ad angles plus creative direction",
-                  "Meta and Google campaign setup plan",
-                  "Tracking guidance",
-                  "14-day launch support",
-                ],
-                cta: "APPLY FOR LAUNCH", ctaStyle: "outline", featured: false, popular: false,
-              },
-              {
-                tag: "NEW", tagCol: C.accent, title: "Method Chat Bundle", price: "Price on application",
-                priceCol: C.accent, featured: true,
-                desc: "Everything in a Launch System, plus your own Method Chat: trained on your business, your offer, and your voice.",
-                bullets: [
-                  "Everything in Method Launch System",
-                  "Custom Method Chat trained on your business",
-                  "Live now, not coming soon",
-                  "Ongoing positioning support through the assistant",
-                ],
-                cta: "ENQUIRE", ctaStyle: "cyan", popular: false,
-              },
-            ].map((offer, i) => (
-              <Reveal key={offer.title} delay={i * 0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
+
+          <div className="card-grid" style={{ display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
+            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden",
+            background: C.border, marginBottom: "1.5rem" }}>
+            {SKILLS.map((s, i) => (
+              <Reveal key={s.title} delay={i * 0.06}>
                 <motion.div
                   whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
                   transition={{ duration: 0.2 }}
-                  style={{
-                    background: offer.featured ? `${C.accent}07` : C.panel,
-                    borderRight: i < 3 ? `1px solid ${C.border}` : "none",
-                    borderTop: `2px solid ${offer.featured ? C.accent : (offer.popular ? C.accent + "60" : C.border)}`,
-                    padding: "1.85rem", height: "100%",
-                    display: "flex", flexDirection: "column",
-                    boxShadow: offer.featured ? `inset 0 0 60px ${C.accent}06` : "none",
-                  }}>
-                  <div style={{ display: "flex", justifyContent: "space-between",
-                    alignItems: "center", marginBottom: "1rem" }}>
-                    <span style={{ ...LBL, color: offer.tagCol, fontSize: "0.58rem",
-                      border: `1px solid ${offer.tagCol}40`,
-                      padding: "0.12rem 0.5rem", borderRadius: 3 }}>
-                      [ {offer.tag} ]
-                    </span>
-                    {offer.popular && (
-                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
-                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green, display: "inline-block" }} />
-                        POPULAR
-                      </span>
-                    )}
-                  </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.15rem",
-                    letterSpacing: "0.01em", lineHeight: 1.1, marginBottom: "0.4rem",
-                    textTransform: "uppercase" }}>
-                    {offer.title}
-                  </h3>
-                  <p style={{ ...EP, fontWeight: 700, color: offer.priceCol, fontSize: "1.25rem",
-                    letterSpacing: "0.02em", marginBottom: "0.85rem" }}>
-                    {offer.price}
-                  </p>
-                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
-                    lineHeight: 1.65, marginBottom: "1.25rem", flex: 1 }}>
-                    {offer.desc}
-                  </p>
-                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.5rem",
-                    display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    {offer.bullets.map(b => (
-                      <li key={b} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-                        <span style={{ flexShrink: 0, marginTop: 3 }}>
-                          <Ic n="check" sz={13} col={offer.featured ? C.accent : C.muted} />
-                        </span>
-                        <span style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.8rem", lineHeight: 1.5 }}>
-                          {b}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a href="#apply" style={{
-                    ...EP, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em",
-                    padding: "0.7rem 1rem", borderRadius: 6, textAlign: "center",
-                    display: "block", transition: "opacity 0.15s",
-                    textTransform: "uppercase",
-                    ...(offer.ctaStyle === "cyan"
-                      ? { color: C.bg, background: C.accent, border: `1px solid ${C.accent}` }
-                      : offer.ctaStyle === "solid"
-                      ? { color: C.text, background: C.elev, border: `1px solid ${C.border}` }
-                      : { color: C.muted, background: "transparent", border: `1px solid ${C.border}` }),
-                  }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.8"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-                    {offer.cta}
-                  </a>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── FIT ──────────────────────────────────────────────────────────────── */}
-      <section id="fit" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
-        {/* Radial lines SVG top-left — 5% opacity, slow rotation */}
-        <div style={{ position: "absolute", top: -120, left: -120, pointerEvents: "none", zIndex: 0 }}>
-          <svg width="500" height="500" viewBox="0 0 500 500"
-            style={{ animation: "svgRotate 72s linear infinite reverse", opacity: 1 }}>
-            {Array.from({ length: 16 }, (_, i) => {
-              const angle = (i / 16) * Math.PI * 2;
-              return <line key={i} x1="250" y1="250"
-                x2={250 + Math.cos(angle) * 230} y2={250 + Math.sin(angle) * 230}
-                stroke="#3DD6F5" strokeWidth="1" opacity="0.05" />;
-            })}
-            {[60, 120, 180, 230].map(r => (
-              <circle key={r} cx="250" cy="250" r={r} fill="none"
-                stroke="#3DD6F5" strokeWidth="0.75" opacity="0.04" />
-            ))}
-          </svg>
-        </div>
-        <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <Reveal>
-            <SLabel>SELECTIVE FIT</SLabel>
-            <SH>NOT EVERY BUSINESS IS A FIT.</SH>
-            <Sub>This keeps the work sharp and the results real.</Sub>
-          </Reveal>
-          <div className="fit-cols" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
-            {[
-              {
-                label: "GOOD_FIT", col: C.green, icon: "check",
-                items: [
-                  "You are serious about positioning and conversions",
-                  "You will implement, not just collect ideas",
-                  "You want clear structure over more content",
-                  "You value direct, honest feedback",
-                ],
-              },
-              {
-                label: "NOT_A_FIT", col: C.red, icon: "x",
-                items: [
-                  "You want viral hacks or overnight miracles",
-                  "You expect someone to save the business with magic",
-                  "You will not change the offer, page, or message",
-                  "You want tactics without fixing the foundation first",
-                ],
-              },
-            ].map((col, i) => (
-              <Reveal key={col.label} delay={i * 0.1} style={{ flex: 1 }}>
-                <div style={{
-                  background: C.panel, padding: "2.5rem",
-                  borderRight: i < 1 ? `1px solid ${C.border}` : "none",
-                  borderTop: `2px solid ${col.col}40`,
-                  height: "100%",
-                }}>
-                  <span style={{ ...LBL, color: col.col, fontSize: "0.62rem",
-                    display: "block", marginBottom: "1.5rem" }}>
-                    {col.label.replace(/_/g, " ")}
-                  </span>
-                  <ul style={{ listStyle: "none", padding: 0,
-                    display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                    {col.items.map(item => (
-                      <li key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
-                        <span style={{ flexShrink: 0, marginTop: 2 }}>
-                          <Ic n={col.icon} sz={15} col={col.col} />
-                        </span>
-                        <span style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.92rem", lineHeight: 1.6 }}>
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
-      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1, overflow: "hidden" }}>
-        {/* PROCESS BG: replace with proper "strategy/planning" Cloudinary image when ready.
-            CSS grid pattern is a clean placeholder. */}
-        <div aria-hidden="true" style={{
-          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-          backgroundImage: "linear-gradient(rgba(61,214,245,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(61,214,245,0.06) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }} />
-        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>THE PROCESS</SLabel>
-            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
-          </Reveal>
-          <div style={{ position: "relative" }}>
-            <ProcessLine />
-            <div className="process-row" style={{ display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)", gap: "1.5rem", position: "relative" }}>
-              {[
-                { num: "01", title: "DIAGNOSE", body: "We identify exactly what is blocking trust and enquiries. No assumptions, no guessing." },
-                { num: "02", title: "DESIGN",   body: "Offer, message, funnel structure, and priorities mapped to your business and market." },
-                { num: "03", title: "DEPLOY",   body: "Landing page and copy aligned with your ads and organic presence, then launched." },
-                { num: "04", title: "DELIVER",  body: "Support through the first cycle. Iterate on what the numbers tell us." },
-              ].map((step, i) => (
-                <Reveal key={step.num} delay={i * 0.12}>
-                  <div style={{ textAlign: "center", position: "relative" }}>
-                    {/* Large dim numeral */}
-                    <span style={{
-                      position: "absolute", bottom: 0, right: "0.5rem",
-                      ...EP, fontWeight: 900,
-                      fontSize: "5rem", lineHeight: 1,
-                      color: C.border, opacity: 0.45, userSelect: "none",
-                      zIndex: 0,
-                    }}>{step.num}</span>
-
-                    {/* Circle */}
-                    <div style={{
-                      width: 40, height: 40, borderRadius: "50%",
-                      border: `1px solid ${C.border}`,
-                      background: C.panel,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      margin: "0 auto 1.5rem", position: "relative", zIndex: 1,
-                      boxShadow: `0 0 0 4px ${C.bg}`,
-                    }}>
-                      <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.65rem" }}>
-                        {step.num}
-                      </span>
-                    </div>
-
-                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.3rem",
-                      letterSpacing: "0.05em", marginBottom: "0.65rem",
-                      textTransform: "uppercase", position: "relative", zIndex: 1 }}>
-                      {step.title}
-                    </h3>
-                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.87rem",
-                      lineHeight: 1.65, position: "relative", zIndex: 1 }}>
-                      {step.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── WHO WE ARE ───────────────────────────────────────────────────────── */}
-      <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1020, margin: "0 auto" }}>
-          <Reveal style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <SLabel>THE TEAM</SLabel>
-            <SH>BUILT BY OPERATORS, NOT MARKETERS.</SH>
-            <Sub style={{ margin: "0 auto", color: "#C5CFE0" }}>
-              Small team. Real experience. Hands on every project.
-            </Sub>
-          </Reveal>
-          <div className="team-row" style={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
-            {[
-              {
-                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg",
-                name: "VICTOR MIRANDA",
-                role: "FOUNDER + STRATEGY",
-                bio: "Brazilian. Dublin-based. Eight years running kitchens before turning to marketing. Builds the positioning and the system.",
-              },
-              {
-                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1779996691/D51F608D-881C-4009-81B8-8DAC3C5C86A4_n2i2sx.png",
-                name: "KAZAMI ONISHI",
-                role: "OPERATIONS + CLIENT RELATIONS",
-                bio: "Restaurant manager inside Dublin's hospitality scene. Has lived the kind of service business we work with. Handles onboarding, accounts, and keeps every project on track.",
-              },
-              {
-                photo: "https://res.cloudinary.com/dsriscylr/image/upload/v1779996692/magnific_create-a-professional-cor_8vaQeg6IrU_nsdsek.png",
-                name: "ANGELO ROCHA",
-                role: "DEVELOPER",
-                bio: "Builds the landing pages, funnels, and systems behind every strategy. Turns plans into working product.",
-              },
-            ].map((member, i) => (
-              <Reveal key={member.name} delay={i * 0.12} style={{ flex: "1 1 280px", maxWidth: 320 }}>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+                  style={{ background: C.panel, padding: "1.85rem", height: "100%", cursor: "default" }}>
                   <div style={{
-                    width: 200, height: 200, borderRadius: "50%", overflow: "hidden", flexShrink: 0,
-                    border: `2px solid ${C.accent}`,
-                    boxShadow: "0 0 40px rgba(61,214,245,0.25)",
-                    marginBottom: "1.5rem",
+                    width: 44, height: 44, borderRadius: 10,
+                    background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginBottom: "1rem", boxShadow: `0 0 16px ${C.accent}15`,
                   }}>
-                    <img src={member.photo} alt={member.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                      loading="lazy" />
+                    <Ic n={s.icon} sz={20} col={C.accent} />
                   </div>
-                  <h3 style={{ ...EP, fontWeight: 700, color: C.text, fontSize: "1.1rem",
-                    letterSpacing: "0.03em", marginBottom: "0.4rem", textTransform: "uppercase" }}>
-                    {member.name}
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "0.95rem",
+                    letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
+                    {s.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 600, color: C.accent, fontSize: "0.62rem",
-                    letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.85rem" }}>
-                    {member.role}
+                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.85rem", lineHeight: 1.6 }}>
+                    {s.body}
                   </p>
-                  <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.88rem",
-                    lineHeight: 1.65, maxWidth: 260 }}>
-                    {member.bio}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── PROOF ────────────────────────────────────────────────────────────── */}
-      <section id="proof" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>PROOF</SLabel>
-            <SH>WHAT CLIENTS SAY.</SH>
-          </Reveal>
-
-          {/* Marquee */}
-          <Reveal delay={0.08}>
-            <div className="marquee-wrap" style={{
-              overflow: "hidden", position: "relative",
-              marginBottom: "3.5rem",
-              maskImage: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
-              borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`,
-              padding: "1.25rem 0",
-            }}>
-              <div className="marquee-inner" style={{ display: "flex", gap: "4rem", width: "max-content" }}>
-                {[...Array(2)].flatMap((_, ri) =>
-                  ["Lumen Studio", "Northpath Dental", "Vela Physio", "Orla Wellness", "Brightseed", "Cobh Coaching"]
-                    .map((name, ni) => (
-                      <span key={`${ri}-${ni}`}
-                        style={{ ...LBL, color: C.muted, fontSize: "0.7rem", letterSpacing: "0.14em",
-                          whiteSpace: "nowrap", opacity: 0.7 }}>
-                        {name}
-                      </span>
-                    ))
-                )}
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Testimonials */}
-          <div className="proof-row" style={{ display: "flex", gap: "1px",
-            border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden" }}>
-            {[
-              {
-                initials: "MD",
-                name: "Mark D.",
-                role: "Founder",
-                co: "Brightseed",
-                quote: "We had traffic but nothing was converting. Within two weeks the structure made sense and so did our numbers. Clear thinking, no nonsense.",
-              },
-              {
-                initials: "SV",
-                name: "Sarah V.",
-                role: "Owner",
-                co: "Vela Physio",
-                quote: "The audit alone was worth it. We changed two things on our page and saw a real difference in enquiry quality. Worth every cent.",
-              },
-              {
-                initials: "CO",
-                name: "Ciara O.",
-                role: "Director",
-                co: "Cobh Coaching",
-                quote: "The Method gave us a clear offer and a page that actually said what we do. First time in three years clients said they understood us immediately.",
-              },
-            ].map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.1} style={{ flex: 1 }}>
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    background: C.panel, padding: "2rem",
-                    borderRight: i < 2 ? `1px solid ${C.border}` : "none",
-                    height: "100%", display: "flex", flexDirection: "column",
-                    cursor: "default",
-                  }}>
-                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.9rem",
-                    lineHeight: 1.75, flex: 1, marginBottom: "1.5rem" }}>
-                    "{t.quote}"
-                  </p>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    <div style={{
-                      width: 36, height: 36, borderRadius: 6, flexShrink: 0,
-                      background: `${C.accent}15`, border: `1px solid ${C.accent}30`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      <span style={{ ...EP, fontWeight: 800, color: C.accent, fontSize: "0.62rem" }}>
-                        {t.initials}
-                      </span>
-                    </div>
-                    <div>
-                      <p style={{ ...DM, fontWeight: 500, color: C.text, fontSize: "0.82rem", margin: 0 }}>
-                        {t.name}
-                      </p>
-                      <p style={{ ...DM, fontWeight: 300, color: "#A8B5CC", fontSize: "0.72rem", margin: 0 }}>
-                        {t.role} / {t.co}
-                      </p>
-                    </div>
-                  </div>
                 </motion.div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      <HR />
-
-      {/* ── ECOSYSTEM ────────────────────────────────────────────────────────── */}
-      <section id="ecosystem" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>THE ECOSYSTEM</SLabel>
-            <SH>ONE SYSTEM. BUILT TO GROW.</SH>
-            <Sub>The consultancy is the core. These are what we are building around it.</Sub>
-          </Reveal>
+          {/* Dual-skill band */}
           <Reveal delay={0.1}>
-            <div className="eco-row" style={{ display: "flex", gap: "16px", overflowX: "auto",
-              paddingBottom: "1rem" }}>
-              {/* Method Consultancy */}
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  flex: "0 0 340px",
-                  background: `radial-gradient(circle at top left, ${C.accent}18 0%, ${C.panel} 55%)`,
-                  border: `1px solid ${C.border}`, borderRadius: 12,
-                  padding: "1.75rem", cursor: "default", minWidth: 0,
-                }}>
-                <div style={{ display: "flex", justifyContent: "space-between",
-                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
-                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green,
-                          display: "inline-block", boxShadow: `0 0 6px ${C.green}` }} />
-                        LIVE
-                      </span>
-                    </div>
-                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
-                      textTransform: "uppercase", margin: 0 }}>
-                      Method Consultancy
-                    </h3>
-                  </div>
-                  <div style={{ width: 36, height: 36, borderRadius: 8,
-                    background: `${C.accent}12`, border: `1px solid ${C.accent}25`,
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Ic n="target" sz={16} col={C.accent} />
-                  </div>
-                </div>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
-                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
-                  Positioning, copy, and funnel direction for service businesses that want clarity before scale.
+            <div style={{
+              background: `radial-gradient(circle at top right, ${C.accent}12 0%, ${C.panel} 60%)`,
+              border: `1px solid ${C.border}`, borderTop: `2px solid ${C.accent}`,
+              borderRadius: 10, padding: "clamp(1.75rem, 4vw, 2.5rem)",
+              display: "flex", gap: "1.5rem", alignItems: "flex-start", flexWrap: "wrap",
+            }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: 12, flexShrink: 0,
+                background: `${C.accent}12`, border: `1px solid ${C.accent}30`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Ic n="spark" sz={22} col={C.accent} />
+              </div>
+              <div style={{ flex: "1 1 320px", minWidth: 0 }}>
+                <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.15rem",
+                  letterSpacing: "0.01em", marginBottom: "0.6rem", textTransform: "uppercase" }}>
+                  Product and go-to-market, from one person
+                </h3>
+                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                  Before I built software I worked in marketing, copywriting, and design. That is not a side
+                  note. It means I can build a product and the thing that sells it: the positioning, the
+                  landing page, the words, and the launch. Most builders can do one side. I do both.
                 </p>
-                <ConsultancyDemo />
-                <a href="#apply" style={{
-                  ...EP, fontWeight: 700, display: "block", textAlign: "center",
-                  color: C.accent, fontSize: "0.72rem", letterSpacing: "0.1em",
-                  padding: "0.65rem", borderRadius: 6, border: `1px solid ${C.accent}30`,
-                  transition: "background 0.15s",
-                  textTransform: "uppercase",
-                }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = `${C.accent}10`; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}>
-                  BOOK A CALL
-                </a>
-              </motion.div>
-
-              {/* The Method Chat */}
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}4d, 0 0 0 1px ${C.accent}80` }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  flex: "0 0 340px",
-                  background: `radial-gradient(circle at center, ${C.accent}18 0%, ${C.panel} 60%)`,
-                  border: `1px solid ${C.accent}40`,
-                  borderRadius: 12, padding: "1.75rem", cursor: "default", minWidth: 0,
-                  boxShadow: `0 0 30px ${C.accent}0a`,
-                }}>
-                <div style={{ display: "flex", justifyContent: "space-between",
-                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                      <span style={{ ...LBL, color: C.green, fontSize: "0.56rem",
-                        display: "flex", alignItems: "center", gap: "0.35rem" }}>
-                        <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.green,
-                          display: "inline-block", boxShadow: `0 0 6px ${C.green}` }} />
-                        LIVE
-                      </span>
-                    </div>
-                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
-                      textTransform: "uppercase", margin: 0 }}>
-                      The Method Chat
-                    </h3>
-                  </div>
-                  <div style={{ width: 36, height: 36, borderRadius: 8,
-                    background: `${C.accent}12`, border: `1px solid ${C.accent}25`,
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Ic n="chat" sz={16} col={C.accent} />
-                  </div>
-                </div>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
-                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
-                  An AI assistant trained on your business, your offer, and your voice. Answers like you do. Available 24 hours.
-                  {/* METHOD CHAT: set endpoint to go live */}
-                </p>
-                <ChatEcoDemo />
-                <a href="#apply" style={{
-                  ...EP, fontWeight: 700, display: "block", textAlign: "center",
-                  color: C.bg, fontSize: "0.72rem", letterSpacing: "0.1em",
-                  padding: "0.65rem", borderRadius: 6, background: C.accent,
-                  transition: "opacity 0.15s",
-                  textTransform: "uppercase",
-                }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.85"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-                  GET METHOD CHAT
-                </a>
-              </motion.div>
-
-              {/* Second Brain */}
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 48px ${C.accent}30, 0 0 0 1px ${C.accent}40` }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  flex: "0 0 340px",
-                  background: `radial-gradient(circle at bottom right, ${C.accent}12 0%, ${C.panel} 55%)`,
-                  border: `1px solid ${C.border}`, borderRadius: 12,
-                  padding: "1.75rem", cursor: "default", minWidth: 0,
-                  opacity: 0.75,
-                }}>
-                <div style={{ display: "flex", justifyContent: "space-between",
-                  alignItems: "flex-start", marginBottom: "1.25rem" }}>
-                  <div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
-                      <span style={{ ...LBL, color: C.muted, fontSize: "0.56rem", opacity: 0.8 }}>
-                        COMING SOON
-                      </span>
-                    </div>
-                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.05rem",
-                      textTransform: "uppercase", margin: 0 }}>
-                      Second Brain
-                    </h3>
-                  </div>
-                  <div style={{ width: 36, height: 36, borderRadius: 8,
-                    background: C.elev, border: `1px solid ${C.border}`,
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Ic n="brain" sz={16} col={C.muted} />
-                  </div>
-                </div>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.84rem",
-                  lineHeight: 1.65, marginBottom: "1.25rem" }}>
-                  A connected knowledge system that captures your positioning, decisions, and content. Builds itself as you work.
-                </p>
-                <SecondBrainDemo />
-                <div style={{
-                  ...DM, fontWeight: 400, display: "block", textAlign: "center",
-                  color: C.muted, fontSize: "0.72rem", letterSpacing: "0.1em",
-                  padding: "0.65rem", borderRadius: 6, border: `1px solid ${C.border}`,
-                }}>
-                  IN DEVELOPMENT
-                </div>
-              </motion.div>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -1652,106 +1168,43 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── APPLY ────────────────────────────────────────────────────────────── */}
-      <section id="apply" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 600, margin: "0 auto" }}>
-          <Reveal style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-            <SLabel>THE NEXT MOVE</SLabel>
-            <SH>STOP READING. START FIXING.</SH>
-            <Sub style={{ margin: "0 auto", color: "#C5CFE0" }}>
-              If your service business deserves clarity, apply. We take on a small number of clients each month. The audit is free. The work is honest. The results compound.
+      {/* ── CONTACT ──────────────────────────────────────────────────────────── */}
+      <section id="contact" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+          <Reveal>
+            <SLabel>CONTACT</SLabel>
+            <SH>LET US BUILD SOMETHING.</SH>
+            <Sub style={{ margin: "0 auto 2.5rem", color: "#C5CFE0" }}>
+              Open to product builder and developer roles, and to freelance builds. If you have something
+              worth shipping, get in touch.
             </Sub>
           </Reveal>
 
-          {submitted ? (
-            <Reveal>
-              <div style={{
-                background: C.panel, border: `1px solid ${C.border}`,
-                borderTop: `2px solid ${C.green}`,
-                borderRadius: 10, padding: "3rem 2rem", textAlign: "center",
-              }}>
-                <span style={{ ...LBL, color: C.green, fontSize: "0.62rem",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  gap: "0.5rem", marginBottom: "1.25rem" }}>
-                  <span style={{ width: 6, height: 6, borderRadius: "50%",
-                    background: C.green, display: "inline-block" }} />
-                  STATUS: RECEIVED
-                </span>
-                <h3 style={{ ...EP, fontWeight: 900, color: C.text, fontSize: "2rem",
-                  letterSpacing: "0.02em", marginBottom: "0.65rem", textTransform: "uppercase" }}>
-                  Application received.
-                </h3>
-                <p style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.95rem" }}>
-                  We will be in touch within 48 hours.
-                </p>
-              </div>
-            </Reveal>
-          ) : (
-            <Reveal delay={0.1}>
-              <form onSubmit={handleSubmit} style={{
-                background: C.panel, border: `1px solid ${C.border}`,
-                borderTop: `2px solid ${C.accent}`,
-                borderRadius: 10, padding: "2.5rem",
-                display: "flex", flexDirection: "column", gap: "1.25rem",
-              }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div>
-                    <label style={lbl}>FULL NAME *</label>
-                    <input type="text" required placeholder="Your name"
-                      value={form.name} onChange={e => setField("name", e.target.value)}
-                      style={inp} className="form-input" />
-                  </div>
-                  <div>
-                    <label style={lbl}>EMAIL *</label>
-                    <input type="email" required placeholder="you@example.com"
-                      value={form.email} onChange={e => setField("email", e.target.value)}
-                      style={inp} className="form-input" />
-                  </div>
-                </div>
-                <div>
-                  <label style={lbl}>WEBSITE OR INSTAGRAM (optional)</label>
-                  <input type="text" placeholder="yoursite.com or @handle"
-                    value={form.website} onChange={e => setField("website", e.target.value)}
-                    style={inp} className="form-input" />
-                </div>
-                <div>
-                  <label style={lbl}>WHAT DOES YOUR BUSINESS DO? *</label>
-                  <textarea required placeholder="Describe your service and who you help."
-                    value={form.business} onChange={e => setField("business", e.target.value)}
-                    rows={3} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }}
-                    className="form-input" />
-                </div>
-                <div>
-                  <label style={lbl}>BIGGEST GROWTH PROBLEM *</label>
-                  <textarea required placeholder="Be specific. The more honest you are, the more useful our response."
-                    value={form.problem} onChange={e => setField("problem", e.target.value)}
-                    rows={4} style={{ ...inp, resize: "vertical", lineHeight: 1.6 }}
-                    className="form-input" />
-                </div>
-                <motion.button
-                  type="submit"
-                  disabled={sending}
-                  className={sending ? undefined : "cta-glow"}
-                  whileHover={{ opacity: 0.9 }}
-                  whileTap={{ scale: 0.99 }}
-                  style={{
-                    ...EP, fontWeight: 700, color: C.bg,
-                    background: sending ? C.muted : C.accent,
-                    fontSize: "0.82rem", letterSpacing: "0.12em",
-                    padding: "1rem", borderRadius: 6, border: "none",
-                    cursor: sending ? "wait" : "pointer",
-                    transition: "background 0.2s",
-                    textTransform: "uppercase",
-                  }}>
-                  {sending ? "SENDING..." : "BOOK A CALL"}
-                </motion.button>
-                <p style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
-                  textAlign: "center", margin: 0 }}>
-                  We reply within 48 hours. No automated nonsense.
-                </p>
-              </form>
-            </Reveal>
-          )}
+          <Reveal delay={0.1}>
+            <div style={{
+              background: C.panel, border: `1px solid ${C.border}`,
+              borderTop: `2px solid ${C.accent}`, borderRadius: 12,
+              padding: "clamp(2rem, 5vw, 3rem)",
+              display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem",
+            }}>
+              <a href={`mailto:${CONTACT_EMAIL}`}
+                style={{ ...MONO, color: C.accent, fontSize: "clamp(1rem, 3vw, 1.4rem)",
+                  letterSpacing: "0.02em", wordBreak: "break-all" }}>
+                {CONTACT_EMAIL}
+              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="cta-glow" style={{
+                ...EP, fontWeight: 700, color: C.bg, background: C.accent,
+                fontSize: "0.82rem", letterSpacing: "0.1em", textTransform: "uppercase",
+                padding: "0.95rem 2.25rem", borderRadius: 6,
+                display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                transition: "opacity 0.15s",
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
+                GET IN TOUCH <Ic n="arrow" sz={15} col={C.bg} />
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -1779,11 +1232,11 @@ export default function Landing() {
                 background: `linear-gradient(90deg, ${C.accent}, ${C.hi})`,
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
               }}>
-                The Method Co.
+                Victor Miranda
               </span>
             </div>
             <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 280 }}>
-              Clarity before strategy. Strategy before noise.
+              I turn ideas into working products, fast.
             </p>
           </div>
 
@@ -1793,11 +1246,10 @@ export default function Landing() {
               marginBottom: "1.25rem" }}>NAVIGATE</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
-                { label: "Offers",    href: "#offers"    },
-                { label: "Fit",       href: "#fit"       },
-                { label: "Process",   href: "#process"   },
-                { label: "Ecosystem", href: "#ecosystem" },
-                { label: "Apply",     href: "#apply"     },
+                { label: "Work",    href: "#work"    },
+                { label: "About",   href: "#about"   },
+                { label: "Skills",  href: "#skills"  },
+                { label: "Contact", href: "#contact" },
               ].map(({ label, href }) => (
                 <a key={label} href={href}
                   className="nav-link"
@@ -1814,22 +1266,15 @@ export default function Landing() {
             <p style={{ ...LBL, color: C.accent, fontSize: "0.6rem", letterSpacing: "0.12em",
               marginBottom: "1.25rem" }}>CONNECT</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-              <a href="https://www.instagram.com/themethodco.co/" target="_blank" rel="noreferrer"
-                className="nav-link"
-                style={{ display: "flex", alignItems: "center", gap: "0.5rem",
-                  color: C.text, transition: "color 0.15s", textDecoration: "none" }}>
-                <Ic n="ig" sz={16} col="currentColor" />
-                <span style={{ ...DM, fontWeight: 400, fontSize: "0.88rem" }}>@themethodco.co</span>
-              </a>
-              <a href="mailto:support@themethodco.co"
+              <a href={`mailto:${CONTACT_EMAIL}`}
                 className="nav-link"
                 style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.88rem",
-                  transition: "color 0.15s", textDecoration: "none" }}>
-                support@themethodco.co
+                  transition: "color 0.15s", textDecoration: "none", wordBreak: "break-all" }}>
+                {CONTACT_EMAIL}
               </a>
               <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.84rem",
                 lineHeight: 1.6, margin: 0 }}>
-                Based in Dublin. Working worldwide.
+                Based in Dublin. Open to work worldwide.
               </p>
             </div>
           </div>
@@ -1844,7 +1289,7 @@ export default function Landing() {
           alignItems: "center", justifyContent: "space-between", gap: "1rem",
         }}>
           <span style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "0.78rem" }}>
-            &copy; 2026 The Method Co. All rights reserved.
+            &copy; 2026 Victor Miranda. All rights reserved.
           </span>
           <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             {[{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }].map(({ label, href }, i) => (
@@ -1861,6 +1306,13 @@ export default function Landing() {
           </div>
         </div>
       </footer>
+
+      {/* ── CASE STUDY MODAL ─────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {openProject && (
+          <CaseStudy project={openProject} onClose={() => setOpenId(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
