@@ -1,9 +1,157 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #0C0C0C;
+  background-color: #0e0e10;
+  color: #f5efe0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: #5a78ff;
+  color: #f5efe0;
+}
+
+/* ── Aurora drift ─────────────────────────────────────────────────────────── */
+@keyframes auroraDriftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(7vw, 5vh, 0) scale(1.18);
+  }
+  66% {
+    transform: translate3d(-4vw, 8vh, 0) scale(0.9);
+  }
+}
+
+@keyframes auroraDriftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  40% {
+    transform: translate3d(-8vw, -6vh, 0) scale(1.22);
+  }
+  75% {
+    transform: translate3d(4vw, 6vh, 0) scale(0.88);
+  }
+}
+
+@keyframes auroraDriftC {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  30% {
+    transform: translate3d(6vw, -7vh, 0) scale(0.92);
+  }
+  70% {
+    transform: translate3d(-7vw, 3vh, 0) scale(1.15);
+  }
+}
+
+@keyframes scrollCue {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+/* ── Layout helpers ───────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+}
+
+@supports (height: 100svh) {
+  .hero {
+    min-height: 100svh;
+  }
+}
+
+.nav-link:hover {
+  color: #6b89ff;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav-center {
+    display: none !important;
+  }
+  .nav-cta {
+    display: none !important;
+  }
+  .hamburger {
+    display: flex !important;
+  }
+  .hero-cols {
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+  }
+  .hero-media {
+    width: 100% !important;
+    flex: none !important;
+    min-height: 320px !important;
+  }
+  .about-row,
+  .footer-cols {
+    flex-direction: column !important;
+  }
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 540px) {
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

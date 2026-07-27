@@ -1,31 +1,39 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { B } from "@/lib/brand";
+import Nav from "@/components/site/Nav";
+import Hero from "@/components/site/Hero";
+import Contact from "@/components/site/Contact";
+import { COMPANY_EMAIL, PERSONAL_EMAIL } from "@/lib/contact";
+import AuroraBackdrop from "@/components/motion/AuroraBackdrop";
+import GrainOverlay from "@/components/motion/GrainOverlay";
+import ScrollProgress from "@/components/motion/ScrollProgress";
 
 // Personal contact + flagship live URL. Set ONISHI_URL when the deploy is ready.
-const CONTACT_EMAIL = "victormirandads@gmail.com";
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
 
 // ── Brand tokens ──────────────────────────────────────────────────────────────
+// Mapped onto the shared brand palette in @/lib/brand so this page matches
+// /last-human-job: deep near-black, cream, blue accent.
 const C = {
-  bg:     "#070A16",
-  panel:  "#0C1226",
-  elev:   "#101935",
-  accent: "#3DD6F5",
-  glow:   "#1FB8E6",
-  hi:     "#5BE6FF",
-  text:   "#EDF2F7",
-  muted:  "#8A97B4",
-  border: "#1D2A4D",
-  green:  "#3DDA84",
-  amber:  "#F0A500",
-  red:    "#F06060",
+  bg:     B.black,
+  panel:  B.ink,
+  elev:   B.panel,
+  accent: B.blueBright,
+  glow:   B.blue,
+  hi:     B.cyan,
+  text:   B.cream,
+  muted:  B.muted,
+  border: B.border,
+  green:  B.green,
+  amber:  B.amber,
+  red:    B.red,
 } as const;
 
-const EP:    React.CSSProperties = { fontFamily: "'Epilogue', system-ui, sans-serif" };
-const DM:    React.CSSProperties = { fontFamily: "'DM Sans', system-ui, sans-serif" };
-const LBL:   React.CSSProperties = { ...DM, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.13em" };
+const EP:    React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif", fontWeight: 400, letterSpacing: "0.04em" };
+const DM:    React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif" };
+const LBL:   React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em" };
 const MONO:  React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" };
-const BEBAS: React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif" };
 
 // ── Shared components ─────────────────────────────────────────────────────────
 
@@ -513,7 +521,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           lineHeight: 1, letterSpacing: "-0.01em", textTransform: "uppercase", marginBottom: "0.7rem" }}>
           {project.name}
         </h3>
-        <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1rem", lineHeight: 1.6,
+        <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1rem", lineHeight: 1.6,
           marginBottom: "1.75rem" }}>
           {project.summary}
         </p>
@@ -525,7 +533,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           </div>
           <div>
             <p style={{ ...LBL, color: C.accent, fontSize: "0.56rem", marginBottom: "0.3rem" }}>TECH</p>
-            <p style={{ ...MONO, color: "#C5CFE0", fontSize: "0.82rem", lineHeight: 1.55 }}>{project.tech}</p>
+            <p style={{ ...MONO, color: "#D8D2C2", fontSize: "0.82rem", lineHeight: 1.55 }}>{project.tech}</p>
           </div>
         </div>
 
@@ -557,7 +565,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
               <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.5rem" }}>
                 {s.label}
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.7 }}>
                 {s.body}
               </p>
             </div>
@@ -586,337 +594,40 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function Landing() {
-  const [navOpen, setNavOpen] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const openProject = PROJECTS.find(p => p.id === openId) ?? null;
 
-  useEffect(() => { document.title = "Victor Miranda | AI Product Builder"; }, []);
-
-  const NAV_LINKS = [
-    { label: "Work",    href: "#work"    },
-    { label: "About",   href: "#about"   },
-    { label: "Contact", href: "#contact" },
-  ];
+  useEffect(() => { document.title = "The Method Co. | Victor Miranda"; }, []);
 
   return (
-    <div style={{ background: C.bg, minHeight: "100vh", color: C.text, overflowX: "hidden" }}>
+    <div style={{ background: C.bg, minHeight: "100vh", color: C.text, overflowX: "hidden", position: "relative" }}>
 
-      {/* ── GLOBAL AMBIENT BACKGROUND ──────────────────────────────────────── */}
-      <div style={{ position: "fixed", inset: 0, zIndex: -1, pointerEvents: "none", overflow: "hidden" }}>
-        <div style={{
-          position: "absolute", width: "55vw", height: "55vw", maxWidth: 900, maxHeight: 900,
-          top: "-15%", left: "-10%",
-          background: `radial-gradient(circle, ${C.glow}1e 0%, transparent 70%)`,
-          animation: "orbGlobal1 45s ease-in-out infinite",
-        }} />
-        <div style={{
-          position: "absolute", width: "45vw", height: "45vw", maxWidth: 720, maxHeight: 720,
-          top: "40%", right: "-8%",
-          background: `radial-gradient(circle, ${C.hi}14 0%, transparent 70%)`,
-          animation: "orbGlobal2 60s ease-in-out infinite",
-        }} />
-        <div style={{
-          position: "absolute", width: "50vw", height: "50vw", maxWidth: 800, maxHeight: 800,
-          bottom: "10%", left: "25%",
-          background: `radial-gradient(circle, ${C.accent}0f 0%, transparent 70%)`,
-          animation: "orbGlobal3 52s ease-in-out infinite",
-        }} />
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          opacity: 0.03, mixBlendMode: "overlay",
-        }} />
-      </div>
+      <ScrollProgress />
+      <AuroraBackdrop />
+      <GrainOverlay />
 
+      {/* Page-scoped keyframes. Shared layout and motion rules live in index.css. */}
       <style>{`
         @keyframes typingDot {
           0%,75%,100% { transform: scale(0.35); opacity: 0.25; }
           38%          { transform: scale(1);    opacity: 1; }
         }
-        @keyframes orbDrift1 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          50%     { transform: translate(60px,-40px) scale(1.1); }
-        }
-        @keyframes orbDrift2 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          50%     { transform: translate(-50px,35px) scale(0.95); }
-        }
-        @keyframes orbGlobal1 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          33%     { transform: translate(80px,-60px) scale(1.08); }
-          66%     { transform: translate(-40px,40px) scale(0.96); }
-        }
-        @keyframes orbGlobal2 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          40%     { transform: translate(-70px,50px) scale(1.06); }
-          70%     { transform: translate(50px,-30px) scale(0.98); }
-        }
-        @keyframes orbGlobal3 {
-          0%,100% { transform: translate(0,0) scale(1); }
-          30%     { transform: translate(60px,70px) scale(1.04); }
-          60%     { transform: translate(-80px,-40px) scale(0.97); }
-        }
         @keyframes ctaPulse {
-          0%,100% { box-shadow: 0 0 20px rgba(61,214,245,0.20), 0 0 40px rgba(61,214,245,0.08); }
-          50%     { box-shadow: 0 0 30px rgba(61,214,245,0.40), 0 0 60px rgba(61,214,245,0.15); }
+          0%,100% { box-shadow: 0 0 20px rgba(90,120,255,0.18), 0 0 40px rgba(90,120,255,0.07); }
+          50%     { box-shadow: 0 0 30px rgba(90,120,255,0.34), 0 0 60px rgba(90,120,255,0.13); }
         }
         @keyframes svgRotate {
           0%   { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
         .cta-glow { animation: ctaPulse 3s ease-in-out infinite; }
-        .nav-link:hover { color: #3DD6F5 !important; }
-        a { text-decoration: none; color: inherit; }
-        * { box-sizing: border-box; }
-        @media (prefers-reduced-motion: reduce) {
-          * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
-        }
         @media (max-width: 900px) {
-          .nav-center  { display: none !important; }
-          .hamburger   { display: flex !important; }
-          .hero-cols     { flex-direction: column !important; }
-          .hero-media    { width: 100% !important; flex: unset !important; }
           .flagship-cols { flex-direction: column !important; }
-          .card-grid     { grid-template-columns: repeat(2,1fr) !important; }
-          .about-row   { flex-direction: column !important; }
-          .footer-cols { flex-direction: column !important; }
-        }
-        @media (max-width: 540px) {
-          .card-grid   { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
-      {/* ── NAV ──────────────────────────────────────────────────────────────── */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 5vw", height: 58,
-        background: `${C.bg}d8`,
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${C.border}40`,
-      }}>
-        {/* Logo */}
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-          <img
-            src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
-            alt="Victor Miranda"
-            style={{ height: 26, width: 26 }}
-          />
-          <span style={{ ...DM, fontWeight: 600, color: C.accent, fontSize: "0.88rem", letterSpacing: "0.02em" }}>
-            Victor Miranda
-          </span>
-        </a>
-
-        {/* Desktop links */}
-        <div className="nav-center" style={{ display: "flex", alignItems: "center", gap: "0.1rem" }}>
-          {NAV_LINKS.map(({ label, href }) => (
-            <a key={label} href={href} className="nav-link"
-              style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.82rem",
-                padding: "0.35rem 0.7rem", borderRadius: 4, transition: "color 0.15s" }}>
-              {label}
-            </a>
-          ))}
-        </div>
-
-        {/* Right side */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <a href="#contact" className="cta-glow" style={{
-            ...EP, fontWeight: 700, color: C.bg, background: C.accent,
-            fontSize: "0.72rem", letterSpacing: "0.08em",
-            padding: "0.5rem 1.2rem", borderRadius: 5,
-            transition: "opacity 0.15s, transform 0.15s",
-            cursor: "pointer",
-          }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-            GET IN TOUCH
-          </a>
-          <button
-            className="hamburger"
-            onClick={() => setNavOpen(o => !o)}
-            style={{ display: "none", background: "none", border: "none",
-              color: C.muted, cursor: "pointer", padding: "0.35rem" }}>
-            <Ic n={navOpen ? "close" : "menu"} sz={20} col="currentColor" />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile nav drawer */}
-      <AnimatePresence>
-        {navOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            style={{
-              position: "fixed", top: 58, left: 0, right: 0, zIndex: 190,
-              background: `${C.panel}f8`, backdropFilter: "blur(20px)",
-              borderBottom: `1px solid ${C.border}`, padding: "1rem 5vw 1.5rem",
-              display: "flex", flexDirection: "column", gap: "0.25rem",
-            }}>
-            {NAV_LINKS.map(({ label, href }) => (
-              <a key={label} href={href} onClick={() => setNavOpen(false)}
-                style={{ ...DM, fontWeight: 400, color: C.muted, fontSize: "1rem",
-                  padding: "0.65rem 0", borderBottom: `1px solid ${C.border}40`,
-                  transition: "color 0.15s" }}>
-                {label}
-              </a>
-            ))}
-            <a href="#contact" onClick={() => setNavOpen(false)}
-              style={{ ...EP, fontWeight: 700, color: C.bg, background: C.accent,
-                textAlign: "center", padding: "0.85rem", borderRadius: 6,
-                marginTop: "0.75rem", fontSize: "0.85rem", letterSpacing: "0.06em" }}>
-              GET IN TOUCH
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
-      <section style={{ position: "relative", padding: "140px 5vw 100px", overflow: "hidden", zIndex: 1 }}>
-
-        {/* Background orbs */}
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-          <div style={{
-            position: "absolute", width: 600, height: 600,
-            top: "-10%", left: "-5%",
-            background: `radial-gradient(circle, ${C.accent}14 0%, transparent 70%)`,
-            animation: "orbDrift1 18s ease-in-out infinite",
-          }} />
-          <div style={{
-            position: "absolute", width: 500, height: 500,
-            top: "20%", right: "-8%",
-            background: `radial-gradient(circle, ${C.glow}10 0%, transparent 70%)`,
-            animation: "orbDrift2 22s ease-in-out infinite",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            opacity: 0.028, mixBlendMode: "overlay",
-          }} />
-        </div>
-
-        <div style={{ maxWidth: 1160, margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <div className="hero-cols" style={{ display: "flex", gap: "4rem", alignItems: "center" }}>
-
-            {/* Left column */}
-            <div style={{ flex: "1 1 520px", minWidth: 0 }}>
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                style={{ ...LBL, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.14em", marginBottom: "1.1rem" }}>
-                // VICTOR MIRANDA / AI PRODUCT BUILDER
-              </motion.p>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  ...EP, fontWeight: 900, lineHeight: 0.9,
-                  fontSize: "clamp(3rem, 7vw, 5.5rem)",
-                  color: C.text, textTransform: "uppercase",
-                  letterSpacing: "-0.02em", marginBottom: "1.5rem",
-                  textShadow: "0 0 80px rgba(61,214,245,0.18)",
-                }}>
-                I TURN IDEAS INTO<br />
-                <span style={{ color: C.accent }}>WORKING PRODUCTS, FAST.</span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.3 }}
-                style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "1.05rem",
-                  lineHeight: 1.7, maxWidth: 480, marginBottom: "2rem" }}>
-                Chef turned builder. I ship real software with AI, products that real people use every day.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.42 }}
-                style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap", marginBottom: "2rem" }}>
-                <a href="#work" className="cta-glow" style={{
-                  ...EP, fontWeight: 700, color: C.bg, background: C.accent,
-                  fontSize: "0.82rem", letterSpacing: "0.08em",
-                  padding: "0.85rem 2rem", borderRadius: 6,
-                  transition: "opacity 0.15s, transform 0.15s",
-                  cursor: "pointer",
-                }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
-                  SEE MY WORK
-                </a>
-                <a href="#contact" style={{
-                  ...DM, fontWeight: 500, color: C.muted,
-                  fontSize: "0.82rem",
-                  padding: "0.85rem 1.75rem", borderRadius: 6,
-                  border: `1px solid ${C.border}`,
-                  transition: "color 0.15s, border-color 0.15s",
-                  cursor: "pointer",
-                }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.color = C.text; el.style.borderColor = `${C.accent}50`;
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.color = C.muted; el.style.borderColor = C.border;
-                  }}>
-                  GET IN TOUCH
-                </a>
-              </motion.div>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.56 }}
-                style={{ ...DM, fontWeight: 400, color: "#A8B5CC", fontSize: "0.78rem",
-                  letterSpacing: "0.04em" }}>
-                // Real products, live in production. Not slideware.
-              </motion.p>
-            </div>
-
-            {/* Right column - atmospheric portrait */}
-            <motion.div
-              className="hero-media"
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              style={{ flex: "0 0 44%", minWidth: 0, position: "relative", alignSelf: "stretch", minHeight: 380 }}>
-              <img
-                src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066810/freepik__remove-red-and-purple-lighting-cast-completely-neu__56027_joywsg.jpg"
-                alt="Victor Miranda"
-                style={{
-                  position: "absolute", inset: 0,
-                  width: "100%", height: "100%", objectFit: "cover",
-                  filter: "grayscale(15%) contrast(1.08)",
-                }}
-              />
-              <div style={{
-                position: "absolute", inset: 0,
-                background: `linear-gradient(90deg, ${C.bg}99 0%, ${C.bg}30 40%, transparent 100%)`,
-              }} />
-              <div style={{
-                position: "absolute", left: "1.5rem", bottom: "1.5rem",
-                display: "flex", flexDirection: "column", gap: "0.3rem",
-              }}>
-                <span style={{ ...MONO, color: C.accent, fontSize: "0.62rem", letterSpacing: "0.08em" }}>
-                  // BUILDING IN DUBLIN
-                </span>
-                <span style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.1rem",
-                  textTransform: "uppercase", letterSpacing: "0.02em" }}>
-                  Victor Miranda
-                </span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <Nav />
+      <Hero />
 
       <HR />
 
@@ -929,12 +640,12 @@ export default function Landing() {
           </Reveal>
           <div className="about-row" style={{ display: "flex", gap: "3rem", marginTop: "1rem" }}>
             <Reveal delay={0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
-              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem", lineHeight: 1.8,
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
                 marginBottom: "1.5rem" }}>
                 I spent years cooking in kitchens across Ireland and Malta. Then I taught myself to build
                 software. Now I design, build, and ship full products using AI tools and modern web tech.
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem", lineHeight: 1.8 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8 }}>
                 I care about clarity, and about tools people actually use. I am working toward settling in
                 Ireland and I am open to product and builder roles.
               </p>
@@ -1006,7 +717,7 @@ export default function Landing() {
                       marginBottom: "0.85rem" }}>
                       {project.name}
                     </h3>
-                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "1.05rem",
+                    <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem",
                       lineHeight: 1.6, maxWidth: 460, marginBottom: "1.4rem" }}>
                       {project.summary}
                     </p>
@@ -1067,7 +778,7 @@ export default function Landing() {
                         {project.status.toUpperCase()}
                       </span>
                     </div>
-                    <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.86rem",
+                    <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.86rem",
                       lineHeight: 1.6, marginBottom: "1.1rem", flex: 1 }}>
                       {project.summary}
                     </p>
@@ -1127,7 +838,7 @@ export default function Landing() {
                     letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
                     {s.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.85rem", lineHeight: 1.6 }}>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.85rem", lineHeight: 1.6 }}>
                     {s.body}
                   </p>
                 </motion.div>
@@ -1155,7 +866,7 @@ export default function Landing() {
                   letterSpacing: "0.01em", marginBottom: "0.6rem", textTransform: "uppercase" }}>
                   Product and go-to-market, from one person
                 </h3>
-                <p style={{ ...DM, fontWeight: 300, color: "#C5CFE0", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.7 }}>
                   Before I built software I worked in marketing, copywriting, and design. That is not a side
                   note. It means I can build a product and the thing that sells it: the positioning, the
                   landing page, the words, and the launch. Most builders can do one side. I do both.
@@ -1168,45 +879,7 @@ export default function Landing() {
 
       <HR />
 
-      {/* ── CONTACT ──────────────────────────────────────────────────────────── */}
-      <section id="contact" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <Reveal>
-            <SLabel>CONTACT</SLabel>
-            <SH>LET US BUILD SOMETHING.</SH>
-            <Sub style={{ margin: "0 auto 2.5rem", color: "#C5CFE0" }}>
-              Open to product builder and developer roles, and to freelance builds. If you have something
-              worth shipping, get in touch.
-            </Sub>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div style={{
-              background: C.panel, border: `1px solid ${C.border}`,
-              borderTop: `2px solid ${C.accent}`, borderRadius: 12,
-              padding: "clamp(2rem, 5vw, 3rem)",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem",
-            }}>
-              <a href={`mailto:${CONTACT_EMAIL}`}
-                style={{ ...MONO, color: C.accent, fontSize: "clamp(1rem, 3vw, 1.4rem)",
-                  letterSpacing: "0.02em", wordBreak: "break-all" }}>
-                {CONTACT_EMAIL}
-              </a>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="cta-glow" style={{
-                ...EP, fontWeight: 700, color: C.bg, background: C.accent,
-                fontSize: "0.82rem", letterSpacing: "0.1em", textTransform: "uppercase",
-                padding: "0.95rem 2.25rem", borderRadius: 6,
-                display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                transition: "opacity 0.15s",
-              }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.88"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}>
-                GET IN TOUCH <Ic n="arrow" sz={15} col={C.bg} />
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <Contact />
 
       {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
       <footer style={{
@@ -1235,7 +908,7 @@ export default function Landing() {
                 Victor Miranda
               </span>
             </div>
-            <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 280 }}>
+            <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 280 }}>
               I turn ideas into working products, fast.
             </p>
           </div>
@@ -1266,13 +939,21 @@ export default function Landing() {
             <p style={{ ...LBL, color: C.accent, fontSize: "0.6rem", letterSpacing: "0.12em",
               marginBottom: "1.25rem" }}>CONNECT</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-              <a href={`mailto:${CONTACT_EMAIL}`}
-                className="nav-link"
-                style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.88rem",
-                  transition: "color 0.15s", textDecoration: "none", wordBreak: "break-all" }}>
-                {CONTACT_EMAIL}
-              </a>
-              <p style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.84rem",
+              {[
+                { tag: "Company", email: COMPANY_EMAIL },
+                { tag: "Direct",  email: PERSONAL_EMAIL },
+              ].map(({ tag, email }) => (
+                <span key={tag} style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
+                  <span style={{ ...LBL, color: C.muted, fontSize: "0.52rem" }}>{tag}</span>
+                  <a href={`mailto:${email}`}
+                    className="nav-link"
+                    style={{ ...MONO, fontWeight: 400, color: C.text, fontSize: "0.82rem",
+                      transition: "color 0.15s", textDecoration: "none", wordBreak: "break-all" }}>
+                    {email}
+                  </a>
+                </span>
+              ))}
+              <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.84rem",
                 lineHeight: 1.6, margin: 0 }}>
                 Based in Dublin. Open to work worldwide.
               </p>
@@ -1297,7 +978,7 @@ export default function Landing() {
                 {i > 0 && <span style={{ color: C.border, fontSize: "0.7rem" }}>|</span>}
                 <a href={href}
                   className="nav-link"
-                  style={{ ...DM, fontWeight: 400, color: "#C5CFE0", fontSize: "0.78rem",
+                  style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.78rem",
                     transition: "color 0.15s", textDecoration: "none" }}>
                   {label}
                 </a>
