@@ -132,6 +132,19 @@ button {
   }
 }
 
+/* Screenshot gallery inside a case study. */
+@media (max-width: 700px) {
+  .media-gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .media-gallery {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 540px) {
   .card-grid {
     grid-template-columns: 1fr !important;

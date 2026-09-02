@@ -8,6 +8,7 @@ import { COMPANY_EMAIL, PERSONAL_EMAIL } from "@/lib/contact";
 import AuroraBackdrop from "@/components/motion/AuroraBackdrop";
 import GrainOverlay from "@/components/motion/GrainOverlay";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import { BrowserFrame, ProjectGallery, ProjectPreview } from "@/components/site/ProjectMedia";
 
 // Personal contact + flagship live URL. Set ONISHI_URL when the deploy is ready.
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
@@ -34,6 +35,15 @@ const EP:    React.CSSProperties = { fontFamily: "'Bebas Neue', sans-serif", fon
 const DM:    React.CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif" };
 const LBL:   React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.2em" };
 const MONO:  React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" };
+
+// The cards carry an interactive preview, so the card itself is a plain
+// container and this is the real button inside it.
+const CARD_CTA: React.CSSProperties = {
+  ...EP, fontWeight: 700, color: C.accent, letterSpacing: "0.1em",
+  textTransform: "uppercase", background: "none", border: "none",
+  padding: 0, margin: 0, cursor: "pointer", alignSelf: "flex-start",
+  display: "inline-flex", alignItems: "center",
+};
 
 // ── Shared components ─────────────────────────────────────────────────────────
 
@@ -208,7 +218,7 @@ function ChatDemo() {
   );
 }
 
-// ── Second Brain node graph demo ──────────────────────────────────────────────
+// ── Orbit node graph demo ─────────────────────────────────────────────────────
 const G_NODES = [
   { cx: 0.14, cy: 0.28 }, { cx: 0.50, cy: 0.10 }, { cx: 0.84, cy: 0.28 },
   { cx: 0.74, cy: 0.72 }, { cx: 0.26, cy: 0.76 }, { cx: 0.50, cy: 0.52 },
@@ -256,63 +266,35 @@ function NodeGraph({ w = 240, h = 130, loopKey }: { w?: number; h?: number; loop
   );
 }
 
-// ── Browser frame + project visuals ───────────────────────────────────────────
-function BrowserFrame({ url, children, style: s }: {
-  url?: string; children: React.ReactNode; style?: React.CSSProperties;
-}) {
-  return (
-    <div style={{
-      border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden",
-      background: C.elev, boxShadow: `0 20px 50px rgba(0,0,0,0.4)`, ...s,
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem",
-        padding: "0.55rem 0.85rem", borderBottom: `1px solid ${C.border}`,
-        background: C.panel }}>
-        <div style={{ display: "flex", gap: 5 }}>
-          {[C.red, C.amber, C.green].map(c => (
-            <span key={c} style={{ width: 9, height: 9, borderRadius: "50%", background: c, opacity: 0.7 }} />
-          ))}
-        </div>
-        {url && (
-          <div style={{ flex: 1, marginLeft: "0.35rem", background: C.bg,
-            border: `1px solid ${C.border}`, borderRadius: 5,
-            padding: "0.2rem 0.6rem", ...MONO, fontSize: "0.62rem", color: C.muted,
-            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            {url}
-          </div>
-        )}
-      </div>
-      {children}
-    </div>
-  );
-}
+// ── Project visuals ─────────────────────────────────────────────────
 
-// Shot image cropped to a consistent window, aligned to the top of the app
-function Shot({ src, alt, height }: { src: string; alt: string; height: number | string }) {
-  return (
-    <div style={{ height, overflow: "hidden", background: C.bg }}>
-      <img src={src} alt={alt} loading="lazy"
-        style={{ width: "100%", display: "block", objectFit: "cover", objectPosition: "top" }} />
-    </div>
-  );
-}
-
-// The visual shown on a project card: real screenshot, or the live demo
-function ProjectVisual({ project, height }: { project: Project; height: number }) {
-  if (project.cover) {
-    return (
-      <BrowserFrame url={project.frameUrl}>
-        <Shot src={project.cover} alt={`${project.name} screenshot`} height={height} />
-      </BrowserFrame>
-    );
-  }
+// The animated stand-in for a project, used until a real recording is added.
+function ProjectDemo({ project, height }: { project: Project; height: number }) {
   if (project.demo === "chat") {
-    return <div style={{ minHeight: height, display: "flex", alignItems: "stretch" }}><ChatDemo /></div>;
+    return (
+      <div style={{ minHeight: height, display: "flex", alignItems: "stretch" }}>
+        <ChatDemo />
+      </div>
+    );
   }
   if (project.demo === "graph") {
     return <GraphCard url={project.frameUrl} height={height} />;
   }
   return null;
+}
+
+// The visual on a project card: the real recording or poster where one exists,
+// the built-in demo next, and a marked placeholder if neither is there yet.
+function ProjectVisual({ project, height }: { project: Project; height: number }) {
+  return (
+    <ProjectPreview
+      projectId={project.id}
+      name={project.name}
+      height={height}
+      frameUrl={project.frameUrl}
+      fallback={project.demo ? <ProjectDemo project={project} height={height} /> : undefined}
+    />
+  );
 }
 
 function GraphCard({ url, height }: { url?: string; height: number }) {
@@ -334,6 +316,8 @@ interface Project {
   id: string;
   name: string;
   icon: string;
+  /** Optional one-line stamp shown above the summary in the case study. */
+  tagline?: string;
   summary: string;
   role: string;
   tech: string;
@@ -347,9 +331,10 @@ interface Project {
   liveLabel?: string;
   demo?: DemoKind;
   frameUrl?: string;        // faux address bar label for the browser frame
-  cover?: string;           // hero screenshot shown on the card
-  shots?: { src: string; label: string }[]; // gallery inside the case study
 }
+
+// Screenshots and recordings are not listed here. They are picked up by
+// convention from client/public/media/projects/<id>/ - see @/lib/project-media.
 
 const PROJECTS: Project[] = [
   {
@@ -371,13 +356,6 @@ const PROJECTS: Project[] = [
     liveUrl: ONISHI_URL,
     liveLabel: "Open the live app",
     frameUrl: "onishi.onrender.com",
-    cover: "/images/projects/onishi-dashboard.jpg",
-    shots: [
-      { src: "/images/projects/onishi-dashboard.jpg", label: "Team dashboard" },
-      { src: "/images/projects/onishi-roster.jpg",    label: "Roster builder" },
-      { src: "/images/projects/onishi-ranking.jpg",   label: "Sales-per-hour leaderboard" },
-      { src: "/images/projects/onishi-hours.jpg",     label: "Hours and overtime tracking" },
-    ],
   },
   {
     id: "method-chat",
@@ -399,22 +377,23 @@ const PROJECTS: Project[] = [
     frameUrl: "themethodco.co",
   },
   {
-    id: "second-brain",
-    name: "Second Brain",
+    id: "orbit",
+    name: "Orbit",
     icon: "brain",
-    summary: "A personal tool combining a task pipeline, notes, an AI chat interface, and a 3D view of a codebase.",
-    role: "Built it for my own workflow.",
-    tech: "Web app, AI integration, code graph visualisation.",
+    tagline: "Nothing drifts away.",
+    summary: "A daily organiser and notes app designed around how an ADHD brain actually works.",
+    role: "Designed and built end to end.",
+    tech: "React, TypeScript, Express, SQLite, PWA, deployed on Render.",
     problem:
-      "Ideas and code context were scattered across too many places. Keeping the thread of a project in my head was the bottleneck.",
+      "Most productivity tools assume you can hold a plan in your head and come back to it. With ADHD you cannot. Long lists cause shutdown, unfinished tasks become shame, and anything you cannot capture in two seconds is lost.",
     built:
-      "A single workspace with a kanban pipeline, notes capture, AI chat, and an embedded interactive code graph, so the work and the context sit side by side.",
+      "A Now screen that shows one suggested task and never more than three others. A Focus mode that puts a single task full screen with a timer, because starting is the hard part, not planning. Capture from anywhere in under two seconds into an Inbox you process one item at a time rather than facing a list of forty. A proper calendar with tap to schedule and undo on every action. Projects, notes with linking and tags, and a mind map showing how everything connects. An optional spoken briefing that reads your day aloud. Installable on a phone as a PWA.",
     hardPart:
-      "Generating and rendering a large code graph, thousands of nodes, and keeping it usable rather than a tangled hairball you cannot read.",
+      "Designing against my own instincts. Every impulse was to add more, and almost every good decision was a subtraction: capping lists at five items, replacing overdue with rolled over so it carries no blame, cutting drag to schedule on mobile because a drag that half fails is worse than two taps, and quietening the ambient animation because motion competes for attention.",
     status: "Personal build",
     statusCol: C.accent,
     demo: "graph",
-    frameUrl: "second-brain.local",
+    frameUrl: "orbit.local",
   },
   {
     id: "last-human-job",
@@ -434,10 +413,6 @@ const PROJECTS: Project[] = [
     liveUrl: "/last-human-job",
     liveLabel: "View the live page",
     frameUrl: "themethodco.co/last-human-job",
-    cover: "/images/projects/last-human-job.jpg",
-    shots: [
-      { src: "/images/projects/last-human-job.jpg", label: "Conversion-focused landing page" },
-    ],
   },
 ];
 
@@ -521,6 +496,12 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           lineHeight: 1, letterSpacing: "-0.01em", textTransform: "uppercase", marginBottom: "0.7rem" }}>
           {project.name}
         </h3>
+        {project.tagline && (
+          <p style={{ ...MONO, color: C.accent, fontSize: "0.8rem", letterSpacing: "0.02em",
+            marginBottom: "0.6rem" }}>
+            {project.tagline}
+          </p>
+        )}
         <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1rem", lineHeight: 1.6,
           marginBottom: "1.75rem" }}>
           {project.summary}
@@ -537,27 +518,16 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           </div>
         </div>
 
-        {project.shots && project.shots.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "1.75rem" }}>
-            {project.shots.map(shot => (
-              <figure key={shot.src} style={{ margin: 0 }}>
-                <BrowserFrame url={project.frameUrl}>
-                  <Shot src={shot.src} alt={shot.label} height="auto" />
-                </BrowserFrame>
-                <figcaption style={{ ...MONO, color: C.muted, fontSize: "0.66rem",
-                  marginTop: "0.5rem", textAlign: "center" }}>
-                  {shot.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        )}
-        {!project.shots && project.demo === "chat" && (
-          <div style={{ marginBottom: "1.75rem" }}><ChatDemo /></div>
-        )}
-        {!project.shots && project.demo === "graph" && (
-          <div style={{ marginBottom: "1.75rem" }}><GraphCard url={project.frameUrl} height={240} /></div>
-        )}
+        <div style={{ marginBottom: "1.75rem" }}>
+          <ProjectVisual project={project} height={260} />
+        </div>
+
+        <div style={{ marginBottom: "2rem" }}>
+          <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.8rem" }}>
+            Screens
+          </p>
+          <ProjectGallery projectId={project.id} name={project.name} />
+        </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {sections.map(s => (
@@ -684,7 +654,7 @@ export default function Landing() {
           {/* Flagship: Onishi */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
-              <motion.button
+              <motion.div
                 onClick={() => setOpenId(project.id)}
                 whileHover={{ y: -6, boxShadow: `0 26px 64px ${C.accent}2b, 0 0 0 1px ${C.accent}55` }}
                 transition={{ duration: 0.2 }}
@@ -725,18 +695,19 @@ export default function Landing() {
                       marginBottom: "1.6rem" }}>
                       {project.tech}
                     </p>
-                    <span style={{ ...EP, fontWeight: 700, color: C.accent, fontSize: "0.76rem",
-                      letterSpacing: "0.1em", textTransform: "uppercase",
-                      display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                    <button
+                      type="button"
+                      onClick={e => { e.stopPropagation(); setOpenId(project.id); }}
+                      style={{ ...CARD_CTA, fontSize: "0.76rem", gap: "0.5rem" }}>
                       Read the case study <Ic n="arrow" sz={15} col={C.accent} />
-                    </span>
+                    </button>
                   </div>
                   {/* Real screenshot */}
                   <div className="flagship-media" style={{ flex: "1 1 480px", minWidth: 0, width: "100%" }}>
                     <ProjectVisual project={project} height={300} />
                   </div>
                 </div>
-              </motion.button>
+              </motion.div>
             </Reveal>
           ))}
 
@@ -744,7 +715,7 @@ export default function Landing() {
           <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
             {PROJECTS.filter(p => !p.flagship).map((project, i) => (
               <Reveal key={project.id} delay={i * 0.08}>
-                <motion.button
+                <motion.div
                   onClick={() => setOpenId(project.id)}
                   whileHover={{ y: -8, boxShadow: `0 20px 46px ${C.accent}3d, 0 0 0 1px ${C.accent}55` }}
                   transition={{ duration: 0.2 }}
@@ -782,13 +753,14 @@ export default function Landing() {
                       lineHeight: 1.6, marginBottom: "1.1rem", flex: 1 }}>
                       {project.summary}
                     </p>
-                    <span style={{ ...EP, fontWeight: 700, color: C.accent, fontSize: "0.7rem",
-                      letterSpacing: "0.1em", textTransform: "uppercase",
-                      display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+                    <button
+                      type="button"
+                      onClick={e => { e.stopPropagation(); setOpenId(project.id); }}
+                      style={{ ...CARD_CTA, fontSize: "0.7rem", gap: "0.4rem" }}>
                       Case study <Ic n="arrow" sz={13} col={C.accent} />
-                    </span>
+                    </button>
                   </div>
-                </motion.button>
+                </motion.div>
               </Reveal>
             ))}
           </div>

@@ -330,7 +330,7 @@ function ChatEcoDemo() {
   );
 }
 
-// ─── Node graph (Second Brain) ────────────────────────────────────────────────
+// ─── Node graph (Orbit) ────────────────────────────────────────────────
 const G_NODES = [
   { cx: 0.14, cy: 0.28 }, { cx: 0.50, cy: 0.10 }, { cx: 0.84, cy: 0.28 },
   { cx: 0.74, cy: 0.72 }, { cx: 0.26, cy: 0.76 }, { cx: 0.50, cy: 0.52 },
@@ -383,7 +383,7 @@ function NodeGraph({ w = 220, h = 110, loopKey }: { w?: number; h?: number; loop
     </svg>
   );
 }
-function SecondBrainDemo() {
+function OrbitDemo() {
   const { loopKey, fading } = useDemoLoop(6200);
   return <DemoWin fading={fading} minH={110}><NodeGraph w={222} h={100} loopKey={loopKey} /></DemoWin>;
 }
@@ -398,14 +398,14 @@ const ECO_CARDS: EcoCardData[] = [
     desc: "Positioning, copy, funnels, and launch systems for service businesses." },
   { id: "chat", title: "The Method Chat", status: "live", anchor: "#ecosystem", featured: true,
     desc: "Your AI strategist, trained on your business. Sharp answers in your voice, available now." },
-  { id: "brain", title: "Second Brain", status: "soon", anchor: "#ecosystem",
+  { id: "brain", title: "Orbit", status: "soon", anchor: "#ecosystem",
     desc: "Every decision, insight, and piece of copy. Connected and remembered." },
 ];
 
 function CardDemo({ id }: { id: string }) {
   if (id === "consultancy") return <ConsultancyDemo />;
   if (id === "chat")        return <ChatEcoDemo />;
-  if (id === "brain")       return <SecondBrainDemo />;
+  if (id === "brain")       return <OrbitDemo />;
   return null;
 }
 
