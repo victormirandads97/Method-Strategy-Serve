@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { B } from "@/lib/brand";
 import {
   previewSources,
-  shotLabel,
+  shotAlt,
   useHoverPointer,
   useMediaAvailability,
   useMeteredConnection,
@@ -293,9 +293,9 @@ export function ProjectPreview({ projectId, name, height, frameUrl, fallback }: 
       </div>
     );
   } else if (posterSrc) {
-    // The poster falls back to shot-1, so its caption describes it either way
-    // and beats a generic "screenshot" for anyone on a screen reader.
-    body = <Shot src={posterSrc} alt={`${name}: ${shotLabel(projectId, 1)}`} height={height} />;
+    // The poster falls back to shot-1, so slot 1's description fits it either
+    // way and beats a generic "screenshot" for anyone on a screen reader.
+    body = <Shot src={posterSrc} alt={shotAlt(projectId, 1)} height={height} />;
   } else if (fallback) {
     return <div ref={wrapRef}>{fallback}</div>;
   } else {
@@ -319,7 +319,9 @@ export function ProjectPreview({ projectId, name, height, frameUrl, fallback }: 
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 
-function Lightbox({ shot, name, onClose }: { shot: ShotSlot; name: string; onClose: () => void }) {
+function Lightbox({ shot, name, projectId, onClose }: {
+  shot: ShotSlot; name: string; projectId: string; onClose: () => void;
+}) {
   useEffect(() => {
     // Capture phase, so the case study modal behind this does not also close.
     const onKey = (e: KeyboardEvent) => {
@@ -361,7 +363,7 @@ function Lightbox({ shot, name, onClose }: { shot: ShotSlot; name: string; onClo
       </button>
       <img
         src={shot.src}
-        alt={`${name}: ${shot.label}`}
+        alt={shotAlt(projectId, shot.slot)}
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: "100%", maxHeight: "78vh", objectFit: "contain",
@@ -378,9 +380,10 @@ function Lightbox({ shot, name, onClose }: { shot: ShotSlot; name: string; onClo
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-function GalleryTile({ shot, name, ready, onOpen, portrait, onMeasure }: {
+function GalleryTile({ shot, name, projectId, ready, onOpen, portrait, onMeasure }: {
   shot: ShotSlot;
   name: string;
+  projectId: string;
   ready: boolean;
   onOpen: () => void;
   /** True once any shot in this gallery measures taller than it is wide. */
@@ -390,7 +393,7 @@ function GalleryTile({ shot, name, ready, onOpen, portrait, onMeasure }: {
   if (!ready) {
     return (
       <figure style={{ margin: 0 }}>
-        <MediaPlaceholder hint={shot.hint} height={portrait ? 280 : 132} />
+        <MediaPlaceholder hint={shot.hint} height={portrait ? 480 : 132} />
         <figcaption style={{ ...MONO, color: C.muted, fontSize: "0.62rem",
           marginTop: "0.45rem", textAlign: "center" }}>
           {shot.label}
@@ -409,10 +412,14 @@ function GalleryTile({ shot, name, ready, onOpen, portrait, onMeasure }: {
           display: "block", width: "100%", padding: 0, cursor: "zoom-in",
           background: C.bg, border: `1px solid ${C.border}`, borderRadius: 8,
           overflow: "hidden",
+          // A share image and a phone screenshot are both portrait but not the
+          // same shape, so a row of them would sit ragged. One box for all of
+          // them keeps the row level; contain means neither is cropped.
+          ...(portrait ? { aspectRatio: "1 / 2" } : null),
         }}>
         <img
           src={shot.src}
-          alt={`${name}: ${shot.label}`}
+          alt={shotAlt(projectId, shot.slot)}
           loading="lazy"
           decoding="async"
           onLoad={(e) => {
@@ -422,9 +429,8 @@ function GalleryTile({ shot, name, ready, onOpen, portrait, onMeasure }: {
           style={
             portrait
               // A phone screenshot cropped to a short wide box shows only a
-              // strip of its header. Fit the whole screen instead, letterboxed
-              // against the page rather than cropped.
-              ? { width: "100%", height: 280, display: "block", objectFit: "contain" }
+              // strip of its header, so the whole screen is fitted instead.
+              ? { width: "100%", height: "100%", display: "block", objectFit: "contain" }
               : { width: "100%", height: 132, display: "block",
                   objectFit: "cover", objectPosition: "top" }
           }
@@ -457,17 +463,21 @@ export function ProjectGallery({ projectId, name, minShots }: {
     <>
       <div className="media-gallery" style={{
         display: "grid",
-        // Four shots read better as a square than as a row of three with one
-        // stranded underneath. The responsive rules in index.css still win on
-        // narrower screens.
-        gridTemplateColumns: `repeat(${shots.length === 4 ? 2 : 3}, 1fr)`,
+        // Phone screenshots want narrow, tall tiles, so a portrait gallery goes
+        // four across and each tile keeps the shape of a phone. Landscape
+        // galleries keep three across, or two when there are exactly four so
+        // none is left stranded on its own row. The rules in index.css still
+        // win on narrower screens.
+        gridTemplateColumns: `repeat(${portrait ? 4 : shots.length === 4 ? 2 : 3}, 1fr)`,
         gap: "0.85rem",
+        alignItems: "start",
       }}>
         {shots.map((shot) => (
           <GalleryTile
             key={shot.src}
             shot={shot}
             name={name}
+            projectId={projectId}
             ready={states[shot.src] === "ready"}
             onOpen={() => setOpenSlot(shot.slot)}
             portrait={portrait}
@@ -476,7 +486,7 @@ export function ProjectGallery({ projectId, name, minShots }: {
         ))}
       </div>
       {openShot && (
-        <Lightbox shot={openShot} name={name} onClose={() => setOpenSlot(null)} />
+        <Lightbox shot={openShot} name={name} projectId={projectId} onClose={() => setOpenSlot(null)} />
       )}
     </>
   );

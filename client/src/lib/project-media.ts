@@ -50,7 +50,7 @@ export interface PreviewSources {
 const SHOT_LABELS: Record<string, readonly string[]> = {
   dezorzi: [
     "The share image, route drawn from the real trip",
-    "A trip page, city by city",
+    "A city in the trip, and where you are staying",
     "The map with the planned route",
     "Day by day itinerary",
   ],
@@ -80,9 +80,23 @@ const SHOT_LABELS: Record<string, readonly string[]> = {
   ],
 };
 
-/** The caption for one slot, also used as that image's alt text. */
-export function shotLabel(projectId: string, slot: number): string {
-  return labelFor(projectId, slot);
+/**
+ * Alt text per gallery slot. Captions stay short because they are printed
+ * under the tile; alt text describes what is actually on screen, for anyone
+ * who cannot see it. Slots with no entry fall back to the caption.
+ */
+const SHOT_ALT: Record<string, readonly string[]> = {
+  dezorzi: [
+    "Dezorzi share image for a four day Belfast trip. Twelve stops are drawn as a numbered route coloured by day, above the day headings and the totals: 19.0 km between stops, 372 euro planned, 2 travelling.",
+    "The Lisbon leg of a Dezorzi trip. A photograph of the Quinta da Regaleira palace fills the top, over the title Lisbon, the dates 30 September to 3 October, 2 travelling, a 600 euro budget and a cultural tag. Below it a Staying at card offers Search for a place or Use an address.",
+    "The Dezorzi map showing a planned Lisbon route. Fifteen numbered stops sit clustered over central Lisbon, coloured by day, with one green day four leg running far to the north west. A legend along the bottom reads All days, Day 1 to Day 4, above the total of 15 stops and 35.3 km between them.",
+    "The Dezorzi day by day itinerary for a Lisbon trip. Four colour coded days are listed: Down to the river on Wednesday 30 September, Alfama uphill on Thursday 1 October, Gulbenkian and the gardens on Friday 2 October, and Out to Sintra on Saturday 3 October, each with four ideas and controls to add, remove or open the day.",
+  ],
+};
+
+/** Describes one image for a screen reader. Falls back to its caption. */
+export function shotAlt(projectId: string, slot: number): string {
+  return SHOT_ALT[projectId]?.[slot - 1] ?? labelFor(projectId, slot);
 }
 
 function labelFor(projectId: string, slot: number): string {
