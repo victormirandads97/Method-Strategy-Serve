@@ -48,6 +48,12 @@ export interface PreviewSources {
  * fall back to a generic caption, so extra screenshots need no code change.
  */
 const SHOT_LABELS: Record<string, readonly string[]> = {
+  dezorzi: [
+    "The share image, route drawn from the real trip",
+    "A trip page, city by city",
+    "The map with the planned route",
+    "Day by day itinerary",
+  ],
   onishi: [
     "Team dashboard",
     "Roster builder",

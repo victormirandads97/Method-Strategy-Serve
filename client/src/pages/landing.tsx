@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { B } from "@/lib/brand";
 import Nav from "@/components/site/Nav";
@@ -10,8 +11,11 @@ import GrainOverlay from "@/components/motion/GrainOverlay";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 import { BrowserFrame, ProjectGallery, ProjectPreview } from "@/components/site/ProjectMedia";
 
-// Personal contact + flagship live URL. Set ONISHI_URL when the deploy is ready.
+// Personal contact + flagship live URLs. Set these when the deploy is ready.
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
+// TODO: set to the live Render URL. While it is empty the featured card simply
+// omits its live button rather than linking somewhere that 404s.
+const DEZORZI_URL = "";
 
 // ── Brand tokens ──────────────────────────────────────────────────────────────
 // Mapped onto the shared brand palette in @/lib/brand so this page matches
@@ -134,6 +138,7 @@ function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?
     card:    <><rect x="2" y="5" width="20" height="14" rx="2" strokeWidth="1.5" fill="none" stroke={col}/><path d="M2 10h20" strokeWidth="1.5" stroke={col}/></>,
     link:    <><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/></>,
     spark:   <path d="M12 2l2.2 6.6L21 12l-6.8 3.4L12 22l-2.2-6.6L3 12l6.8-3.4L12 2z" strokeWidth="1.3" fill="none" stroke={col} strokeLinejoin="round"/>,
+    map:     <><path d="M9 4L3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4z" strokeWidth="1.5" fill="none" stroke={col} strokeLinejoin="round"/><path d="M9 4v14M15 6.5v14" strokeWidth="1.5" stroke={col} fill="none"/></>,
   };
   return (
     <svg viewBox="0 0 24 24" style={{ width: sz, height: sz, display: "block", flexShrink: 0 }}>
@@ -329,6 +334,8 @@ interface Project {
   flagship?: boolean;
   liveUrl?: string;
   liveLabel?: string;
+  /** Route of a full case-study page. Without one the card opens the modal. */
+  caseStudyHref?: string;
   demo?: DemoKind;
   frameUrl?: string;        // faux address bar label for the browser frame
 }
@@ -337,6 +344,28 @@ interface Project {
 // convention from client/public/media/projects/<id>/ - see @/lib/project-media.
 
 const PROJECTS: Project[] = [
+  {
+    id: "dezorzi",
+    name: "Dezorzi",
+    icon: "map",
+    tagline: "Plan the trip, not the spreadsheet.",
+    summary: "A multi-city trip planner that builds a real route, city by city.",
+    role: "Designed and built end to end.",
+    tech: "React, TypeScript, Node, SQLite, Google Places, Claude API, MapLibre with custom styling, Render.",
+    problem:
+      "Planning a multi-city trip means juggling tabs, notes, and a map that does not know what you already picked. Nothing tells you a place belongs to the wrong city, and nothing tells you how long the next leg actually takes.",
+    built:
+      "Trips built city by city, with neighbourhood-level search over Google Places, travel time worked out per leg, a day-by-day itinerary, and a share image that draws the real route. Behind it an admin dashboard tracks cost per provider.",
+    hardPart:
+      "A per-city guard that stops a place from the wrong city being added, and drawing the share image with the same projection as the map so the exported route matches what you planned rather than approximating it.",
+    status: "Live",
+    statusCol: C.green,
+    flagship: true,
+    liveUrl: DEZORZI_URL,
+    liveLabel: "Open the live app",
+    caseStudyHref: "/work/dezorzi",
+    frameUrl: "dezorzi.onrender.com",
+  },
   {
     id: "onishi",
     name: "Onishi",
@@ -566,6 +595,14 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
 export default function Landing() {
   const [openId, setOpenId] = useState<string | null>(null);
   const openProject = PROJECTS.find(p => p.id === openId) ?? null;
+  const [, navigate] = useLocation();
+
+  // A project with its own case-study page navigates there. Everything else
+  // keeps the existing modal.
+  const openCase = (project: Project) => {
+    if (project.caseStudyHref) navigate(project.caseStudyHref);
+    else setOpenId(project.id);
+  };
 
   useEffect(() => { document.title = "The Method Co. | Victor Miranda"; }, []);
 
@@ -651,11 +688,11 @@ export default function Landing() {
             <Sub>Each one shipped end to end. Click any project for the short case study, the real problem, what I built, and the hard part I actually solved.</Sub>
           </Reveal>
 
-          {/* Flagship: Onishi */}
+          {/* Featured: Dezorzi and Onishi */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div
-                onClick={() => setOpenId(project.id)}
+                onClick={() => openCase(project)}
                 whileHover={{ y: -6, boxShadow: `0 26px 64px ${C.accent}2b, 0 0 0 1px ${C.accent}55` }}
                 transition={{ duration: 0.2 }}
                 style={{
@@ -673,7 +710,7 @@ export default function Landing() {
                       marginBottom: "1.1rem", flexWrap: "wrap" }}>
                       <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem",
                         border: `1px solid ${C.accent}40`, padding: "0.12rem 0.5rem", borderRadius: 3 }}>
-                        FLAGSHIP
+                        FEATURED
                       </span>
                       <span style={{ ...LBL, color: project.statusCol, fontSize: "0.56rem",
                         display: "flex", alignItems: "center", gap: "0.35rem" }}>
@@ -695,12 +732,28 @@ export default function Landing() {
                       marginBottom: "1.6rem" }}>
                       {project.tech}
                     </p>
-                    <button
-                      type="button"
-                      onClick={e => { e.stopPropagation(); setOpenId(project.id); }}
-                      style={{ ...CARD_CTA, fontSize: "0.76rem", gap: "0.5rem" }}>
-                      Read the case study <Ic n="arrow" sz={15} col={C.accent} />
-                    </button>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1.5rem",
+                      flexWrap: "wrap" }}>
+                      <button
+                        type="button"
+                        onClick={e => { e.stopPropagation(); openCase(project); }}
+                        style={{ ...CARD_CTA, fontSize: "0.76rem", gap: "0.5rem" }}>
+                        Read the case study <Ic n="arrow" sz={15} col={C.accent} />
+                      </button>
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          onClick={e => e.stopPropagation()}
+                          {...(project.liveUrl.startsWith("http")
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
+                          style={{ ...CARD_CTA, color: C.text, fontSize: "0.76rem",
+                            gap: "0.5rem", textDecoration: "none" }}>
+                          {project.liveLabel ?? "Open the live app"}
+                          <Ic n="link" sz={14} col={C.text} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   {/* Real screenshot */}
                   <div className="flagship-media" style={{ flex: "1 1 480px", minWidth: 0, width: "100%" }}>
@@ -716,7 +769,7 @@ export default function Landing() {
             {PROJECTS.filter(p => !p.flagship).map((project, i) => (
               <Reveal key={project.id} delay={i * 0.08}>
                 <motion.div
-                  onClick={() => setOpenId(project.id)}
+                  onClick={() => openCase(project)}
                   whileHover={{ y: -8, boxShadow: `0 20px 46px ${C.accent}3d, 0 0 0 1px ${C.accent}55` }}
                   transition={{ duration: 0.2 }}
                   style={{
@@ -755,7 +808,7 @@ export default function Landing() {
                     </p>
                     <button
                       type="button"
-                      onClick={e => { e.stopPropagation(); setOpenId(project.id); }}
+                      onClick={e => { e.stopPropagation(); openCase(project); }}
                       style={{ ...CARD_CTA, fontSize: "0.7rem", gap: "0.4rem" }}>
                       Case study <Ic n="arrow" sz={13} col={C.accent} />
                     </button>
