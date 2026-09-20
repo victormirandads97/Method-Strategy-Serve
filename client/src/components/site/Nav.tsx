@@ -19,7 +19,7 @@ export const NAV_LINKS = [
  * stays transparent over the hero and picks up a blur and a hairline border
  * once the page starts scrolling.
  */
-export default function Nav() {
+export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -96,7 +96,7 @@ export default function Nav() {
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={label}
-              href={href}
+              href={`${hrefBase}${href}`}
               className="nav-link"
               style={{
                 ...INTER,
@@ -116,7 +116,7 @@ export default function Nav() {
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <span className="nav-cta">
             <MagneticButton
-              href="#contact"
+              href={`${hrefBase}#contact`}
               variant="solid"
               pull={8}
               style={{ padding: "0.7rem 1.35rem", fontSize: "0.7rem" }}
@@ -186,7 +186,7 @@ export default function Nav() {
             {NAV_LINKS.map(({ label, href }) => (
               <a
                 key={label}
-                href={href}
+                href={`${hrefBase}${href}`}
                 onClick={() => setOpen(false)}
                 style={{
                   ...INTER,
@@ -200,7 +200,7 @@ export default function Nav() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={`${hrefBase}#contact`}
               onClick={() => setOpen(false)}
               style={{
                 ...MONO,

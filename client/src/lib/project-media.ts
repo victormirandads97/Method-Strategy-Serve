@@ -234,11 +234,12 @@ export function useReducedMotion(): boolean {
 }
 
 /**
- * The gallery shows every screenshot that exists, and pads out to
- * MIN_VISIBLE_SHOTS with placeholders so an empty project still reads as a
- * gallery rather than a gap.
+ * The gallery shows every screenshot that exists, and pads out to minShots
+ * with placeholders so an empty project still reads as a gallery rather than a
+ * gap. Pass minShots when a project has a known set of screens still to come,
+ * so each one keeps a named slot until its file lands.
  */
-export function useVisibleShots(projectId: string): {
+export function useVisibleShots(projectId: string, minShots = MIN_VISIBLE_SHOTS): {
   shots: ShotSlot[];
   states: Record<string, MediaState>;
   resolved: boolean;
@@ -253,7 +254,7 @@ export function useVisibleShots(projectId: string): {
     (acc, s) => (states[s.src] === "ready" ? s.slot : acc),
     0,
   );
-  const count = Math.max(MIN_VISIBLE_SHOTS, lastReady);
+  const count = Math.min(SHOT_SLOTS, Math.max(minShots, lastReady));
 
   return { shots: all.slice(0, count), states, resolved };
 }

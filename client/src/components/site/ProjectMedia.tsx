@@ -422,8 +422,13 @@ function GalleryTile({ shot, name, ready, onOpen }: {
 }
 
 /** Screenshot gallery for a case study. Tiles open larger on click. */
-export function ProjectGallery({ projectId, name }: { projectId: string; name: string }) {
-  const { shots, states } = useVisibleShots(projectId);
+export function ProjectGallery({ projectId, name, minShots }: {
+  projectId: string;
+  name: string;
+  /** Slots to keep visible even with no file yet. Defaults to MIN_VISIBLE_SHOTS. */
+  minShots?: number;
+}) {
+  const { shots, states } = useVisibleShots(projectId, minShots);
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const openShot = shots.find((s) => s.slot === openSlot) ?? null;
 
