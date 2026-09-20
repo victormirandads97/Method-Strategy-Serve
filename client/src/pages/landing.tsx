@@ -17,6 +17,15 @@ const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if
 // omits its live button rather than linking somewhere that 404s.
 const DEZORZI_URL = "";
 
+// ── Hiring signals ────────────────────────────────────────────────────────────
+const GITHUB_URL = "https://github.com/victormirandads97";
+// TODO: drop the CV in client/public and set this to its path, for example
+// "/victor-miranda-cv.pdf". While it is empty no CV link is rendered anywhere.
+const CV_URL = "";
+/** The one-line answer to "what do you actually work in". */
+const STACK_LINE =
+  "React, TypeScript, Node and Express, SQLite and Postgres, Stripe, AI model APIs, deployed on Render.";
+
 // ── Brand tokens ──────────────────────────────────────────────────────────────
 // Mapped onto the shared brand palette in @/lib/brand so this page matches
 // /last-human-job: deep near-black, cream, blue accent.
@@ -117,6 +126,35 @@ function HR() {
   );
 }
 
+/**
+ * GitHub and CV links, shown in the about section and the footer so the
+ * hiring signals are reachable from either end of the page. The CV link only
+ * renders once CV_URL is set, so nothing points at a missing file.
+ */
+function HiringLinks({ size = "0.84rem" }: { size?: string }) {
+  const links = [
+    { label: "GitHub", href: GITHUB_URL, icon: "github", external: true },
+    ...(CV_URL ? [{ label: "Download my CV", href: CV_URL, icon: "doc", external: false }] : []),
+  ];
+  return (
+    <div style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
+      {links.map(link => (
+        <a
+          key={link.label}
+          href={link.href}
+          className="nav-link"
+          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          style={{ ...DM, fontWeight: 500, color: C.text, fontSize: size,
+            textDecoration: "none", display: "inline-flex", alignItems: "center",
+            gap: "0.45rem", transition: "color 0.15s" }}>
+          <Ic n={link.icon} sz={15} col={C.accent} />
+          {link.label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 // ── Icon system ───────────────────────────────────────────────────────────────
 function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?: string }) {
   const p: Record<string, React.ReactNode> = {
@@ -139,6 +177,8 @@ function Ic({ n, sz = 18, col = "currentColor" }: { n: string; sz?: number; col?
     link:    <><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1" strokeWidth="1.5" fill="none" stroke={col} strokeLinecap="round"/></>,
     spark:   <path d="M12 2l2.2 6.6L21 12l-6.8 3.4L12 22l-2.2-6.6L3 12l6.8-3.4L12 2z" strokeWidth="1.3" fill="none" stroke={col} strokeLinejoin="round"/>,
     map:     <><path d="M9 4L3 6.5v14L9 18l6 2.5 6-2.5v-14L15 6.5 9 4z" strokeWidth="1.5" fill="none" stroke={col} strokeLinejoin="round"/><path d="M9 4v14M15 6.5v14" strokeWidth="1.5" stroke={col} fill="none"/></>,
+    github:  <path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0012 2z" fill="none" stroke={col} strokeWidth="1.4" strokeLinejoin="round"/>,
+    doc:     <><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" strokeWidth="1.5" fill="none" stroke={col} strokeLinejoin="round"/><path d="M14 3v5h5M9 13h6M9 17h4" strokeWidth="1.5" stroke={col} fill="none" strokeLinecap="round"/></>,
   };
   return (
     <svg viewBox="0 0 24 24" style={{ width: sz, height: sz, display: "block", flexShrink: 0 }}>
@@ -684,10 +724,16 @@ export default function Landing() {
                 I spent years cooking in kitchens across Ireland and Malta. Then I taught myself to build
                 software. Now I design, build, and ship full products using AI tools and modern web tech.
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
                 I care about clarity, and about tools people actually use. I am working toward settling in
                 Ireland and I am open to product and builder roles.
               </p>
+              <p style={{ ...MONO, color: C.muted, fontSize: "0.8rem", lineHeight: 1.7,
+                marginBottom: "1.5rem" }}>
+                {STACK_LINE}
+              </p>
+              <HiringLinks size="0.9rem" />
             </Reveal>
             <Reveal delay={0.16} style={{ flex: "0 0 auto" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
@@ -1060,8 +1106,12 @@ export default function Landing() {
                 Victor Miranda
               </span>
             </div>
-            <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.88rem", lineHeight: 1.65, maxWidth: 280 }}>
+            <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.88rem",
+              lineHeight: 1.65, maxWidth: 280, marginBottom: "1rem" }}>
               I turn ideas into working products, fast.
+            </p>
+            <p style={{ ...MONO, color: C.muted, fontSize: "0.72rem", lineHeight: 1.7, maxWidth: 280 }}>
+              {STACK_LINE}
             </p>
           </div>
 
@@ -1110,6 +1160,7 @@ export default function Landing() {
                 lineHeight: 1.6, margin: 0 }}>
                 Based in Dublin. Open to work worldwide.
               </p>
+              <HiringLinks />
             </div>
           </div>
         </div>
