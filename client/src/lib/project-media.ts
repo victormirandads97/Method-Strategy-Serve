@@ -80,6 +80,11 @@ const SHOT_LABELS: Record<string, readonly string[]> = {
   ],
 };
 
+/** The caption for one slot, also used as that image's alt text. */
+export function shotLabel(projectId: string, slot: number): string {
+  return labelFor(projectId, slot);
+}
+
 function labelFor(projectId: string, slot: number): string {
   return SHOT_LABELS[projectId]?.[slot - 1] ?? `Screen ${slot}`;
 }

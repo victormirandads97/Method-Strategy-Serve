@@ -13,9 +13,7 @@ import { BrowserFrame, ProjectGallery, ProjectPreview } from "@/components/site/
 
 // Personal contact + flagship live URLs. Set these when the deploy is ready.
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
-// TODO: set to the live Render URL. While it is empty the featured card simply
-// omits its live button rather than linking somewhere that 404s.
-const DEZORZI_URL = "";
+const DEZORZI_URL = "https://dezorzi.onrender.com";
 
 // ── Hiring signals ────────────────────────────────────────────────────────────
 const GITHUB_URL = "https://github.com/victormirandads97";

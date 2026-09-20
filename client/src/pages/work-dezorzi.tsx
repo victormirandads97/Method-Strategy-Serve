@@ -21,9 +21,7 @@ import { ProjectGallery, ProjectPreview } from "@/components/site/ProjectMedia";
 
 const PROJECT_ID = "dezorzi";
 
-// Set once the Render deploy has a URL. Empty keeps the button off the page
-// rather than linking somewhere that 404s.
-const LIVE_URL = "";
+const LIVE_URL = "https://dezorzi.onrender.com";
 
 const STACK = [
   "React",

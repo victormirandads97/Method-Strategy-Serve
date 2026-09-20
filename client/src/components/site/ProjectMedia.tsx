@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { B } from "@/lib/brand";
 import {
   previewSources,
+  shotLabel,
   useHoverPointer,
   useMediaAvailability,
   useMeteredConnection,
@@ -292,7 +293,9 @@ export function ProjectPreview({ projectId, name, height, frameUrl, fallback }: 
       </div>
     );
   } else if (posterSrc) {
-    body = <Shot src={posterSrc} alt={`${name} screenshot`} height={height} />;
+    // The poster falls back to shot-1, so its caption describes it either way
+    // and beats a generic "screenshot" for anyone on a screen reader.
+    body = <Shot src={posterSrc} alt={`${name}: ${shotLabel(projectId, 1)}`} height={height} />;
   } else if (fallback) {
     return <div ref={wrapRef}>{fallback}</div>;
   } else {
