@@ -7,6 +7,7 @@ const LOGO =
   "https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg";
 
 export const NAV_LINKS = [
+  { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },

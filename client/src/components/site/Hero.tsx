@@ -10,10 +10,10 @@ const PORTRAIT =
 
 /** Module-level so the scramble effect keeps a stable reference across renders. */
 const BUILDS = [
+  "full product builds",
   "restaurant software",
   "AI chatbots",
   "landing pages",
-  "product launches",
 ] as const;
 
 const fadeUp = (delay: number) => ({
@@ -101,8 +101,9 @@ export default function Hero() {
                 marginBottom: "1.5rem",
               }}
             >
-              Chef turned builder. I ship real software with AI, products people
-              use every day.
+              The Method Co. gets you clear on what you sell, then builds and
+              ships the product that sells it. Positioning and landing pages,
+              and full software builds.
             </motion.p>
 
             {/* Rotating proof line */}
@@ -164,7 +165,7 @@ export default function Hero() {
                 letterSpacing: "0.06em",
               }}
             >
-              // Four products shipped. One live in production. Not slideware.
+              // Five products built. Four of them live. Not slideware.
             </motion.p>
           </div>
 

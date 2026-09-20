@@ -445,6 +445,38 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// ── Services data ─────────────────────────────────────────────────────────────
+// The offer. Positioning and landing pages were always part of it. Full builds
+// are now the headline, so the build card leads.
+const SERVICES = [
+  {
+    icon: "code", idx: "01", title: "Full product builds",
+    body: "The whole product, designed and shipped. Interface, API, database, payments, and a live deploy you can hand to real users.",
+  },
+  {
+    icon: "target", idx: "02", title: "Positioning",
+    body: "Getting clear on what you offer and why it matters, so you stop sounding like everyone else.",
+  },
+  {
+    icon: "layout", idx: "03", title: "Landing pages and funnels",
+    body: "The path that turns a click into a booked client, written and built rather than themed.",
+  },
+  {
+    icon: "spark", idx: "04", title: "AI built into the product",
+    body: "Assistants, automation, and AI features inside software people use, not demos that never leave the browser tab.",
+  },
+] as const;
+
+// ── Process data ──────────────────────────────────────────────────────────────
+// The four-step framework. Same four steps, widened so Deploy and Deliver cover
+// shipping a product and not only a page.
+const PROCESS = [
+  { num: "01", title: "DIAGNOSE", body: "We find what is actually getting in the way." },
+  { num: "02", title: "DESIGN",   body: "We build the positioning, the message, and the shape of the product." },
+  { num: "03", title: "DEPLOY",   body: "We put it live: the site, the copy, and the working software." },
+  { num: "04", title: "DELIVER",  body: "You ship something real, and the right clients notice." },
+] as const;
+
 // ── Skills data ───────────────────────────────────────────────────────────────
 const SKILLS = [
   { icon: "code",   title: "Full-stack web apps", body: "React, TypeScript, Node, and Express, from the interface down to the API." },
@@ -673,6 +705,101 @@ export default function Landing() {
                 ))}
               </div>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── SERVICES ─────────────────────────────────────────────────────────── */}
+      <section id="services" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>WHAT I DO</SLabel>
+            <SH>POSITIONING, AND THE PRODUCT ITSELF.</SH>
+            <Sub>
+              It used to stop at the words and the page. It does not any more. The Method Co.
+              takes a product from the idea through to something live that people can use and
+              pay for.
+            </Sub>
+          </Reveal>
+
+          <div className="card-grid" style={{ display: "grid",
+            gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
+            {SERVICES.map((card, i) => (
+              <Reveal key={card.idx} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -6, boxShadow: `0 20px 46px ${C.accent}26, 0 0 0 1px ${C.accent}44` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    height: "100%", background: C.panel, border: `1px solid ${C.border}`,
+                    borderTop: `2px solid ${i === 0 ? C.accent : "transparent"}`,
+                    borderRadius: 12, padding: "1.75rem",
+                    display: "flex", flexDirection: "column", gap: "1rem",
+                  }}>
+                  <div style={{ display: "flex", justifyContent: "space-between",
+                    alignItems: "flex-start" }}>
+                    <div style={{
+                      width: 38, height: 38, borderRadius: 8,
+                      background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <Ic n={card.icon} sz={17} col={C.accent} />
+                    </div>
+                    <span style={{ ...MONO, color: C.muted, fontSize: "0.68rem" }}>
+                      {card.idx}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.35rem",
+                    letterSpacing: "0.01em", textTransform: "uppercase", margin: 0 }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.92rem",
+                    lineHeight: 1.7, margin: 0 }}>
+                    {card.body}
+                  </p>
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
+      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>THE PROCESS</SLabel>
+            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
+          </Reveal>
+          <div className="process-row" style={{ display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem", marginTop: "2rem" }}>
+            {PROCESS.map((step, i) => (
+              <Reveal key={step.num} delay={i * 0.12}>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: "50%",
+                    border: `1px solid ${C.accent}55`, background: `${C.accent}0f`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    margin: "0 auto 0.9rem",
+                  }}>
+                    <span style={{ ...MONO, fontWeight: 600, color: C.accent, fontSize: "0.76rem" }}>
+                      {step.num}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.2rem",
+                    letterSpacing: "0.04em", textTransform: "uppercase", margin: "0 0 0.5rem" }}>
+                    {step.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.88rem",
+                    lineHeight: 1.65, margin: 0 }}>
+                    {step.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -944,6 +1071,7 @@ export default function Landing() {
               marginBottom: "1.25rem" }}>NAVIGATE</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
+                { label: "Services", href: "#services" },
                 { label: "Work",    href: "#work"    },
                 { label: "About",   href: "#about"   },
                 { label: "Skills",  href: "#skills"  },
