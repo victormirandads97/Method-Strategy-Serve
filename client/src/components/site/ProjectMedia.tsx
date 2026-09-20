@@ -378,16 +378,19 @@ function Lightbox({ shot, name, onClose }: { shot: ShotSlot; name: string; onClo
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-function GalleryTile({ shot, name, ready, onOpen }: {
+function GalleryTile({ shot, name, ready, onOpen, portrait, onMeasure }: {
   shot: ShotSlot;
   name: string;
   ready: boolean;
   onOpen: () => void;
+  /** True once any shot in this gallery measures taller than it is wide. */
+  portrait: boolean;
+  onMeasure: (isPortrait: boolean) => void;
 }) {
   if (!ready) {
     return (
       <figure style={{ margin: 0 }}>
-        <MediaPlaceholder hint={shot.hint} height={132} />
+        <MediaPlaceholder hint={shot.hint} height={portrait ? 280 : 132} />
         <figcaption style={{ ...MONO, color: C.muted, fontSize: "0.62rem",
           marginTop: "0.45rem", textAlign: "center" }}>
           {shot.label}
@@ -412,8 +415,19 @@ function GalleryTile({ shot, name, ready, onOpen }: {
           alt={`${name}: ${shot.label}`}
           loading="lazy"
           decoding="async"
-          style={{ width: "100%", height: 132, display: "block",
-            objectFit: "cover", objectPosition: "top" }}
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            onMeasure(img.naturalHeight > img.naturalWidth);
+          }}
+          style={
+            portrait
+              // A phone screenshot cropped to a short wide box shows only a
+              // strip of its header. Fit the whole screen instead, letterboxed
+              // against the page rather than cropped.
+              ? { width: "100%", height: 280, display: "block", objectFit: "contain" }
+              : { width: "100%", height: 132, display: "block",
+                  objectFit: "cover", objectPosition: "top" }
+          }
         />
       </button>
       <figcaption style={{ ...MONO, color: C.muted, fontSize: "0.62rem",
@@ -435,10 +449,19 @@ export function ProjectGallery({ projectId, name, minShots }: {
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const openShot = shots.find((s) => s.slot === openSlot) ?? null;
 
+  // One height for the whole row. A single portrait screenshot switches every
+  // tile to the tall letterboxed layout, so the row never comes out ragged.
+  const [portrait, setPortrait] = useState(false);
+
   return (
     <>
       <div className="media-gallery" style={{
-        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.85rem",
+        display: "grid",
+        // Four shots read better as a square than as a row of three with one
+        // stranded underneath. The responsive rules in index.css still win on
+        // narrower screens.
+        gridTemplateColumns: `repeat(${shots.length === 4 ? 2 : 3}, 1fr)`,
+        gap: "0.85rem",
       }}>
         {shots.map((shot) => (
           <GalleryTile
@@ -447,6 +470,8 @@ export function ProjectGallery({ projectId, name, minShots }: {
             name={name}
             ready={states[shot.src] === "ready"}
             onOpen={() => setOpenSlot(shot.slot)}
+            portrait={portrait}
+            onMeasure={(isPortrait) => { if (isPortrait) setPortrait(true); }}
           />
         ))}
       </div>
