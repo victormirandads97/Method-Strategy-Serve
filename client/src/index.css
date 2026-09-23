@@ -100,6 +100,14 @@ button {
   color: #6b89ff;
 }
 
+/* ── Focus ────────────────────────────────────────────────────────────────── */
+/* The browser default ring is a thin dark blue that nearly disappears on the
+   near-black ground. Keyboard focus gets the brand blue instead. */
+:focus-visible {
+  outline: 2px solid #6b89ff;
+  outline-offset: 3px;
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav-center {
@@ -123,6 +131,10 @@ button {
   .about-row,
   .footer-cols {
     flex-direction: column !important;
+  }
+  /* Stacked, the footer columns' flex-basis would become height. */
+  .footer-cols > * {
+    flex: 0 0 auto !important;
   }
   .card-grid {
     grid-template-columns: repeat(2, 1fr) !important;

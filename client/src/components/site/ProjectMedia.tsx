@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { B } from "@/lib/brand";
 import {
+  SHOW_PLACEHOLDERS,
   previewSources,
   shotAlt,
   useHoverPointer,
@@ -298,6 +299,17 @@ export function ProjectPreview({ projectId, name, height, frameUrl, fallback }: 
     body = <Shot src={posterSrc} alt={shotAlt(projectId, 1)} height={height} />;
   } else if (fallback) {
     return <div ref={wrapRef}>{fallback}</div>;
+  } else if (!SHOW_PLACEHOLDERS) {
+    // No media yet: a quiet name tile rather than a note about a missing file.
+    body = (
+      <div style={{ height, background: `radial-gradient(circle at 30% 20%, ${C.accent}1f 0%, ${C.bg} 65%)`,
+        display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ fontFamily: "'Bebas Neue', sans-serif", color: C.text, opacity: 0.85,
+          fontSize: "clamp(2.2rem, 6vw, 3.4rem)", letterSpacing: "0.08em", lineHeight: 1 }}>
+          {name}
+        </span>
+      </div>
+    );
   } else {
     body = (
       <div style={{ height, background: C.bg, padding: "0.75rem" }}>
@@ -451,13 +463,16 @@ export function ProjectGallery({ projectId, name, minShots }: {
   /** Slots to keep visible even with no file yet. Defaults to MIN_VISIBLE_SHOTS. */
   minShots?: number;
 }) {
-  const { shots, states } = useVisibleShots(projectId, minShots);
+  const { shots, states, resolved } = useVisibleShots(projectId, minShots);
   const [openSlot, setOpenSlot] = useState<number | null>(null);
   const openShot = shots.find((s) => s.slot === openSlot) ?? null;
 
   // One height for the whole row. A single portrait screenshot switches every
   // tile to the tall letterboxed layout, so the row never comes out ragged.
   const [portrait, setPortrait] = useState(false);
+
+  // Nothing to show: no empty row. Pages hide their heading with useHasShots.
+  if (!resolved || shots.length === 0) return null;
 
   return (
     <>

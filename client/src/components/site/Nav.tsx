@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { B, BEBAS, INTER, MONO, alpha } from "@/lib/brand";
 import MagneticButton from "@/components/motion/MagneticButton";
+import { CV_URL } from "@/lib/contact";
 
 const LOGO =
   "https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg";
 
 export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -59,6 +60,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
         {/* Brand lockup */}
         <a
           href="/"
+          aria-label="The Method Co. by Victor Miranda, home"
           style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
         >
           <img src={LOGO} alt="" style={{ height: 30, width: 30 }} />
@@ -112,6 +114,25 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               {label}
             </a>
           ))}
+          {CV_URL && (
+            <a
+              href={CV_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link"
+              style={{
+                ...INTER,
+                fontWeight: 400,
+                color: B.creamSoft,
+                fontSize: "0.85rem",
+                padding: "0.4rem 0.8rem",
+                borderRadius: 3,
+                transition: "color 0.18s ease",
+              }}
+            >
+              CV
+            </a>
+          )}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
@@ -139,7 +160,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               padding: "0.4rem",
             }}
           >
-            <svg viewBox="0 0 24 24" style={{ width: 22, height: 22 }}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" style={{ width: 22, height: 22 }}>
               {open ? (
                 <path
                   d="M18 6L6 18M6 6l12 12"
@@ -200,6 +221,23 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
                 {label}
               </a>
             ))}
+            {CV_URL && (
+              <a
+                href={CV_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                style={{
+                  ...INTER,
+                  color: B.creamSoft,
+                  fontSize: "1rem",
+                  padding: "0.85rem 0",
+                  borderBottom: `1px solid ${B.border}`,
+                }}
+              >
+                View CV
+              </a>
+            )}
             <a
               href={`${hrefBase}#contact`}
               onClick={() => setOpen(false)}

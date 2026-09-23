@@ -5,11 +5,13 @@ import { B } from "@/lib/brand";
 import Nav from "@/components/site/Nav";
 import Hero from "@/components/site/Hero";
 import Contact from "@/components/site/Contact";
-import { COMPANY_EMAIL, PERSONAL_EMAIL } from "@/lib/contact";
+import { COMPANY_EMAIL, CV_URL, PERSONAL_EMAIL } from "@/lib/contact";
 import AuroraBackdrop from "@/components/motion/AuroraBackdrop";
 import GrainOverlay from "@/components/motion/GrainOverlay";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import MagneticButton from "@/components/motion/MagneticButton";
 import { BrowserFrame, ProjectGallery, ProjectPreview } from "@/components/site/ProjectMedia";
+import { useHasShots } from "@/lib/project-media";
 
 // Personal contact + flagship live URLs. Set these when the deploy is ready.
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
@@ -17,9 +19,6 @@ const DEZORZI_URL = "https://dezorzi.onrender.com";
 
 // ── Hiring signals ────────────────────────────────────────────────────────────
 const GITHUB_URL = "https://github.com/victormirandads97";
-// TODO: drop the CV in client/public and set this to its path, for example
-// "/victor-miranda-cv.pdf". While it is empty no CV link is rendered anywhere.
-const CV_URL = "";
 /** The one-line answer to "what do you actually work in". */
 const STACK_LINE =
   "React, TypeScript, Node and Express, SQLite and Postgres, Stripe, AI model APIs, deployed on Render.";
@@ -129,10 +128,10 @@ function HR() {
  * hiring signals are reachable from either end of the page. The CV link only
  * renders once CV_URL is set, so nothing points at a missing file.
  */
-function HiringLinks({ size = "0.84rem" }: { size?: string }) {
+function HiringLinks({ size = "0.84rem", cv = true }: { size?: string; cv?: boolean }) {
   const links = [
     { label: "GitHub", href: GITHUB_URL, icon: "github", external: true },
-    ...(CV_URL ? [{ label: "Download my CV", href: CV_URL, icon: "doc", external: false }] : []),
+    ...(cv && CV_URL ? [{ label: "View CV", href: CV_URL, icon: "doc", external: true }] : []),
   ];
   return (
     <div style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
@@ -366,12 +365,16 @@ interface Project {
   tech: string;
   problem: string;
   built: string;
+  /** The product calls that shaped it, shown as a list in the case study. */
+  decisions?: readonly string[];
   hardPart: string;
   status: string;
   statusCol: string;
   flagship?: boolean;
   liveUrl?: string;
   liveLabel?: string;
+  /** Shown in place of the live button when there is no public link. */
+  linkNote?: string;
   /** Route of a full case-study page. Without one the card opens the modal. */
   caseStudyHref?: string;
   demo?: DemoKind;
@@ -382,6 +385,34 @@ interface Project {
 // convention from client/public/media/projects/<id>/ - see @/lib/project-media.
 
 const PROJECTS: Project[] = [
+  {
+    id: "onishi",
+    name: "Onishi",
+    icon: "layout",
+    tagline: "Restaurant operations, simplified.",
+    summary: "A restaurant-floor app for rosters, hours, time off and team communication, designed from first-hand hospitality experience and live in production.",
+    role: "Product design, frontend, backend, database, UX and deployment.",
+    tech: "React, TypeScript, Express, SQLite, session auth, PWA, deployed on Render.",
+    problem:
+      "Floor teams run on WhatsApp and paper for rosters, day off requests, sales ranking, and hours. Nothing lives in one place, and nothing is reliable when it matters.",
+    built:
+      "A single app with roster building, a day off and holiday calendar, a sales-per-hour leaderboard, checklists, shared notes, actual-hours and overtime tracking, and a daily quiz game for staff. It has roles for manager and sub-manager, and it installs on phones like a native app.",
+    decisions: [
+      "An installable PWA rather than an app store release, so staff open it from their home screen on the phones they already carry.",
+      "Staff confirm the hours they actually worked, and anything that matches the roster is accepted automatically, so managers only review the differences.",
+      "Staff are deactivated rather than deleted, so rosters and hours history stay intact.",
+      "The existing paper roster was imported into the app, so the team started with their real week instead of an empty screen.",
+    ],
+    hardPart:
+      "Getting real hours and overtime tracking right, so contracted staff can actually prove overtime. And making it safe to deploy updates without ever losing live data: persistent storage and safe, additive migrations, so shipping a release never wipes what the team depends on.",
+    status: "Live in production",
+    statusCol: C.green,
+    flagship: true,
+    liveUrl: ONISHI_URL,
+    liveLabel: "Open the live app (staff sign-in)",
+    caseStudyHref: "/work/onishi",
+    frameUrl: "onishi.onrender.com",
+  },
   {
     id: "dezorzi",
     name: "Dezorzi",
@@ -405,41 +436,24 @@ const PROJECTS: Project[] = [
     frameUrl: "dezorzi.onrender.com",
   },
   {
-    id: "onishi",
-    name: "Onishi",
-    icon: "layout",
-    summary: "A full app for a restaurant floor team, live in production.",
-    role: "Designed and built end to end.",
-    tech: "React, TypeScript, Express, SQLite, deployed on Render as a PWA.",
-    problem:
-      "Floor teams run on WhatsApp and paper for rosters, day off requests, sales ranking, and hours. Nothing lives in one place, and nothing is reliable when it matters.",
-    built:
-      "A single app with roster building, a day off calendar, a sales-per-hour leaderboard, checklists, shared notes, actual-hours and overtime tracking, and a daily quiz game for staff. It has roles for manager and sub-manager, and it installs on phones like a native app.",
-    hardPart:
-      "Getting real hours and overtime tracking right, so contracted staff can actually prove overtime. And making it safe to deploy updates without ever losing live data: persistent storage and safe, additive migrations, so shipping a release never wipes what the team depends on.",
-    status: "Live in production",
-    statusCol: C.green,
-    flagship: true,
-    liveUrl: ONISHI_URL,
-    liveLabel: "Open the live app",
-    frameUrl: "onishi.onrender.com",
-  },
-  {
     id: "method-chat",
     name: "The Method Chat",
     icon: "chat",
     summary: "An AI assistant that answers customer messages across web, Facebook, and WhatsApp.",
     role: "Built the product and the integrations.",
-    tech: "Node, AI model integration, webhooks, deployed on Render.",
+    tech: "TypeScript, Node, Express, PostgreSQL with Drizzle, Claude API, WhatsApp and Meta webhooks, Stripe, Render.",
     problem:
       "Small service businesses miss leads because they cannot answer messages fast enough. The enquiry arrives, no one is free, and the customer moves on.",
     built:
       "A configurable AI agent with its own persona, a website widget, and channel integrations, plus lead capture and a dashboard to see what came in.",
     hardPart:
       "Debugging a live widget that hung on load. I traced it down to a single invalid character breaking the script, then handled cold starts and connection edge cases so it stays reliable in the real world.",
-    status: "Live",
-    statusCol: C.green,
+    // The Render service is paused. Set this back to "Live" / C.green when it
+    // is resumed.
+    status: "Built, currently paused",
+    statusCol: C.amber,
     liveUrl: "",
+    linkNote: "The live service is paused at the moment.",
     demo: "chat",
     frameUrl: "themethodco.co",
   },
@@ -450,7 +464,7 @@ const PROJECTS: Project[] = [
     tagline: "Nothing drifts away.",
     summary: "A daily organiser and notes app designed around how an ADHD brain actually works.",
     role: "Designed and built end to end.",
-    tech: "React, TypeScript, Express, SQLite, PWA, deployed on Render.",
+    tech: "React, TypeScript, Express, SQLite, PWA.",
     problem:
       "Most productivity tools assume you can hold a plan in your head and come back to it. With ADHD you cannot. Long lists cause shutdown, unfinished tasks become shame, and anything you cannot capture in two seconds is lost.",
     built:
@@ -459,6 +473,7 @@ const PROJECTS: Project[] = [
       "Designing against my own instincts. Every impulse was to add more, and almost every good decision was a subtraction: capping lists at five items, replacing overdue with rolled over so it carries no blame, cutting drag to schedule on mobile because a drag that half fails is worse than two taps, and quietening the ambient animation because motion competes for attention.",
     status: "Personal build",
     statusCol: C.accent,
+    linkNote: "A personal build, not publicly hosted.",
     demo: "graph",
     frameUrl: "orbit.local",
   },
@@ -515,19 +530,63 @@ const PROCESS = [
   { num: "04", title: "DELIVER",  body: "You ship something real, and the right clients notice." },
 ] as const;
 
+// ── Hiring data ───────────────────────────────────────────────────────────────
+const HIRING_ROLES = [
+  "Full-stack developer", "Frontend / React", "Product engineer", "AI application developer",
+] as const;
+
 // ── Skills data ───────────────────────────────────────────────────────────────
-const SKILLS = [
-  { icon: "code",   title: "Full-stack web apps", body: "React, TypeScript, Node, and Express, from the interface down to the API." },
-  { icon: "db",     title: "Databases",           body: "SQLite and Postgres. Modelling data and keeping it safe through change." },
-  { icon: "rocket", title: "Ship and run live apps", body: "Render, GitHub, and DNS. Deploying, maintaining, and not losing data doing it." },
-  { icon: "spark",  title: "AI in real products", body: "Integrating AI models into products people actually use, not demos." },
-  { icon: "card",   title: "Payments",            body: "Stripe checkout and gated digital delivery that only opens after purchase." },
-  { icon: "arrow",  title: "Fast with AI-assisted dev", body: "Building and shipping quickly by working alongside AI tools every day." },
+// Grouped so a recruiter can scan it, with the projects that prove each group.
+const SKILL_GROUPS = [
+  {
+    icon: "code", title: "Build",
+    items: ["React", "TypeScript", "JavaScript", "Node.js", "Express", "REST APIs", "SQL: SQLite and Postgres", "PWA", "Stripe"],
+    proof: "Onishi, Dezorzi, Orbit, The Method Chat",
+  },
+  {
+    icon: "spark", title: "AI",
+    items: ["Claude API integrations", "LLM-powered features", "AI-assisted development", "Automation and webhooks"],
+    proof: "Dezorzi, The Method Chat",
+  },
+  {
+    icon: "target", title: "Product",
+    items: ["Product thinking", "Problem discovery", "Rapid prototyping", "UX and UI", "Deployment", "Iteration in production"],
+    proof: "Every build, from first sketch to live deploy",
+  },
+  {
+    icon: "pen", title: "Growth and communication",
+    items: ["Copywriting", "Marketing", "Landing pages", "Go-to-market"],
+    proof: "The Last Human Job, The Method Co.",
+  },
 ] as const;
 
 // ── Case-study modal ──────────────────────────────────────────────────────────
+function DecisionList({ items }: { items: readonly string[] }) {
+  return (
+    <div>
+      <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.5rem" }}>
+        Key product decisions
+      </p>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex",
+        flexDirection: "column", gap: "0.6rem" }}>
+        {items.map(item => (
+          <li key={item} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start" }}>
+            <span style={{ marginTop: "0.3rem" }}><Ic n="check" sz={14} col={C.accent} /></span>
+            <span style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.65 }}>
+              {item}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function CaseStudy({ project, onClose }: { project: Project; onClose: () => void }) {
+  const hasShots = useHasShots(project.id);
+  const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
+    closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -540,6 +599,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
     { label: "What I built", body: project.built },
     { label: "The hard part", body: project.hardPart },
   ];
+
 
   return (
     <motion.div
@@ -568,7 +628,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           position: "relative",
         }}>
         <button
-          onClick={onClose} aria-label="Close case study"
+          ref={closeRef} onClick={onClose} aria-label="Close case study"
           style={{ position: "absolute", top: "1.1rem", right: "1.1rem",
             background: C.elev, border: `1px solid ${C.border}`, borderRadius: 8,
             color: C.muted, cursor: "pointer", padding: "0.4rem",
@@ -621,12 +681,14 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           <ProjectVisual project={project} height={260} />
         </div>
 
-        <div style={{ marginBottom: "2rem" }}>
-          <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.8rem" }}>
-            Screens
-          </p>
-          <ProjectGallery projectId={project.id} name={project.name} />
-        </div>
+        {hasShots && (
+          <div style={{ marginBottom: "2rem" }}>
+            <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.8rem" }}>
+              Screens
+            </p>
+            <ProjectGallery projectId={project.id} name={project.name} />
+          </div>
+        )}
 
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {sections.map(s => (
@@ -639,6 +701,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
               </p>
             </div>
           ))}
+          {project.decisions && <DecisionList items={project.decisions} />}
         </div>
 
         {project.liveUrl ? (
@@ -653,7 +716,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           </a>
         ) : (
           <p style={{ ...MONO, color: C.muted, fontSize: "0.72rem", marginTop: "2rem" }}>
-            // Live link coming soon
+            // {project.linkNote ?? "No public link yet."}
           </p>
         )}
       </motion.div>
@@ -674,7 +737,7 @@ export default function Landing() {
     else setOpenId(project.id);
   };
 
-  useEffect(() => { document.title = "The Method Co. | Victor Miranda"; }, []);
+  useEffect(() => { document.title = "The Method Co. | Victor Miranda, AI Product Builder & Full-Stack Developer"; }, []);
 
   return (
     <div style={{ background: C.bg, minHeight: "100vh", color: C.text, overflowX: "hidden", position: "relative" }}>
@@ -700,153 +763,14 @@ export default function Landing() {
         .cta-glow { animation: ctaPulse 3s ease-in-out infinite; }
         @media (max-width: 900px) {
           .flagship-cols { flex-direction: column !important; }
+          /* Once stacked, flex-basis applies to height and leaves a dead gap
+             under the screenshot. Let both columns size to content. */
+          .flagship-cols > * { flex: 0 0 auto !important; width: 100% !important; }
         }
       `}</style>
 
       <Nav />
       <Hero />
-
-      <HR />
-
-      {/* ── ABOUT ────────────────────────────────────────────────────────────── */}
-      <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>ABOUT</SLabel>
-            <SH>CHEF FOR YEARS. BUILDER NOW.</SH>
-          </Reveal>
-          <div className="about-row" style={{ display: "flex", gap: "3rem", marginTop: "1rem" }}>
-            <Reveal delay={0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
-                marginBottom: "1.5rem" }}>
-                I spent years cooking in kitchens across Ireland and Malta. Then I taught myself to build
-                software. Now I design, build, and ship full products using AI tools and modern web tech.
-              </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
-                marginBottom: "1.5rem" }}>
-                I care about clarity, and about tools people actually use. I am working toward settling in
-                Ireland and I am open to product and builder roles.
-              </p>
-              <p style={{ ...MONO, color: C.muted, fontSize: "0.8rem", lineHeight: 1.7,
-                marginBottom: "1.5rem" }}>
-                {STACK_LINE}
-              </p>
-              <HiringLinks size="0.9rem" />
-            </Reveal>
-            <Reveal delay={0.16} style={{ flex: "0 0 auto" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                {[
-                  { k: "Based", v: "Dublin, Ireland" },
-                  { k: "Was", v: "Chef, Ireland and Malta" },
-                  { k: "Now", v: "AI product builder" },
-                  { k: "Open to", v: "Product and builder roles" },
-                ].map(row => (
-                  <div key={row.k} style={{ display: "flex", gap: "1rem", alignItems: "baseline",
-                    borderBottom: `1px solid ${C.border}`, paddingBottom: "0.75rem", minWidth: 240 }}>
-                    <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem", flex: "0 0 72px" }}>{row.k}</span>
-                    <span style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.9rem" }}>{row.v}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── SERVICES ─────────────────────────────────────────────────────────── */}
-      <section id="services" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>WHAT I DO</SLabel>
-            <SH>POSITIONING, AND THE PRODUCT ITSELF.</SH>
-            <Sub>
-              It used to stop at the words and the page. It does not any more. The Method Co.
-              takes a product from the idea through to something live that people can use and
-              pay for.
-            </Sub>
-          </Reveal>
-
-          <div className="card-grid" style={{ display: "grid",
-            gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
-            {SERVICES.map((card, i) => (
-              <Reveal key={card.idx} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6, boxShadow: `0 20px 46px ${C.accent}26, 0 0 0 1px ${C.accent}44` }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    height: "100%", background: C.panel, border: `1px solid ${C.border}`,
-                    borderTop: `2px solid ${i === 0 ? C.accent : "transparent"}`,
-                    borderRadius: 12, padding: "1.75rem",
-                    display: "flex", flexDirection: "column", gap: "1rem",
-                  }}>
-                  <div style={{ display: "flex", justifyContent: "space-between",
-                    alignItems: "flex-start" }}>
-                    <div style={{
-                      width: 38, height: 38, borderRadius: 8,
-                      background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      <Ic n={card.icon} sz={17} col={C.accent} />
-                    </div>
-                    <span style={{ ...MONO, color: C.muted, fontSize: "0.68rem" }}>
-                      {card.idx}
-                    </span>
-                  </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.35rem",
-                    letterSpacing: "0.01em", textTransform: "uppercase", margin: 0 }}>
-                    {card.title}
-                  </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.92rem",
-                    lineHeight: 1.7, margin: 0 }}>
-                    {card.body}
-                  </p>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HR />
-
-      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
-      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <Reveal>
-            <SLabel>THE PROCESS</SLabel>
-            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
-          </Reveal>
-          <div className="process-row" style={{ display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem", marginTop: "2rem" }}>
-            {PROCESS.map((step, i) => (
-              <Reveal key={step.num} delay={i * 0.12}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{
-                    width: 44, height: 44, borderRadius: "50%",
-                    border: `1px solid ${C.accent}55`, background: `${C.accent}0f`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    margin: "0 auto 0.9rem",
-                  }}>
-                    <span style={{ ...MONO, fontWeight: 600, color: C.accent, fontSize: "0.76rem" }}>
-                      {step.num}
-                    </span>
-                  </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.2rem",
-                    letterSpacing: "0.04em", textTransform: "uppercase", margin: "0 0 0.5rem" }}>
-                    {step.title}
-                  </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.88rem",
-                    lineHeight: 1.65, margin: 0 }}>
-                    {step.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <HR />
 
@@ -856,10 +780,10 @@ export default function Landing() {
           <Reveal>
             <SLabel>WORK</SLabel>
             <SH>PRODUCTS I HAVE BUILT.</SH>
-            <Sub>Each one shipped end to end. Click any project for the short case study, the real problem, what I built, and the hard part I actually solved.</Sub>
+            <Sub>Each one designed, built and shipped by me. Every case study covers the problem, what I built, my role, the stack, and where it runs today.</Sub>
           </Reveal>
 
-          {/* Featured: Dezorzi and Onishi */}
+          {/* Featured: Onishi and Dezorzi */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div
@@ -895,14 +819,34 @@ export default function Landing() {
                       marginBottom: "0.85rem" }}>
                       {project.name}
                     </h3>
+                    {project.tagline && (
+                      <p style={{ ...MONO, color: C.accent, fontSize: "0.8rem", letterSpacing: "0.02em",
+                        marginBottom: "0.6rem" }}>
+                        {project.tagline}
+                      </p>
+                    )}
                     <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem",
                       lineHeight: 1.6, maxWidth: 460, marginBottom: "1.4rem" }}>
                       {project.summary}
                     </p>
-                    <p style={{ ...MONO, color: C.muted, fontSize: "0.76rem", lineHeight: 1.6,
-                      marginBottom: "1.6rem" }}>
-                      {project.tech}
-                    </p>
+                    <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "0.55rem 1rem",
+                      margin: "0 0 1.6rem", maxWidth: 480 }}>
+                      {[
+                        { k: "Role", v: project.role, mono: false },
+                        { k: "Stack", v: project.tech, mono: true },
+                      ].map(row => (
+                        <div key={row.k} style={{ display: "contents" }}>
+                          <dt style={{ ...LBL, color: C.accent, fontSize: "0.54rem", paddingTop: "0.2rem" }}>
+                            {row.k}
+                          </dt>
+                          <dd style={{ ...(row.mono ? MONO : DM), fontWeight: 400, margin: 0,
+                            color: row.mono ? C.muted : C.text, fontSize: row.mono ? "0.76rem" : "0.88rem",
+                            lineHeight: 1.55 }}>
+                            {row.v}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
                     <div style={{ display: "flex", alignItems: "center", gap: "1.5rem",
                       flexWrap: "wrap" }}>
                       <button
@@ -1008,34 +952,46 @@ export default function Landing() {
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
           <Reveal>
             <SLabel>SKILLS</SLabel>
-            <SH>WHAT I ACTUALLY DO.</SH>
-            <Sub>Honest and specific. These are the things I have used to ship real products, not a list of logos.</Sub>
+            <SH>WHAT I WORK WITH.</SH>
+            <Sub>Honest and specific. Everything here has gone into a product that shipped, and each group names where.</Sub>
           </Reveal>
 
-          <div className="card-grid" style={{ display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)", gap: "1px",
+          <div className="card-grid skill-groups" style={{ display: "grid",
+            gridTemplateColumns: "repeat(4,1fr)", gap: "1px",
             border: `1px solid ${C.border}`, borderRadius: 8, overflow: "hidden",
             background: C.border, marginBottom: "1.5rem" }}>
-            {SKILLS.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.06}>
+            {SKILL_GROUPS.map((g, i) => (
+              <Reveal key={g.title} delay={i * 0.06} style={{ height: "100%" }}>
                 <motion.div
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 16px 40px ${C.accent}4d, 0 0 0 1px ${C.accent}60` }}
+                  whileHover={{ y: -6, boxShadow: `0 16px 40px ${C.accent}33, 0 0 0 1px ${C.accent}55` }}
                   transition={{ duration: 0.2 }}
-                  style={{ background: C.panel, padding: "1.85rem", height: "100%", cursor: "default" }}>
-                  <div style={{
-                    width: 44, height: 44, borderRadius: 10,
-                    background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    marginBottom: "1rem", boxShadow: `0 0 16px ${C.accent}15`,
-                  }}>
-                    <Ic n={s.icon} sz={20} col={C.accent} />
+                  style={{ background: C.panel, padding: "1.75rem", height: "100%",
+                    display: "flex", flexDirection: "column", cursor: "default" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.7rem", marginBottom: "1.1rem" }}>
+                    <div style={{
+                      width: 38, height: 38, borderRadius: 8, flexShrink: 0,
+                      background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <Ic n={g.icon} sz={18} col={C.accent} />
+                    </div>
+                    <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.15rem",
+                      letterSpacing: "0.03em", textTransform: "uppercase", margin: 0, lineHeight: 1.05 }}>
+                      {g.title}
+                    </h3>
                   </div>
-                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "0.95rem",
-                    letterSpacing: "0.02em", marginBottom: "0.5rem", textTransform: "uppercase" }}>
-                    {s.title}
-                  </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.85rem", lineHeight: 1.6 }}>
-                    {s.body}
+                  <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem", flex: 1,
+                    display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+                    {g.items.map(item => (
+                      <li key={item} style={{ ...DM, fontWeight: 400, color: "#D8D2C2",
+                        fontSize: "0.9rem", lineHeight: 1.4 }}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p style={{ ...MONO, color: C.muted, fontSize: "0.68rem", lineHeight: 1.55, margin: 0,
+                    borderTop: `1px solid ${C.border}`, paddingTop: "0.85rem" }}>
+                    <span style={{ color: C.accent }}>Used in:</span> {g.proof}
                   </p>
                 </motion.div>
               </Reveal>
@@ -1075,6 +1031,202 @@ export default function Landing() {
 
       <HR />
 
+      {/* ── ABOUT ────────────────────────────────────────────────────────────── */}
+      <section id="about" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>ABOUT</SLabel>
+            <SH>PRODUCT-FOCUSED. BUILT FOR REAL-WORLD PROBLEMS.</SH>
+          </Reveal>
+          <div className="about-row" style={{ display: "flex", gap: "3rem", marginTop: "1rem" }}>
+            <Reveal delay={0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
+                I am a product-focused developer based in Dublin. I build web products from idea to production, combining full-stack development, AI and product thinking.
+              </p>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
+                AI-assisted development is part of how I work. It gets me from product idea to working software quickly, while I own the product decisions, the UX, the testing and debugging, and what ultimately ships.
+              </p>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
+                My background is in hospitality. I spent years in professional kitchens across Ireland and Malta, solving problems under pressure. That shapes how I build software: understand the real problem, remove unnecessary complexity, and ship something people can actually use in a real environment. Onishi came straight out of that world.
+              </p>
+              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+                marginBottom: "1.5rem" }}>
+                I am particularly interested in AI products, SaaS, hospitality technology, and small teams where I can contribute across product and engineering.
+              </p>
+              <p style={{ ...MONO, color: C.muted, fontSize: "0.8rem", lineHeight: 1.7,
+                marginBottom: "1.5rem" }}>
+                {STACK_LINE}
+              </p>
+              <HiringLinks size="0.9rem" />
+            </Reveal>
+            <Reveal delay={0.16} style={{ flex: "0 0 auto" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                {[
+                  { k: "Based", v: "Dublin, Ireland" },
+                  { k: "Focus", v: "Full-stack web and AI products" },
+                  { k: "Background", v: "Professional kitchens, Ireland and Malta" },
+                  { k: "Open to", v: "Full-stack, frontend, AI and product roles" },
+                ].map(row => (
+                  <div key={row.k} style={{ display: "flex", gap: "1rem", alignItems: "baseline",
+                    borderBottom: `1px solid ${C.border}`, paddingBottom: "0.75rem", minWidth: 240 }}>
+                    <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem", flex: "0 0 88px" }}>{row.k}</span>
+                    <span style={{ ...DM, fontWeight: 400, color: C.text, fontSize: "0.9rem" }}>{row.v}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── SERVICES ─────────────────────────────────────────────────────────── */}
+      <section id="services" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>FREELANCE / THE METHOD CO.</SLabel>
+            <SH>POSITIONING, AND THE PRODUCT ITSELF.</SH>
+            <Sub>
+              The Method Co. is how I take on freelance work: a product taken from the idea
+              through to something live that people can use and pay for, and the words and
+              pages that sell it.
+            </Sub>
+          </Reveal>
+
+          <div className="card-grid" style={{ display: "grid",
+            gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
+            {SERVICES.map((card, i) => (
+              <Reveal key={card.idx} delay={i * 0.08}>
+                <motion.div
+                  whileHover={{ y: -6, boxShadow: `0 20px 46px ${C.accent}26, 0 0 0 1px ${C.accent}44` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    height: "100%", background: C.panel, border: `1px solid ${C.border}`,
+                    borderTop: `2px solid ${i === 0 ? C.accent : "transparent"}`,
+                    borderRadius: 12, padding: "1.75rem",
+                    display: "flex", flexDirection: "column", gap: "1rem",
+                  }}>
+                  <div style={{ display: "flex", justifyContent: "space-between",
+                    alignItems: "flex-start" }}>
+                    <div style={{
+                      width: 38, height: 38, borderRadius: 8,
+                      background: `${C.accent}10`, border: `1px solid ${C.accent}25`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                      <Ic n={card.icon} sz={17} col={C.accent} />
+                    </div>
+                    <span style={{ ...MONO, color: C.muted, fontSize: "0.68rem" }}>
+                      {card.idx}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.35rem",
+                    letterSpacing: "0.01em", textTransform: "uppercase", margin: 0 }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.92rem",
+                    lineHeight: 1.7, margin: 0 }}>
+                    {card.body}
+                  </p>
+                </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── PROCESS ──────────────────────────────────────────────────────────── */}
+      <section id="process" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>THE PROCESS</SLabel>
+            <SH>FOUR STEPS. ONE CLEAR PATH.</SH>
+          </Reveal>
+          <div className="process-row" style={{ display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem", marginTop: "2rem" }}>
+            {PROCESS.map((step, i) => (
+              <Reveal key={step.num} delay={i * 0.12}>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: "50%",
+                    border: `1px solid ${C.accent}55`, background: `${C.accent}0f`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    margin: "0 auto 0.9rem",
+                  }}>
+                    <span style={{ ...MONO, fontWeight: 600, color: C.accent, fontSize: "0.76rem" }}>
+                      {step.num}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 800, color: C.text, fontSize: "1.2rem",
+                    letterSpacing: "0.04em", textTransform: "uppercase", margin: "0 0 0.5rem" }}>
+                    {step.title}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.88rem",
+                    lineHeight: 1.65, margin: 0 }}>
+                    {step.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── HIRING ───────────────────────────────────────────────────────────── */}
+      <section id="hiring" aria-labelledby="hiring-heading"
+        style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "0 auto" }}>
+          <Reveal>
+            <div style={{
+              background: `radial-gradient(circle at top left, ${C.accent}16 0%, ${C.panel} 62%)`,
+              border: `1px solid ${C.border}`, borderTop: `2px solid ${C.accent}`,
+              borderRadius: 14, padding: "clamp(1.75rem, 5vw, 3rem)",
+            }}>
+              <SLabel>OPEN TO ROLES</SLabel>
+              <SH style={{ marginBottom: "1rem" }}>
+                <span id="hiring-heading">LOOKING FOR MY NEXT PRODUCT TEAM.</span>
+              </SH>
+              <Sub style={{ marginBottom: "1.5rem" }}>
+                I am currently interested in full-stack, frontend, AI product and product engineering
+                opportunities in Dublin, with startups, SaaS and AI companies, product studios, and
+                hospitality tech.
+              </Sub>
+              <ul aria-label="Roles I am open to" style={{ listStyle: "none", padding: 0,
+                margin: "0 0 2rem", display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {HIRING_ROLES.map(role => (
+                  <li key={role} style={{ ...MONO, fontSize: "0.72rem", color: C.text,
+                    border: `1px solid ${C.accent}4d`, background: `${C.accent}0f`,
+                    padding: "0.3rem 0.7rem", borderRadius: 3 }}>
+                    {role}
+                  </li>
+                ))}
+              </ul>
+              <div style={{ display: "flex", gap: "1.75rem", flexWrap: "wrap", alignItems: "center" }}>
+                <MagneticButton href="#contact" variant="solid">
+                  Get in touch
+                  <Ic n="arrow" sz={15} col="currentColor" />
+                </MagneticButton>
+                {CV_URL && (
+                  <MagneticButton href={CV_URL} variant="ghost" external>
+                    View CV
+                  </MagneticButton>
+                )}
+                <HiringLinks size="0.9rem" cv={false} />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <HR />
+
       <Contact />
 
       {/* ── FOOTER ───────────────────────────────────────────────────────────── */}
@@ -1106,7 +1258,7 @@ export default function Landing() {
             </div>
             <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.88rem",
               lineHeight: 1.65, maxWidth: 280, marginBottom: "1rem" }}>
-              I turn ideas into working products, fast.
+              AI product builder and full-stack developer. I turn ideas into working products.
             </p>
             <p style={{ ...MONO, color: C.muted, fontSize: "0.72rem", lineHeight: 1.7, maxWidth: 280 }}>
               {STACK_LINE}
@@ -1119,11 +1271,11 @@ export default function Landing() {
               marginBottom: "1.25rem" }}>NAVIGATE</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
+                { label: "Work",     href: "#work"     },
+                { label: "Skills",   href: "#skills"   },
+                { label: "About",    href: "#about"    },
                 { label: "Services", href: "#services" },
-                { label: "Work",    href: "#work"    },
-                { label: "About",   href: "#about"   },
-                { label: "Skills",  href: "#skills"  },
-                { label: "Contact", href: "#contact" },
+                { label: "Contact",  href: "#contact"  },
               ].map(({ label, href }) => (
                 <a key={label} href={href}
                   className="nav-link"
@@ -1156,7 +1308,7 @@ export default function Landing() {
               ))}
               <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.84rem",
                 lineHeight: 1.6, margin: 0 }}>
-                Based in Dublin. Open to work worldwide.
+                Based in Dublin, Ireland.
               </p>
               <HiringLinks />
             </div>

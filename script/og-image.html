@@ -1,0 +1,111 @@
+<!doctype html>
+<!--
+  Source for client/public/og-image.png, the 1200x630 social share image.
+  Brand tokens are the ones in client/src/lib/brand.ts; the mark is the
+  method-primary logo. Regenerate with:
+
+    node script/render-og-image.mjs
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OG image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Bebas+Neue&family=JetBrains+Mono:wght@500;600&display=block" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(ellipse 60% 70% at 88% 12%, rgba(90, 216, 255, 0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 65% at 8% 100%, rgba(90, 120, 255, 0.20) 0%, transparent 62%),
+      linear-gradient(135deg, #0C1226 0%, #0E0E10 70%);
+    color: #F5EFE0;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  /* The same hairline grid the site's case studies sit on, kept faint. */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(107, 137, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(107, 137, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%);
+  }
+  .frame {
+    position: absolute; inset: 64px 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 52px; height: 52px; }
+  .brand span {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.13em; color: #F5EFE0;
+  }
+  .label {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 20px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #5AD8FF; margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+    font-size: 132px; line-height: 0.9; letter-spacing: 0.01em; color: #F5EFE0;
+  }
+  .line {
+    margin-top: 22px; font-weight: 300; font-size: 36px; line-height: 1.25; color: #D8D2C2;
+  }
+  .line em { font-style: normal; color: #6B89FF; font-weight: 400; }
+  .foot { display: flex; align-items: flex-end; justify-content: space-between; }
+  .stack {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 22px;
+    color: #F5EFE0; letter-spacing: 0.02em;
+  }
+  .stack i { font-style: normal; color: #6B89FF; padding: 0 0.35em; }
+  .url {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 22px; color: #8E8878;
+  }
+  .rule {
+    position: absolute; left: 80px; right: 80px; bottom: 124px; height: 1px;
+    background: linear-gradient(90deg, rgba(107,137,255,0.5), rgba(90,216,255,0.15) 70%, transparent);
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="rule"></div>
+  <div class="frame">
+    <div class="brand">
+      <svg viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#0C1226"/><stop offset="1" stop-color="#070A16"/>
+          </linearGradient>
+          <linearGradient id="arrow" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5BE6FF"/><stop offset="1" stop-color="#1FB8E6"/>
+          </linearGradient>
+        </defs>
+        <rect width="240" height="240" rx="44" fill="url(#bg)"/>
+        <path d="M 150 44 L 62 44 Q 44 44 44 62 L 44 178 Q 44 196 62 196 L 178 196 Q 196 196 196 178 L 196 96"
+          fill="none" stroke="#EDF2F7" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 66 166 L 66 82 L 120 128 L 174 82 L 174 166"
+          fill="none" stroke="#EDF2F7" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 200 52 L 116 136" fill="none" stroke="url(#arrow)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M 146 130 L 116 136 L 122 106" fill="none" stroke="url(#arrow)" stroke-width="14"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>The Method Co.</span>
+    </div>
+
+    <div>
+      <p class="label">AI Product Builder</p>
+      <h1>Victor Miranda</h1>
+      <p class="line">I turn ideas into <em>working products.</em></p>
+    </div>
+
+    <div class="foot">
+      <p class="stack">React<i>·</i>TypeScript<i>·</i>Node<i>·</i>AI</p>
+      <p class="url">themethodco.co</p>
+    </div>
+  </div>
+</body>
+</html>

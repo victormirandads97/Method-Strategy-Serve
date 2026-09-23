@@ -92,7 +92,7 @@ export default function MagneticButton({
         href={href}
         onClick={onClick}
         target={external ? "_blank" : undefined}
-        rel={external ? "noreferrer" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
         whileHover={{ scale: full ? 1.03 : 1 }}
         whileTap={{ scale: 0.97 }}
         transition={spring}

@@ -322,8 +322,9 @@ export default function Contact() {
               marginBottom: "2.5rem",
             }}
           >
-            I am open to product and builder roles, and to freelance builds. If
-            you have something worth shipping, pick whichever inbox fits.
+            I am open to full-stack, frontend, AI product and product
+            engineering roles in Dublin, and to freelance builds. Pick
+            whichever inbox fits.
           </p>
         </Reveal>
 

@@ -10,11 +10,14 @@ const PORTRAIT =
 
 /** Module-level so the scramble effect keeps a stable reference across renders. */
 const BUILDS = [
-  "full product builds",
-  "restaurant software",
-  "AI chatbots",
-  "landing pages",
+  "full-stack web apps",
+  "restaurant-floor software",
+  "AI-powered features",
+  "installable PWAs",
 ] as const;
+
+/** The stack a recruiter scans for, readable in the first few seconds. */
+const STACK = ["React", "TypeScript", "Node / Express", "SQL", "AI APIs", "PWA"] as const;
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 18 },
@@ -72,7 +75,7 @@ export default function Hero() {
                 marginBottom: "1.2rem",
               }}
             >
-              Portfolio / Dublin, Ireland
+              AI Product Builder <span aria-hidden="true">/</span> Full-Stack Web &amp; AI
             </motion.p>
 
             <WordReveal
@@ -98,13 +101,42 @@ export default function Hero() {
                 fontSize: "clamp(1rem, 1.6vw, 1.1rem)",
                 lineHeight: 1.6,
                 maxWidth: 500,
-                marginBottom: "1.5rem",
+                marginBottom: "1.25rem",
               }}
             >
-              The Method Co. gets you clear on what you sell, then builds and
-              ships the product that sells it. Positioning and landing pages,
-              and full software builds.
+              Full-stack web development, AI integrations and product
+              thinking, from prototype to production. Based in Dublin.
             </motion.p>
+
+            <motion.ul
+              {...fadeUp(0.56)}
+              aria-label="Core stack"
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: "0 0 1.4rem",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "0.45rem",
+              }}
+            >
+              {STACK.map((item) => (
+                <li
+                  key={item}
+                  style={{
+                    ...MONO,
+                    fontSize: "0.72rem",
+                    color: B.creamSoft,
+                    border: `1px solid ${alpha(B.blueBright, 0.3)}`,
+                    background: alpha(B.blueBright, 0.06),
+                    padding: "0.28rem 0.65rem",
+                    borderRadius: 3,
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
+            </motion.ul>
 
             {/* Rotating proof line */}
             <motion.p
@@ -139,8 +171,8 @@ export default function Hero() {
               }}
             >
               <MagneticButton href="#work" variant="solid">
-                See the work
-                <svg viewBox="0 0 24 24" style={{ width: 15, height: 15 }}>
+                See what I've built
+                <svg aria-hidden="true" viewBox="0 0 24 24" style={{ width: 15, height: 15 }}>
                   <path
                     d="M5 12h14M12 5l7 7-7 7"
                     stroke="currentColor"
@@ -165,7 +197,7 @@ export default function Hero() {
                 letterSpacing: "0.06em",
               }}
             >
-              // Five products built. Four of them live. Not slideware.
+              // Five products built. Three of them live, one in production on a restaurant floor.
             </motion.p>
           </div>
 
@@ -195,6 +227,9 @@ export default function Hero() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                // Keep the face in frame when the stacked tablet layout makes
+                // the box wider than it is tall.
+                objectPosition: "center 18%",
                 filter: "grayscale(55%) contrast(1.1) brightness(0.92)",
               }}
             />

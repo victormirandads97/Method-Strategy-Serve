@@ -2,10 +2,22 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import fs from "fs";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
 
+// The CV link only renders when the PDF is really in client/public, so a build
+// without it never ships a link that falls through to the home page.
+// Keep the filename in step with CV_FILE in client/src/lib/contact.ts.
+const CV_FILE = "Victor_Miranda_AI_Product_Builder_CV.pdf";
+const cvAvailable = fs.existsSync(
+  path.resolve(import.meta.dirname, "client", "public", CV_FILE),
+);
+
 export default defineConfig({
+  define: {
+    "import.meta.env.VITE_CV_AVAILABLE": JSON.stringify(cvAvailable),
+  },
   plugins: [
     react(),
     runtimeErrorOverlay(),

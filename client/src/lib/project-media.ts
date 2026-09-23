@@ -23,6 +23,13 @@ export const SHOT_SLOTS = 6;
 /** Slots always drawn, as placeholders when the file is not there yet. */
 export const MIN_VISIBLE_SHOTS = 3;
 
+/**
+ * Placeholders name the file they are waiting for, which is for the author, not
+ * a visitor. They only render in development; a production build shows the
+ * screenshots that exist and nothing for the ones that do not.
+ */
+export const SHOW_PLACEHOLDERS = import.meta.env.DEV;
+
 export type MediaState = "pending" | "ready" | "missing";
 
 export interface ShotSlot {
@@ -269,6 +276,10 @@ export function useVisibleShots(projectId: string, minShots = MIN_VISIBLE_SHOTS)
 
   const resolved = all.every((s) => states[s.src] !== undefined && states[s.src] !== "pending");
 
+  if (!SHOW_PLACEHOLDERS) {
+    return { shots: all.filter((s) => states[s.src] === "ready"), states, resolved };
+  }
+
   const lastReady = all.reduce(
     (acc, s) => (states[s.src] === "ready" ? s.slot : acc),
     0,
@@ -276,4 +287,13 @@ export function useVisibleShots(projectId: string, minShots = MIN_VISIBLE_SHOTS)
   const count = Math.min(SHOT_SLOTS, Math.max(minShots, lastReady));
 
   return { shots: all.slice(0, count), states, resolved };
+}
+
+/**
+ * True once the gallery for a project would draw anything, so a page can leave
+ * out the whole screens section, heading included, when it would be empty.
+ */
+export function useHasShots(projectId: string, minShots?: number): boolean {
+  const { shots, resolved } = useVisibleShots(projectId, minShots);
+  return resolved && shots.length > 0;
 }

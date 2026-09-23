@@ -5,6 +5,13 @@
 export const COMPANY_EMAIL = "support@themethodco.co";
 export const PERSONAL_EMAIL = "victormirandads@gmail.com";
 
+/**
+ * The CV lives at client/public/<CV_FILE>. vite.config.ts checks for it at build
+ * time: while it is missing CV_URL is empty and no CV link renders anywhere.
+ */
+export const CV_FILE = "Victor_Miranda_AI_Product_Builder_CV.pdf";
+export const CV_URL: string = import.meta.env.VITE_CV_AVAILABLE ? `/${CV_FILE}` : "";
+
 export interface ContactRoute {
   id: string;
   tag: string;
