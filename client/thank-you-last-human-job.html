@@ -11,20 +11,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=7" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0A0F14" />
 
   <style>
     :root {
-      --black:  #0A0A0A;
-      --panel:  #111111;
-      --card:   #161616;
-      --cream:  #F5F0E8;
-      --cream2: #D4CBBA;
-      --muted:  #8A8070;
-      --border: #232323;
-      --blue:   #4A6CF7;
-      --blue-d: #3A5AE0;
-      --blue-glow: rgba(74,108,247,.22);
+      --black:  #0A0F14;
+      --panel:  #111827;
+      --card:   #172131;
+      --cream:  #F9FAFB;
+      --cream2: #D1D5DB;
+      --muted:  #9CA3AF;
+      --border: #1F2937;
+      --blue:   #22D87A;
+      --blue-d: #0F8A54;
+      --blue-glow: rgba(34,216,122,.22);
       --green:  #3DDA84;
       --mono:   'JetBrains Mono', monospace;
       --bebas:  'Bebas Neue', sans-serif;
@@ -55,7 +59,7 @@
       top: -200px; left: 50%;
       transform: translateX(-50%);
       width: 800px; height: 600px;
-      background: radial-gradient(circle, rgba(74,108,247,.07) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(34,216,122,.07) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -140,7 +144,7 @@
       font-family: var(--bebas);
       font-size: 1.1rem;
       letter-spacing: 0.08em;
-      color: #fff;
+      color: var(--black);
       background: var(--blue);
       padding: 14px 36px;
       border-radius: 4px;
@@ -152,7 +156,7 @@
       margin-bottom: 12px;
     }
     .btn-download:hover {
-      background: var(--blue-d);
+      background: #4BF59A;
       transform: translateY(-2px);
     }
     .btn-download.loading {
@@ -172,7 +176,7 @@
       transition: color 0.15s, border-color 0.15s;
       text-decoration: none;
     }
-    .btn-back:hover { color: var(--cream2); border-color: rgba(74,108,247,.3); }
+    .btn-back:hover { color: var(--cream2); border-color: rgba(34,216,122,.3); }
 
     .guarantee {
       font-family: var(--mono);

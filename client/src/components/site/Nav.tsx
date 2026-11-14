@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { B, BEBAS, INTER, MONO, alpha } from "@/lib/brand";
+import { B, INTER, MONO, alpha } from "@/lib/brand";
 import MagneticButton from "@/components/motion/MagneticButton";
 import { CV_URL } from "@/lib/contact";
-
-const LOGO =
-  "https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg";
+import BrandMark from "@/components/site/BrandMark";
 
 export const NAV_LINKS = [
   { label: "Work", href: "#work" },
@@ -50,7 +48,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
           gap: "1rem",
           padding: "0 5vw",
           height: 74,
-          background: scrolled ? alpha(B.black, 0.78) : "transparent",
+          background: scrolled ? alpha(B.bg, 0.78) : "transparent",
           backdropFilter: scrolled ? "blur(18px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
           borderBottom: `1px solid ${scrolled ? B.border : "transparent"}`,
@@ -63,18 +61,25 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
           aria-label="The Method Co. by Victor Miranda, home"
           style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}
         >
-          <img src={LOGO} alt="" style={{ height: 30, width: 30 }} />
-          <span style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <BrandMark size={38} />
+          <span
+            aria-hidden="true"
+            style={{ width: 1, height: 28, background: alpha(B.white, 0.3) }}
+          />
+          <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <span
               style={{
-                ...BEBAS,
-                color: B.cream,
-                fontSize: "1.32rem",
+                ...INTER,
+                fontWeight: 700,
+                color: B.white,
+                fontSize: "0.98rem",
                 lineHeight: 1,
-                letterSpacing: "0.13em",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
               }}
             >
-              The Method Co.
+              The Method Co<span style={{ color: B.green }}>.</span>
             </span>
             <span
               style={{
@@ -104,7 +109,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               style={{
                 ...INTER,
                 fontWeight: 400,
-                color: B.creamSoft,
+                color: B.textSoft,
                 fontSize: "0.85rem",
                 padding: "0.4rem 0.8rem",
                 borderRadius: 3,
@@ -123,7 +128,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               style={{
                 ...INTER,
                 fontWeight: 400,
-                color: B.creamSoft,
+                color: B.textSoft,
                 fontSize: "0.85rem",
                 padding: "0.4rem 0.8rem",
                 borderRadius: 3,
@@ -141,7 +146,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               href={`${hrefBase}#contact`}
               variant="solid"
               pull={8}
-              style={{ padding: "0.7rem 1.35rem", fontSize: "0.7rem" }}
+              style={{ padding: "0.65rem 1.25rem", fontSize: "0.85rem" }}
             >
               Get in touch
             </MagneticButton>
@@ -155,7 +160,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               display: "none",
               background: "none",
               border: "none",
-              color: B.cream,
+              color: B.text,
               cursor: "pointer",
               padding: "0.4rem",
             }}
@@ -196,7 +201,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               left: 0,
               right: 0,
               zIndex: 195,
-              background: alpha(B.ink, 0.97),
+              background: alpha(B.surface, 0.97),
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
               borderBottom: `1px solid ${B.border}`,
@@ -212,7 +217,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
                 onClick={() => setOpen(false)}
                 style={{
                   ...INTER,
-                  color: B.creamSoft,
+                  color: B.textSoft,
                   fontSize: "1rem",
                   padding: "0.85rem 0",
                   borderBottom: `1px solid ${B.border}`,
@@ -229,7 +234,7 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
                 onClick={() => setOpen(false)}
                 style={{
                   ...INTER,
-                  color: B.creamSoft,
+                  color: B.textSoft,
                   fontSize: "1rem",
                   padding: "0.85rem 0",
                   borderBottom: `1px solid ${B.border}`,
@@ -242,17 +247,15 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               href={`${hrefBase}#contact`}
               onClick={() => setOpen(false)}
               style={{
-                ...MONO,
+                ...INTER,
                 fontWeight: 600,
-                background: B.cream,
-                color: "#0A0A0A",
+                background: B.green,
+                color: B.bg,
                 textAlign: "center",
                 padding: "0.95rem",
-                borderRadius: 3,
+                borderRadius: 10,
                 marginTop: "1.25rem",
-                fontSize: "0.75rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
+                fontSize: "0.95rem",
               }}
             >
               Get in touch

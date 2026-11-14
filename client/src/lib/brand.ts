@@ -1,24 +1,35 @@
 import type { CSSProperties } from "react";
 
 /**
- * The Method Co. brand tokens.
- * Sourced from the /last-human-job page so the whole site reads as one system:
- * deep near-black, cream, blue accent.
+ * The Method Co. brand tokens, brand system v1.0: dark navy, green and white.
+ * The same palette ships as brand/palette/method-tokens.css and is the source
+ * for the logo files in brand/ (script/brand/build-svgs.py). Change them
+ * together.
  */
 export const B = {
-  black: "#0E0E10",
-  ink: "#141418",
-  panel: "#1C1C22",
-  elev: "#22222A",
-  cream: "#F5EFE0",
-  creamSoft: "#D8D2C2",
-  blue: "#5A78FF",
-  blueBright: "#6B89FF",
-  cyan: "#5AD8FF",
-  muted: "#8E8878",
-  border: "#2E2A26",
-  line: "#36322D",
-  green: "#4DD897",
+  /** Page background. */
+  bg: "#0A0F14",
+  /** Surface: cards, the open mobile menu. */
+  surface: "#111827",
+  /** Raised surface inside a card. */
+  panel: "#172131",
+  elev: "#1F2A3A",
+  /** Headings and UI text on dark. */
+  text: "#F9FAFB",
+  /** Body copy on dark. */
+  textSoft: "#D1D5DB",
+  /** Primary brand green: CTAs, links, accents. Pair with dark text, never white. */
+  green: "#22D87A",
+  /** Primary Dark: deep green for glows, gradients and pressed states. */
+  greenDark: "#0F8A54",
+  /** Light end of the mark's gradient, for highlights. */
+  greenGlow: "#4BF59A",
+  white: "#FFFFFF",
+  muted: "#9CA3AF",
+  border: "#1F2937",
+  line: "#374151",
+  /** Status colours. Success uses the brand green. */
+  success: "#22D87A",
   amber: "#F4B85C",
   red: "#F26B6B",
 } as const;

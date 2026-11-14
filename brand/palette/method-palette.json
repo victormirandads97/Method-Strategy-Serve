@@ -1,0 +1,67 @@
+{
+  "name": "The Method Co.",
+  "version": "1.0",
+  "colours": [
+    {
+      "token": "primary",
+      "name": "Primary",
+      "hex": "#22D87A"
+    },
+    {
+      "token": "primaryDark",
+      "name": "Primary Dark",
+      "hex": "#0F8A54"
+    },
+    {
+      "token": "background",
+      "name": "Background",
+      "hex": "#0A0F14"
+    },
+    {
+      "token": "surface",
+      "name": "Surface",
+      "hex": "#111827"
+    },
+    {
+      "token": "border",
+      "name": "Border / Muted",
+      "hex": "#374151"
+    },
+    {
+      "token": "lightSurface",
+      "name": "Light Surface",
+      "hex": "#E5E7EB"
+    },
+    {
+      "token": "backgroundLight",
+      "name": "Background Light",
+      "hex": "#F9FAFB"
+    },
+    {
+      "token": "white",
+      "name": "Text / UI",
+      "hex": "#FFFFFF"
+    }
+  ],
+  "gradients": [
+    {
+      "name": "Primary Gradient",
+      "from": "#0A0F14",
+      "to": "#22D87A"
+    },
+    {
+      "name": "Accent Gradient",
+      "from": "#0F8A54",
+      "to": "#22D87A"
+    }
+  ],
+  "typography": {
+    "family": "Inter",
+    "weights": [
+      400,
+      500,
+      600,
+      700
+    ]
+  }
+}

@@ -5,6 +5,7 @@ import { B } from "@/lib/brand";
 import Nav from "@/components/site/Nav";
 import Hero from "@/components/site/Hero";
 import Contact from "@/components/site/Contact";
+import BrandMark from "@/components/site/BrandMark";
 import { COMPANY_EMAIL, CV_URL, PERSONAL_EMAIL } from "@/lib/contact";
 import AuroraBackdrop from "@/components/motion/AuroraBackdrop";
 import GrainOverlay from "@/components/motion/GrainOverlay";
@@ -16,6 +17,7 @@ import { useHasShots } from "@/lib/project-media";
 // Personal contact + flagship live URLs. Set these when the deploy is ready.
 const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if you get one
 const DEZORZI_URL = "https://dezorzi.onrender.com";
+const CALCULATORS_URL = "https://calculators.themethodco.co/";
 
 // ── Hiring signals ────────────────────────────────────────────────────────────
 const GITHUB_URL = "https://github.com/victormirandads97";
@@ -27,16 +29,16 @@ const STACK_LINE =
 // Mapped onto the shared brand palette in @/lib/brand so this page matches
 // /last-human-job: deep near-black, cream, blue accent.
 const C = {
-  bg:     B.black,
-  panel:  B.ink,
+  bg:     B.bg,
+  panel:  B.surface,
   elev:   B.panel,
-  accent: B.blueBright,
-  glow:   B.blue,
-  hi:     B.cyan,
-  text:   B.cream,
+  accent: B.green,
+  glow:   B.greenDark,
+  hi:     B.greenGlow,
+  text:   B.text,
   muted:  B.muted,
   border: B.border,
-  green:  B.green,
+  green:  B.success,
   amber:  B.amber,
   red:    B.red,
 } as const;
@@ -88,7 +90,7 @@ function SH({ children, style: s }: { children: React.ReactNode; style?: React.C
       ...EP, fontWeight: 900, lineHeight: 0.93, letterSpacing: "-0.01em", color: C.text,
       fontSize: "clamp(2.4rem, 5vw, 3.8rem)", marginBottom: "0.9rem",
       textTransform: "uppercase",
-      textShadow: "0 0 80px rgba(61,214,245,0.15)",
+      textShadow: "0 0 80px rgba(34, 216, 122,0.15)",
       ...s,
     }}>{children}</h2>
   );
@@ -436,6 +438,33 @@ const PROJECTS: Project[] = [
     frameUrl: "dezorzi.onrender.com",
   },
   {
+    id: "calculators",
+    name: "Quote Calculators",
+    icon: "card",
+    tagline: "Show the price. Get the job.",
+    summary: "Instant quote calculators for Irish service businesses. Customers see their price in 30 seconds and send it, with every detail filled in, straight to the business on WhatsApp.",
+    role: "Product, offer, copy, design, frontend and launch.",
+    tech: "HTML, CSS and JavaScript with no framework, WhatsApp click-to-chat, Stripe payments, hosted on Cloudflare.",
+    problem:
+      "Most small service websites say \"call for a quote\". Most people never call. They move on to the next company that shows a price, and the leads that do arrive say \"how much?\" with no details, so every quote starts five messages back.",
+    built:
+      "A sales site and five working demo calculators for made-up businesses: a solar installer, a builder, a cleaning company, an accountant and a personal trainer. Each one prices the job live as you change the inputs, then opens WhatsApp with a ready-made message carrying every answer and the agreed price. The offer is productised: a free preview built with the client's real prices, then a one-off fee to put it on their existing site.",
+    decisions: [
+      "WhatsApp as the hand-off, not a form, because that is where small Irish businesses already answer customers. The lead arrives as one message they can reply to.",
+      "Ranges for jobs that need a site visit, like \"€68k to €84k\" for an extension, so a business with variable pricing still gets the lead and the details.",
+      "Plain HTML, CSS and JavaScript, so a calculator drops into Wix, WordPress, Squarespace or Shopify without a build step or a monthly platform fee.",
+      "The client tries their own calculator on their own phone before paying anything, which removes the risk from the first sale.",
+    ],
+    hardPart:
+      "Making five very different pricing models feel like one product. Solar savings with a grant and payback years, an itemised accountancy fee, calorie maths for a trainer: each needed its own logic and its own look, while the WhatsApp message that comes out the other end stays just as clear for the business every time.",
+    status: "Live",
+    statusCol: C.green,
+    flagship: true,
+    liveUrl: CALCULATORS_URL,
+    liveLabel: "Try the live calculators",
+    frameUrl: "calculators.themethodco.co",
+  },
+  {
     id: "method-chat",
     name: "The Method Chat",
     icon: "chat",
@@ -541,7 +570,7 @@ const SKILL_GROUPS = [
   {
     icon: "code", title: "Build",
     items: ["React", "TypeScript", "JavaScript", "Node.js", "Express", "REST APIs", "SQL: SQLite and Postgres", "PWA", "Stripe"],
-    proof: "Onishi, Dezorzi, Orbit, The Method Chat",
+    proof: "Onishi, Dezorzi, Quote Calculators, Orbit, The Method Chat",
   },
   {
     icon: "spark", title: "AI",
@@ -556,7 +585,7 @@ const SKILL_GROUPS = [
   {
     icon: "pen", title: "Growth and communication",
     items: ["Copywriting", "Marketing", "Landing pages", "Go-to-market"],
-    proof: "The Last Human Job, The Method Co.",
+    proof: "Quote Calculators, The Last Human Job, The Method Co.",
   },
 ] as const;
 
@@ -572,7 +601,7 @@ function DecisionList({ items }: { items: readonly string[] }) {
         {items.map(item => (
           <li key={item} style={{ display: "flex", gap: "0.6rem", alignItems: "flex-start" }}>
             <span style={{ marginTop: "0.3rem" }}><Ic n="check" sz={14} col={C.accent} /></span>
-            <span style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.65 }}>
+            <span style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.95rem", lineHeight: 1.65 }}>
               {item}
             </span>
           </li>
@@ -608,7 +637,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
       onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 300,
-        background: "rgba(3,5,12,0.72)", backdropFilter: "blur(6px)",
+        background: "rgba(3, 6, 9,0.72)", backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
         display: "flex", alignItems: "flex-start", justifyContent: "center",
         padding: "5vh 5vw", overflowY: "auto",
@@ -661,7 +690,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
             {project.tagline}
           </p>
         )}
-        <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1rem", lineHeight: 1.6,
+        <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1rem", lineHeight: 1.6,
           marginBottom: "1.75rem" }}>
           {project.summary}
         </p>
@@ -673,7 +702,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
           </div>
           <div>
             <p style={{ ...LBL, color: C.accent, fontSize: "0.56rem", marginBottom: "0.3rem" }}>TECH</p>
-            <p style={{ ...MONO, color: "#D8D2C2", fontSize: "0.82rem", lineHeight: 1.55 }}>{project.tech}</p>
+            <p style={{ ...MONO, color: "#D1D5DB", fontSize: "0.82rem", lineHeight: 1.55 }}>{project.tech}</p>
           </div>
         </div>
 
@@ -696,7 +725,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
               <p style={{ ...LBL, color: C.muted, fontSize: "0.58rem", marginBottom: "0.5rem" }}>
                 {s.label}
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.7 }}>
+              <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.95rem", lineHeight: 1.7 }}>
                 {s.body}
               </p>
             </div>
@@ -753,8 +782,8 @@ export default function Landing() {
           38%          { transform: scale(1);    opacity: 1; }
         }
         @keyframes ctaPulse {
-          0%,100% { box-shadow: 0 0 20px rgba(90,120,255,0.18), 0 0 40px rgba(90,120,255,0.07); }
-          50%     { box-shadow: 0 0 30px rgba(90,120,255,0.34), 0 0 60px rgba(90,120,255,0.13); }
+          0%,100% { box-shadow: 0 0 20px rgba(34, 216, 122,0.18), 0 0 40px rgba(34, 216, 122,0.07); }
+          50%     { box-shadow: 0 0 30px rgba(34, 216, 122,0.34), 0 0 60px rgba(34, 216, 122,0.13); }
         }
         @keyframes svgRotate {
           0%   { transform: rotate(0deg); }
@@ -783,7 +812,7 @@ export default function Landing() {
             <Sub>Each one designed, built and shipped by me. Every case study covers the problem, what I built, my role, the stack, and where it runs today.</Sub>
           </Reveal>
 
-          {/* Featured: Onishi and Dezorzi */}
+          {/* Featured: Onishi, Dezorzi and Quote Calculators */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div
@@ -825,7 +854,7 @@ export default function Landing() {
                         {project.tagline}
                       </p>
                     )}
-                    <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem",
+                    <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1.05rem",
                       lineHeight: 1.6, maxWidth: 460, marginBottom: "1.4rem" }}>
                       {project.summary}
                     </p>
@@ -917,7 +946,7 @@ export default function Landing() {
                         {project.status.toUpperCase()}
                       </span>
                     </div>
-                    <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.86rem",
+                    <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.86rem",
                       lineHeight: 1.6, marginBottom: "1.1rem", flex: 1 }}>
                       {project.summary}
                     </p>
@@ -945,7 +974,7 @@ export default function Landing() {
             style={{ animation: "svgRotate 60s linear infinite", opacity: 1 }}>
             {[60,120,180,240,300,340].map(r => (
               <circle key={r} cx="350" cy="350" r={r} fill="none"
-                stroke="#3DD6F5" strokeWidth="1" opacity="0.05" />
+                stroke="#22D87A" strokeWidth="1" opacity="0.05" />
             ))}
           </svg>
         </div>
@@ -983,7 +1012,7 @@ export default function Landing() {
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 1.25rem", flex: 1,
                     display: "flex", flexDirection: "column", gap: "0.45rem" }}>
                     {g.items.map(item => (
-                      <li key={item} style={{ ...DM, fontWeight: 400, color: "#D8D2C2",
+                      <li key={item} style={{ ...DM, fontWeight: 400, color: "#D1D5DB",
                         fontSize: "0.9rem", lineHeight: 1.4 }}>
                         {item}
                       </li>
@@ -1018,7 +1047,7 @@ export default function Landing() {
                   letterSpacing: "0.01em", marginBottom: "0.6rem", textTransform: "uppercase" }}>
                   Product and go-to-market, from one person
                 </h3>
-                <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.95rem", lineHeight: 1.7 }}>
                   Before I built software I worked in marketing, copywriting, and design. That is not a side
                   note. It means I can build a product and the thing that sells it: the positioning, the
                   landing page, the words, and the launch. Most builders can do one side. I do both.
@@ -1040,19 +1069,19 @@ export default function Landing() {
           </Reveal>
           <div className="about-row" style={{ display: "flex", gap: "3rem", marginTop: "1rem" }}>
             <Reveal delay={0.08} style={{ flex: "1 1 0", minWidth: 0 }}>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+              <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1.05rem", lineHeight: 1.8,
                 marginBottom: "1.5rem" }}>
                 I am a product-focused developer based in Dublin. I build web products from idea to production, combining full-stack development, AI and product thinking.
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+              <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1.05rem", lineHeight: 1.8,
                 marginBottom: "1.5rem" }}>
                 AI-assisted development is part of how I work. It gets me from product idea to working software quickly, while I own the product decisions, the UX, the testing and debugging, and what ultimately ships.
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+              <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1.05rem", lineHeight: 1.8,
                 marginBottom: "1.5rem" }}>
                 My background is in hospitality. I spent years in professional kitchens across Ireland and Malta, solving problems under pressure. That shapes how I build software: understand the real problem, remove unnecessary complexity, and ship something people can actually use in a real environment. Onishi came straight out of that world.
               </p>
-              <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "1.05rem", lineHeight: 1.8,
+              <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "1.05rem", lineHeight: 1.8,
                 marginBottom: "1.5rem" }}>
                 I am particularly interested in AI products, SaaS, hospitality technology, and small teams where I can contribute across product and engineering.
               </p>
@@ -1127,7 +1156,7 @@ export default function Landing() {
                     letterSpacing: "0.01em", textTransform: "uppercase", margin: 0 }}>
                     {card.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.92rem",
+                  <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.92rem",
                     lineHeight: 1.7, margin: 0 }}>
                     {card.body}
                   </p>
@@ -1166,7 +1195,7 @@ export default function Landing() {
                     letterSpacing: "0.04em", textTransform: "uppercase", margin: "0 0 0.5rem" }}>
                     {step.title}
                   </h3>
-                  <p style={{ ...DM, fontWeight: 300, color: "#D8D2C2", fontSize: "0.88rem",
+                  <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.88rem",
                     lineHeight: 1.65, margin: 0 }}>
                     {step.body}
                   </p>
@@ -1243,11 +1272,7 @@ export default function Landing() {
           {/* Column 1: Brand */}
           <div style={{ flex: "1 1 260px", minWidth: 200 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "1rem" }}>
-              <img
-                src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
-                alt=""
-                style={{ height: 26, width: 26 }}
-              />
+              <BrandMark size={34} />
               <span style={{
                 ...DM, fontWeight: 600, fontSize: "1rem", letterSpacing: "0.02em",
                 background: `linear-gradient(90deg, ${C.accent}, ${C.hi})`,
@@ -1256,7 +1281,7 @@ export default function Landing() {
                 Victor Miranda
               </span>
             </div>
-            <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.88rem",
+            <p style={{ ...DM, fontWeight: 400, color: "#D1D5DB", fontSize: "0.88rem",
               lineHeight: 1.65, maxWidth: 280, marginBottom: "1rem" }}>
               AI product builder and full-stack developer. I turn ideas into working products.
             </p>
@@ -1306,7 +1331,7 @@ export default function Landing() {
                   </a>
                 </span>
               ))}
-              <p style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.84rem",
+              <p style={{ ...DM, fontWeight: 400, color: "#D1D5DB", fontSize: "0.84rem",
                 lineHeight: 1.6, margin: 0 }}>
                 Based in Dublin, Ireland.
               </p>
@@ -1332,7 +1357,7 @@ export default function Landing() {
                 {i > 0 && <span style={{ color: C.border, fontSize: "0.7rem" }}>|</span>}
                 <a href={href}
                   className="nav-link"
-                  style={{ ...DM, fontWeight: 400, color: "#D8D2C2", fontSize: "0.78rem",
+                  style={{ ...DM, fontWeight: 400, color: "#D1D5DB", fontSize: "0.78rem",
                     transition: "color 0.15s", textDecoration: "none" }}>
                   {label}
                 </a>

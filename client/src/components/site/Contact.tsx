@@ -19,14 +19,14 @@ function RouteIcon({ kind }: { kind: ContactRoute["icon"] }) {
         <>
           <path
             d="M3 21h18M5 21V7l7-4 7 4v14"
-            stroke={B.blueBright}
+            stroke={B.green}
             strokeWidth="1.4"
             strokeLinejoin="round"
             fill="none"
           />
           <path
             d="M9 21v-5h6v5"
-            stroke={B.blueBright}
+            stroke={B.green}
             strokeWidth="1.4"
             strokeLinejoin="round"
             fill="none"
@@ -38,13 +38,13 @@ function RouteIcon({ kind }: { kind: ContactRoute["icon"] }) {
             cx="12"
             cy="8"
             r="3.6"
-            stroke={B.blueBright}
+            stroke={B.green}
             strokeWidth="1.4"
             fill="none"
           />
           <path
             d="M4.5 20a7.5 7.5 0 0115 0"
-            stroke={B.blueBright}
+            stroke={B.green}
             strokeWidth="1.4"
             strokeLinecap="round"
             fill="none"
@@ -97,8 +97,8 @@ function CopyButton({ email }: { email: string }) {
         alignItems: "center",
         gap: "0.45rem",
         background: "transparent",
-        border: `1px solid ${copied ? B.green : B.line}`,
-        color: copied ? B.green : B.creamSoft,
+        border: `1px solid ${copied ? B.success : B.line}`,
+        color: copied ? B.success : B.textSoft,
         borderRadius: 3,
         padding: "0.62rem 1rem",
         fontSize: "0.68rem",
@@ -151,8 +151,8 @@ function RouteCard({ route }: { route: ContactRoute }) {
   return (
     <TiltCard
       style={{
-        background: `linear-gradient(160deg, ${alpha(B.blue, 0.06)} 0%, ${B.ink} 55%)`,
-        borderTop: `2px solid ${alpha(B.blue, 0.55)}`,
+        background: `linear-gradient(160deg, ${alpha(B.greenDark, 0.06)} 0%, ${B.surface} 55%)`,
+        borderTop: `2px solid ${alpha(B.greenDark, 0.55)}`,
       }}
     >
       <div
@@ -173,8 +173,8 @@ function RouteCard({ route }: { route: ContactRoute }) {
               height: 42,
               borderRadius: 6,
               flexShrink: 0,
-              background: alpha(B.blue, 0.1),
-              border: `1px solid ${alpha(B.blue, 0.28)}`,
+              background: alpha(B.greenDark, 0.1),
+              border: `1px solid ${alpha(B.greenDark, 0.28)}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -184,14 +184,14 @@ function RouteCard({ route }: { route: ContactRoute }) {
           </span>
           <span style={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <span
-              style={{ ...LABEL, color: B.blueBright, fontSize: "0.54rem" }}
+              style={{ ...LABEL, color: B.green, fontSize: "0.54rem" }}
             >
               {route.tag}
             </span>
             <span
               style={{
                 ...BEBAS,
-                color: B.cream,
+                color: B.text,
                 fontSize: "1.35rem",
                 letterSpacing: "0.06em",
                 lineHeight: 1,
@@ -206,11 +206,11 @@ function RouteCard({ route }: { route: ContactRoute }) {
           href={`mailto:${route.email}`}
           style={{
             ...MONO,
-            color: B.cream,
+            color: B.text,
             fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
             letterSpacing: "0.01em",
             wordBreak: "break-all",
-            borderBottom: `1px solid ${alpha(B.blue, 0.35)}`,
+            borderBottom: `1px solid ${alpha(B.greenDark, 0.35)}`,
             paddingBottom: "0.5rem",
           }}
         >
@@ -246,10 +246,10 @@ function RouteCard({ route }: { route: ContactRoute }) {
               display: "inline-flex",
               alignItems: "center",
               gap: "0.45rem",
-              background: B.cream,
-              color: "#0A0A0A",
-              border: `1px solid ${B.cream}`,
-              borderRadius: 3,
+              background: B.green,
+              color: B.bg,
+              border: `1px solid ${B.green}`,
+              borderRadius: 8,
               padding: "0.62rem 1.15rem",
               fontSize: "0.68rem",
               fontWeight: 600,
@@ -293,7 +293,7 @@ export default function Contact() {
           <p
             style={{
               ...LABEL,
-              color: B.blueBright,
+              color: B.green,
               fontSize: "0.62rem",
               marginBottom: "1rem",
             }}
@@ -303,7 +303,7 @@ export default function Contact() {
           <h2
             style={{
               ...BEBAS,
-              color: B.cream,
+              color: B.text,
               fontSize: "clamp(2.6rem, 6vw, 4.4rem)",
               lineHeight: 0.92,
               marginBottom: "1.1rem",
@@ -315,7 +315,7 @@ export default function Contact() {
             style={{
               ...INTER,
               fontWeight: 300,
-              color: B.creamSoft,
+              color: B.textSoft,
               fontSize: "1.05rem",
               lineHeight: 1.65,
               maxWidth: 560,
@@ -349,7 +349,7 @@ export default function Contact() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.55rem",
-                color: B.green,
+                color: B.success,
                 fontSize: "0.72rem",
                 fontWeight: 600,
                 letterSpacing: "0.08em",
@@ -364,8 +364,8 @@ export default function Contact() {
                   width: 7,
                   height: 7,
                   borderRadius: "50%",
-                  background: B.green,
-                  boxShadow: `0 0 8px ${B.green}`,
+                  background: B.success,
+                  boxShadow: `0 0 8px ${B.success}`,
                   display: "inline-block",
                 }}
               />
@@ -389,7 +389,7 @@ export default function Contact() {
                 <span
                   style={{
                     ...INTER,
-                    color: B.creamSoft,
+                    color: B.textSoft,
                     fontSize: "0.85rem",
                     fontWeight: 400,
                   }}

@@ -27,7 +27,7 @@ export default function WordReveal({
   const words = text.split(" ");
 
   const colourOf = (i: number) =>
-    accentFrom !== undefined && i >= accentFrom ? B.blueBright : B.cream;
+    accentFrom !== undefined && i >= accentFrom ? B.green : B.text;
 
   if (reduced) {
     return (
