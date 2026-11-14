@@ -14,15 +14,15 @@ import {
 
 // Same tokens the landing page maps onto the brand palette.
 const C = {
-  bg: B.black,
-  panel: B.ink,
+  bg: B.bg,
+  panel: B.surface,
   elev: B.panel,
-  accent: B.blueBright,
-  text: B.cream,
-  soft: B.creamSoft,
+  accent: B.green,
+  text: B.text,
+  soft: B.textSoft,
   muted: B.muted,
   border: B.border,
-  green: B.green,
+  green: B.success,
   amber: B.amber,
   red: B.red,
 } as const;
@@ -163,7 +163,7 @@ function PlayBadge({ playing, label, onToggle }: {
       style={{
         position: "absolute", left: "0.65rem", bottom: "0.65rem", zIndex: 2,
         display: "inline-flex", alignItems: "center", gap: "0.4rem",
-        background: "rgba(14,14,16,0.78)", border: `1px solid ${C.accent}55`,
+        background: "rgba(10, 15, 20,0.78)", border: `1px solid ${C.accent}55`,
         borderRadius: 999, padding: "0.32rem 0.7rem", cursor: "pointer",
         color: C.text, backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)",
       }}>
@@ -353,7 +353,7 @@ function Lightbox({ shot, name, projectId, onClose }: {
       onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 400,
-        background: "rgba(3,5,12,0.9)", backdropFilter: "blur(8px)",
+        background: "rgba(3, 6, 9,0.9)", backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
         gap: "1rem", padding: "4vh 4vw",

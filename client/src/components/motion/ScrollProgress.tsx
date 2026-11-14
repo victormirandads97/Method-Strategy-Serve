@@ -26,8 +26,8 @@ export default function ScrollProgress() {
         zIndex: 400,
         transformOrigin: "0% 50%",
         scaleX: width,
-        background: `linear-gradient(90deg, ${B.blue}, ${B.blueBright}, ${B.cyan})`,
-        boxShadow: `0 0 12px ${B.blue}`,
+        background: `linear-gradient(90deg, ${B.greenDark}, ${B.green}, ${B.greenGlow})`,
+        boxShadow: `0 0 12px ${B.greenDark}`,
       }}
     />
   );

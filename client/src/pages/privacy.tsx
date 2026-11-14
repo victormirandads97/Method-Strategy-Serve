@@ -1,12 +1,12 @@
 import { Link } from "wouter";
 
 const C = {
-  bg: "#0C0C0C",
-  surface: "#141414",
+  bg: "#0A0F14",
+  surface: "#111827",
   border: "rgba(255,255,255,0.08)",
-  text: "#F2F2F2",
-  muted: "#888888",
-  accent: "#3DD6F5",
+  text: "#F9FAFB",
+  muted: "#9CA3AF",
+  accent: "#22D87A",
 };
 
 const MONO = { fontFamily: "'Space Mono', monospace" };
@@ -32,9 +32,9 @@ export default function Privacy() {
       }}>
         <Link href="/">
           <img
-            src="https://res.cloudinary.com/dsriscylr/image/upload/v1779128984/method-primary_hl2rrb.svg"
+            src="/brand/method-logo-horizontal-on-dark.svg"
             alt="The Method Co."
-            style={{ height: 28 }}
+            style={{ height: 30, width: "auto", display: "block" }}
           />
         </Link>
         <Link href="/" style={{ ...MONO, fontSize: "0.75rem", color: C.muted, letterSpacing: "0.05em" }}>

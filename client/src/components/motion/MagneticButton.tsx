@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { B, MONO } from "@/lib/brand";
+import { B, INTER } from "@/lib/brand";
 import { useMotionTier } from "@/hooks/use-motion-tier";
 
 interface MagneticButtonProps {
@@ -65,14 +65,14 @@ export default function MagneticButton({
   };
 
   const solid: React.CSSProperties = {
-    background: B.cream,
-    color: "#0A0A0A",
-    border: `1px solid ${B.cream}`,
+    background: B.green,
+    color: B.bg,
+    border: `1px solid ${B.green}`,
   };
   const ghost: React.CSSProperties = {
     background: "transparent",
-    color: B.cream,
-    border: `1px solid ${B.line}`,
+    color: B.text,
+    border: `1px solid ${B.green}`,
   };
 
   return (
@@ -97,18 +97,17 @@ export default function MagneticButton({
         whileTap={{ scale: 0.97 }}
         transition={spring}
         style={{
-          ...MONO,
+          ...INTER,
           x: sx,
           y: sy,
           display: "inline-flex",
           alignItems: "center",
           gap: "0.6rem",
           padding: "0.95rem 2rem",
-          borderRadius: 3,
-          fontSize: "0.78rem",
+          borderRadius: 10,
+          fontSize: "0.92rem",
           fontWeight: 600,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
+          letterSpacing: "0.01em",
           cursor: "pointer",
           whiteSpace: "nowrap",
           ...(variant === "solid" ? solid : ghost),

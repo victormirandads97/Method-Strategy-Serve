@@ -34,7 +34,7 @@ const REPEL_RADIUS = 120;
  * hidden, so it costs nothing while the visitor is further down the page.
  */
 export default function ParticleField({
-  colour = B.blueBright,
+  colour = B.green,
   style,
 }: ParticleFieldProps) {
   const { reduced, lite, ready } = useMotionTier();

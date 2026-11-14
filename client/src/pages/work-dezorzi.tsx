@@ -94,7 +94,7 @@ const FACTS = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p style={{ ...LABEL, color: B.cyan, fontSize: "0.62rem", letterSpacing: "0.14em",
+    <p style={{ ...LABEL, color: B.greenGlow, fontSize: "0.62rem", letterSpacing: "0.14em",
       marginBottom: "0.85rem" }}>
       // {children}
     </p>
@@ -108,7 +108,7 @@ export default function WorkDezorzi() {
   }, []);
 
   return (
-    <div style={{ background: B.black, minHeight: "100vh", color: B.cream,
+    <div style={{ background: B.bg, minHeight: "100vh", color: B.text,
       overflowX: "hidden", position: "relative" }}>
 
       <ScrollProgress />
@@ -150,11 +150,11 @@ export default function WorkDezorzi() {
               <Reveal>
                 <SectionLabel>CASE STUDY</SectionLabel>
                 <h1 style={{ ...BEBAS, fontSize: "clamp(3rem, 8vw, 5.5rem)", lineHeight: 0.9,
-                  letterSpacing: "0.01em", textTransform: "uppercase", color: B.cream,
+                  letterSpacing: "0.01em", textTransform: "uppercase", color: B.text,
                   margin: "0 0 0.7rem" }}>
                   Dezorzi
                 </h1>
-                <p style={{ ...INTER, fontWeight: 300, color: B.creamSoft,
+                <p style={{ ...INTER, fontWeight: 300, color: B.textSoft,
                   fontSize: "clamp(1.05rem, 2vw, 1.25rem)", lineHeight: 1.6,
                   maxWidth: 480, marginBottom: "1.5rem" }}>
                   A multi-city trip planner that builds a real route, city by city,
@@ -168,7 +168,7 @@ export default function WorkDezorzi() {
                 {LIVE_URL && (
                   <a href={LIVE_URL} target="_blank" rel="noopener noreferrer"
                     style={{ ...BEBAS, fontSize: "0.9rem", letterSpacing: "0.1em",
-                      textTransform: "uppercase", color: B.black, background: B.cyan,
+                      textTransform: "uppercase", color: B.bg, background: B.greenGlow,
                       padding: "0.75rem 1.5rem", borderRadius: 4, textDecoration: "none",
                       display: "inline-block" }}>
                     Open the live app
@@ -198,11 +198,11 @@ export default function WorkDezorzi() {
               border: `1px solid ${B.border}`, background: B.border,
               borderRadius: 6, overflow: "hidden", marginBottom: "1.75rem" }}>
               {FACTS.map(fact => (
-                <div key={fact.k} style={{ background: B.ink, padding: "1.1rem 1.25rem" }}>
-                  <p style={{ ...LABEL, color: B.cyan, fontSize: "0.52rem", margin: "0 0 0.5rem" }}>
+                <div key={fact.k} style={{ background: B.surface, padding: "1.1rem 1.25rem" }}>
+                  <p style={{ ...LABEL, color: B.greenGlow, fontSize: "0.52rem", margin: "0 0 0.5rem" }}>
                     {fact.k}
                   </p>
-                  <p style={{ ...INTER, fontWeight: 400, color: B.cream, fontSize: "0.9rem",
+                  <p style={{ ...INTER, fontWeight: 400, color: B.text, fontSize: "0.9rem",
                     lineHeight: 1.4, margin: 0 }}>
                     {fact.v}
                   </p>
@@ -214,9 +214,9 @@ export default function WorkDezorzi() {
           <Reveal delay={0.06}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
               {STACK.map(item => (
-                <span key={item} style={{ ...MONO, fontSize: "0.72rem", color: B.creamSoft,
-                  border: `1px solid ${alpha(B.blueBright, 0.3)}`,
-                  background: alpha(B.blueBright, 0.06),
+                <span key={item} style={{ ...MONO, fontSize: "0.72rem", color: B.textSoft,
+                  border: `1px solid ${alpha(B.green, 0.3)}`,
+                  background: alpha(B.green, 0.06),
                   padding: "0.3rem 0.7rem", borderRadius: 3 }}>
                   {item}
                 </span>
@@ -240,30 +240,30 @@ export default function WorkDezorzi() {
                 <div>
                   <div style={{
                     width: 44, height: 44, borderRadius: "50%",
-                    border: `1px solid ${alpha(B.cyan, 0.45)}`,
-                    background: alpha(B.cyan, 0.07),
+                    border: `1px solid ${alpha(B.greenGlow, 0.45)}`,
+                    background: alpha(B.greenGlow, 0.07),
                     display: "flex", alignItems: "center", justifyContent: "center",
                     marginBottom: "0.9rem",
                   }}>
-                    <span style={{ ...MONO, fontWeight: 600, color: B.cyan, fontSize: "0.78rem" }}>
+                    <span style={{ ...MONO, fontWeight: 600, color: B.greenGlow, fontSize: "0.78rem" }}>
                       {step.num}
                     </span>
                   </div>
                   <h2 style={{ ...BEBAS, fontSize: "clamp(1.8rem, 4vw, 2.3rem)",
                     lineHeight: 1, letterSpacing: "0.02em", textTransform: "uppercase",
-                    color: B.cream, margin: 0 }}>
+                    color: B.text, margin: 0 }}>
                     {step.title}
                   </h2>
                 </div>
 
                 <div>
-                  <p style={{ ...INTER, fontWeight: 400, color: B.cream,
+                  <p style={{ ...INTER, fontWeight: 400, color: B.text,
                     fontSize: "clamp(1.05rem, 2vw, 1.2rem)", lineHeight: 1.5,
                     marginBottom: "1.25rem", maxWidth: 620 }}>
                     {step.lede}
                   </p>
                   {step.body.map((para, j) => (
-                    <p key={j} style={{ ...INTER, fontWeight: 300, color: B.creamSoft,
+                    <p key={j} style={{ ...INTER, fontWeight: 300, color: B.textSoft,
                       fontSize: "1rem", lineHeight: 1.8, marginBottom: "1rem", maxWidth: 620 }}>
                       {para}
                     </p>
@@ -281,7 +281,7 @@ export default function WorkDezorzi() {
           <Reveal>
             <SectionLabel>SCREENS</SectionLabel>
             <h2 style={{ ...BEBAS, fontSize: "clamp(2.2rem, 5vw, 3.2rem)", lineHeight: 0.95,
-              letterSpacing: "0.01em", textTransform: "uppercase", color: B.cream,
+              letterSpacing: "0.01em", textTransform: "uppercase", color: B.text,
               margin: "0 0 1.75rem" }}>
               The real thing
             </h2>
@@ -307,13 +307,13 @@ export default function WorkDezorzi() {
               display: "flex", flexWrap: "wrap", gap: "1.5rem",
               alignItems: "center", justifyContent: "space-between",
             }}>
-            <p style={{ ...INTER, fontWeight: 300, color: B.creamSoft, fontSize: "1rem",
+            <p style={{ ...INTER, fontWeight: 300, color: B.textSoft, fontSize: "1rem",
               lineHeight: 1.6, margin: 0, maxWidth: 420 }}>
               Every project on the site is built and shipped the same way.
             </p>
             <Link href="/#work"
               style={{ ...BEBAS, fontSize: "0.9rem", letterSpacing: "0.1em",
-                textTransform: "uppercase", color: B.cyan, textDecoration: "none",
+                textTransform: "uppercase", color: B.greenGlow, textDecoration: "none",
                 display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
               See the rest of the work <span aria-hidden="true">&rarr;</span>
             </Link>

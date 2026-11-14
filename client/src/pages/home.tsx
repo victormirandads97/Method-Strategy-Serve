@@ -17,8 +17,8 @@ const C = {
   panel:    "#141414",
   card:     "#181818",
   surface:  "#1F1F1F",
-  cyan:     "#3DD6F5",
-  cyanD:    "#1FB8E6",
+  cyan:     "#22D87A",
+  cyanD:    "#0F8A54",
   cyanDim:  "#3DD6F530",
   text:     "#F0F0F0",
   sub:      "#888888",
@@ -527,7 +527,7 @@ export default function Landing() {
         .eco-row { scrollbar-width: none; }
         .ghost:hover { color: #F0F0F0 !important; border-color: #3DD6F540 !important; }
         .nav-link:hover { color: #F0F0F0 !important; }
-        .fix-card:hover { border-top-color: #3DD6F5 !important; transform: translateY(-3px); }
+        .fix-card:hover { border-top-color: #22D87A !important; transform: translateY(-3px); }
         a { text-decoration: none; }
         @media (max-width: 900px) {
           .nav-center { display: none !important; }
@@ -889,7 +889,7 @@ export default function Landing() {
           {/* Dashboard image */}
           <Reveal>
             <div style={{ maxWidth: 600, margin: "2rem auto 0", borderRadius: 16, overflow: "hidden",
-              border: "1px solid rgba(61,214,245,0.2)", position: "relative" }}>
+              border: "1px solid rgba(34, 216, 122,0.2)", position: "relative" }}>
               <img src="https://res.cloudinary.com/dsriscylr/image/upload/v1772066807/freepik__minimalist-professional-workspace-closeup-hands-ty__77621_k4yhcg.jpg" alt=""
                 style={{ width: "100%", display: "block",
                   filter: "brightness(0.75) contrast(1.1)" }} />

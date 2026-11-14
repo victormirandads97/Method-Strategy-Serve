@@ -31,7 +31,7 @@ export default function TiltCard({
   children,
   maxTilt = 6,
   glowSize = 420,
-  glowColour = B.blue,
+  glowColour = B.greenDark,
   style,
   className,
 }: TiltCardProps) {
@@ -93,7 +93,7 @@ export default function TiltCard({
           rotateY: full ? rotateY : 0,
           transformStyle: "preserve-3d",
           borderRadius: 6,
-          background: B.ink,
+          background: B.surface,
           border: `1px solid ${B.border}`,
           overflow: "hidden",
           ...style,

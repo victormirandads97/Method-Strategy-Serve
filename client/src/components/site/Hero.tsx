@@ -38,7 +38,7 @@ export default function Hero() {
         zIndex: 1,
       }}
     >
-      <ParticleField colour={B.blueBright} />
+      <ParticleField colour={B.green} />
 
       {/* Settles the copy back onto the black so the constellation never fights it. */}
       <div
@@ -46,7 +46,7 @@ export default function Hero() {
         style={{
           position: "absolute",
           inset: 0,
-          background: `linear-gradient(180deg, transparent 0%, transparent 62%, ${B.black} 100%)`,
+          background: `linear-gradient(180deg, transparent 0%, transparent 62%, ${B.bg} 100%)`,
           pointerEvents: "none",
         }}
       />
@@ -70,7 +70,7 @@ export default function Hero() {
               {...fadeUp(0.05)}
               style={{
                 ...LABEL,
-                color: B.blueBright,
+                color: B.green,
                 fontSize: "0.64rem",
                 marginBottom: "1.2rem",
               }}
@@ -97,7 +97,7 @@ export default function Hero() {
               style={{
                 ...INTER,
                 fontWeight: 300,
-                color: B.creamSoft,
+                color: B.textSoft,
                 fontSize: "clamp(1rem, 1.6vw, 1.1rem)",
                 lineHeight: 1.6,
                 maxWidth: 500,
@@ -126,9 +126,9 @@ export default function Hero() {
                   style={{
                     ...MONO,
                     fontSize: "0.72rem",
-                    color: B.creamSoft,
-                    border: `1px solid ${alpha(B.blueBright, 0.3)}`,
-                    background: alpha(B.blueBright, 0.06),
+                    color: B.textSoft,
+                    border: `1px solid ${alpha(B.green, 0.3)}`,
+                    background: alpha(B.green, 0.06),
                     padding: "0.28rem 0.65rem",
                     borderRadius: 3,
                   }}
@@ -154,7 +154,7 @@ export default function Hero() {
               }}
             >
               <span>I build</span>
-              <span style={{ color: B.blueBright }}>
+              <span style={{ color: B.green }}>
                 <ScrambleText words={BUILDS} />
               </span>
             </motion.p>
@@ -197,7 +197,7 @@ export default function Hero() {
                 letterSpacing: "0.06em",
               }}
             >
-              // Five products built. Three of them live, one in production on a restaurant floor.
+              // Six products built. Four of them live, one in production on a restaurant floor.
             </motion.p>
           </div>
 
@@ -238,21 +238,21 @@ export default function Hero() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: `linear-gradient(100deg, ${B.black} 0%, ${alpha(B.black, 0.45)} 42%, transparent 100%)`,
+                background: `linear-gradient(100deg, ${B.bg} 0%, ${alpha(B.bg, 0.45)} 42%, transparent 100%)`,
               }}
             />
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                background: `linear-gradient(0deg, ${B.black} 0%, transparent 38%, transparent 78%, ${B.black} 100%)`,
+                background: `linear-gradient(0deg, ${B.bg} 0%, transparent 38%, transparent 78%, ${B.bg} 100%)`,
               }}
             />
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                background: alpha(B.blue, 0.12),
+                background: alpha(B.greenDark, 0.12),
                 mixBlendMode: "color",
               }}
             />
@@ -269,7 +269,7 @@ export default function Hero() {
               <span
                 style={{
                   ...LABEL,
-                  color: B.blueBright,
+                  color: B.green,
                   fontSize: "0.58rem",
                 }}
               >
@@ -278,7 +278,7 @@ export default function Hero() {
               <span
                 style={{
                   ...BEBAS,
-                  color: B.cream,
+                  color: B.text,
                   fontSize: "1.5rem",
                   letterSpacing: "0.1em",
                   lineHeight: 1,
@@ -322,7 +322,7 @@ export default function Hero() {
           style={{
             width: 1,
             height: 34,
-            background: `linear-gradient(180deg, ${B.blueBright}, transparent)`,
+            background: `linear-gradient(180deg, ${B.green}, transparent)`,
             animation: "scrollCue 2.2s ease-in-out infinite",
           }}
         />

@@ -67,6 +67,12 @@ const SHOT_LABELS: Record<string, readonly string[]> = {
     "Sales-per-hour leaderboard",
     "Hours and overtime tracking",
   ],
+  calculators: [
+    "The sales page, with the five calculators on a 3D ring",
+    "Five working demos, one per trade",
+    "The cleaning demo, priced live",
+    "The WhatsApp message a customer sends",
+  ],
   "method-chat": [
     "The widget on a live site",
     "Assistant persona settings",
@@ -98,6 +104,12 @@ const SHOT_ALT: Record<string, readonly string[]> = {
     "The Lisbon leg of a Dezorzi trip. A photograph of the Quinta da Regaleira palace fills the top, over the title Lisbon, the dates 30 September to 3 October, 2 travelling, a 600 euro budget and a cultural tag. Below it a Staying at card offers Search for a place or Use an address.",
     "The Dezorzi map showing a planned Lisbon route. Fifteen numbered stops sit clustered over central Lisbon, coloured by day, with one green day four leg running far to the north west. A legend along the bottom reads All days, Day 1 to Day 4, above the total of 15 stops and 35.3 km between them.",
     "The Dezorzi day by day itinerary for a Lisbon trip. Four colour coded days are listed: Down to the river on Wednesday 30 September, Alfama uphill on Thursday 1 October, Gulbenkian and the gardens on Friday 2 October, and Out to Sintra on Saturday 3 October, each with four ideas and controls to add, remove or open the day.",
+  ],
+  calculators: [
+    "The Quote Calculators sales page. A yellow offer bar above the headline Show the price. Get the job., a 150 euro launch price for the first five businesses, and a ring of demo calculator cards for a solar installer and a builder.",
+    "Five demo calculator cards side by side: Brightfield Solar showing 1,240 euro saved per year, Kestrel Build estimating 68k to 84k euro for an extension, Spruce cleaning at 162 euro per clean, Ledger and Lane at 247 euro per month, and Forge PT at 1,850 calories a day.",
+    "The Spruce cleaning demo calculator. Options for regular, deep or end of tenancy cleans, bedroom and bathroom counters and frequency choices on the left; on the right the live price of 81 euro per clean every two weeks and a Book on WhatsApp button.",
+    "A WhatsApp chat showing the lead a calculator produces: a booking request for a deep clean, 3 bed, 2 bath, with extras and a price of 237 euro per clean, and the business replying with a time.",
   ],
 };
 

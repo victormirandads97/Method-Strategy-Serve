@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Method Co. — Clarity-First Digital Strategy</title>
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=6">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=7" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0A0F14" />
   <meta name="description" content="The Method Co. is a clarity-first digital strategy consultancy. Positioning, copy, funnels, landing pages, and ad direction for serious business owners." />
 
   <!-- Open Graph / Facebook -->
@@ -30,15 +34,15 @@
 
   <style>
     :root{
-      --bg:#060a11;
-      --bg2:#080e1a;
+      --bg:#0A0F14;
+      --bg2:#0D141C;
       --card:#0b1324cc;
-      --line:#1a2640;
-      --text:#e8f0ff;
-      --muted:#8899bb;
-      --accent:#2563eb;
-      --accent2:#38bdf8;
-      --glow: rgba(37,99,235,.35);
+      --line:#1F2937;
+      --text:#F9FAFB;
+      --muted:#9CA3AF;
+      --accent:#0F8A54;
+      --accent2:#22D87A;
+      --glow: rgba(15,138,84,.35);
       --shadow: 0 24px 64px rgba(0,0,0,.55);
       --radius: 16px;
       --max: 1140px;
@@ -67,8 +71,8 @@
       content:"";
       position:fixed; inset:0; z-index:0;
       background:
-        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(37,99,235,.18) 0%, transparent 65%),
-        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(56,189,248,.10) 0%, transparent 60%),
+        radial-gradient(ellipse 1000px 600px at 80% -10%, rgba(15,138,84,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 800px 500px at 10% 20%, rgba(34,216,122,.10) 0%, transparent 60%),
         linear-gradient(180deg, rgba(6,10,17,0) 0%, var(--bg2) 100%);
       pointer-events:none;
     }
@@ -110,11 +114,11 @@
     }
     .btn:hover{transform: translateY(-2px)}
     .btn.primary{
-      background: linear-gradient(135deg, var(--accent), rgba(56,189,248,.7));
-      color:#020b1a;
+      background: linear-gradient(135deg, var(--accent), rgba(34,216,122,.7));
+      color:#06090D;
       transition: all .18s ease, box-shadow .3s ease;
     }
-    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(56,189,248,.3);}
+    .btn.primary:hover{box-shadow: 0 8px 30px var(--glow), 0 0 20px rgba(34,216,122,.3);}
     .btn.ghost{
       background: rgba(255,255,255,.03);
       border-color: rgba(255,255,255,.1);
@@ -225,10 +229,10 @@
       position:relative; overflow:hidden;
       transition: border-color .2s, transform .2s;
     }
-    .card:hover{border-color: rgba(37,99,235,.4); transform: translateY(-2px);}
+    .card:hover{border-color: rgba(15,138,84,.4); transform: translateY(-2px);}
     .card::before{
       content:""; position:absolute; top:0; left:0; right:0; height:1px;
-      background: linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(34,216,122,.2), transparent);
     }
     .card h3{font-size:16px; font-weight:700; margin-bottom:8px; letter-spacing:-.01em}
     .card p{color:var(--muted); font-size:14px; line-height:1.6}
@@ -236,10 +240,10 @@
     .tag{
       display:inline-block; font-size:11px; font-weight:700; letter-spacing:.1em;
       text-transform:uppercase; padding:5px 10px; border-radius:6px;
-      border:1px solid rgba(37,99,235,.4);
-      background: rgba(37,99,235,.1); color:var(--accent2); margin-bottom:12px;
+      border:1px solid rgba(15,138,84,.4);
+      background: rgba(15,138,84,.1); color:var(--accent2); margin-bottom:12px;
     }
-    .tag.free{border-color:rgba(56,189,248,.4); background:rgba(56,189,248,.1)}
+    .tag.free{border-color:rgba(34,216,122,.4); background:rgba(34,216,122,.1)}
     .tag.exec{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:var(--muted)}
 
     .price{
@@ -268,7 +272,7 @@
       color:var(--muted); font-size:14px; margin-bottom:8px;
       transition: border-color .2s;
     }
-    .check li:hover{border-color:rgba(37,99,235,.3)}
+    .check li:hover{border-color:rgba(15,138,84,.3)}
     .ico-check{color:#22c55e; font-size:13px; flex-shrink:0; margin-top:1px}
     .ico-x{color:#ef4444; font-size:13px; flex-shrink:0; margin-top:1px}
 
@@ -276,9 +280,9 @@
     .stepNum{
       font-family:'Barlow Condensed',sans-serif;
       font-size:52px; font-weight:900; line-height:1;
-      color:rgba(37,99,235,.22); margin-bottom:8px; letter-spacing:-.02em;
+      color:rgba(15,138,84,.22); margin-bottom:8px; letter-spacing:-.02em;
     }
-    .card:hover .stepNum{color:rgba(37,99,235,.4)}
+    .card:hover .stepNum{color:rgba(15,138,84,.4)}
 
     .split{display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:14px}
     .imgCard{
@@ -304,8 +308,8 @@
     }
     .final::before{
       content:""; position:absolute; inset:0;
-      background: radial-gradient(ellipse 800px 400px at 0% 50%, rgba(37,99,235,.18), transparent 60%),
-                  radial-gradient(ellipse 500px 300px at 100% 0%, rgba(56,189,248,.12), transparent 60%);
+      background: radial-gradient(ellipse 800px 400px at 0% 50%, rgba(15,138,84,.18), transparent 60%),
+                  radial-gradient(ellipse 500px 300px at 100% 0%, rgba(34,216,122,.12), transparent 60%);
       pointer-events:none;
     }
     .final h2{
@@ -339,7 +343,7 @@
     .formGroup textarea:focus,
     .formGroup select:focus{
       border-color:var(--accent);
-      box-shadow: 0 0 0 3px rgba(37,99,235,.18);
+      box-shadow: 0 0 0 3px rgba(15,138,84,.18);
     }
     .formGroup input::placeholder,
     .formGroup textarea::placeholder{color:rgba(136,153,187,.4)}
@@ -469,7 +473,7 @@
 
   <header class="nav">
     <div class="brand">
-      <img class="logoImg" src="https://res.cloudinary.com/dsriscylr/image/upload/v1772151110/ChatGPT_Image_Feb_27_2026_12_11_12_AM_rihkys.png" alt="The Method Co.">
+      <img class="logoImg" src="/brand/method-mark-on-dark.svg" alt="The Method Co.">
       <span>The Method Co.</span>
     </div>
     <nav class="navlinks">
@@ -551,40 +555,40 @@
     <div class="grid3">
 
       <div class="card">
-        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(15,138,84,.12);border:1px solid rgba(15,138,84,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D87A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
         </div>
         <h3>Positioning &amp; Strategy</h3>
         <p>Make it obvious what you sell, who it's for, and why it's worth it. No guesswork.</p>
       </div>
 
       <div class="card">
-        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(15,138,84,.12);border:1px solid rgba(15,138,84,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D87A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         </div>
         <h3>Copywriting</h3>
         <p>Clear messaging for your website and socials — without fluff, jargon, or empty promises.</p>
       </div>
 
       <div class="card">
-        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(15,138,84,.12);border:1px solid rgba(15,138,84,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D87A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
         <h3>Landing Page Build</h3>
         <p>Flow, sections, hierarchy, and CTA logic that guides visitors toward a decision.</p>
       </div>
 
       <div class="card">
-        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2V12.46L22 3z"/></svg>
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(15,138,84,.12);border:1px solid rgba(15,138,84,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D87A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2V12.46L22 3z"/></svg>
         </div>
         <h3>Funnel Planning</h3>
         <p>Attention. Trust. Enquiry. A simple funnel mapped to your offer — no overcomplication.</p>
       </div>
 
       <div class="card">
-        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01M7 20v-4M12 20V10M17 20V4M22 20v-8"/></svg>
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(15,138,84,.12);border:1px solid rgba(15,138,84,.25);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22D87A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01M7 20v-4M12 20V10M17 20V4M22 20v-8"/></svg>
         </div>
         <h3>Paid Ads Direction</h3>
         <p>Meta &amp; Google alignment — message, offer, and landing page all working together to convert.</p>
@@ -627,7 +631,7 @@
         </div>
       </div>
 
-      <div class="card" style="border-color:rgba(37,99,235,.35); background:linear-gradient(160deg, rgba(37,99,235,.08), rgba(255,255,255,.015))">
+      <div class="card" style="border-color:rgba(15,138,84,.35); background:linear-gradient(160deg, rgba(15,138,84,.08), rgba(255,255,255,.015))">
         <span class="tag">Core offer</span>
         <div class="offerHead">
           <h3>AI Strategy Sprint</h3>
@@ -648,8 +652,8 @@
         </div>
       </div>
 
-      <div class="card" style="border-color:rgba(56,189,248,0.4); background:linear-gradient(160deg, rgba(56,189,248,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(56,189,248,0.1);">
-        <span class="tag" style="border-color:rgba(56,189,248,0.6); background:rgba(56,189,248,0.2); color:var(--accent2);">Premium</span>
+      <div class="card" style="border-color:rgba(34,216,122,0.4); background:linear-gradient(160deg, rgba(34,216,122,0.12), rgba(255,255,255,0.02)); box-shadow: 0 10px 40px rgba(34,216,122,0.1);">
+        <span class="tag" style="border-color:rgba(34,216,122,0.6); background:rgba(34,216,122,0.2); color:var(--accent2);">Premium</span>
         <div class="offerHead">
           <h3>Method Launch System</h3>
           <span class="price">€1,000</span>

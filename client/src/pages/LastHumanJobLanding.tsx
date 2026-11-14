@@ -4,6 +4,7 @@
 // ============================================================
 
 import { useEffect, useState } from "react";
+import BrandMark from "@/components/site/BrandMark";
 
 const CHECKOUT_URL = "/api/create-checkout-session";
 const VICTOR_PHOTO =
@@ -320,11 +321,11 @@ function BackgroundGrid() {
     <svg className="bg-grid" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#5A78FF" strokeWidth="0.5" opacity="0.08" />
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0F8A54" strokeWidth="0.5" opacity="0.08" />
         </pattern>
         <radialGradient id="glow" cx="50%" cy="40%" r="50%">
-          <stop offset="0%" stopColor="#5A78FF" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#5A78FF" stopOpacity="0" />
+          <stop offset="0%" stopColor="#0F8A54" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#0F8A54" stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="1400" height="800" fill="url(#grid)" />
@@ -341,11 +342,11 @@ function BookMockup() {
         <svg className="book-bg" viewBox="0 0 400 540" preserveAspectRatio="xMidYMid slice">
           <defs>
             <pattern id="bookgrid" width="32" height="32" patternUnits="userSpaceOnUse">
-              <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#5A78FF" strokeWidth="0.5" opacity="0.12" />
+              <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#0F8A54" strokeWidth="0.5" opacity="0.12" />
             </pattern>
           </defs>
           <rect width="400" height="540" fill="url(#bookgrid)" />
-          <circle cx="200" cy="280" r="180" fill="#5A78FF" opacity="0.04" />
+          <circle cx="200" cy="280" r="180" fill="#0F8A54" opacity="0.04" />
         </svg>
         <div className="book-content">
           <div className="book-top">
@@ -434,12 +435,12 @@ function RiskGauge({ animated }: { animated: boolean }) {
           <stop offset="100%" stopColor="#F26B6B" />
         </linearGradient>
       </defs>
-      <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="#1F1D19" strokeWidth="22" strokeLinecap="round" />
+      <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="#1A2230" strokeWidth="22" strokeLinecap="round" />
       <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="url(#gaugeGrad)" strokeWidth="22" strokeLinecap="round" strokeDasharray="377" strokeDashoffset={animated ? "94" : "377"} style={{ transition: "stroke-dashoffset 1.6s cubic-bezier(.5,0,.2,1) .3s" }} />
       <g style={{ transform: animated ? "rotate(45deg)" : "rotate(-90deg)", transformOrigin: "150px 170px", transition: "transform 1.8s cubic-bezier(.5,0,.2,1) .3s" }}>
-        <line x1="150" y1="170" x2="150" y2="60" stroke="#F5EFE0" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="150" cy="170" r="9" fill="#5A78FF" />
-        <circle cx="150" cy="170" r="4" fill="#0E0E10" />
+        <line x1="150" y1="170" x2="150" y2="60" stroke="#F9FAFB" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="150" cy="170" r="9" fill="#0F8A54" />
+        <circle cx="150" cy="170" r="4" fill="#0A0F14" />
       </g>
       <text x="38" y="195" fontFamily="JetBrains Mono" fontSize="10" fill="#4DD897" fontWeight="600">SAFE</text>
       <text x="135" y="40" fontFamily="JetBrains Mono" fontSize="10" fill="#F4B85C" fontWeight="600">AT RISK</text>
@@ -457,7 +458,7 @@ function WhoCard({ icon, t, s }: { icon: string; t: string; s: string }) {
   };
   return (
     <div className="who-card">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[icon]}</svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[icon]}</svg>
       <h3>{t}</h3>
       <p>{s}</p>
     </div>
@@ -480,7 +481,7 @@ function Faq({ q, a }: { q: string; a: string }) {
 function Include({ text }: { text: string }) {
   return (
     <div className="include">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#6B89FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22D87A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
         <path d="M5 12l5 5L20 7" />
       </svg>
       <span>{text}</span>
@@ -495,52 +496,45 @@ function Trust({ icon, text }: { icon: "lock" | "shield" | "bolt"; text: string 
     <><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" /></>;
   return (
     <div className="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{path}</svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{path}</svg>
       <span>{text}</span>
     </div>
   );
 }
 
 function Logo() {
-  return (
-    <svg viewBox="0 0 240 240" width="34" height="34">
-      <path d="M 150 44 L 62 44 Q 44 44 44 62 L 44 178 Q 44 196 62 196 L 178 196 Q 196 196 196 178 L 196 96" fill="none" stroke="#F5EFE0" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 66 166 L 66 82 L 120 128 L 174 82 L 174 166" fill="none" stroke="#F5EFE0" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 200 52 L 116 136" fill="none" stroke="#6B89FF" strokeWidth="14" strokeLinecap="round" />
-      <path d="M 146 130 L 116 136 L 122 106" fill="none" stroke="#6B89FF" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <BrandMark size={44} />;
 }
 
 function ShieldBig() {
   return (
-    <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M16 3l11 4v7c0 7-5 12-11 15C10 26 5 21 5 14V7l11-4z" />
       <path d="M11 16l3 3 6-7" />
     </svg>
   );
 }
 
-function IconScan() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9V5a1 1 0 0 1 1-1h4M28 9V5a1 1 0 0 0-1-1h-4M4 23v4a1 1 0 0 0 1 1h4M28 23v4a1 1 0 0 1-1 1h-4M4 16h24" /></svg>; }
-function IconChart() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 27h22M8 23V13M14 23V8M20 23v-7M26 23v-13" /></svg>; }
-function IconMeter() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 24a11 11 0 0 1 22 0" /><path d="M16 24l6-7" /><circle cx="16" cy="24" r="2" fill="#6B89FF" /></svg>; }
-function IconCompass() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="16" r="12" /><path d="M21 11l-3 7-7 3 3-7z" /></svg>; }
-function IconAlarm() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="17" r="10" /><path d="M16 12v5l3 3M6 7l4-3M26 7l-4-3" /></svg>; }
-function IconCheck() { return <svg viewBox="0 0 32 32" fill="none" stroke="#6B89FF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M28 16a12 12 0 1 1-6-10.4" /><path d="M11 15l4 4 12-12" /></svg>; }
+function IconScan() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 9V5a1 1 0 0 1 1-1h4M28 9V5a1 1 0 0 0-1-1h-4M4 23v4a1 1 0 0 0 1 1h4M28 23v4a1 1 0 0 1-1 1h-4M4 16h24" /></svg>; }
+function IconChart() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 27h22M8 23V13M14 23V8M20 23v-7M26 23v-13" /></svg>; }
+function IconMeter() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 24a11 11 0 0 1 22 0" /><path d="M16 24l6-7" /><circle cx="16" cy="24" r="2" fill="#22D87A" /></svg>; }
+function IconCompass() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="16" r="12" /><path d="M21 11l-3 7-7 3 3-7z" /></svg>; }
+function IconAlarm() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="16" cy="17" r="10" /><path d="M16 12v5l3 3M6 7l4-3M26 7l-4-3" /></svg>; }
+function IconCheck() { return <svg viewBox="0 0 32 32" fill="none" stroke="#22D87A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M28 16a12 12 0 1 1-6-10.4" /><path d="M11 15l4 4 12-12" /></svg>; }
 
 const CSS = `
 .lhj {
-  --black: #0E0E10;
-  --black2: #16161A;
-  --panel: #1C1C22;
-  --cream: #F5EFE0;
-  --cream-soft: #D8D2C2;
-  --blue: #5A78FF;
-  --blue-bright: #6B89FF;
-  --blue-glow: rgba(90, 120, 255, 0.18);
-  --muted: #8E8878;
-  --border: #2E2A26;
-  --line: #36322D;
+  --black: #0A0F14;
+  --black2: #0F1620;
+  --panel: #172131;
+  --cream: #F9FAFB;
+  --cream-soft: #D1D5DB;
+  --blue: #0F8A54;
+  --blue-bright: #22D87A;
+  --blue-glow: rgba(34, 216, 122, 0.18);
+  --muted: #9CA3AF;
+  --border: #1F2937;
+  --line: #374151;
   --green: #4DD897;
   --amber: #F4B85C;
   --red: #F26B6B;
@@ -566,17 +560,17 @@ const CSS = `
 .lhj .band h2 { font-size: 64px; }
 .lhj .lead { font-family: 'Newsreader', serif; font-style: italic; font-size: 21px; color: var(--cream-soft); max-width: 680px; margin-top: 16px; line-height: 1.5; }
 .lhj .lead.center { margin: 16px auto 0; }
-.lhj .btn { display: inline-block; background: var(--cream); color: #0A0A0A; font-weight: 700; font-size: 15px; padding: 16px 34px; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; transition: all .2s ease; cursor: pointer; border: none; }
-.lhj .btn-blue { background: var(--blue); color: #fff; box-shadow: 0 8px 30px var(--blue-glow); }
-.lhj .btn-blue:hover { background: var(--blue-bright); box-shadow: 0 12px 50px rgba(90,120,255,0.35); transform: translateY(-2px); }
+.lhj .btn { display: inline-block; background: var(--cream); color: var(--black); font-weight: 700; font-size: 15px; padding: 16px 34px; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; transition: all .2s ease; cursor: pointer; border: none; }
+.lhj .btn-blue { background: var(--blue-bright); color: var(--black); box-shadow: 0 8px 30px var(--blue-glow); }
+.lhj .btn-blue:hover { background: #4BF59A; box-shadow: 0 12px 50px rgba(34, 216, 122,0.35); transform: translateY(-2px); }
 .lhj .btn-lg { font-size: 16px; padding: 19px 40px; text-align: center; }
 .lhj .btn-xl { font-size: 17px; padding: 22px 52px; }
 .lhj .specbar { border-bottom: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .18em; color: var(--muted); background: var(--black); }
 .lhj .specbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 40px; text-transform: uppercase; }
-.lhj .nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; backdrop-filter: blur(14px); background: rgba(14,14,16,.92); z-index: 60; }
+.lhj .nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; backdrop-filter: blur(14px); background: rgba(10, 15, 20,.92); z-index: 60; }
 .lhj .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 74px; }
 .lhj .brand { display: flex; align-items: center; gap: 13px; font-family: 'Bebas Neue', sans-serif; letter-spacing: .2em; font-size: 19px; color: var(--cream); }
-.lhj .navcta { font-family: 'JetBrains Mono', monospace; letter-spacing: .06em; font-size: 12.5px; color: #fff; background: var(--blue); padding: 11px 19px; border-radius: 3px; font-weight: 600; }
+.lhj .navcta { font-family: 'JetBrains Mono', monospace; letter-spacing: .06em; font-size: 12.5px; color: var(--black); background: var(--blue-bright); padding: 11px 19px; border-radius: 3px; font-weight: 600; }
 .lhj .navcta:hover { background: var(--blue-bright); }
 .lhj .hero { padding: 90px 0 100px; position: relative; overflow: hidden; }
 .lhj .bg-grid { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -596,14 +590,14 @@ const CSS = `
 .lhj .trust-item { display: flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cream-soft); letter-spacing: .04em; }
 .lhj .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
 .lhj .book-3d { position: relative; perspective: 1600px; max-width: 420px; margin: 0 auto; transform: rotateY(-12deg) rotateX(2deg); }
-.lhj .book-spine { position: absolute; left: -12px; top: 8px; bottom: -8px; width: 16px; background: linear-gradient(90deg, #050507, #14141C); border-radius: 2px 0 0 2px; }
-.lhj .book-cover { position: relative; aspect-ratio: 3/4; background: linear-gradient(160deg, #18181E 0%, #08080C 100%); border: 1px solid var(--border); border-radius: 2px; box-shadow: 30px 30px 80px rgba(0,0,0,.7), 0 0 60px var(--blue-glow); overflow: hidden; }
+.lhj .book-spine { position: absolute; left: -12px; top: 8px; bottom: -8px; width: 16px; background: linear-gradient(90deg, #05080B, #111827); border-radius: 2px 0 0 2px; }
+.lhj .book-cover { position: relative; aspect-ratio: 3/4; background: linear-gradient(160deg, #141D2A 0%, #06090D 100%); border: 1px solid var(--border); border-radius: 2px; box-shadow: 30px 30px 80px rgba(0,0,0,.7), 0 0 60px var(--blue-glow); overflow: hidden; }
 .lhj .book-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .lhj .book-content { position: relative; z-index: 2; padding: 36px 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
 .lhj .book-top { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
 .lhj .book-title { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: .88; color: var(--cream); }
 .lhj .book-sub { font-family: 'Newsreader', serif; font-style: italic; font-size: 13.5px; color: var(--cream-soft); margin-top: 14px; max-width: 80%; }
-.lhj .book-num { position: absolute; right: 30px; bottom: 80px; font-family: 'Bebas Neue', sans-serif; font-size: 130px; line-height: .7; color: transparent; -webkit-text-stroke: 1px #2A2520; }
+.lhj .book-num { position: absolute; right: 30px; bottom: 80px; font-family: 'Bebas Neue', sans-serif; font-size: 130px; line-height: .7; color: transparent; -webkit-text-stroke: 1px #1F2937; }
 .lhj .book-foot { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: var(--blue-bright); text-transform: uppercase; position: relative; z-index: 2; }
 .lhj .stat-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: center; }
 .lhj .stat-left h2 { font-size: 64px; margin-top: 14px; }
@@ -620,7 +614,7 @@ const CSS = `
 .lhj .heat-icon { color: var(--cream-soft); display: flex; align-items: center; justify-content: center; }
 .lhj .heat-icon svg { width: 22px; height: 22px; }
 .lhj .heat-name { font-size: 15px; color: var(--cream); font-weight: 500; }
-.lhj .heat-track { height: 14px; background: #1F1D19; position: relative; border-radius: 7px; overflow: hidden; }
+.lhj .heat-track { height: 14px; background: #1A2230; position: relative; border-radius: 7px; overflow: hidden; }
 .lhj .heat-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 7px; transition: width 1.4s cubic-bezier(.5,0,.2,1); }
 .lhj .heat-fill.green { background: linear-gradient(90deg, #2D9B6E, var(--green)); }
 .lhj .heat-fill.amber { background: linear-gradient(90deg, #D08E2A, var(--amber)); }
@@ -638,7 +632,7 @@ const CSS = `
 .lhj .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; }
 .lhj .feature { background: var(--panel); border: 1px solid var(--border); padding: 32px 28px; border-radius: 4px; transition: all .2s ease; }
 .lhj .feature:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-.lhj .feature-icon { width: 52px; height: 52px; border-radius: 4px; background: rgba(90,120,255,0.08); border: 1px solid rgba(90,120,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+.lhj .feature-icon { width: 52px; height: 52px; border-radius: 4px; background: rgba(34, 216, 122,0.08); border: 1px solid rgba(34, 216, 122,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
 .lhj .feature-icon svg { width: 26px; height: 26px; }
 .lhj .feature h3 { font-size: 26px; color: var(--cream); margin-bottom: 8px; }
 .lhj .feature p { color: var(--cream-soft); font-size: 14.5px; }
@@ -703,7 +697,7 @@ const CSS = `
 .lhj footer .tag { font-family: 'Newsreader', serif; font-style: italic; font-size: 17px; color: var(--cream); }
 .lhj footer .links a { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 12px; margin-left: 24px; letter-spacing: .06em; }
 .lhj footer .links a:hover { color: var(--blue-bright); }
-.lhj .stickybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: rgba(14,14,16,.97); backdrop-filter: blur(14px); border-top: 1px solid var(--blue); box-shadow: 0 -10px 40px rgba(0,0,0,0.5); transform: translateY(110%); transition: transform .35s ease; }
+.lhj .stickybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: rgba(10, 15, 20,.97); backdrop-filter: blur(14px); border-top: 1px solid var(--blue); box-shadow: 0 -10px 40px rgba(0,0,0,0.5); transform: translateY(110%); transition: transform .35s ease; }
 .lhj .stickybar.show { transform: translateY(0); }
 .lhj .stickybar .wrap { display: flex; align-items: center; justify-content: space-between; height: 78px; gap: 22px; }
 .lhj .stickybar .left { display: flex; align-items: center; gap: 22px; min-width: 0; }

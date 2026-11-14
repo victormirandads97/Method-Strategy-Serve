@@ -11,8 +11,8 @@ html {
 }
 
 body {
-  background-color: #0e0e10;
-  color: #f5efe0;
+  background-color: #0A0F14;
+  color: #F9FAFB;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,8 +27,8 @@ button {
 }
 
 ::selection {
-  background: #5a78ff;
-  color: #f5efe0;
+  background: #0F8A54;
+  color: #F9FAFB;
 }
 
 /* ── Aurora drift ─────────────────────────────────────────────────────────── */
@@ -97,14 +97,14 @@ button {
 }
 
 .nav-link:hover {
-  color: #6b89ff;
+  color: #22D87A;
 }
 
 /* ── Focus ────────────────────────────────────────────────────────────────── */
 /* The browser default ring is a thin dark blue that nearly disappears on the
    near-black ground. Keyboard focus gets the brand blue instead. */
 :focus-visible {
-  outline: 2px solid #6b89ff;
+  outline: 2px solid #22D87A;
   outline-offset: 3px;
 }
 
