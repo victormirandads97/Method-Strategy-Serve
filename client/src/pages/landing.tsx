@@ -19,6 +19,35 @@ const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if
 const DEZORZI_URL = "https://dezorzi.onrender.com";
 const CALCULATORS_URL = "https://calculators.themethodco.co/";
 
+// ── Ready-made offers ─────────────────────────────────────────────────────────
+// The two productised services, each with its own sales page.
+const OFFERS = [
+  {
+    id: "pricing-tool",
+    icon: "card",
+    name: "Instant Pricing Tool",
+    line: "Give your customers an instant price estimate. Capture more enquiries automatically.",
+    body: "A pricing tool on your own website. Customers see their price in seconds, then send you the enquiry on WhatsApp with every detail filled in.",
+    was: "€299",
+    price: "€150",
+    note: "Launch price, one-off",
+    cta: "See the pricing tool",
+    href: CALCULATORS_URL,
+  },
+  {
+    id: "landing-pages",
+    icon: "layout",
+    name: "High-Conversion Landing Pages",
+    line: "Your business deserves more than just clicks.",
+    body: "A fast, beautiful page for one offer or campaign, built to turn interested visitors into enquiries, bookings and sales.",
+    was: "",
+    price: "€250",
+    note: "Starting price per page",
+    cta: "See the 5 live demos",
+    href: "/landing-pages/",
+  },
+] as const;
+
 // ── Hiring signals ────────────────────────────────────────────────────────────
 const GITHUB_URL = "https://github.com/victormirandads97";
 /** The one-line answer to "what do you actually work in". */
@@ -439,16 +468,16 @@ const PROJECTS: Project[] = [
   },
   {
     id: "calculators",
-    name: "Quote Calculators",
+    name: "Instant Pricing Tool",
     icon: "card",
-    tagline: "Show the price. Get the job.",
-    summary: "Instant quote calculators for Irish service businesses. Customers see their price in 30 seconds and send it, with every detail filled in, straight to the business on WhatsApp.",
+    tagline: "Give customers a price. Get more enquiries.",
+    summary: "An instant price estimate on a service business's own website. Customers see their price in seconds and send the enquiry, with every detail filled in, straight to the business on WhatsApp.",
     role: "Product, offer, copy, design, frontend and launch.",
     tech: "HTML, CSS and JavaScript with no framework, WhatsApp click-to-chat, Stripe payments, hosted on Cloudflare.",
     problem:
       "Most small service websites say \"call for a quote\". Most people never call. They move on to the next company that shows a price, and the leads that do arrive say \"how much?\" with no details, so every quote starts five messages back.",
     built:
-      "A sales site and five working demo calculators for made-up businesses: a solar installer, a builder, a cleaning company, an accountant and a personal trainer. Each one prices the job live as you change the inputs, then opens WhatsApp with a ready-made message carrying every answer and the agreed price. The offer is productised: a free preview built with the client's real prices, then a one-off fee to put it on their existing site.",
+      "A sales site and five working demo pricing tools for made-up businesses: a solar installer, a builder, a cleaning company, an accountant and a personal trainer. Each one prices the job live as you change the inputs, then opens WhatsApp with a ready-made message carrying every answer and the agreed price. The offer is productised: a free preview built with the client's real prices, then a one-off fee to put it on their existing site.",
     decisions: [
       "WhatsApp as the hand-off, not a form, because that is where small Irish businesses already answer customers. The lead arrives as one message they can reply to.",
       "Ranges for jobs that need a site visit, like \"€68k to €84k\" for an extension, so a business with variable pricing still gets the lead and the details.",
@@ -461,7 +490,7 @@ const PROJECTS: Project[] = [
     statusCol: C.green,
     flagship: true,
     liveUrl: CALCULATORS_URL,
-    liveLabel: "Try the live calculators",
+    liveLabel: "Try the Instant Pricing Tool",
     frameUrl: "calculators.themethodco.co",
   },
   {
@@ -542,6 +571,7 @@ const SERVICES = [
   {
     icon: "layout", idx: "03", title: "Landing pages and funnels",
     body: "The path that turns a click into a booked client, written and built rather than themed.",
+    link: { href: "/landing-pages/", label: "Landing pages from €250, with five live demos" },
   },
   {
     icon: "spark", idx: "04", title: "AI built into the product",
@@ -570,7 +600,7 @@ const SKILL_GROUPS = [
   {
     icon: "code", title: "Build",
     items: ["React", "TypeScript", "JavaScript", "Node.js", "Express", "REST APIs", "SQL: SQLite and Postgres", "PWA", "Stripe"],
-    proof: "Onishi, Dezorzi, Quote Calculators, Orbit, The Method Chat",
+    proof: "Onishi, Dezorzi, Instant Pricing Tool, Orbit, The Method Chat",
   },
   {
     icon: "spark", title: "AI",
@@ -585,7 +615,7 @@ const SKILL_GROUPS = [
   {
     icon: "pen", title: "Growth and communication",
     items: ["Copywriting", "Marketing", "Landing pages", "Go-to-market"],
-    proof: "Quote Calculators, The Last Human Job, The Method Co.",
+    proof: "Instant Pricing Tool, Landing pages, The Last Human Job",
   },
 ] as const;
 
@@ -812,7 +842,7 @@ export default function Landing() {
             <Sub>Each one designed, built and shipped by me. Every case study covers the problem, what I built, my role, the stack, and where it runs today.</Sub>
           </Reveal>
 
-          {/* Featured: Onishi, Dezorzi and Quote Calculators */}
+          {/* Featured: Onishi, Dezorzi and the Instant Pricing Tool */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div
@@ -958,6 +988,65 @@ export default function Landing() {
                     </button>
                   </div>
                 </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── OFFERS ───────────────────────────────────────────────────────────── */}
+      <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>READY-MADE OFFERS</SLabel>
+            <SH>TWO WAYS TO GET MORE ENQUIRIES.</SH>
+            <Sub>Fixed scope, fixed price, and a preview before you pay. Each has its own page with live demos you can try.</Sub>
+          </Reveal>
+          <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
+            {OFFERS.map((o, i) => (
+              <Reveal key={o.id} delay={i * 0.08} style={{ height: "100%" }}>
+                <motion.a
+                  href={o.href}
+                  {...(o.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  whileHover={{ y: -6, boxShadow: `0 26px 60px ${C.accent}2b, 0 0 0 1px ${C.accent}66` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    height: "100%", display: "flex", flexDirection: "column", gap: "1rem",
+                    textDecoration: "none", color: C.text,
+                    background: `radial-gradient(circle at top right, ${C.accent}1c 0%, ${C.panel} 60%)`,
+                    border: `1px solid ${C.border}`, borderTop: `2px solid ${C.accent}`,
+                    borderRadius: 14, padding: "clamp(1.5rem, 3.5vw, 2.25rem)",
+                  }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ width: 42, height: 42, borderRadius: 10, background: `${C.accent}14`,
+                      border: `1px solid ${C.accent}33`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Ic n={o.icon} sz={19} col={C.accent} />
+                    </div>
+                    <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem",
+                      border: `1px solid ${C.accent}40`, padding: "0.15rem 0.5rem", borderRadius: 3 }}>
+                      {o.note}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 900, fontSize: "clamp(1.9rem, 4vw, 2.6rem)", lineHeight: 0.95,
+                    textTransform: "uppercase", margin: 0 }}>
+                    {o.name}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 500, color: C.text, fontSize: "1rem", lineHeight: 1.5, margin: 0 }}>{o.line}</p>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.92rem", lineHeight: 1.7, margin: 0 }}>{o.body}</p>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.6rem", marginTop: "auto", paddingTop: "0.5rem" }}>
+                    {o.was ? (
+                      <s style={{ ...DM, color: C.muted, fontSize: "1.3rem", fontWeight: 500 }} aria-label={`Was ${o.was}`}>{o.was}</s>
+                    ) : (
+                      <span style={{ ...DM, color: C.muted, fontSize: "0.95rem" }}>From</span>
+                    )}
+                    <span style={{ ...DM, fontWeight: 800, fontSize: "2.6rem", letterSpacing: "-0.04em", lineHeight: 1 }}>{o.price}</span>
+                  </div>
+                  <span style={{ ...CARD_CTA, fontSize: "0.8rem", gap: "0.5rem" }}>
+                    {o.cta} <Ic n="arrow" sz={15} col={C.accent} />
+                  </span>
+                </motion.a>
               </Reveal>
             ))}
           </div>
@@ -1160,6 +1249,13 @@ export default function Landing() {
                     lineHeight: 1.7, margin: 0 }}>
                     {card.body}
                   </p>
+                  {"link" in card && (
+                    <a href={card.link.href}
+                      style={{ ...CARD_CTA, fontSize: "0.72rem", gap: "0.45rem", marginTop: "auto",
+                        textDecoration: "none" }}>
+                      {card.link.label} <Ic n="arrow" sz={14} col={C.accent} />
+                    </a>
+                  )}
                 </motion.div>
               </Reveal>
             ))}

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oriel | The Winter Table, a seasonal tasting menu (demo)</title>
+<meta name="description" content="Demo landing page by The Method Co. for a fictional restaurant's seasonal tasting menu. Request a reservation.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F0C0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #0F0C0A; --smoke: #1A1512; --ember: #2A1F18; --cream: #F1E7D8; --mute: #A8998A; --line: rgba(241,231,216,.16);
+  --candle: #E5B567; --wine: #7A2E2A;
+  --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--night); color: var(--cream); font: 300 17px/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 1px solid var(--candle); outline-offset: 4px; }
+.wrap { width: min(1200px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; }
+p { margin: 0; }
+.over { font: 500 .72rem/1 var(--sans); letter-spacing: .34em; text-transform: uppercase; color: var(--candle); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 54px; padding: 0 32px; border: 1px solid var(--candle); background: var(--candle); color: var(--night); font: 500 .78rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .3s, color .3s; }
+.btn:hover { background: transparent; color: var(--candle); }
+.btn.ghost { background: transparent; color: var(--cream); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--candle); color: var(--candle); }
+.grain { position: fixed; inset: -50%; z-index: 50; pointer-events: none; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); animation: grain 1s steps(4) infinite; }
+@keyframes grain { 25% { transform: translate(3%, -2%); } 50% { transform: translate(-2%, 3%); } 75% { transform: translate(2%, 2%); } }
+
+header { position: fixed; inset: 0 0 auto; z-index: 30; transition: background .5s, padding .5s; }
+header.solid { background: rgba(15,12,10,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.bar { display: flex; justify-content: space-between; align-items: center; height: 84px; gap: 20px; }
+.logo { font: italic 400 2rem/1 var(--serif); text-decoration: none; letter-spacing: .02em; }
+.bar nav { display: flex; gap: 34px; }
+.bar nav a { font: 400 .72rem/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; text-decoration: none; color: var(--mute); transition: color .3s; }
+.bar nav a:hover { color: var(--cream); }
+.bar .btn { min-height: 44px; padding: 0 20px; }
+@media (max-width: 860px) { .bar nav { display: none; } .bar .btn { padding: 0 14px; letter-spacing: .16em; } }
+
+/* Hero: candlelit table */
+.hero { position: relative; min-height: 100svh; display: grid; place-items: center; text-align: center; overflow: hidden; padding: 120px 0 80px; }
+.hero-scene { position: absolute; inset: 0; }
+.hero-scene svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.flicker { animation: flicker 3.2s ease-in-out infinite; transform-origin: 50% 60%; }
+@keyframes flicker { 0%, 100% { opacity: .9; transform: scale(1); } 30% { opacity: .75; transform: scale(.97); } 60% { opacity: 1; transform: scale(1.03); } }
+.vignette { position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 55%, transparent 0%, rgba(15,12,10,.65) 60%, var(--night) 100%); }
+.hero .wrap { position: relative; }
+.hero h1 { font-size: clamp(3.6rem, 11vw, 10rem); line-height: .9; letter-spacing: -.02em; margin: 24px 0 26px; }
+.hero h1 em { font-style: italic; color: var(--candle); }
+.hero .lede { max-width: 46ch; margin: 0 auto 38px; color: #D8CBBB; font-size: 1.1rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.when { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 28px; margin-top: 46px; font: 400 .74rem/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--mute); }
+.when span::before { content: "◆"; color: var(--candle); margin-right: 10px; font-size: .5rem; vertical-align: middle; }
+
+section { padding: clamp(90px, 12vw, 160px) 0; position: relative; }
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
+.story h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); line-height: 1.02; margin: 20px 0 26px; }
+.story h2 em { color: var(--candle); }
+.story p + p { margin-top: 18px; }
+.story p { color: #D8CBBB; }
+.plate { aspect-ratio: 1; border-radius: 50%; position: relative; background: radial-gradient(circle at 50% 50%, #EFE6D7 0 44%, #E2D6C2 44.5% 48%, #F4ECE0 48.5% 60%, transparent 60.5%), radial-gradient(circle at 46% 44%, #2A1F18, var(--night) 70%); box-shadow: 0 60px 120px -40px #000; }
+.plate svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 80s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; } .plate { max-width: 420px; margin: 0 auto; } }
+
+/* Menu */
+.menu { background: var(--smoke); border-block: 1px solid var(--line); }
+.menu-head { text-align: center; margin-bottom: 50px; }
+.menu-head h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); margin: 18px 0 16px; }
+.menu-head p { color: var(--mute); }
+.toggle { display: inline-flex; border: 1px solid var(--line); margin-top: 30px; }
+.toggle button { background: none; border: 0; padding: 14px 22px; color: var(--mute); font: 400 .72rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--cream); color: var(--night); }
+.courses { max-width: 760px; margin: 0 auto; list-style: none; padding: 0; }
+.courses li { display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--line); opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.courses.in li { opacity: 1; transform: none; }
+.courses li:nth-child(2) { transition-delay: .08s; } .courses li:nth-child(3) { transition-delay: .16s; } .courses li:nth-child(4) { transition-delay: .24s; } .courses li:nth-child(5) { transition-delay: .32s; } .courses li:nth-child(6) { transition-delay: .4s; } .courses li:nth-child(7) { transition-delay: .48s; }
+.courses .n { font: italic 300 1.6rem/1 var(--serif); color: var(--candle); }
+.courses h3 { font-size: 1.6rem; line-height: 1.2; }
+.courses p { color: var(--mute); margin-top: 6px; }
+.courses .pair { display: none; margin-top: 10px; font-size: .9rem; color: var(--candle); }
+.pairing .courses .pair { display: block; }
+.menu-foot { text-align: center; margin-top: 46px; display: grid; gap: 22px; justify-items: center; }
+.price { font: 300 clamp(2.4rem, 5vw, 3.6rem)/1 var(--serif); }
+.price small { display: block; font: 400 .72rem/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--mute); margin-top: 12px; }
+
+/* Evenings */
+.evenings h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); margin: 18px 0 40px; }
+.dates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.date { background: var(--night); padding: 28px 24px; display: grid; gap: 6px; text-align: left; border: 0; color: var(--cream); font: inherit; cursor: pointer; transition: background .3s; }
+.date:hover { background: var(--ember); }
+.date b { font: 300 3.4rem/1 var(--serif); }
+.date span { font: 400 .72rem/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
+.date em { font: italic 300 1.05rem/1.4 var(--serif); color: var(--candle); }
+.date.low em { color: #E39A7C; }
+@media (max-width: 860px) { .dates { grid-template-columns: 1fr 1fr; } }
+
+/* Reserve */
+.reserve { background: radial-gradient(60% 80% at 80% 20%, rgba(229,181,103,.12), transparent 60%), var(--smoke); border-top: 1px solid var(--line); }
+.res { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(40px, 7vw, 100px); }
+.res h2 { font-size: clamp(2.6rem, 5.4vw, 4.6rem); line-height: 1.02; margin: 18px 0 22px; }
+.res .side p { color: #D8CBBB; margin-bottom: 14px; }
+.res .side dl { margin: 34px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 14px 24px; font-size: .95rem; }
+.res .side dt { color: var(--mute); letter-spacing: .2em; text-transform: uppercase; font-size: .68rem; padding-top: 4px; }
+.res .side dd { margin: 0; }
+form .fld { display: grid; gap: 8px; margin-bottom: 24px; }
+form label, form legend { font: 400 .68rem/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--mute); }
+form select, form input, form textarea { width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line); color: var(--cream); font: 300 1.15rem/1.4 var(--serif); padding: 10px 0; border-radius: 0; }
+form select option { background: var(--night); color: var(--cream); }
+form select:focus, form input:focus, form textarea:focus { outline: none; border-color: var(--candle); }
+form [aria-invalid="true"] { border-color: #E39A7C; }
+.err { color: #E39A7C; font-size: .8rem; min-height: 1em; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+.stepper { display: flex; align-items: center; gap: 20px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.stepper button { width: 40px; height: 40px; border: 1px solid var(--line); background: none; color: var(--cream); font-size: 1.2rem; cursor: pointer; border-radius: 50%; }
+.stepper button:hover { border-color: var(--candle); color: var(--candle); }
+.stepper output { font: 300 1.5rem/1 var(--serif); min-width: 2ch; text-align: center; }
+fieldset { border: 0; padding: 0; margin: 0 0 24px; }
+.seats { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.seats input { position: absolute; opacity: 0; pointer-events: none; }
+.seats label { border: 1px solid var(--line); padding: 12px 18px; cursor: pointer; color: var(--cream); letter-spacing: .14em; }
+.seats input:checked + label { background: var(--candle); color: var(--night); border-color: var(--candle); }
+.seats input:focus-visible + label { outline: 1px solid var(--candle); outline-offset: 3px; }
+form .btn { width: 100%; }
+.small { margin-top: 14px; font-size: .78rem; color: var(--mute); text-align: center; }
+.conf { padding: 30px 0; }
+.conf h3 { font-size: clamp(2.4rem, 4vw, 3.4rem); margin: 18px 0 16px; }
+.conf h3 em { color: var(--candle); }
+.conf p { color: #D8CBBB; margin-bottom: 16px; }
+.conf .flag { display: inline-block; border: 1px dashed var(--line); padding: 10px 14px; font-size: .82rem; color: var(--mute); }
+@media (max-width: 860px) { .res { grid-template-columns: 1fr; } .row { grid-template-columns: 1fr; } }
+
+footer { padding: 60px 0 110px; text-align: center; color: var(--mute); font-size: .88rem; border-top: 1px solid var(--line); }
+footer .logo { display: inline-block; margin-bottom: 14px; }
+footer p + p { margin-top: 6px; }
+.mob { display: none; }
+@media (max-width: 700px) { .mob { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding-bottom: env(safe-area-inset-bottom, 0); } }
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.8,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .rv, .courses li { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+
+.mc-demo { position: fixed; z-index: 40; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 8px; background: #0A0F14; color: #fff; text-decoration: none; font: 500 12px/1 system-ui, sans-serif; padding: 9px 12px 9px 10px; border-radius: 999px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12); }
+.mc-demo svg { width: 20px; height: 14px; }
+.mc-demo span { color: #22D87A; }
+@media (max-width: 700px) { .mc-demo { top: 92px; bottom: auto; left: auto; right: 10px; padding: 7px 10px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<a class="mc-demo" href="/landing-pages/#demos" aria-label="Demo by The Method Co. Back to all landing page demos"><svg viewBox="0 0 160 112" aria-hidden="true"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="#fff"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="#22D87A"/></svg>Demo by The Method Co. <span>All demos</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#" aria-label="Oriel home">Oriel</a>
+    <nav aria-label="Main"><a href="#story">The evening</a><a href="#menu">Menu</a><a href="#dates">Dates</a></nav>
+    <a class="btn" href="#reserve">Reserve</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h" style="padding-bottom:80px">
+    <div class="hero-scene" aria-hidden="true">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#E5B567" stop-opacity=".55"/><stop offset=".4" stop-color="#C6763A" stop-opacity=".18"/><stop offset="1" stop-color="#0F0C0A" stop-opacity="0"/></radialGradient>
+          <linearGradient id="table" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A1F18"/><stop offset="1" stop-color="#0F0C0A"/></linearGradient>
+          <radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#FFF4D6"/><stop offset=".5" stop-color="#F2C46D"/><stop offset="1" stop-color="#C6763A" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1600" height="1000" fill="#0F0C0A"/>
+        <rect y="860" width="1600" height="140" fill="url(#table)"/>
+        <g class="flicker"><circle cx="800" cy="430" r="520" fill="url(#glow)" opacity=".7"/><circle cx="250" cy="760" r="300" fill="url(#glow)"/><circle cx="1350" cy="780" r="280" fill="url(#glow)"/></g>
+        <g>
+          <rect x="238" y="790" width="24" height="120" rx="3" fill="#E9DCC6"/><ellipse class="flicker" cx="250" cy="776" rx="10" ry="22" fill="url(#flame)"/>
+          <rect x="1340" y="810" width="20" height="96" rx="3" fill="#E9DCC6"/><ellipse class="flicker" cx="1350" cy="798" rx="9" ry="19" fill="url(#flame)"/>
+        </g>
+        <path d="M110 900V760m-30 0h60c0 50-12 80-30 80s-30-30-30-80Z" fill="none" stroke="#E9DCC6" stroke-opacity=".3" stroke-width="3"/><path d="M1480 910V770m-30 0h60c0 50-12 80-30 80s-30-30-30-80Z" fill="none" stroke="#E9DCC6" stroke-opacity=".3" stroke-width="3"/>
+      </svg>
+      <div class="vignette"></div>
+    </div>
+    <div class="wrap">
+      <p class="over">Oriel · Galway · A seasonal tasting menu</p>
+      <h1 id="h">The <em>Winter</em><br>Table</h1>
+      <p class="lede">Seven courses of Atlantic fish, hill lamb and the last of the autumn harvest, served by candlelight on four evenings only.</p>
+      <div class="hero-ctas"><a class="btn" href="#reserve">Request a table</a><a class="btn ghost" href="#menu">View the menu</a></div>
+      <p class="when"><span>Four evenings in December</span><span>Seven courses</span><span>Seats for 28 a night</span></p>
+    </div>
+  </section>
+
+  <section id="story" aria-labelledby="st">
+    <div class="wrap story">
+      <div class="rv">
+        <p class="over">The evening</p>
+        <h2 id="st">One long table. <em>Seven</em> slow courses.</h2>
+        <p>The Winter Table is our once-a-year tasting menu, cooked from what the west coast gives us in December and served at a single sitting.</p>
+        <p>Arrive from 7pm for a drink by the fire. Dinner begins at 7.30pm and runs for about three hours, with the kitchen bringing out each course themselves.</p>
+      </div>
+      <div class="plate rv" role="img" aria-label="Illustration of a plated course seen from above">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <g transform="translate(200 200)">
+            <circle r="60" fill="#7A2E2A" opacity=".9"/><circle r="40" fill="#9C4A3A"/>
+            <g fill="#4E6B3E"><ellipse cx="70" cy="-20" rx="14" ry="6" transform="rotate(30 70 -20)"/><ellipse cx="-60" cy="50" rx="12" ry="5" transform="rotate(-40 -60 50)"/><ellipse cx="-20" cy="-74" rx="10" ry="5"/></g>
+            <g fill="#E5B567"><circle cx="54" cy="44" r="5"/><circle cx="-70" cy="-10" r="4"/><circle cx="20" cy="76" r="3"/><circle cx="-44" cy="-56" r="3"/></g>
+            <path d="M-80 0a80 80 0 0 1 160 0" fill="none" stroke="#2A1F18" stroke-width="2" stroke-dasharray="2 8" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu" aria-labelledby="mn">
+    <div class="wrap">
+      <div class="menu-head rv">
+        <p class="over">The menu</p>
+        <h2 id="mn">December, course by course</h2>
+        <p>Dishes may change with the catch and the weather. Tell us about allergies when you book.</p>
+        <div class="toggle" role="group" aria-label="Menu view"><button type="button" aria-pressed="true" data-v="food">Tasting menu</button><button type="button" aria-pressed="false" data-v="pair">With wine pairing</button></div>
+      </div>
+      <ol class="courses" id="courses">
+        <li><span class="n">i</span><div><h3>Oyster, cucumber, dillisk</h3><p>A single Clarenbridge oyster with chilled cucumber and seaweed butter.</p><span class="pair">Muscadet sur lie, Loire</span></div></li>
+        <li><span class="n">ii</span><div><h3>Celeriac, hazelnut, brown butter</h3><p>Salt-baked celeriac, toasted hazelnuts and a warm brown butter dressing.</p><span class="pair">Grüner Veltliner, Kamptal</span></div></li>
+        <li><span class="n">iii</span><div><h3>Hake, mussels, cider</h3><p>Line-caught hake with Killary mussels in a light cider sauce.</p><span class="pair">Albariño, Rías Baixas</span></div></li>
+        <li><span class="n">iv</span><div><h3>Sourdough and cultured butter</h3><p>Our own sourdough, baked that afternoon, with butter we culture in house.</p><span class="pair">A small glass of oloroso</span></div></li>
+        <li><span class="n">v</span><div><h3>Connemara lamb, turnip, juniper</h3><p>Hill lamb two ways, roasted turnip and a juniper jus.</p><span class="pair">Syrah, Northern Rhône</span></div></li>
+        <li><span class="n">vi</span><div><h3>Irish cheese, quince</h3><p>Three farmhouse cheeses with quince and oat crackers.</p><span class="pair">Tawny port, ten years</span></div></li>
+        <li><span class="n">vii</span><div><h3>Chocolate, stout, sea salt</h3><p>Dark chocolate cream with stout caramel and flaked sea salt.</p><span class="pair">Pedro Ximénez</span></div></li>
+      </ol>
+      <div class="menu-foot rv">
+        <p class="price" id="price">€95 <small>per guest · tasting menu</small></p>
+        <a class="btn" href="#reserve">Request a table</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="evenings" id="dates" aria-labelledby="dt">
+    <div class="wrap">
+      <p class="over rv">The evenings</p>
+      <h2 id="dt" class="rv">Four nights only</h2>
+      <div class="dates rv">
+        <button type="button" class="date" data-d="Thursday 4 December"><span>Thursday</span><b>4</b><span>December</span><em>Tables available</em></button>
+        <button type="button" class="date" data-d="Friday 5 December"><span>Friday</span><b>5</b><span>December</span><em>Tables available</em></button>
+        <button type="button" class="date" data-d="Thursday 11 December"><span>Thursday</span><b>11</b><span>December</span><em>Tables available</em></button>
+        <button type="button" class="date" data-d="Friday 12 December"><span>Friday</span><b>12</b><span>December</span><em>Tables available</em></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserve" id="reserve" aria-labelledby="rt">
+    <div class="wrap res">
+      <div class="side rv">
+        <p class="over">Reservations</p>
+        <h2 id="rt">Request your table</h2>
+        <p>Send your preferred evening and we'll confirm within a day. A card is only needed once your table is confirmed.</p>
+        <dl><dt>Arrival</dt><dd>From 7pm, dinner at 7.30pm</dd><dt>Price</dt><dd>€95 per guest, wine pairing €55</dd><dt>Groups</dt><dd>Up to 8 guests per booking</dd></dl>
+      </div>
+      <form id="rf" class="rv" novalidate>
+        <div id="rbody">
+          <div class="fld"><label for="ev">Evening</label>
+            <select id="ev" name="evening"><option value="">Choose an evening</option><option>Thursday 4 December</option><option>Friday 5 December</option><option>Thursday 11 December</option><option>Friday 12 December</option></select><span class="err" id="ev-err"></span></div>
+          <div class="row">
+            <div class="fld"><label id="gl">Guests</label><div class="stepper" role="group" aria-labelledby="gl"><button type="button" data-s="-1" aria-label="One fewer guest">−</button><output id="guests" aria-live="polite">2</output><button type="button" data-s="1" aria-label="One more guest">+</button></div></div>
+            <fieldset><legend>Wine pairing</legend><div class="seats"><input type="radio" name="wine" id="w1" value="Yes"><label for="w1">Yes</label><input type="radio" name="wine" id="w2" value="No" checked><label for="w2">No</label></div></fieldset>
+          </div>
+          <div class="row">
+            <div class="fld"><label for="rn">Name</label><input id="rn" name="fullname" autocomplete="name"><span class="err" id="rn-err"></span></div>
+            <div class="fld"><label for="re">Email</label><input id="re" name="email" type="email" autocomplete="email"><span class="err" id="re-err"></span></div>
+          </div>
+          <div class="fld"><label for="rd">Allergies or occasion (optional)</label><textarea id="rd" name="notes" rows="2"></textarea></div>
+          <button class="btn" type="submit">Send my request</button>
+          <p class="small">Demo page: this form is not connected, so nothing is sent.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#">Oriel</a>
+  <p>Oriel is a fictional restaurant, created as a demo by The Method Co.</p>
+  <p><a href="/landing-pages/">Get a landing page like this</a></p>
+</footer>
+<a class="btn mob" href="#reserve">Request a table</a>
+
+<script>
+(function () {
+  var header = document.querySelector('header');
+  addEventListener('scroll', function () { header.classList.toggle('solid', scrollY > 40); }, { passive: true });
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;
+  document.querySelectorAll('.rv, .courses').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  var menu = document.getElementById('menu'), price = document.getElementById('price');
+  document.querySelectorAll('.toggle button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.toggle button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      var pair = b.dataset.v === 'pair';
+      menu.classList.toggle('pairing', pair);
+      price.innerHTML = pair ? '€150 <small>per guest · with wine pairing</small>' : '€95 <small>per guest · tasting menu</small>';
+    });
+  });
+
+  var ev = document.getElementById('ev');
+  document.querySelectorAll('.date').forEach(function (d) {
+    d.addEventListener('click', function () { ev.value = d.dataset.d; document.getElementById('reserve').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
+  });
+
+  var g = 2, out = document.getElementById('guests');
+  document.querySelectorAll('[data-s]').forEach(function (b) { b.addEventListener('click', function () { g = Math.min(8, Math.max(1, g + +b.dataset.s)); out.textContent = g; }); });
+
+  function v(id, ok, msg) { var el = document.getElementById(id), bad = !ok(el.value.trim()); el.setAttribute('aria-invalid', bad); document.getElementById(id + '-err').textContent = bad ? msg : ''; return !bad; }
+  document.getElementById('rf').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = [v('ev', function (x) { return x; }, 'Choose an evening.'), v('rn', function (x) { return x; }, 'Add your name.'), v('re', function (x) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x); }, 'Add a valid email.')];
+    if (ok.indexOf(false) > -1) { document.querySelector('[aria-invalid="true"]').focus(); return; }
+    document.getElementById('rbody').innerHTML = '<div class="conf" role="status"><p class="over">Request received</p><h3>A table for <em>' + g + '</em>, ' + ev.value + '.</h3><p>On a live site, Oriel would now confirm your table by email within a day.</p><span class="flag">Demo only: nothing was sent or stored.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>

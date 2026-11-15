@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brightfield Solar Savings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Brightfield: clear sky blue and white, one sun-gold accent. The roof fills with panels as you type. */
+:root {
+  --sky: #EAF3FB;
+  --white: #FFFFFF;
+  --ink: #0B3242;
+  --soft: #5B7483;
+  --sun: #F5A524;
+  --sun-deep: #D98A0B;
+  --panel: #1F4E79;
+  --line: #D6E3EE;
+  --display: "Sora", system-ui, sans-serif;
+  --body: "Manrope", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--sky); color: var(--ink); font: 400 16px/1.6 var(--body); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+a { color: var(--panel); }
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; border-radius: 6px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.demo-bar { background: #0F172A; color: #CBD5E1; font: 500 13px/1.4 system-ui, sans-serif; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding-block: 8px; }
+.demo-bar a { color: #fff; font-weight: 700; }
+
+header .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 72px; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; font: 800 1.2rem/1 var(--display); color: var(--ink); text-decoration: none; }
+.logo svg { width: 32px; height: 32px; }
+.phone { font-weight: 600; color: var(--soft); font-size: .95rem; }
+
+.hero { padding-block: 16px 72px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+h1 { font: 800 clamp(2.4rem, 5.4vw, 4rem)/1.02 var(--display); letter-spacing: -0.03em; margin: 12px 0 18px; text-wrap: balance; }
+.intro p { color: var(--soft); font-size: 1.08rem; margin: 0 0 22px; max-width: 44ch; }
+.pill { display: inline-flex; gap: 8px; align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-weight: 600; font-size: .88rem; }
+.pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--sun); }
+.roof { background: var(--white); border-radius: 24px; padding: 18px; border: 1px solid var(--line); }
+.roof svg { width: 100%; height: auto; display: block; }
+.roof p { margin: 10px 4px 0; color: var(--soft); font-size: .9rem; }
+.facts { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 10px; }
+.facts li { display: flex; gap: 10px; align-items: baseline; color: var(--soft); }
+.facts li::before { content: ""; width: 14px; height: 14px; border-radius: 50%; border: 4px solid var(--sun); flex: none; transform: translateY(2px); }
+
+.calc { background: var(--white); border-radius: 28px; border: 1px solid var(--line); box-shadow: 0 30px 60px -40px rgba(11,50,66,.35); overflow: hidden; }
+.calc-in { padding: clamp(20px, 3.5vw, 32px); display: grid; gap: 22px; }
+.calc h2 { margin: 0; font: 700 1.3rem/1.2 var(--display); }
+.q { display: grid; gap: 10px; }
+.q > label, .q > span { font-weight: 700; }
+.range-row { display: flex; align-items: center; gap: 16px; }
+.range-row output { font: 800 1.6rem/1 var(--display); min-width: 4.2ch; text-align: right; font-variant-numeric: tabular-nums; }
+input[type=range] { flex: 1; accent-color: var(--sun); height: 28px; }
+.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { text-align: center; padding: 12px 8px; border-radius: 14px; border: 1.5px solid var(--line); cursor: pointer; font-weight: 600; font-size: .92rem; line-height: 1.25; }
+.seg label small { display: block; font-weight: 500; color: var(--soft); font-size: .78rem; }
+.seg input:checked + label { border-color: var(--sun); background: #FFF6E6; }
+.seg input:focus-visible + label { outline: 3px solid var(--sun); outline-offset: 2px; }
+.toggle { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 14px; cursor: pointer; font-weight: 600; }
+.toggle small { display: block; color: var(--soft); font-weight: 500; }
+.toggle input { width: 22px; height: 22px; accent-color: var(--sun); }
+
+.result { background: var(--ink); color: #fff; padding: clamp(20px, 3.5vw, 32px); display: grid; gap: 18px; }
+.headline-num { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.headline-num b { font: 800 clamp(2.6rem, 6vw, 3.6rem)/1 var(--display); color: var(--sun); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.headline-num span { color: #B9CCD6; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.stats div { background: rgba(255,255,255,.07); border-radius: 14px; padding: 12px 14px; }
+.stats dt { color: #B9CCD6; font-size: .82rem; }
+.stats dd { margin: 2px 0 0; font: 700 1.25rem/1.2 var(--display); font-variant-numeric: tabular-nums; }
+.cta { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+@media (max-width: 480px) { .cta { grid-template-columns: minmax(0, 1fr); } }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 18px; border-radius: 14px; font: 700 .98rem/1.1 var(--body); text-align: center; text-decoration: none; border: 0; cursor: pointer; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.btn-wa { background: #25D366; color: #052E16; }
+.btn-wa:hover { background: #3BE07A; }
+.btn-line { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.4); }
+.btn-line:hover { box-shadow: inset 0 0 0 1.5px #fff; }
+.lead { display: grid; gap: 10px; }
+.lead input { font: 500 1rem/1.3 var(--body); padding: 13px 14px; border-radius: 12px; border: 0; width: 100%; }
+.lead .btn { background: var(--sun); color: var(--ink); }
+.small { font-size: .8rem; color: #8FA8B5; margin: 0; }
+.msg { margin: 0; font-weight: 700; color: var(--sun); min-height: 1.2em; }
+footer { padding-block: 28px 40px; color: var(--soft); font-size: .88rem; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="demo-bar"><div class="wrap"><span>Demo Instant Pricing Tool by The Method Co. Brightfield Solar is a made-up business.</span><a href="../index.html#demos">Back to The Method Co.</a></div></div>
+<header><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="7" fill="#F5A524"/><g stroke="#F5A524" stroke-width="2.5" stroke-linecap="round"><path d="M16 2v4M16 26v4M2 16h4M26 16h4M6 6l3 3M23 23l3 3M26 6l-3 3M9 23l-3 3"/></g></svg>Brightfield Solar</a>
+  <span class="phone">Kildare and Dublin</span>
+</div></header>
+
+<main class="hero" id="top">
+  <div class="wrap">
+    <div class="intro">
+      <span class="pill"><i></i>SEAI registered installer</span>
+      <h1>How much could solar save you?</h1>
+      <p>Answer three questions. See your system size, cost after the SEAI grant and how fast it pays for itself. No call needed.</p>
+      <div class="roof">
+        <svg viewBox="0 0 400 220" role="img" aria-label="Your roof with the estimated number of panels">
+          <path d="M20 130 L200 30 L380 130 Z" fill="#C9D9E6"/>
+          <g id="panels"></g>
+          <rect x="60" y="130" width="280" height="80" fill="#F4F8FB" stroke="#D6E3EE"/>
+          <rect x="180" y="160" width="40" height="50" fill="#D6E3EE"/>
+          <rect x="90" y="150" width="50" height="34" fill="#D6E3EE"/><rect x="260" y="150" width="50" height="34" fill="#D6E3EE"/>
+        </svg>
+        <p id="roof-cap">10 panels on your roof</p>
+      </div>
+      <ul class="facts">
+        <li>Fully insured, 25-year panel warranty</li>
+        <li>We handle the SEAI grant paperwork</li>
+        <li>Most installs done in one day</li>
+      </ul>
+    </div>
+
+    <section class="calc" aria-labelledby="calc-title">
+      <form class="calc-in" id="f" novalidate>
+        <h2 id="calc-title">Your home</h2>
+        <div class="q">
+          <label for="bill">Average monthly electricity bill</label>
+          <div class="range-row"><input type="range" id="bill" min="60" max="400" step="10" value="180"><output id="bill-out" for="bill">€180</output></div>
+        </div>
+        <div class="q">
+          <span id="roof-l">Which way does your roof face?</span>
+          <div class="seg" role="radiogroup" aria-labelledby="roof-l">
+            <input type="radio" name="dir" id="d1" value="1" data-l="South" checked><label for="d1">South<small>Best</small></label>
+            <input type="radio" name="dir" id="d2" value="0.85" data-l="East and west"><label for="d2">East or west<small>Good</small></label>
+            <input type="radio" name="dir" id="d3" value="0.7" data-l="Mostly north"><label for="d3">Not sure<small>We'll check</small></label>
+          </div>
+        </div>
+        <label class="toggle" for="batt"><span>Add a battery<small>Store daytime power for the evening, about €3,500</small></span><input type="checkbox" id="batt"></label>
+      </form>
+
+      <div class="result" aria-live="polite">
+        <div class="headline-num"><b id="save">€0</b><span>saved per year, estimated</span></div>
+        <dl class="stats">
+          <div><dt>System size</dt><dd id="kwp">0 kWp</dd></div>
+          <div><dt>Panels</dt><dd id="pn">0</dd></div>
+          <div><dt>Cost after SEAI grant</dt><dd id="net">€0</dd></div>
+          <div><dt>Pays for itself in</dt><dd id="pay">0 years</dd></div>
+        </dl>
+        <div class="cta">
+          <a class="btn btn-wa" id="wa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.7l4.8-1.3A9.8 9.8 0 1 0 12 2.2Zm0 17.8c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2l-.5-.2Z"/></svg>Send me this quote on WhatsApp</a>
+          <button class="btn btn-line" type="button" id="show-lead" aria-expanded="false" aria-controls="lead">Email me instead</button>
+        </div>
+        <form class="lead" id="lead" hidden novalidate>
+          <input id="l-name" name="name" placeholder="Your name" autocomplete="name" aria-label="Your name">
+          <input id="l-email" name="email" type="email" placeholder="Email" autocomplete="email" aria-label="Email">
+          <input id="l-eircode" name="eircode" placeholder="Eircode (optional)" aria-label="Eircode">
+          <button class="btn" type="submit">Email me my solar quote</button>
+        </form>
+        <p class="msg" id="msg" role="status"></p>
+        <p class="small">Estimates use €0.35 per kWh and the SEAI grant of up to €1,800. Your final price comes after a free roof survey.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">Brightfield Solar, Naas, Co. Kildare. Demo only.</div></footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = function (n) { return '€' + Math.round(n).toLocaleString('en-IE'); };
+  var summary = '';
+  function grant(k) { return Math.min(1800, Math.min(k, 2) * 700 + Math.max(0, Math.min(k, 4) - 2) * 200); }
+  function calc() {
+    var bill = +$('bill').value, dirEl = document.querySelector('input[name=dir]:checked'), dir = +dirEl.value, batt = $('batt').checked;
+    $('bill-out').textContent = '€' + bill;
+    var use = bill * 12 / 0.35;
+    var kwp = Math.min(6.5, Math.max(2, Math.round(use * 0.55 / (900 * dir) * 2) / 2));
+    var panels = Math.ceil(kwp / 0.43);
+    var cost = kwp * 1500 + (batt ? 3500 : 0), net = cost - grant(kwp);
+    var gen = kwp * 900 * dir, self = batt ? 0.85 : 0.6;
+    var save = gen * (self * 0.35 + (1 - self) * 0.2);
+    var pay = net / save;
+    $('save').textContent = eur(save); $('kwp').textContent = kwp.toFixed(1) + ' kWp'; $('pn').textContent = panels;
+    $('net').textContent = eur(net); $('pay').textContent = pay.toFixed(1) + ' years';
+    $('roof-cap').textContent = panels + ' panels on your roof';
+    var g = '', n = 0;
+    for (var r = 0; r < 3 && n < panels; r++) for (var c = 0; c < 6 && n < panels; c++, n++) {
+      var y = 108 - r * 26, x = 112 + c * 30 - r * 0 + r * 4;
+      g += '<rect x="' + x + '" y="' + y + '" width="26" height="22" rx="2" fill="#1F4E79" stroke="#5E8DB8" stroke-width="1"/>';
+    }
+    $('panels').innerHTML = g;
+    summary = 'Hi Brightfield! My solar estimate:\n- Bill: €' + bill + '/month\n- Roof: ' + dirEl.dataset.l + '\n- Battery: ' + (batt ? 'yes' : 'no') + '\n- System: ' + kwp.toFixed(1) + ' kWp, ' + panels + ' panels\n- Cost after grant: ' + eur(net) + '\n- Saving: ' + eur(save) + '/year\nCan you book me a free roof survey?';
+    $('wa').href = 'https://wa.me/?text=' + encodeURIComponent(summary);
+  }
+  $('f').addEventListener('input', calc);
+  $('show-lead').addEventListener('click', function () { var l = $('lead'); l.hidden = !l.hidden; this.setAttribute('aria-expanded', !l.hidden); if (!l.hidden) $('l-name').focus(); });
+  $('lead').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!$('l-name').value.trim() || !/\S+@\S+\.\S+/.test($('l-email').value)) { $('msg').textContent = 'Add your name and a valid email, then send again.'; return; }
+    $('msg').textContent = 'Quote sent to ' + $('l-email').value + '. (Demo only, nothing was sent.)';
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

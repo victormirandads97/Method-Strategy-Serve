@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>High-Conversion Landing Pages from €250 | The Method Co.</title>
+<meta name="description" content="Fast, beautiful landing pages that turn interested visitors into enquiries, bookings and sales. Built for Irish businesses, from €250 per page. See five live demos.">
+<link rel="canonical" href="https://themethodco.co/landing-pages/">
+<meta name="theme-color" content="#0A0F14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Method Co.">
+<meta property="og:locale" content="en_IE">
+<meta property="og:title" content="High-Conversion Landing Pages from €250 | The Method Co.">
+<meta property="og:description" content="Your business deserves more than just clicks. Landing pages built to turn visitors into paying customers.">
+<meta property="og:url" content="https://themethodco.co/landing-pages/">
+<meta property="og:image" content="https://themethodco.co/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=7" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="previews/cleaning.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "High-Conversion Landing Pages",
+  "serviceType": "Landing page design and build",
+  "provider": { "@type": "Organization", "name": "The Method Co.", "url": "https://themethodco.co/", "logo": "https://themethodco.co/icon-512.png" },
+  "areaServed": { "@type": "Country", "name": "Ireland" },
+  "offers": { "@type": "Offer", "price": "250", "priceCurrency": "EUR", "description": "One landing page, starting price", "url": "https://themethodco.co/landing-pages/" }
+}
+</script>
+<style>
+/* The Method Co. brand system: Inter, navy #0A0F14, green #22D87A, white.
+   Same tokens and components as the Instant Pricing Tool page, so the two
+   products read as one company. */
+:root {
+  --bg: #FFFFFF; --tint: #F5F7F9; --ink: #0A0F14; --navy: #0A0F14; --surface: #111827; --raise: #172131;
+  --soft: #4B5563; --mute: #9CA3AF; --line: #E5E7EB; --line-d: #1F2937;
+  --green: #22D87A; --green-deep: #0F8A54; --green-ink: #052E16; --green-glow: #4BF59A; --mint: #DDFBEA;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--green-deep); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(1200px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { margin: 0; letter-spacing: -.045em; text-wrap: balance; }
+h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.02; font-weight: 800; }
+p { margin: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .88rem; color: var(--soft); margin-bottom: 14px; }
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--green); border-radius: 2px; }
+.lede { color: var(--soft); font-size: 1.08rem; max-width: 56ch; }
+.skip { position: absolute; left: -999px; top: 10px; background: var(--ink); color: #fff; padding: 10px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 10px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 24px; font: 700 1rem/1.15 var(--font); border-radius: 14px; text-decoration: none; cursor: pointer; border: 0; transition: transform .15s ease, background-color .15s ease, box-shadow .2s ease; white-space: nowrap; }
+.btn svg { width: 18px; height: 18px; flex: none; transition: transform .2s ease; }
+.btn:hover svg { transform: translateX(3px); }
+.btn-go { background: var(--green); color: var(--green-ink); box-shadow: 0 12px 28px -12px rgba(34,216,122,.85); }
+.btn-go:hover { background: var(--green-glow); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.on-dark .btn-ghost { color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.28); }
+.on-dark .btn-ghost:hover { box-shadow: inset 0 0 0 1.5px #fff; }
+
+/* Header: same lockup as the rest of the site */
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(10,15,20,.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.08); color: #fff; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 70px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; white-space: nowrap; color: #fff; }
+.brand svg { width: 40px; height: 28px; flex: none; }
+.brand .word { font: 700 .98rem/1 var(--font); letter-spacing: .08em; text-transform: uppercase; padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); }
+.brand .word i { font-style: normal; color: var(--green); }
+.nav { display: flex; align-items: center; gap: 26px; }
+.nav a:not(.btn) { color: #C9CED6; text-decoration: none; font-size: .92rem; font-weight: 500; }
+.nav a:not(.btn):hover { color: #fff; }
+.nav .btn { min-height: 42px; padding: 0 16px; font-size: .9rem; border-radius: 11px; }
+@media (max-width: 900px) { .nav a:not(.btn) { display: none; } }
+@media (max-width: 440px) { .brand .word { font-size: .84rem; } .nav .btn .long { display: none; } }
+
+/* Hero */
+.hero { position: relative; background: var(--navy); color: #fff; overflow: hidden; padding: clamp(48px, 7vw, 96px) 0 clamp(64px, 8vw, 110px); }
+.hero::before { content: ""; position: absolute; width: 900px; height: 900px; right: -260px; top: -380px; background: radial-gradient(closest-side, rgba(34,216,122,.22), transparent); pointer-events: none; }
+.hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(70% 70% at 70% 40%, #000, transparent); -webkit-mask-image: radial-gradient(70% 70% at 70% 40%, #000, transparent); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(36px, 5vw, 72px); align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); font-size: .88rem; font-weight: 500; color: #E5E7EB; margin-bottom: 22px; }
+.pill b { background: var(--green); color: var(--green-ink); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; }
+.hero h1 { font-size: clamp(2.7rem, 5.6vw, 4.9rem); line-height: .98; font-weight: 800; margin-bottom: 22px; }
+.hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--green), var(--green-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { color: #C9CED6; font-size: 1.12rem; margin-bottom: 28px; }
+.from { display: flex; align-items: baseline; gap: 10px; margin-bottom: 26px; }
+.from small { color: var(--mute); font-size: .95rem; }
+.from b { font-size: 2.6rem; line-height: 1; font-weight: 800; letter-spacing: -.04em; }
+.from span { color: var(--mute); font-size: .95rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.ticks { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 24px 0 0; font-size: .9rem; color: #C9CED6; }
+.ticks li, .incl li { display: flex; align-items: center; gap: 8px; }
+.ticks li::before, .incl li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23052E16' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+@media (max-width: 960px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .hero-ctas .btn { flex: 1 1 100%; } }
+
+/* Hero device stack: real previews of the demos, crossfading */
+.devices { position: relative; aspect-ratio: 1.12; }
+.browser { position: absolute; inset: 0 8% 10% 0; border-radius: 16px; background: #1F2937; box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08); overflow: hidden; display: flex; flex-direction: column; }
+.chrome { display: flex; align-items: center; gap: 6px; padding: 10px 12px; background: #161E2B; }
+.chrome i { width: 10px; height: 10px; border-radius: 50%; background: #374151; }
+.chrome span { margin-left: 10px; flex: 1; background: #0F1620; border-radius: 6px; font: 500 .72rem/1 var(--font); color: var(--mute); padding: 6px 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.view { position: relative; flex: 1; overflow: hidden; background: #fff; }
+.view img, .phone .scr img { position: absolute; inset: 0; width: 100%; height: auto; opacity: 0; transition: opacity .9s ease; }
+.view img.on, .phone .scr img.on { opacity: 1; }
+.phone { position: absolute; right: 0; bottom: 0; width: 30%; aspect-ratio: 9 / 19; border-radius: 28px; background: #0B0F14; padding: 8px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.12); }
+.phone .scr { position: relative; width: 100%; height: 100%; border-radius: 21px; overflow: hidden; background: #fff; }
+.caption { position: absolute; left: 0; bottom: 0; display: flex; align-items: center; gap: 10px; font-size: .86rem; color: #C9CED6; }
+.caption b { color: #fff; font-weight: 600; }
+.dots { display: flex; gap: 6px; }
+.dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: rgba(255,255,255,.25); cursor: pointer; transition: width .3s ease, background .3s ease; }
+.dots button[aria-current="true"] { width: 22px; border-radius: 4px; background: var(--green); }
+
+/* Sections */
+.section { padding-block: clamp(76px, 9vw, 124px); }
+.tinted { background: var(--tint); }
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px 64px; align-items: end; margin-bottom: 48px; }
+@media (max-width: 860px) { .head { grid-template-columns: minmax(0, 1fr); } }
+
+/* Problem */
+.problems { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.prob { background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.prob .ic { width: 44px; height: 44px; border-radius: 12px; background: #FDECEC; display: grid; place-items: center; margin-bottom: 6px; }
+.prob h3 { font-size: 1.2rem; letter-spacing: -.02em; }
+.prob p { color: var(--soft); font-size: .95rem; }
+@media (max-width: 980px) { .problems { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .problems { grid-template-columns: minmax(0, 1fr); } }
+
+/* Solution */
+.compare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.cmp { border-radius: 24px; padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line); background: var(--bg); }
+.cmp.good { background: var(--navy); color: #fff; border-color: var(--navy); position: relative; overflow: hidden; }
+.cmp.good::after { content: ""; position: absolute; width: 420px; height: 420px; right: -150px; bottom: -220px; background: radial-gradient(closest-side, rgba(34,216,122,.3), transparent); }
+.cmp h3 { font-size: 1.5rem; letter-spacing: -.03em; margin-bottom: 6px; }
+.cmp > p { color: var(--soft); margin-bottom: 22px; }
+.cmp.good > p { color: #C9CED6; }
+.cmp svg { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
+.uses { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.uses span { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: .9rem; font-weight: 500; background: var(--bg); }
+@media (max-width: 860px) { .compare { grid-template-columns: minmax(0, 1fr); } }
+
+/* Demo showcase */
+.showcase { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+.showcase::before { content: ""; position: absolute; width: 1100px; height: 700px; left: 50%; top: -360px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(34,216,122,.16), transparent); pointer-events: none; }
+.showcase .wrap { position: relative; }
+.showcase .lede { color: #C9CED6; }
+.showcase .eyebrow { color: #C9CED6; }
+.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px; }
+.card { grid-column: span 2; display: flex; flex-direction: column; text-decoration: none; color: #fff; }
+.card:nth-child(1), .card:nth-child(2) { grid-column: span 3; }
+.frame { position: relative; border-radius: 16px; background: #1F2937; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.08); transition: transform .5s var(--ease), box-shadow .5s ease; }
+.card:hover .frame, .card:focus-visible .frame { transform: translateY(-6px); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(34,216,122,.6); }
+.card:focus-visible { outline: none; }
+.frame .chrome { background: #161E2B; }
+.shot { position: relative; aspect-ratio: 16 / 10.5; overflow: hidden; background: #fff; }
+.shot img { width: 100%; height: auto; transition: transform 5.5s cubic-bezier(.45,.05,.35,1); will-change: transform; }
+.card:hover .shot img, .card:focus-visible .shot img { transform: translateY(calc(-100% + var(--frame-h, 300px))); }
+.mini-phone { position: absolute; right: 14px; bottom: 14px; width: 21%; aspect-ratio: 9 / 18.5; border-radius: 16px; background: #0B0F14; padding: 5px; box-shadow: 0 18px 30px -10px rgba(0,0,0,.7); transition: transform .5s var(--ease); }
+.mini-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 12px; }
+.card:hover .mini-phone { transform: translateY(-6px) rotate(-2deg); }
+.card .meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 18px 2px 0; }
+.card .cat { color: var(--green); font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.card h3 { font-size: 1.35rem; letter-spacing: -.03em; margin: 4px 0 4px; }
+.card p { color: #9CA3AF; font-size: .94rem; }
+.card .go { flex: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9rem; padding: 10px 14px; border-radius: 11px; background: rgba(255,255,255,.08); transition: background .2s, color .2s; white-space: nowrap; }
+.card:hover .go { background: var(--green); color: var(--green-ink); }
+.show-note { margin-top: 34px; color: var(--mute); font-size: .9rem; text-align: center; }
+@media (max-width: 980px) { .card, .card:nth-child(1), .card:nth-child(2) { grid-column: span 3; } .card:nth-child(5) { grid-column: 2 / span 4; } }
+@media (max-width: 720px) {
+  .cards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin-inline: -20px; padding: 4px 20px 10px; scrollbar-width: none; }
+  .cards::-webkit-scrollbar { display: none; }
+  .card, .card:nth-child(n) { flex: 0 0 86%; scroll-snap-align: center; grid-column: auto; }
+  .card .meta { flex-direction: column; }
+  .shot img { animation: none; }
+}
+.swipe { display: none; justify-content: center; gap: 6px; margin-top: 16px; }
+.swipe i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.25); transition: width .3s, background .3s; }
+.swipe i.on { width: 22px; border-radius: 4px; background: var(--green); }
+@media (max-width: 720px) { .swipe { display: flex; } }
+
+/* Benefits */
+.benefits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ben { padding: 26px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); transition: transform .3s var(--ease), box-shadow .3s; }
+.ben:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -28px rgba(10,15,20,.35); }
+.ben .ic { width: 46px; height: 46px; border-radius: 13px; background: var(--mint); display: grid; place-items: center; margin-bottom: 18px; }
+.ben h3 { font-size: 1.2rem; letter-spacing: -.02em; margin-bottom: 6px; }
+.ben p { color: var(--soft); font-size: .95rem; }
+@media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .benefits { grid-template-columns: minmax(0, 1fr); } }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+.step { position: relative; background: var(--bg); border: 1px solid var(--line); border-radius: 22px; padding: 28px; }
+.step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--tint); font: 800 1.15rem/1 var(--font); margin-bottom: 20px; }
+.step:last-child::before { background: var(--green); color: var(--green-ink); }
+.step h3 { font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 8px; }
+.step p { color: var(--soft); }
+.step small { display: block; margin-top: 14px; color: var(--green-deep); font-weight: 600; font-size: .88rem; }
+@media (max-width: 860px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* Pricing */
+.pricing { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.price-card { position: relative; border-radius: 28px; padding: clamp(26px, 4vw, 42px); background: var(--navy); color: #fff; overflow: hidden; }
+.price-card::after { content: ""; position: absolute; width: 520px; height: 520px; right: -200px; top: -260px; background: radial-gradient(closest-side, rgba(34,216,122,.28), transparent); pointer-events: none; }
+.price-card > * { position: relative; z-index: 1; }
+.price-card .tag { display: inline-block; background: var(--mint); color: #075E36; font-weight: 700; font-size: .82rem; border-radius: 999px; padding: 7px 12px; margin-bottom: 18px; }
+.amount { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.amount small { color: var(--mute); font-size: 1rem; }
+.amount b { font-size: clamp(4.2rem, 10vw, 5.8rem); line-height: .9; font-weight: 800; letter-spacing: -.05em; }
+.price-card .per { color: var(--mute); margin-bottom: 24px; }
+.incl { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 12px; }
+.incl li { align-items: flex-start; color: #E5E7EB; }
+.incl li::before { margin-top: 3px; }
+.price-card .btn { width: 100%; }
+.price-note { margin-top: 14px; color: var(--mute); font-size: .86rem; text-align: center; }
+.scope h3 { font-size: 1.25rem; letter-spacing: -.02em; margin: 26px 0 10px; }
+.scope h3:first-of-type { margin-top: 0; }
+.scope ul { margin: 0; padding-left: 20px; color: var(--soft); display: grid; gap: 6px; }
+.upsell { margin-top: 30px; padding: 22px; border-radius: 20px; background: var(--tint); border: 1px solid var(--line); display: grid; gap: 8px; }
+.upsell b { font-size: 1.05rem; }
+.upsell p { color: var(--soft); font-size: .95rem; }
+.upsell a { font-weight: 700; color: var(--green-deep); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+@media (max-width: 900px) { .pricing { grid-template-columns: minmax(0, 1fr); } }
+
+/* FAQ */
+.faq { max-width: 860px; display: grid; gap: 10px; }
+.faq details { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; transition: border-color .2s; }
+.faq details[open] { border-color: #C7CDD4; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 44px 18px 0; position: relative; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; font-weight: 700; transition: transform .2s ease, background .2s; }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); background: var(--mint); }
+.faq details p { color: var(--soft); padding: 0 0 18px; max-width: 66ch; }
+
+/* Lead form */
+.start { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+.start::before { content: ""; position: absolute; width: 900px; height: 900px; left: -400px; bottom: -520px; background: radial-gradient(closest-side, rgba(34,216,122,.2), transparent); pointer-events: none; }
+.start .wrap { position: relative; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.start h2 { font-size: clamp(2.3rem, 5vw, 3.8rem); margin-bottom: 18px; }
+.start .lede { color: #C9CED6; margin-bottom: 26px; }
+.start .eyebrow { color: #C9CED6; }
+.next-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.next-steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; color: #C9CED6; }
+.next-steps b { color: #fff; display: block; }
+.next-steps span.n { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.08); display: grid; place-items: center; font-weight: 800; color: var(--green); }
+.alt { margin-top: 28px; font-size: .92rem; color: var(--mute); }
+.alt a { color: #fff; }
+.lead { background: var(--bg); color: var(--ink); border-radius: 24px; padding: clamp(22px, 4vw, 36px); box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); }
+.lead h3 { font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 4px; }
+.lead .req-note { color: var(--soft); font-size: .88rem; margin-bottom: 20px; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 14px; }
+@media (max-width: 560px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.fld { display: grid; gap: 6px; margin-bottom: 14px; }
+.fld label { font-weight: 600; font-size: .88rem; }
+.fld label span { color: var(--soft); font-weight: 400; }
+.fld input, .fld select, .fld textarea { width: 100%; font: 400 1rem/1.4 var(--font); color: var(--ink); background: var(--tint); border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 14px; transition: border-color .15s, box-shadow .15s, background .15s; }
+.fld textarea { resize: vertical; min-height: 92px; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; background: #fff; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(34,216,122,.25); }
+.fld [aria-invalid="true"] { border-color: #C0392B; background: #FFF7F6; }
+.fld .err { color: #B42318; font-size: .82rem; min-height: 1.1em; }
+.check { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 12px; background: var(--mint); margin: 4px 0 18px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--green-deep); flex: none; }
+.check span { font-size: .92rem; }
+.check b { display: block; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lead .btn { width: 100%; }
+.lead .btn[disabled] { opacity: .7; cursor: progress; }
+.fine { margin-top: 12px; color: var(--soft); font-size: .8rem; text-align: center; }
+.fine a { color: inherit; }
+.status { border-radius: 14px; padding: 16px; margin-bottom: 16px; font-size: .95rem; display: none; }
+.status.show { display: block; }
+.status.bad { background: #FEF3F2; color: #7A271A; border: 1px solid #FECDCA; }
+.status.bad a { color: #7A271A; font-weight: 700; }
+.done { text-align: center; padding: 26px 6px; }
+.done .ok { width: 64px; height: 64px; border-radius: 50%; background: var(--mint); display: grid; place-items: center; margin: 0 auto 18px; }
+.done h3 { font-size: 1.8rem; margin-bottom: 10px; }
+.done p { color: var(--soft); max-width: 44ch; margin: 0 auto 10px; }
+.done .btn { width: auto; margin-top: 10px; }
+@media (max-width: 900px) { .start .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+.site-footer { background: var(--navy); color: var(--mute); border-top: 1px solid var(--line-d); padding: 40px 0 110px; font-size: .9rem; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.site-footer a { color: #C9CED6; }
+.mobile-cta { display: none; }
+@media (max-width: 700px) { .mobile-cta { display: flex; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 40; transform: translateY(160%); transition: transform .35s var(--ease); } .mobile-cta.show { transform: none; } }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  .card:hover .shot img { transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="mgrad" gradientUnits="userSpaceOnUse" x1="80" y1="85.2" x2="160" y2="0"><stop offset="0" stop-color="#0F8A54"/><stop offset=".55" stop-color="#22D87A"/><stop offset="1" stop-color="#4BF59A"/></linearGradient></defs>
+  <symbol id="mark" viewBox="0 0 160 112"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="currentColor"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="url(#mgrad)"/></symbol>
+  <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="The Method Co. home"><svg aria-hidden="true"><use href="#mark"/></svg><span class="word">The Method Co<i>.</i></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#demos">Demos</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-go" href="#start" aria-label="Request your landing page"><span class="long">Request your page</span><span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero on-dark" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <p class="pill"><b>New</b>High-Conversion Landing Pages</p>
+        <h1 id="hero-title">Your business deserves more than <em>just clicks.</em></h1>
+        <p class="lede">We build beautiful, lightning-fast landing pages designed to turn interested visitors into paying customers. One page, one offer, one clear next step.</p>
+        <div class="from"><small>From</small><b>€250</b><span>per landing page</span></div>
+        <div class="hero-ctas">
+          <a class="btn btn-go" href="#start">Request your landing page <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#demos">See 5 live demos</a>
+        </div>
+        <ul class="ticks"><li>See a preview before you pay</li><li>Usually ready in about a week</li><li>The page is yours to keep</li></ul>
+      </div>
+
+      <div>
+        <div class="devices" role="img" aria-label="Previews of the five demo landing pages on a laptop and a phone">
+          <div class="browser">
+            <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span id="hero-url">halcyon-clean.ie</span></div>
+            <div class="view" id="hero-view"></div>
+          </div>
+          <div class="phone"><div class="scr" id="hero-phone"></div></div>
+        </div>
+        <div class="caption" style="position:static;margin-top:18px"><div class="dots" id="hero-dots" role="group" aria-label="Choose a demo preview"></div><span id="hero-cap"><b>Cleaning company</b> · Request a quote</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">The problem</p><h2 id="problem-title">Clicks are easy. Enquiries are the hard part.</h2></div>
+        <p class="lede">You pay for ads, post on social and send people to your website. Then most of them leave without getting in touch. It's rarely the product. It's usually the page.</p>
+      </div>
+      <div class="problems">
+        <article class="prob reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div><h3>It loads too slowly</h3><p>Most visits come from a phone, often on mobile data. Every second spent waiting is a reason to tap back.</p></article>
+        <article class="prob reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><h3>Too many places to go</h3><p>Menus, blog posts, About, Gallery. A visitor from your ad has to find the offer they clicked for. Many don't.</p></article>
+        <article class="prob reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6M12 17h.01"/></svg></div><h3>The offer isn't clear</h3><p>If people can't tell what you do, who it's for and what it costs in a few seconds, they move on to someone who tells them.</p></article>
+        <article class="prob reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="2" stroke-linecap="round"><path d="M4 12h12M12 6l6 6-6 6"/><path d="M20 4v16" stroke-dasharray="2 3"/></svg></div><h3>No obvious next step</h3><p>A phone number in the footer isn't a call to action. Without a clear button and a short form, interest goes nowhere.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="solution-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">The solution</p><h2 id="solution-title">One page. One offer. One next step.</h2></div>
+        <p class="lede">A landing page is built for a single purpose: the campaign, service or event you're promoting right now. Everything on it moves the visitor towards one action, so more of the people you pay to reach actually get in touch.</p>
+      </div>
+      <div class="compare">
+        <div class="cmp reveal">
+          <h3>A typical homepage</h3>
+          <p>Lots of choices, and the offer is one of them.</p>
+          <svg viewBox="0 0 440 210" role="img" aria-label="Diagram: a visitor arriving on a homepage splits off towards many different links">
+            <circle cx="40" cy="105" r="16" fill="#E5E7EB"/><path d="M34 112a8 8 0 0 1 12 0" stroke="#9CA3AF" stroke-width="2" fill="none"/><circle cx="40" cy="99" r="4" fill="#9CA3AF"/>
+            <g stroke="#D1D5DB" stroke-width="2" fill="none"><path d="M58 105C140 105 150 30 250 30"/><path d="M58 105C140 105 150 70 250 70"/><path d="M58 105H250"/><path d="M58 105C140 105 150 140 250 140"/><path d="M58 105C140 105 150 180 250 180"/></g>
+            <g font-family="Inter, sans-serif" font-size="13" fill="#4B5563">
+              <rect x="252" y="16" width="120" height="28" rx="8" fill="#F5F7F9"/><text x="264" y="35">About us</text>
+              <rect x="252" y="56" width="120" height="28" rx="8" fill="#F5F7F9"/><text x="264" y="75">Gallery</text>
+              <rect x="252" y="91" width="120" height="28" rx="8" fill="#F5F7F9"/><text x="264" y="110">Blog</text>
+              <rect x="252" y="126" width="120" height="28" rx="8" fill="#F5F7F9"/><text x="264" y="145">Services</text>
+              <rect x="252" y="166" width="120" height="28" rx="8" fill="#F5F7F9"/><text x="264" y="185">Leave site</text>
+            </g>
+            <text x="384" y="110" font-family="Inter, sans-serif" font-size="22" fill="#D1D5DB">?</text>
+          </svg>
+        </div>
+        <div class="cmp good reveal">
+          <h3>A landing page</h3>
+          <p>One message, built around one action.</p>
+          <svg viewBox="0 0 440 210" role="img" aria-label="Diagram: a visitor follows a single path from headline to offer to enquiry">
+            <circle cx="40" cy="105" r="16" fill="#1F2937"/><path d="M34 112a8 8 0 0 1 12 0" stroke="#9CA3AF" stroke-width="2" fill="none"/><circle cx="40" cy="99" r="4" fill="#9CA3AF"/>
+            <path d="M58 105H370" stroke="#22D87A" stroke-width="3" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="24" to="0" dur="1s" repeatCount="indefinite"/></path>
+            <g font-family="Inter, sans-serif" font-size="13" font-weight="600">
+              <rect x="86" y="88" width="84" height="34" rx="10" fill="#172131" stroke="#374151"/><text x="101" y="110" fill="#E5E7EB">Headline</text>
+              <rect x="188" y="88" width="70" height="34" rx="10" fill="#172131" stroke="#374151"/><text x="206" y="110" fill="#E5E7EB">Offer</text>
+              <rect x="276" y="88" width="64" height="34" rx="10" fill="#172131" stroke="#374151"/><text x="290" y="110" fill="#E5E7EB">Proof</text>
+            </g>
+            <rect x="352" y="80" width="80" height="50" rx="14" fill="#22D87A"/>
+            <text x="368" y="110" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#052E16">Enquire</text>
+          </svg>
+        </div>
+      </div>
+      <div class="uses reveal" aria-label="Good uses for a landing page"><span>A Google or Meta ad campaign</span><span>A seasonal offer</span><span>A new service launch</span><span>An event or opening</span><span>Your Instagram or Google Business link</span><span>A QR code on a flyer</span></div>
+    </div>
+  </section>
+
+  <section class="section showcase on-dark" id="demos" aria-labelledby="demos-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">Live demos</p><h2 id="demos-title">Five businesses. Five very different pages.</h2></div>
+        <p class="lede">Each one is a working page with its own look, layout and conversion goal. Open them on your phone, use the menus and fill in the forms. This is what we'd build for you.</p>
+      </div>
+      <div class="cards" id="cards"></div>
+      <div class="swipe" id="swipe" aria-hidden="true"></div>
+      <p class="show-note">The businesses are made up. The pages, layouts and forms are real and work on any device.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="benefits-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">What you get</p><h2 id="benefits-title">Everything a page needs to earn its keep.</h2></div>
+        <p class="lede">Not a template with your logo swapped in. A page designed around your offer, your customers and the one thing you want them to do.</p>
+      </div>
+      <div class="benefits">
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Built for every screen</h3><p>Designed phone-first, then scaled up, so it looks right wherever your customers find you.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Loads fast</h3><p>Lean code and optimised images, hosted on a global network. No slow page builder underneath.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div><h3>Words that sell</h3><p>Clear, persuasive copy written for your customers, in plain English. Or we sharpen what you have.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M14 12h3"/></svg></div><h3>Calls to action that stand out</h3><p>The next step is visible at every point on the page, including a sticky button on phones.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Enquiries straight to you</h3><p>A short form that sends leads to your inbox, plus WhatsApp or phone buttons if that's how you work.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div><h3>Looks the part</h3><p>Typography, colour and layout that make a small business look as considered as a big one.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">How it works</p><h2 id="how-title">Three steps. You approve before anything goes live.</h2></div>
+        <p class="lede">No long meetings and no technical jargon. You tell us about the offer, we do the building.</p>
+      </div>
+      <ol class="steps">
+        <li class="step reveal"><h3>Tell us about your business</h3><p>Fill in the short form below. We'll follow up with a few questions about your offer, your customers and the action you want.</p><small>About 10 minutes of your time</small></li>
+        <li class="step reveal"><h3>Review your preview</h3><p>We design and write your page, then send you a private link to try on your own phone. Ask for changes; two rounds are included.</p><small>Usually within 5 working days</small></li>
+        <li class="step reveal"><h3>Approve the final page</h3><p>Happy with it? We publish it on your domain, connect your enquiry form and check everything works before you share it.</p><small>Live the same week you approve</small></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">Pricing</p><h2 id="pricing-title">A clear starting price. A clear scope.</h2></div>
+        <p class="lede">€250 covers a complete landing page for one offer. If you need more than that, you'll get a fixed quote before any work starts.</p>
+      </div>
+      <div class="pricing">
+        <div class="price-card reveal on-dark">
+          <span class="tag">One landing page</span>
+          <div class="amount"><small>From</small><b>€250</b></div>
+          <p class="per">One-off price. No monthly fee to us.</p>
+          <ul class="incl">
+            <li>One page built around one offer, up to six sections</li>
+            <li>Copywriting from your answers, or a polish of your own</li>
+            <li>Phone-first design in your brand colours and logo</li>
+            <li>Enquiry form to your email, plus WhatsApp or call buttons</li>
+            <li>Speed, page title, description and share image set up</li>
+            <li>Published on your domain or a subdomain, like offer.yourbusiness.ie</li>
+            <li>Two rounds of changes before launch</li>
+          </ul>
+          <a class="btn btn-go" href="#start">Request your landing page <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          <p class="price-note">Nothing to pay until you've seen and approved your preview.</p>
+        </div>
+        <div class="scope reveal">
+          <h3>Good to know</h3>
+          <ul>
+            <li>You'll need a domain name. If you don't have one, we'll help you register it in your own name.</li>
+            <li>Photos: we use yours, or suitable licensed images where needed.</li>
+            <li>Small text changes in the first 30 days after launch are free.</li>
+          </ul>
+          <h3>Quoted separately</h3>
+          <ul>
+            <li>Extra pages or a second version of the page</li>
+            <li>Online payments or a booking system</li>
+            <li>A version in another language</li>
+            <li>Running your ads for you</li>
+          </ul>
+          <div class="upsell">
+            <b>Thinking bigger than one page?</b>
+            <p>Many projects start with a landing page and grow into a full website once the offer is proven. If you'd like a quote for a complete site, tick the box in the form and we'll include it.</p>
+            <a href="#start" data-upsell>Ask about a full website</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="head reveal"><div><p class="eyebrow">Questions</p><h2 id="faq-title">The things people ask first.</h2></div></div>
+      <div class="faq">
+        <details><summary>How long does it take?</summary><p>Most previews are ready within five working days of getting your answers. Once you approve, the page usually goes live within a couple of days. If you have a launch date, tell us in the form.</p></details>
+        <details><summary>Where is the page hosted, and is there a monthly fee?</summary><p>There's no monthly fee to us. We set up hosting on a fast global network in your own name. For a single page like this, that's usually free. If your setup would cost anything to run, you'll know before you approve.</p></details>
+        <details><summary>How many changes can I ask for?</summary><p>Two rounds of changes are included before launch, which is enough for almost everyone. After launch, small text changes in the first 30 days are free. Bigger changes are quoted first.</p></details>
+        <details><summary>Who owns the page?</summary><p>You do. The page, the words and the design are yours, and the domain and hosting sit in your name. If we stop working together, you keep everything.</p></details>
+        <details><summary>When and how do I pay?</summary><p>Nothing up front. Once you've seen your preview and approved it, we'll send an invoice for the agreed price, payable by card or bank transfer. The page goes live once it's paid.</p></details>
+        <details><summary>I already have a website. Do I still need this?</summary><p>Keep your website. A landing page sits alongside it for a specific campaign or offer, and you link to it from your ads, social profiles, Google Business Profile or a QR code. We can also link it from your main site.</p></details>
+        <details><summary>What do you need from me?</summary><p>Your logo, any photos you'd like to use, and answers to a short set of questions about the offer and your customers. If you're short on photos, we'll suggest options.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section start on-dark" id="start" aria-labelledby="start-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Request your landing page</p>
+        <h2 id="start-title">Let's turn your clicks into customers.</h2>
+        <p class="lede">Tell us about your business and what the page should do. We'll reply within one working day with next steps and a fixed price.</p>
+        <ol class="next-steps">
+          <li><span class="n">1</span><div><b>We read your request</b>And reply by email within one working day.</div></li>
+          <li><span class="n">2</span><div><b>A few quick questions</b>About your offer, your customers and the action you want.</div></li>
+          <li><span class="n">3</span><div><b>Your preview</b>Ready to try on your phone, usually within five working days.</div></li>
+        </ol>
+        <p class="alt">Prefer to talk first? Email <a href="mailto:support@themethodco.co?subject=Landing%20page">support@themethodco.co</a> or <a href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">message us on WhatsApp</a>.</p>
+      </div>
+      <form class="lead reveal" id="lead-form" action="/api/leads" method="post" novalidate>
+        <div id="lead-body">
+          <h3>Tell us about your business</h3>
+          <p class="req-note">Takes about a minute. Fields marked optional can be left blank.</p>
+          <div class="status bad" id="lead-status" role="alert"></div>
+          <div class="grid2">
+            <div class="fld"><label for="business_name">Business name</label><input id="business_name" name="business_name" autocomplete="organization" maxlength="120" required><span class="err" id="business_name-err"></span></div>
+            <div class="fld"><label for="contact_name">Your name</label><input id="contact_name" name="contact_name" autocomplete="name" maxlength="120" required><span class="err" id="contact_name-err"></span></div>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="200" required><span class="err" id="email-err"></span></div>
+            <div class="fld"><label for="website">Current website <span>(optional)</span></label><input id="website" name="website" inputmode="url" autocomplete="url" placeholder="yourbusiness.ie" maxlength="300"><span class="err" id="website-err"></span></div>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label for="category">Business category</label>
+              <select id="category" name="category" required><option value="">Choose one</option><option>Trades and home services</option><option>Cleaning</option><option>Beauty and wellness</option><option>Health and fitness</option><option>Food and hospitality</option><option>Professional services</option><option>Retail</option><option>Other</option></select>
+              <span class="err" id="category-err"></span></div>
+            <div class="fld"><label for="goal">Main goal of the page</label>
+              <select id="goal" name="goal" required><option value="">Choose one</option><option>More enquiries or quote requests</option><option>More bookings or appointments</option><option>Launch a new offer or campaign</option><option>Promote an event</option><option>Sell a product or service online</option><option>Something else</option></select>
+              <span class="err" id="goal-err"></span></div>
+          </div>
+          <div class="fld"><label for="notes">Anything else? <span>(optional)</span></label><textarea id="notes" name="notes" maxlength="2000" placeholder="The offer, a launch date, pages you like, anything that helps."></textarea></div>
+          <label class="check"><input type="checkbox" name="website_upgrade" id="website_upgrade" value="yes"><span><b>I'd also like a quote for a full website</b>Optional. We'll include it alongside your landing page price.</span></label>
+          <div class="hp" aria-hidden="true"><label for="company_fax">Leave this empty</label><input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="source" value="landing-pages">
+          <button class="btn btn-go" type="submit" id="lead-submit">Request my landing page <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+          <p class="fine">We'll only use your details to reply to this request. See our <a href="/privacy">privacy policy</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="The Method Co. home"><svg aria-hidden="true"><use href="#mark"/></svg><span class="word">The Method Co<i>.</i></span></a>
+    <nav aria-label="Footer">
+      <a href="https://calculators.themethodco.co/">Instant Pricing Tool</a>
+      <a href="/">Our work</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+    <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
+  </div>
+</footer>
+<a class="btn btn-go mobile-cta" href="#start">Request your landing page</a>
+
+<script>
+(function () {
+  var DEMOS = [
+    { id: 'cleaning', cat: 'Cleaning company', name: 'Halcyon Clean', goal: 'Request a quote', url: 'halcyon-clean.ie', blurb: 'Light and calm, with a service picker that feeds a two-minute quote form.' },
+    { id: 'beauty', cat: 'Beauty and aesthetics', name: 'Maison Aurelle', goal: 'Book a consultation', url: 'maisonaurelle.ie', blurb: 'Editorial and soft, with treatment cards and a sticky booking bar on phones.' },
+    { id: 'renovation', cat: 'Home renovation', name: 'Northgrain', goal: 'Request a project consultation', url: 'northgrain.ie', blurb: 'Bold and architectural, with a before and after slider and a three-step enquiry.' },
+    { id: 'fitness', cat: 'Personal trainer', name: 'VOLT Coaching', goal: 'Apply for a consultation', url: 'voltcoaching.ie', blurb: 'High contrast and energetic, with programme pricing and a qualifying application.' },
+    { id: 'restaurant', cat: 'Restaurant event', name: 'Oriel', goal: 'Request a table', url: 'oriel-galway.ie', blurb: 'Cinematic and candlelit, with the menu, the dates and a reservation request.' }
+  ];
+  var BASE = 'demos/';
+
+  /* Hero device stack */
+  var view = document.getElementById('hero-view'), phone = document.getElementById('hero-phone'), dots = document.getElementById('hero-dots');
+  var urlEl = document.getElementById('hero-url'), cap = document.getElementById('hero-cap'), cur = 0, timer = null;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  DEMOS.forEach(function (d, i) {
+    view.insertAdjacentHTML('beforeend', '<img src="previews/' + d.id + '.jpg" alt="" width="880" height="2337"' + (i ? ' loading="lazy"' : '') + '>');
+    phone.insertAdjacentHTML('beforeend', '<img src="previews/' + d.id + '-mobile.jpg" alt="" width="390" height="844"' + (i ? ' loading="lazy"' : '') + '>');
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Show the ' + d.cat.toLowerCase() + ' demo');
+    b.addEventListener('click', function () { show(i); restart(); }); dots.appendChild(b);
+  });
+  function show(i) {
+    cur = i; var d = DEMOS[i];
+    [view, phone].forEach(function (el) { [].forEach.call(el.children, function (img, j) { img.classList.toggle('on', j === i); }); });
+    [].forEach.call(dots.children, function (b, j) { b.setAttribute('aria-current', j === i); });
+    urlEl.textContent = d.url; cap.innerHTML = '<b>' + d.cat + '</b> · ' + d.goal;
+  }
+  function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show((cur + 1) % DEMOS.length); }, 3600); }
+  show(0); restart();
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else restart(); });
+
+  /* Showcase cards */
+  var cards = document.getElementById('cards'), swipe = document.getElementById('swipe');
+  DEMOS.forEach(function (d, i) {
+    cards.insertAdjacentHTML('beforeend',
+      '<a class="card reveal" href="' + BASE + d.id + '/" aria-label="View live demo: ' + d.name + ', ' + d.cat.toLowerCase() + '">' +
+        '<div class="frame"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>' + d.url + '</span></div>' +
+        '<div class="shot"><img src="previews/' + d.id + '.jpg" alt="" loading="lazy" width="880" height="2337">' +
+        '<div class="mini-phone" aria-hidden="true"><img src="previews/' + d.id + '-mobile.jpg" alt="" loading="lazy" width="390" height="844"></div></div></div>' +
+        '<div class="meta"><div><span class="cat">' + d.cat + '</span><h3>' + d.name + '</h3><p><strong style="color:#E5E7EB;font-weight:600">Goal: ' + d.goal.toLowerCase() + '.</strong> ' + d.blurb + '</p></div>' +
+        '<span class="go">View live demo <svg width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></span></div></a>');
+    swipe.insertAdjacentHTML('beforeend', '<i' + (i ? '' : ' class="on"') + '></i>');
+  });
+  function setFrameHeights() { cards.querySelectorAll('.shot').forEach(function (s) { s.style.setProperty('--frame-h', s.clientHeight + 'px'); }); }
+  setFrameHeights(); addEventListener('resize', setFrameHeights);
+  cards.addEventListener('scroll', function () {
+    var w = cards.firstElementChild.getBoundingClientRect().width + 14, i = Math.round(cards.scrollLeft / w);
+    [].forEach.call(swipe.children, function (el, j) { el.classList.toggle('on', j === i); });
+  }, { passive: true });
+
+  /* Reveal on scroll */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .1, rootMargin: '0px 0px -40px 0px' }) : null;
+  document.querySelectorAll('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  /* Sticky mobile CTA: hidden over the hero and the form */
+  var mob = document.querySelector('.mobile-cta'), hero = document.querySelector('.hero'), start = document.getElementById('start');
+  function sticky() { var h = hero.getBoundingClientRect(), s = start.getBoundingClientRect(); mob.classList.toggle('show', h.bottom < 0 && !(s.top < innerHeight && s.bottom > 0)); }
+  addEventListener('scroll', sticky, { passive: true }); sticky();
+
+  document.querySelector('[data-upsell]').addEventListener('click', function () { document.getElementById('website_upgrade').checked = true; });
+  document.querySelector('[data-year]').textContent = new Date().getFullYear();
+
+  /* Lead form: saved by /api/leads. Success is only shown once the server confirms. */
+  var form = document.getElementById('lead-form'), status = document.getElementById('lead-status'), submit = document.getElementById('lead-submit');
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var RULES = {
+    business_name: function (v) { return v ? '' : 'Please add your business name.'; },
+    contact_name: function (v) { return v ? '' : 'Please add your name.'; },
+    email: function (v) { return EMAIL.test(v) ? '' : 'Please add a valid email address.'; },
+    website: function (v) { return !v || /^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(v) ? '' : "That doesn't look like a web address."; },
+    category: function (v) { return v ? '' : 'Please choose a category.'; },
+    goal: function (v) { return v ? '' : 'Please choose the main goal.'; }
+  };
+  function setErr(id, msg) { var el = form.elements[id]; if (!el) return; el.setAttribute('aria-invalid', msg ? 'true' : 'false'); var e = document.getElementById(id + '-err'); if (e) e.textContent = msg || ''; if (msg) el.setAttribute('aria-describedby', id + '-err'); }
+  function check(id) { var msg = RULES[id](form.elements[id].value.trim()); setErr(id, msg); return !msg; }
+  Object.keys(RULES).forEach(function (id) {
+    form.elements[id].addEventListener('blur', function () { if (form.elements[id].value || form.elements[id].getAttribute('aria-invalid') === 'true') check(id); });
+    form.elements[id].addEventListener('input', function () { if (form.elements[id].getAttribute('aria-invalid') === 'true') check(id); });
+  });
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fallback(data) {
+    var body = 'Business: ' + data.business_name + '\nName: ' + data.contact_name + '\nEmail: ' + data.email + '\nWebsite: ' + (data.website || '-') +
+      '\nCategory: ' + data.category + '\nGoal: ' + data.goal + '\nFull website quote too: ' + (data.website_upgrade ? 'yes' : 'no') + '\n\n' + (data.notes || '');
+    return 'mailto:support@themethodco.co?subject=' + encodeURIComponent('Landing page request: ' + data.business_name) + '&body=' + encodeURIComponent(body);
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.classList.remove('show');
+    var bad = Object.keys(RULES).filter(function (id) { return !check(id); });
+    if (bad.length) { form.elements[bad[0]].focus(); return; }
+    var data = {};
+    ['business_name', 'contact_name', 'email', 'website', 'category', 'goal', 'notes', 'source', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    data.website_upgrade = form.elements.website_upgrade.checked;
+    submit.disabled = true; submit.firstChild.textContent = 'Sending… ';
+    fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
+      .then(function (r) {
+        if (r.body && r.body.ok) {
+          document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
+            '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>We\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
+            '<p>Want to get started sooner? Send us a message and mention your business name.</p><a class="btn btn-go" href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">Message us on WhatsApp</a></div>';
+          document.querySelector('#lead-body .done').focus();
+          return;
+        }
+        if (r.status === 422 && r.body.errors) {
+          Object.keys(r.body.errors).forEach(function (k) { setErr(k, r.body.errors[k]); });
+          var first = Object.keys(r.body.errors)[0]; if (form.elements[first]) form.elements[first].focus();
+        } else {
+          status.innerHTML = 'Sorry, your request wasn\'t saved, so nothing has been sent yet. Please <a href="' + esc(fallback(data)) + '">email it to us instead</a> (we\'ve filled it in for you) or <a href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">message us on WhatsApp</a>.';
+          status.classList.add('show'); status.focus && status.setAttribute('tabindex', '-1'); status.focus();
+        }
+      })
+      .catch(function () {
+        status.innerHTML = 'We couldn\'t reach our server, so your request wasn\'t sent. Check your connection and try again, or <a href="' + esc(fallback(data)) + '">email it to us instead</a>.';
+        status.classList.add('show'); status.setAttribute('tabindex', '-1'); status.focus();
+      })
+      .then(function () { if (document.body.contains(submit)) { submit.disabled = false; submit.firstChild.textContent = 'Request my landing page '; } });
+  });
+})();
+</script>
+</body>
+</html>

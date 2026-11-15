@@ -119,6 +119,21 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
               {label}
             </a>
           ))}
+          <a
+            href="/landing-pages/"
+            className="nav-link"
+            style={{
+              ...INTER,
+              fontWeight: 500,
+              color: B.green,
+              fontSize: "0.85rem",
+              padding: "0.4rem 0.8rem",
+              borderRadius: 3,
+              transition: "color 0.18s ease",
+            }}
+          >
+            Landing pages
+          </a>
           {CV_URL && (
             <a
               href={CV_URL}
@@ -226,6 +241,19 @@ export default function Nav({ hrefBase = "" }: { hrefBase?: string } = {}) {
                 {label}
               </a>
             ))}
+            <a
+              href="/landing-pages/"
+              onClick={() => setOpen(false)}
+              style={{
+                ...INTER,
+                color: B.green,
+                fontSize: "1rem",
+                padding: "0.85rem 0",
+                borderBottom: `1px solid ${B.border}`,
+              }}
+            >
+              Landing pages, from €250
+            </a>
             {CV_URL && (
               <a
                 href={CV_URL}

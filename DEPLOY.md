@@ -12,7 +12,12 @@ branch, `main`.
     price. GET redirects (303) to Stripe, POST returns `{ url }`.
   - `/api/ebook-download?session_id=cs_...` checks with Stripe that the session
     is paid and bought this book, then returns the PDF.
+  - `/api/leads` stores enquiries from the landing pages funnel in D1 (POST),
+    and exports them as CSV for you (GET, behind `LEADS_ADMIN_TOKEN`).
 - `/thank-you-last-human-job` is a static page, no Function needed.
+- `/landing-pages/` is the High-Conversion Landing Pages sales page, and
+  `/landing-pages/demos/<name>/` its five demos. Plain HTML in
+  `client/public/landing-pages/`, copied into the build as they are.
 
 The ebook PDF lives in `private/`. `npm run build` copies it to
 `functions/_generated/ebook.bin`, and Wrangler bundles it into the Function.
@@ -29,6 +34,27 @@ not in this repository and must never be.
 | `STRIPE_SECRET_KEY` | Stripe secret key |
 | `STRIPE_PRICE_ID` | The existing price for The Last Human Job |
 | `BASE_URL` | `https://themethodco.co`, used in Stripe's return links |
+| `LEADS_ADMIN_TOKEN` | A long random password for downloading enquiries (secret) |
+
+And one binding (Pages project > Settings > Bindings > Add > D1 database):
+
+| Variable name | Database |
+| --- | --- |
+| `LEADS_DB` | A D1 database, for example `method-leads` (create it under Storage & Databases > D1) |
+
+The `leads` table creates itself on the first enquiry. Until `LEADS_DB` is
+bound, the form says the request was not saved and offers email instead; it
+never shows a false success.
+
+## Reading enquiries
+
+- Cloudflare dashboard > Storage & Databases > D1 > method-leads > Console:
+  `SELECT * FROM leads ORDER BY id DESC;`
+- Or download a CSV (works in Excel):
+
+```bash
+curl -H "Authorization: Bearer YOUR_LEADS_ADMIN_TOKEN" https://themethodco.co/api/leads -o leads.csv
+```
 
 ## Deploy
 
@@ -48,8 +74,25 @@ Use any other `--branch` name for a preview that leaves production alone.
 ## Test locally
 
 ```bash
-npx wrangler pages dev dist/public --binding STRIPE_SECRET_KEY=sk_test_... --binding STRIPE_PRICE_ID=price_... --binding BASE_URL=http://localhost:8788
+npx wrangler pages dev dist/public --d1 LEADS_DB=local-leads --binding LEADS_ADMIN_TOKEN=local-test --binding STRIPE_SECRET_KEY=sk_test_... --binding STRIPE_PRICE_ID=price_... --binding BASE_URL=http://localhost:8788
 ```
+
+Then open http://localhost:8788/landing-pages/.
+
+## The Instant Pricing Tool site
+
+`sites/calculators/` is the source of calculators.themethodco.co, a separate
+Pages project called `method-calculators`. It is plain HTML with no build step.
+`.github/workflows/deploy-calculators.yml` deploys it when that folder changes
+on `main`; by hand:
+
+```bash
+npx wrangler pages deploy sites/calculators --project-name method-calculators --branch main
+```
+
+Its Stripe Payment Link is set in `CONFIG.stripeLink` near the bottom of
+`sites/calculators/index.html`. Until a real link is there, the pay buttons
+open WhatsApp instead.
 
 ## Roll back
 

@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Instant Pricing Tool | The Method Co.</title>
+<meta name="description" content="Give your customers an instant price estimate and capture more enquiries automatically. Built for Irish service businesses. €150 instead of €299 for the first 5 businesses.">
+<meta name="theme-color" content="#0A0F14">
+<link rel="canonical" href="https://calculators.themethodco.co/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Method Co.">
+<meta property="og:title" content="Instant Pricing Tool | The Method Co.">
+<meta property="og:description" content="Give your customers an instant price estimate. Capture more enquiries automatically.">
+<meta property="og:url" content="https://calculators.themethodco.co/">
+<meta property="og:image" content="https://themethodco.co/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&family=Barlow+Condensed:wght@700;800&family=Fredoka:wght@600;700&family=Newsreader:opsz,wght@6..72,600&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: bright white page, brand navy ink, brand green for every action and the price highlight.
+   Hero = hook + deal on the left, a 3D ring of the five live calculators on the right.
+   Then: the problem vs the WhatsApp lead it produces, demos, 4 steps, the €150 deal, FAQ, final push. */
+:root {
+  --bg: #FFFFFF;
+  --tint: #F5F7F9;
+  --ink: #0A0F14;
+  --soft: #4B5563;
+  --line: #E5E7EB;
+  --green: #22D87A;
+  --green-deep: #0F8A54;
+  --green-ink: #052E16;
+  --green-hover: #4BF59A;
+  --mint: #DDFBEA;
+  --hl: rgba(34,216,122,.38);
+  --display: "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--ink); }
+a { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--green-deep); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; }
+p { margin: 0; }
+.eyebrow { display: inline-block; font-weight: 600; font-size: .9rem; color: var(--soft); margin: 0 0 12px; }
+.lede { color: var(--soft); font-size: 1.08rem; max-width: 54ch; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 24px; font: 700 1rem/1.15 var(--body); border-radius: 14px; text-align: center; text-decoration: none; cursor: pointer; border: 0; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; }
+.btn svg { width: 22px; height: 22px; flex: none; }
+.btn-go { background: var(--green); color: var(--green-ink); box-shadow: 0 10px 24px -12px rgba(34,216,122,.85); }
+.btn-go:hover { background: var(--green-hover); transform: translateY(-2px); }
+.btn-ink { background: var(--ink); color: #fff; }
+.btn-ink:hover { background: #1F2937; transform: translateY(-2px); }
+.btn-ghost { background: var(--bg); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+
+/* Offer bar + header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; }
+.offer-bar { background: var(--ink); color: #fff; font: 500 .9rem/1.3 var(--body); }
+.offer-bar b { color: var(--green); font-weight: 700; }
+.offer-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 14px; padding-block: 8px; text-align: center; }
+.offer-bar s { opacity: .6; }
+.site-header { background: rgba(255,255,255,.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 66px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand .mark { width: 40px; height: 28px; flex: none; color: var(--ink); }
+.brand .word { font: 700 .98rem/1 var(--display); letter-spacing: .08em; text-transform: uppercase; padding-left: 12px; border-left: 1px solid rgba(10,15,20,.25); }
+.brand .word i { font-style: normal; color: var(--green); }
+.nav { display: flex; align-items: center; gap: 24px; }
+.nav a:not(.btn) { color: var(--soft); text-decoration: none; font-size: .92rem; font-weight: 500; }
+.nav a:not(.btn):hover { color: var(--ink); }
+.nav .btn { min-height: 42px; padding: 0 16px; font-size: .9rem; border-radius: 11px; white-space: nowrap; }
+@media (max-width: 860px) { .nav a:not(.btn) { display: none; } }
+@media (max-width: 420px) { .nav .btn .long { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; padding-block: clamp(32px, 5vw, 72px) clamp(48px, 6vw, 88px); background: radial-gradient(900px 500px at 80% 40%, #E3FBEE 0%, transparent 60%), radial-gradient(700px 420px at 0% 0%, #F1F5F9 0%, transparent 60%); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hook { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: .9rem; font-weight: 500; margin-bottom: 20px; box-shadow: 0 4px 14px -8px rgba(12,18,38,.2); }
+.hook b { white-space: nowrap; flex: none; background: var(--green); color: var(--green-ink); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; }
+.hero h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -0.05em; font-weight: 800; margin-bottom: 22px; }
+.hero h1 span { display: block; }
+.hero h1 em { font-style: normal; color: var(--green-deep); }
+.hero .lede { margin-bottom: 26px; }
+.hero .lede strong { color: var(--ink); font-weight: 600; }
+.deal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 16px 20px; border-radius: 18px; background: var(--bg); border: 1.5px solid var(--ink); margin-bottom: 22px; max-width: 540px; box-shadow: 6px 6px 0 var(--ink); }
+.price { display: flex; align-items: baseline; gap: 10px; }
+.price s { font: 600 1.6rem/1 var(--display); color: #6B7280; text-decoration-thickness: 2px; text-decoration-color: rgba(10,15,20,.55); }
+.price b { font: 800 3.6rem/.9 var(--display); letter-spacing: -.045em; background: linear-gradient(transparent 60%, var(--hl) 60%); padding: 0 .06em; }
+.deal-copy { display: grid; gap: 6px; min-width: 0; flex: 1; }
+.deal-copy p { font-weight: 600; font-size: .95rem; }
+.slots { display: flex; align-items: center; gap: 5px; font-size: .84rem; color: var(--soft); }
+.slots i { width: 20px; height: 8px; border-radius: 4px; background: var(--green); }
+.slots i.gone { background: var(--line); }
+.slots span { margin-left: 6px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.ticks { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 18px 0 0; font-size: .88rem; color: var(--soft); }
+.ticks li { display: flex; align-items: center; gap: 6px; }
+.ticks li::before, .included li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23052E16' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; flex: none; }
+@media (max-width: 480px) { .hero-ctas .btn { flex: 1 1 100%; } .deal-copy { flex: 1 1 100%; } }
+
+/* 3D ring */
+.stage { position: relative; height: 540px; perspective: 1500px; perspective-origin: 50% 35%; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.stage.drag { cursor: grabbing; }
+.floor { position: absolute; left: 50%; top: 72%; width: 560px; height: 160px; margin-left: -280px; border-radius: 50%; background: radial-gradient(closest-side, rgba(12,18,38,.18), rgba(12,18,38,.05) 60%, transparent); transform: rotateX(78deg); pointer-events: none; }
+.tilt { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .4s ease-out; }
+.ring { --cw: 240px; --ch: 300px; --r: 290px; position: absolute; left: 50%; top: 46%; width: var(--cw); height: var(--ch); margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2); transform-style: preserve-3d; }
+.card3d { position: absolute; inset: 0; display: block; border-radius: 22px; overflow: hidden; container-type: inline-size; text-decoration: none; color: inherit; box-shadow: 0 30px 50px -24px rgba(12,18,38,.45), 0 0 0 1px rgba(12,18,38,.08); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.core { position: absolute; left: 50%; top: 46%; width: 120px; height: 120px; margin: -60px 0 0 -60px; animation: bob 6s ease-in-out infinite; pointer-events: none; }
+.core svg { width: 100%; height: 100%; filter: drop-shadow(0 24px 30px rgba(10,15,20,.35)); }
+@keyframes bob { 0%, 100% { transform: translateY(-6px) rotateY(-14deg); } 50% { transform: translateY(8px) rotateY(14deg); } }
+.stage-hint { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; font-size: .82rem; color: var(--soft); }
+@media (max-width: 960px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .stage { height: 440px; } .ring { --cw: 200px; --ch: 250px; --r: 230px; } .core { width: 92px; height: 92px; margin: -46px 0 0 -46px; } .floor { width: 440px; margin-left: -220px; } }
+@media (max-width: 420px) { .stage { height: 380px; } .ring { --cw: 170px; --ch: 212px; --r: 190px; } }
+
+/* Mini calculators (ring + gallery). Sized in cqw so they scale with their card. */
+.mini { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 3cqw; padding: 8cqw; }
+.mini .nm { font-size: 5cqw; font-weight: 700; }
+.mini .q { font-size: 7.5cqw; line-height: 1.05; font-weight: 800; }
+.mini .ctl { height: 3cqw; border-radius: 9cqw; position: relative; }
+.mini .ctl::after { content: ""; position: absolute; top: 50%; left: var(--k, 60%); width: 7cqw; height: 7cqw; border-radius: 50%; transform: translate(-50%, -50%); background: currentColor; }
+.mini .res { margin-top: auto; border-radius: 6cqw; padding: 5cqw; }
+.mini .res small { display: block; font-size: 4cqw; opacity: .75; }
+.mini .res b { display: block; font-size: 11cqw; line-height: 1.05; letter-spacing: -.02em; }
+.mini .wa { background: #25D366; color: #052E16; border-radius: 4cqw; text-align: center; font: 700 4.4cqw/1 var(--body); padding: 4cqw; }
+.mini .chips { display: flex; flex-wrap: wrap; gap: 2cqw; }
+.mini .chips span { font-size: 4cqw; font-weight: 700; padding: 2cqw 3.6cqw; border-radius: 99cqw; }
+.c-solar { background: #EAF3FB; color: #0B3242; font-family: "Sora", sans-serif; }
+.c-solar .ctl { background: #D6E3EE; color: #F5A524; --k: 45%; }
+.c-solar .res { background: #0B3242; color: #fff; }
+.c-solar .res b { color: #F5A524; }
+.c-build { background-color: #F3F6F9; background-image: linear-gradient(rgba(18,53,91,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(18,53,91,.08) 1px, transparent 1px); background-size: 6cqw 6cqw; color: #12355B; font-family: "Barlow Condensed", sans-serif; }
+.c-build .q { text-transform: uppercase; font-size: 9cqw; }
+.c-build .plan { height: 22cqw; display: flex; }
+.c-build .plan i { flex: 1.3; border: .8cqw solid #12355B; }
+.c-build .plan i + i { flex: 1; margin-left: -.8cqw; border-style: dashed; background: #FFF8CC; }
+.c-build .res { background: #fff; border: .8cqw solid #12355B; border-radius: 0; }
+.c-clean { background: #E8F7F1; color: #1B2B4B; font-family: "Fredoka", sans-serif; }
+.c-clean .chips span { background: #fff; }
+.c-clean .chips span.on { background: #0FA37F; color: #fff; }
+.c-clean .res { background: #fff; text-align: center; }
+.c-clean .res b { color: #0FA37F; font-size: 14cqw; }
+.c-acct { background: #F5F6F3; color: #1C1F2A; }
+.c-acct .q { font-family: "Newsreader", serif; font-weight: 600; }
+.c-acct .ledger { background: #fff; border-radius: 2cqw; padding: 4cqw; font-size: 4cqw; display: grid; gap: 2cqw; margin-top: auto; }
+.c-acct .ledger div { display: flex; gap: 2cqw; }
+.c-acct .ledger div i { flex: 1; border-bottom: .5cqw dotted #B9BDB3; transform: translateY(-1cqw); }
+.c-acct .ledger .tot { border-top: .6cqw solid #1C1F2A; padding-top: 2cqw; font-weight: 700; }
+.c-acct .ledger .tot b { color: #0E6B4F; font-family: "Newsreader", serif; font-size: 8cqw; }
+.c-fit { background: #F4F1EC; color: #161616; font-family: "Unbounded", sans-serif; }
+.c-fit .q { text-transform: uppercase; font-size: 7cqw; letter-spacing: -.03em; }
+.c-fit .donut { margin: auto auto 0; width: 50cqw; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(#FF4D1C 0 32%, #161616 32% 73%, #C9C2B6 73% 100%); display: grid; place-items: center; position: relative; }
+.c-fit .donut::after { content: ""; position: absolute; inset: 7cqw; background: #F4F1EC; border-radius: 50%; }
+.c-fit .donut b { position: relative; z-index: 1; font-size: 7cqw; text-align: center; line-height: 1; }
+.c-fit .donut b small { display: block; font: 600 3.4cqw var(--body); }
+
+/* Sections */
+.section { padding-block: clamp(72px, 9vw, 120px); }
+.tinted { background: var(--tint); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px 64px; align-items: end; margin-bottom: 48px; }
+@media (max-width: 860px) { .section-head { grid-template-columns: minmax(0, 1fr); } }
+
+/* Problem vs result */
+.pain { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+@media (max-width: 900px) { .pain { grid-template-columns: minmax(0, 1fr); } }
+.pains { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 12px; }
+.pains li { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; font-weight: 600; font-size: 1.05rem; }
+.pains li::before { content: "✕"; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #FDE8E8; color: #C0392B; font-size: .8rem; font-weight: 800; }
+.pains small { display: block; color: var(--soft); font-weight: 400; font-size: .92rem; margin-top: 2px; }
+.phone-wrap { perspective: 1400px; display: grid; justify-items: center; }
+.phone { width: min(100%, 340px); border-radius: 40px; background: var(--ink); padding: 12px; box-shadow: 0 50px 80px -40px rgba(12,18,38,.55); transform: rotateY(-16deg) rotateX(6deg); transition: transform .5s ease; }
+.phone:hover { transform: rotateY(0) rotateX(0); }
+@media (max-width: 900px) { .phone { transform: rotateY(-8deg) rotateX(4deg); } }
+.screen { border-radius: 30px; overflow: hidden; background: #EFE7DD; }
+.chat-top { background: #075E54; color: #fff; padding: 14px 16px; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: .95rem; }
+.chat-top i { width: 32px; height: 32px; border-radius: 50%; background: #0FA37F; display: grid; place-items: center; font-style: normal; font-weight: 800; }
+.chat-top small { display: block; font-weight: 400; opacity: .8; font-size: .75rem; }
+.chat { padding: 16px 12px 22px; display: grid; gap: 8px; font-size: .9rem; line-height: 1.45; }
+.bubble { max-width: 86%; padding: 8px 10px 6px; border-radius: 10px; background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+.bubble.me { justify-self: end; background: #D9FDD3; }
+.bubble time { display: block; text-align: right; font-size: .7rem; color: #667781; }
+.bubble b { font-weight: 600; }
+.label-new { justify-self: center; background: #fff; border-radius: 8px; padding: 4px 10px; font-size: .75rem; color: #54656F; }
+.phone-cap { margin-top: 16px; font-size: .9rem; color: var(--soft); text-align: center; max-width: 34ch; }
+
+/* Demo gallery */
+.demos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.demo { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); perspective: 900px; }
+.demo-frame { position: relative; overflow: hidden; border-radius: 20px; aspect-ratio: 4 / 5; max-width: 100%; container-type: inline-size; box-shadow: 0 0 0 1px var(--line); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease; }
+.demo:hover .demo-frame, .demo:focus-visible .demo-frame { transform: rotateX(6deg) rotateY(-8deg) translateY(-6px); box-shadow: 0 30px 50px -24px rgba(12,18,38,.4), 0 0 0 1px var(--line); }
+.demo:focus-visible { outline: none; }
+.demo h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; margin-top: 14px; }
+.demo p { color: var(--soft); font-size: .9rem; margin-top: 2px; }
+.demo .open { margin-top: 8px; font-weight: 700; font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 1020px) { .demos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .demos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; } }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.step { background: var(--bg); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+.step-num { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--tint); font: 800 1.1rem/1 var(--display); margin-bottom: 16px; }
+.step:last-child .step-num { background: var(--green); color: var(--green-ink); }
+.step h3 { font-size: 1.4rem; letter-spacing: -.02em; margin-bottom: 6px; }
+.step p { color: var(--soft); font-size: .95rem; }
+.step p strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* Pricing */
+.pricing { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+@media (max-width: 900px) { .pricing { grid-template-columns: minmax(0, 1fr); } }
+.included { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 14px; }
+.included li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
+.included li::before { width: 24px; height: 24px; background-size: 70%; }
+.included b { display: block; font-weight: 700; }
+.included span { color: var(--soft); font-size: .94rem; }
+.ticket { position: relative; border-radius: 28px; padding: clamp(24px, 4vw, 40px); background: var(--bg); border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); transform: perspective(1200px) rotateY(-4deg) rotateX(2deg); transition: transform .5s ease; }
+.ticket:hover { transform: none; }
+@media (max-width: 900px) { .ticket { transform: none; box-shadow: 6px 6px 0 var(--ink); } }
+.ticket-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.badge { background: var(--mint); color: #075E36; font: 700 .82rem/1 var(--body); padding: 8px 12px; border-radius: 999px; }
+.ticket .price { flex-wrap: wrap; margin-bottom: 18px; }
+.ticket .price b { font-size: clamp(4.6rem, 11vw, 6.6rem); }
+.ticket .price s { font-size: 2.2rem; }
+.ticket .price small { flex-basis: 100%; color: var(--soft); font-size: .95rem; }
+.ends { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; padding: 12px 14px; border-radius: 14px; background: var(--tint); font-size: .92rem; }
+.ends b { font-weight: 700; }
+.ticket .slots { margin-bottom: 20px; font-size: .9rem; }
+.ticket .btn { width: 100%; }
+.ticket .btn + .btn { margin-top: 10px; }
+.pay-note { margin-top: 14px; font-size: .84rem; color: var(--soft); text-align: center; }
+.offer-ended .when-live { display: none !important; }
+.when-ended { display: none !important; }
+.offer-ended .when-ended { display: revert !important; }
+
+/* FAQ */
+.faq { max-width: 820px; display: grid; gap: 10px; }
+.faq details { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 0 20px; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 40px 18px 0; position: relative; font-weight: 700; font-size: 1.05rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; font-weight: 700; transition: transform .2s ease; }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { color: var(--soft); padding: 0 0 18px; max-width: 64ch; }
+
+/* Final push */
+.cta-card { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; padding: clamp(28px, 5vw, 64px); border-radius: 32px; background: var(--ink); color: #fff; overflow: hidden; position: relative; }
+.cta-card::after { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; bottom: -260px; border-radius: 50%; background: radial-gradient(closest-side, rgba(34,216,122,.35), transparent); pointer-events: none; }
+.cta-card h2 { font-size: clamp(2.4rem, 6vw, 4.4rem); margin-bottom: 16px; }
+.cta-card .lede { color: #AEB6C8; margin-bottom: 26px; }
+.cta-card .eyebrow { color: var(--green); }
+.contact { display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+.contact .btn-ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.3); }
+.email-line { margin-top: 16px; font-size: .9rem; color: #AEB6C8; }
+.email-line span { color: #fff; user-select: all; -webkit-user-select: all; }
+.cta-logo { justify-self: end; width: min(100%, 240px); position: relative; z-index: 1; }
+.cta-logo svg { width: 100%; height: auto; display: block; animation: bob 6s ease-in-out infinite; }
+@media (max-width: 760px) { .cta-card { grid-template-columns: minmax(0, 1fr); } .cta-logo { grid-row: 1; justify-self: start; width: 84px; } }
+
+.site-footer { padding-block: 40px 110px; color: var(--soft); font-size: .88rem; }
+.site-footer .cross { color: var(--ink); font-weight: 600; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
+.legal-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.legal-links a { color: var(--soft); }
+
+.wa-float { position: fixed; z-index: 35; right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 10px; background: var(--green); color: var(--green-ink); text-decoration: none; font: 700 .92rem/1 var(--body); padding: 14px 18px 14px 14px; border-radius: 999px; box-shadow: 0 14px 30px -10px rgba(34,216,122,.8), 0 4px 12px rgba(10,15,20,.18); transition: transform .15s ease; }
+.wa-float:hover { transform: translateY(-2px) scale(1.03); }
+.wa-float svg { width: 26px; height: 26px; }
+.wa-float::before { content: ""; position: absolute; inset: 0; border-radius: inherit; animation: ping 2.6s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34,216,122,.5); } 70%, 100% { box-shadow: 0 0 0 16px rgba(34,216,122,0); } }
+@media (max-width: 480px) { .wa-float span { display: none; } .wa-float { padding: 14px; } }
+</style>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='80' y1='85.2' x2='160' y2='0'%3E%3Cstop offset='0' stop-color='%230F8A54'/%3E%3Cstop offset='.55' stop-color='%2322D87A'/%3E%3Cstop offset='1' stop-color='%234BF59A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='13' fill='%230A0F14'/%3E%3Cg transform='translate(7.68 14.98) scale(.304)'%3E%3Cpath d='M0 0L80 63.2V85.2L29 44.91V112H0Z' fill='%23fff'/%3E%3Cpath d='M160 0L80 63.2V85.2L131 44.91V112H160Z' fill='url(%23g)'/%3E%3C/g%3E%3C/svg%3E">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.7l4.8-1.3A9.8 9.8 0 1 0 12 2.2Zm0 17.8c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2l-.5-.2Z"/></symbol>
+  <symbol id="logo" viewBox="0 0 160 112">
+    <defs><linearGradient id="mgrad" gradientUnits="userSpaceOnUse" x1="80" y1="85.2" x2="160" y2="0"><stop offset="0" stop-color="#0F8A54"/><stop offset=".55" stop-color="#22D87A"/><stop offset="1" stop-color="#4BF59A"/></linearGradient></defs>
+    <path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="currentColor"/>
+    <path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="url(#mgrad)"/>
+  </symbol>
+  <symbol id="logo-tile" viewBox="0 0 240 240">
+    <rect width="240" height="240" rx="52" fill="#0A0F14"/>
+    <g transform="translate(40 64)"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="#fff"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="url(#mgrad)"/></g>
+  </symbol>
+</svg>
+
+<div class="top">
+  <div class="offer-bar when-live" role="region" aria-label="Current offer">
+    <div class="wrap">
+      <span>Launch offer: Instant Pricing Tool for <s>€299</s> <b>€150</b>. First 5 businesses, until <span data-end-date>30 November</span>.</span>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="The Method Co., back to top"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg><span class="word">The Method Co<i>.</i></span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#demos">Demos</a>
+        <a href="#how">How it works</a>
+        <a href="#deal">Price</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-go" aria-label="Free preview on WhatsApp" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg><span class="long">Free preview</span></a>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="hook"><b>Instant Pricing Tool</b>For Irish service businesses</p>
+        <h1><span>Give customers a price.</span><span><em>Get more enquiries.</em></span></h1>
+        <p class="lede">Most people won't ring for a quote. Give them an instant price estimate on your own website instead, any hour of the day. <strong>When they like the number, one tap sends you the enquiry on WhatsApp with every detail already filled in.</strong></p>
+        <div class="deal">
+          <div class="price"><s class="when-live" aria-label="Was €299">€299</s><b data-price>€150</b></div>
+          <div class="deal-copy">
+            <p><span class="when-live">One-off. First 5 businesses only.</span><span class="when-ended">One-off price. No monthly fees.</span></p>
+            <div class="slots when-live" data-slots aria-label="Spots left"></div>
+          </div>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Get my free preview</a>
+          <a class="btn btn-ghost" href="#demos">Try the 5 demos</a>
+        </div>
+        <ul class="ticks"><li>Built free before you pay</li><li>Works on your current website</li><li>No monthly fees</li></ul>
+      </div>
+
+      <div class="stage" id="stage" aria-label="Five demo pricing tools on a rotating 3D ring. Drag to spin.">
+        <div class="floor" aria-hidden="true"></div>
+        <div class="tilt" id="tilt">
+          <div class="core" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#logo-tile"/></svg></div>
+          <div class="ring" id="ring">
+            <a class="card3d" href="demos/solar.html" aria-label="Solar savings calculator demo"><div class="mini c-solar"><span class="nm">Brightfield Solar</span><span class="q">How much could solar save you?</span><span class="ctl"></span><div class="res"><small>Saved per year</small><b>€1,240</b></div><div class="wa">Send on WhatsApp</div></div></a>
+            <a class="card3d" href="demos/build.html" aria-label="Extension cost calculator demo"><div class="mini c-build"><span class="nm">KESTREL BUILD</span><span class="q">What will your extension cost?</span><div class="plan"><i></i><i></i></div><div class="res"><small>Estimate</small><b>€68k to €84k</b></div></div></a>
+            <a class="card3d" href="demos/cleaning.html" aria-label="Cleaning quote calculator demo"><div class="mini c-clean"><span class="nm">Spruce</span><span class="q">Your cleaning price</span><div class="chips"><span class="on">Deep clean</span><span>3 bed</span><span>2 bath</span></div><div class="res"><small>Per clean</small><b>€162</b></div><div class="wa">Book on WhatsApp</div></div></a>
+            <a class="card3d" href="demos/accounting.html" aria-label="Accountant fee calculator demo"><div class="mini c-acct"><span class="nm">Ledger &amp; Lane</span><span class="q">Your fixed monthly fee</span><div class="ledger"><div>Ltd accounts<i></i>€165</div><div>VAT returns<i></i>€45</div><div>Payroll<i></i>€37</div><div class="tot">Per month<i></i><b>€247</b></div></div></div></a>
+            <a class="card3d" href="demos/fitness.html" aria-label="Calorie and macro calculator demo"><div class="mini c-fit"><span class="nm">FORGE.PT</span><span class="q">How much should you eat?</span><div class="donut"><b>1,850<small>kcal a day</small></b></div></div></a>
+          </div>
+        </div>
+        <p class="stage-hint">Drag to spin. Tap one to try it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" aria-labelledby="pain-title">
+    <div class="wrap pain">
+      <div>
+        <p class="eyebrow">Sound familiar?</p>
+        <h2 id="pain-title">You're losing jobs before anyone calls you.</h2>
+        <ul class="pains">
+          <li><div>Your website says "call for a quote".<small>Most people won't call. They go to the next company that shows a price.</small></div></li>
+          <li><div>You answer "how much?" ten times a day.<small>On DMs, calls and emails. Half of them never book.</small></div></li>
+          <li><div>Leads arrive with zero details.<small>"Hi, how much for a clean?" Then five messages back and forth.</small></div></li>
+          <li><div>People ghost after you send the price.<small>The number surprised them. An instant estimate sets expectations before you talk.</small></div></li>
+        </ul>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone" role="img" aria-label="Example WhatsApp enquiry sent from a pricing tool">
+          <div class="screen">
+            <div class="chat-top"><i aria-hidden="true">S</i><div>Spruce Cleaning<small>online</small></div></div>
+            <div class="chat">
+              <span class="label-new">Today</span>
+              <div class="bubble me">Hi Spruce! I'd like to book:<br><b>Deep clean</b>, 3 bed, 2 bath<br>Extras: inside oven, inside windows<br><b>Price: €237 per clean</b><br>What days do you have free?<time>09:41</time></div>
+              <div class="bubble">Hi Aoife! Thursday at 10am works. See you then!<time>09:43</time></div>
+            </div>
+          </div>
+        </div>
+        <p class="phone-cap">This is the enquiry that lands on your phone. Every detail, the price already seen, ready to book.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demos" aria-labelledby="demos-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Try them, they work</p><h2 id="demos-title">Five businesses. Five pricing tools.</h2></div>
+        <p class="lede">Made-up businesses, working tools. Change the options, watch the price update, then press the WhatsApp button to see the enquiry your customer would send you.</p>
+      </div>
+      <div class="demos">
+        <a class="demo" href="demos/solar.html"><div class="demo-frame"><div class="mini c-solar" aria-hidden="true"><span class="nm">Brightfield Solar</span><span class="q">How much could solar save you?</span><span class="ctl"></span><div class="res"><small>Saved per year</small><b>€1,240</b></div><div class="wa">Send on WhatsApp</div></div></div><h3>Solar installer</h3><p>Savings, SEAI grant and payback years.</p><span class="open">Try it</span></a>
+        <a class="demo" href="demos/build.html"><div class="demo-frame"><div class="mini c-build" aria-hidden="true"><span class="nm">KESTREL BUILD</span><span class="q">What will your extension cost?</span><div class="plan"><i></i><i></i></div><div class="res"><small>Estimate</small><b>€68k to €84k</b></div></div></div><h3>Builder</h3><p>Extension price range by size and finish.</p><span class="open">Try it</span></a>
+        <a class="demo" href="demos/cleaning.html"><div class="demo-frame"><div class="mini c-clean" aria-hidden="true"><span class="nm">Spruce</span><span class="q">Your cleaning price</span><div class="chips"><span class="on">Deep clean</span><span>3 bed</span><span>2 bath</span></div><div class="res"><small>Per clean</small><b>€162</b></div><div class="wa">Book on WhatsApp</div></div></div><h3>Cleaning company</h3><p>Exact price per clean, extras included.</p><span class="open">Try it</span></a>
+        <a class="demo" href="demos/accounting.html"><div class="demo-frame"><div class="mini c-acct" aria-hidden="true"><span class="nm">Ledger &amp; Lane</span><span class="q">Your fixed monthly fee</span><div class="ledger"><div>Ltd accounts<i></i>€165</div><div>VAT returns<i></i>€45</div><div>Payroll<i></i>€37</div><div class="tot">Per month<i></i><b>€247</b></div></div></div></div><h3>Accountant</h3><p>A fixed monthly fee, itemised.</p><span class="open">Try it</span></a>
+        <a class="demo" href="demos/fitness.html"><div class="demo-frame"><div class="mini c-fit" aria-hidden="true"><span class="nm">FORGE.PT</span><span class="q">How much should you eat?</span><div class="donut"><b>1,850<small>kcal a day</small></b></div></div></div><h3>Personal trainer</h3><p>Calories and macros, then the right plan.</p><span class="open">Try it</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">How it works</p><h2 id="how-title">You try it before you pay a cent.</h2></div>
+        <p class="lede">Four steps. You only decide after step two, once your own pricing tool is working on your own phone.</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><div class="step-num" aria-hidden="true">1</div><h3>Diagnose</h3><p>A 10-minute chat on WhatsApp. <strong>What changes your price?</strong> Size, extras, location, frequency.</p></li>
+        <li class="step"><div class="step-num" aria-hidden="true">2</div><h3>Design</h3><p>I build your pricing tool with your real prices and your colours. <strong>Free. You try it on your phone.</strong></p></li>
+        <li class="step"><div class="step-num" aria-hidden="true">3</div><h3>Deploy</h3><p>Love it? Pay €150 and I add it to your website. No website? It gets a page of its own.</p></li>
+        <li class="step"><div class="step-num" aria-hidden="true">4</div><h3>Deliver</h3><p>Leads land on your WhatsApp or email with every detail. Prices change? Message me.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="deal" aria-labelledby="deal-title">
+    <div class="wrap pricing">
+      <div>
+        <p class="eyebrow">The deal</p>
+        <h2 id="deal-title">One pricing tool. Built around how you price.</h2>
+        <ul class="included">
+          <li><div><b>Your real prices, your rules</b><span>Size, extras, discounts, minimums. Ranges if the job needs a visit.</span></div></li>
+          <li><div><b>Your colours and logo</b><span>Looks like part of your site, not a bolt-on widget.</span></div></li>
+          <li><div><b>Leads to WhatsApp, email or both</b><span>With every answer and the price, so you can reply in one message.</span></div></li>
+          <li><div><b>Works on your current website</b><span>Wix, WordPress, Squarespace, Shopify or anything else.</span></div></li>
+          <li><div><b>2 rounds of changes</b><span>Tweak anything before it goes live.</span></div></li>
+          <li><div><b>Free price updates for 30 days</b><span>Changed your rates? I update it.</span></div></li>
+        </ul>
+      </div>
+      <div class="ticket">
+        <div class="ticket-top">
+          <span class="badge when-live">Only <span data-spots-left>5</span> spots at this price</span>
+          <span class="badge when-ended">Offer ended</span>
+          <span style="color:var(--soft);font-size:.9rem">One-off payment</span>
+        </div>
+        <div class="price"><s class="when-live" aria-label="Was €299">€299</s><b data-price>€150</b><small class="when-live">launch price for the first 5 businesses, then €299</small></div>
+        <p class="ends when-live">Launch price ends <b data-end-date>30 November</b></p>
+        <div class="slots when-live" data-slots></div>
+        <a class="btn btn-go" data-wa="Hi Victor! I'd like one of the €150 Instant Pricing Tool spots. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Claim my spot on WhatsApp</a>
+        <a class="btn btn-ink" data-pay>Approved your preview? Pay €150</a>
+        <p class="pay-note">You only pay after you've tried your free preview. Secure card payment by Stripe. <span class="when-live">Ends <span data-end-date>30 November</span> or when 5 spots are gone.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tinted" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Questions</p><h2 id="faq-title">Go on, ask.</h2></div></div>
+      <div class="faq">
+        <details><summary>What's the catch with €150?</summary><p>No catch. I'm building my portfolio with Irish businesses, and five happy clients are worth more to me right now than one big invoice. After five spots, it's €299.</p></details>
+        <details><summary>Do I need a new website?</summary><p>No. The pricing tool goes into the website you already have. If you don't have one, it can live on a page of its own that you share on Google, Instagram or in your WhatsApp bio.</p></details>
+        <details><summary>My prices depend on the job. Will this work?</summary><p>Yes. The tool can show a range, like "€68k to €84k", and say the final price comes after a visit. Customers still get a ballpark, and you still get the lead with all the details.</p></details>
+        <details><summary>Are there monthly fees?</summary><p>Not to me. The €150 is one-off and the tool runs on your own website.</p></details>
+        <details><summary>Is the preview really free?</summary><p>Yes. I build it before you pay anything. Don't like it? Just say so.</p></details>
+        <details><summary>How fast is it?</summary><p>Usually a few days for the preview once I know how you price. Going live after you say yes is quicker.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta-card">
+        <div>
+          <p class="eyebrow when-live">Only <span data-spots-left>5</span> spots at €150</p>
+          <h2 id="cta-title">Send one message. Get your preview free.</h2>
+          <p class="lede">Tell me your business and how you price. I'll build a working preview in a few days. Like it? It's €150. Don't? You owe me nothing.</p>
+          <div class="contact">
+            <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Message me on WhatsApp</a>
+            <a class="btn btn-ghost" href="mailto:support@themethodco.co?subject=Instant%20Pricing%20Tool%20preview">Email instead</a>
+          </div>
+          <p class="email-line">Email: <span><a href="mailto:support@themethodco.co">support@themethodco.co</a></span></p>
+        </div>
+        <div class="cta-logo" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#logo-tile"/></svg></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="The Method Co., back to top"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg><span class="word">The Method Co<i>.</i></span></a>
+    <nav class="legal-links" aria-label="Legal"><a href="legal.html#terms">Terms</a><a href="legal.html#refunds">Refunds</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#cookies">Cookies</a></nav>
+    <p>Also from us: <a class="cross" href="https://themethodco.co/landing-pages/">High-Conversion Landing Pages</a></p>
+    <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
+  </div>
+</footer>
+
+<a class="wa-float" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: " aria-label="Chat on WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg><span>Chat with Victor</span></a>
+
+<script>
+/* ===== EDIT THESE ===== */
+var CONFIG = {
+  whatsappLink: "https://api.whatsapp.com/message/42QCB5YMFIP3M1", // your WhatsApp Business message link
+  whatsapp: "",                                    // optional: your number (e.g. 353871234567) to pre-fill a message per button
+  stripeLink: "https://buy.stripe.com/REPLACE_ME",  // your Stripe Payment Link for €150 (the charge stays €150)
+  offerEnds: "2026-11-30T23:59:00Z",               // when €150 ends (Dublin is UTC in winter)
+  spotsTotal: 5,                                   // spots at €150
+  spotsTaken: 0,                                   // update this honestly as you sell them
+  email: "support@themethodco.co"
+};
+/* ====================== */
+(function () {
+  var waReady = /^\d{8,15}$/.test(CONFIG.whatsapp) && !/^3530+$/.test(CONFIG.whatsapp);
+  var payReady = /^https:\/\/(buy\.)?stripe\.com\//.test(CONFIG.stripeLink) && CONFIG.stripeLink.indexOf('REPLACE') < 0;
+  function waUrl(msg) {
+    if (waReady) return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
+    if (/^https:\/\/(api\.whatsapp\.com|wa\.me)\//.test(CONFIG.whatsappLink || '')) return CONFIG.whatsappLink;
+    return 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Free calculator preview') + '&body=' + encodeURIComponent(msg);
+  }
+  document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = waUrl(a.getAttribute('data-wa')); a.target = '_blank'; a.rel = 'noopener'; });
+  document.querySelectorAll('[data-pay]').forEach(function (a) {
+    a.href = payReady ? CONFIG.stripeLink : waUrl("Hi Victor! I've approved my calculator preview and I'd like to pay. My business is: ");
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  var end = new Date(CONFIG.offerEnds), left = Math.max(0, CONFIG.spotsTotal - CONFIG.spotsTaken);
+  document.querySelectorAll('[data-end-date]').forEach(function (el) { el.textContent = end.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', timeZone: 'Europe/Dublin' }); });
+  document.querySelectorAll('[data-spots-left]').forEach(function (el) { el.textContent = left; });
+  document.querySelectorAll('[data-slots]').forEach(function (el) {
+    var h = '';
+    for (var i = 0; i < CONFIG.spotsTotal; i++) h += '<i class="' + (i < CONFIG.spotsTaken ? 'gone' : '') + '"></i>';
+    el.innerHTML = h + '<span>' + left + ' of ' + CONFIG.spotsTotal + ' spots left</span>';
+  });
+  var yr = document.querySelector('[data-year]'); if (yr) yr.textContent = new Date().getFullYear();
+
+  function endOffer() {
+    document.documentElement.classList.add('offer-ended');
+    document.querySelectorAll('[data-price]').forEach(function (el) { el.textContent = '€299'; });
+    document.querySelectorAll('[data-pay]').forEach(function (a) { a.textContent = 'Approved your preview? Pay €299'; });
+  }
+  // The launch price is shown until the end date or until the spots are gone. No ticking clock.
+  if (end - new Date() <= 0 || left <= 0) endOffer();
+
+  /* 3D ring */
+  var stage = document.getElementById('stage'), ring = document.getElementById('ring'), tilt = document.getElementById('tilt');
+  var cards = [].slice.call(ring.querySelectorAll('.card3d')), n = cards.length;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var angle = 0, vel = 0, dragging = false, lastX = 0, moved = 0, hover = false;
+  function render() {
+    ring.style.transform = 'rotateY(' + angle + 'deg)';
+    cards.forEach(function (c, i) {
+      var a = (i * 360 / n + angle) * Math.PI / 180, face = Math.cos(a);
+      c.style.transform = 'rotateY(' + (i * 360 / n) + 'deg) translateZ(var(--r))';
+      c.style.opacity = face > 0.15 ? 1 : (0.3 + 4.6 * Math.max(0, face)).toFixed(3);
+      c.style.pointerEvents = face > 0.6 ? 'auto' : 'none';
+      c.tabIndex = face > 0.6 ? 0 : -1;
+    });
+  }
+  function loop() {
+    if (!dragging) { angle += vel; vel *= 0.95; if (!reduce && !hover && Math.abs(vel) < 0.05) angle -= 0.12; }
+    render(); requestAnimationFrame(loop);
+  }
+  stage.addEventListener('pointerdown', function (e) { dragging = true; moved = 0; lastX = e.clientX; stage.classList.add('drag'); });
+  window.addEventListener('pointermove', function (e) {
+    if (dragging) { var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); angle += dx * 0.35; vel = dx * 0.35; return; }
+    if (e.pointerType === 'mouse') {
+      var r = stage.getBoundingClientRect();
+      if (e.clientY > r.top && e.clientY < r.bottom) {
+        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        tilt.style.transform = 'rotateX(' + (-py * 8).toFixed(2) + 'deg) rotateY(' + (px * 10).toFixed(2) + 'deg)';
+      }
+    }
+  });
+  window.addEventListener('pointerup', function () { dragging = false; stage.classList.remove('drag'); });
+  stage.addEventListener('click', function (e) { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+  stage.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  stage.addEventListener('mouseenter', function () { hover = true; });
+  stage.addEventListener('mouseleave', function () { hover = false; tilt.style.transform = ''; });
+  cards.forEach(function (c, i) { c.addEventListener('focus', function () { angle = -i * 360 / n; }); });
+  render(); requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
