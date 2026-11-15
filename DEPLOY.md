@@ -42,6 +42,13 @@ And one binding (Pages project > Settings > Bindings > Add > D1 database):
 | --- | --- |
 | `LEADS_DB` | A D1 database, for example `method-leads` (create it under Storage & Databases > D1) |
 
+Every enquiry is also emailed to you through Formspree form `xkovloyk`, the
+same form the older contact pages use. Set `FORMSPREE_FORM_ID` to use a
+different form, or to `off` to stop the emails. In Formspree, keep reCAPTCHA
+switched off for this form, or it will refuse submissions sent from the
+server. The form succeeds if the enquiry was saved or emailed; it only shows
+an error if both failed.
+
 The `leads` table creates itself on the first enquiry. Until `LEADS_DB` is
 bound, the form says the request was not saved and offers email instead; it
 never shows a false success.

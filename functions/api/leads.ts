@@ -1,9 +1,11 @@
 /**
  * /api/leads: enquiries from the High-Conversion Landing Pages funnel.
  *
- * POST stores one enquiry in the D1 database bound as LEADS_DB and answers
- * { ok: true, id } only once the row is saved. Without the binding it answers
- * 503, so the form never shows a success it did not achieve.
+ * POST stores one enquiry in the D1 database bound as LEADS_DB and emails it
+ * to the owner through Formspree (the same form the older pages use). It
+ * answers { ok: true } once at least one of the two has worked, with
+ * `saved` and `emailed` saying which. If neither worked it answers an error,
+ * so the form never shows a success it did not achieve.
  *
  * GET lists enquiries as CSV for the owner, behind LEADS_ADMIN_TOKEN:
  *   curl -H "Authorization: Bearer <token>" https://themethodco.co/api/leads
@@ -22,7 +24,14 @@ interface D1 {
 interface Env {
   LEADS_DB?: D1;
   LEADS_ADMIN_TOKEN?: string;
+  /** Formspree form that emails enquiries to the owner. Set to "off" to stop emails. */
+  FORMSPREE_FORM_ID?: string;
+  /** Overrides the Formspree origin. Only for local tests against a mock. */
+  FORMSPREE_API_BASE?: string;
 }
+
+/** The Formspree form already used by the older contact pages. Not a secret: it is in their HTML. */
+const DEFAULT_FORMSPREE_FORM = "xkovloyk";
 
 type Ctx = { request: Request; env: Env };
 
@@ -114,11 +123,21 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
   if (!(GOALS as readonly string[]).includes(lead.goal)) errors.goal = "Please choose the main goal.";
   if (Object.keys(errors).length) return json({ ok: false, errors }, 422);
 
+  const [saved, emailed] = await Promise.all([save(env, lead), email(env, lead)]);
+  if (saved.ok || emailed) return json({ ok: true, id: saved.id, saved: saved.ok, emailed }, 201);
+  return json({ ok: false, error: env.LEADS_DB ? "save_failed" : "not_configured" }, env.LEADS_DB ? 500 : 503);
+}
+
+type Lead = {
+  business_name: string; contact_name: string; email: string; website: string | null; category: string;
+  goal: string; notes: string; website_upgrade: number; source: string;
+};
+
+async function save(env: Env, lead: Lead): Promise<{ ok: boolean; id: number | null }> {
   if (!env.LEADS_DB) {
     console.error("LEADS_DB binding is missing: enquiry not stored");
-    return json({ ok: false, error: "not_configured" }, 503);
+    return { ok: false, id: null };
   }
-
   try {
     await env.LEADS_DB.prepare(SCHEMA).run();
     const row = await env.LEADS_DB.prepare(
@@ -128,10 +147,41 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
       .bind(lead.business_name, lead.contact_name, lead.email, lead.website || null, lead.category, lead.goal,
         lead.notes || null, lead.website_upgrade, lead.source || null)
       .first<{ id: number }>();
-    return json({ ok: true, id: row?.id ?? null }, 201);
+    return { ok: true, id: row?.id ?? null };
   } catch (err) {
     console.error("Lead insert failed:", err instanceof Error ? err.message : String(err));
-    return json({ ok: false, error: "save_failed" }, 500);
+    return { ok: false, id: null };
+  }
+}
+
+/** Emails the enquiry to the owner via Formspree. True only if Formspree accepted it. */
+async function email(env: Env, lead: Lead): Promise<boolean> {
+  const form = (env.FORMSPREE_FORM_ID || DEFAULT_FORMSPREE_FORM).trim();
+  if (!form || form === "off") return false;
+  const origin = (env.FORMSPREE_API_BASE || "https://formspree.io").replace(/\/+$/, "");
+  try {
+    const res = await fetch(`${origin}/f/${encodeURIComponent(form)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: `New landing page request: ${lead.business_name}`,
+        name: lead.contact_name,
+        email: lead.email,
+        business: lead.business_name,
+        website: lead.website || "None",
+        category: lead.category,
+        goal: lead.goal,
+        "full website quote too": lead.website_upgrade ? "Yes" : "No",
+        notes: lead.notes || "None",
+        source: lead.source || "landing-pages",
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) console.error("Formspree refused the enquiry:", res.status, (await res.text()).slice(0, 300));
+    return res.ok;
+  } catch (err) {
+    console.error("Formspree request failed:", err instanceof Error ? err.message : String(err));
+    return false;
   }
 }
 
