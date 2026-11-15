@@ -19,6 +19,35 @@ const ONISHI_URL = "https://onishi.onrender.com"; // swap for a custom domain if
 const DEZORZI_URL = "https://dezorzi.onrender.com";
 const CALCULATORS_URL = "https://calculators.themethodco.co/";
 
+// ── Ready-made offers ─────────────────────────────────────────────────────────
+// The two productised services, each with its own sales page.
+const OFFERS = [
+  {
+    id: "pricing-tool",
+    icon: "card",
+    name: "Instant Pricing Tool",
+    line: "Give your customers an instant price estimate. Capture more enquiries automatically.",
+    body: "A pricing tool on your own website. Customers see their price in seconds, then send you the enquiry on WhatsApp with every detail filled in.",
+    was: "€299",
+    price: "€150",
+    note: "Launch price, one-off",
+    cta: "See the pricing tool",
+    href: CALCULATORS_URL,
+  },
+  {
+    id: "landing-pages",
+    icon: "layout",
+    name: "High-Conversion Landing Pages",
+    line: "Your business deserves more than just clicks.",
+    body: "A fast, beautiful page for one offer or campaign, built to turn interested visitors into enquiries, bookings and sales.",
+    was: "",
+    price: "€250",
+    note: "Starting price per page",
+    cta: "See the 5 live demos",
+    href: "/landing-pages/",
+  },
+] as const;
+
 // ── Hiring signals ────────────────────────────────────────────────────────────
 const GITHUB_URL = "https://github.com/victormirandads97";
 /** The one-line answer to "what do you actually work in". */
@@ -959,6 +988,65 @@ export default function Landing() {
                     </button>
                   </div>
                 </motion.div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HR />
+
+      {/* ── OFFERS ───────────────────────────────────────────────────────────── */}
+      <section id="offers" style={{ position: "relative", padding: "96px 5vw", zIndex: 1 }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <Reveal>
+            <SLabel>READY-MADE OFFERS</SLabel>
+            <SH>TWO WAYS TO GET MORE ENQUIRIES.</SH>
+            <Sub>Fixed scope, fixed price, and a preview before you pay. Each has its own page with live demos you can try.</Sub>
+          </Reveal>
+          <div className="card-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
+            {OFFERS.map((o, i) => (
+              <Reveal key={o.id} delay={i * 0.08} style={{ height: "100%" }}>
+                <motion.a
+                  href={o.href}
+                  {...(o.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  whileHover={{ y: -6, boxShadow: `0 26px 60px ${C.accent}2b, 0 0 0 1px ${C.accent}66` }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    height: "100%", display: "flex", flexDirection: "column", gap: "1rem",
+                    textDecoration: "none", color: C.text,
+                    background: `radial-gradient(circle at top right, ${C.accent}1c 0%, ${C.panel} 60%)`,
+                    border: `1px solid ${C.border}`, borderTop: `2px solid ${C.accent}`,
+                    borderRadius: 14, padding: "clamp(1.5rem, 3.5vw, 2.25rem)",
+                  }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ width: 42, height: 42, borderRadius: 10, background: `${C.accent}14`,
+                      border: `1px solid ${C.accent}33`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Ic n={o.icon} sz={19} col={C.accent} />
+                    </div>
+                    <span style={{ ...LBL, color: C.accent, fontSize: "0.56rem",
+                      border: `1px solid ${C.accent}40`, padding: "0.15rem 0.5rem", borderRadius: 3 }}>
+                      {o.note}
+                    </span>
+                  </div>
+                  <h3 style={{ ...EP, fontWeight: 900, fontSize: "clamp(1.9rem, 4vw, 2.6rem)", lineHeight: 0.95,
+                    textTransform: "uppercase", margin: 0 }}>
+                    {o.name}
+                  </h3>
+                  <p style={{ ...DM, fontWeight: 500, color: C.text, fontSize: "1rem", lineHeight: 1.5, margin: 0 }}>{o.line}</p>
+                  <p style={{ ...DM, fontWeight: 300, color: "#D1D5DB", fontSize: "0.92rem", lineHeight: 1.7, margin: 0 }}>{o.body}</p>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.6rem", marginTop: "auto", paddingTop: "0.5rem" }}>
+                    {o.was ? (
+                      <s style={{ ...DM, color: C.muted, fontSize: "1.3rem", fontWeight: 500 }} aria-label={`Was ${o.was}`}>{o.was}</s>
+                    ) : (
+                      <span style={{ ...DM, color: C.muted, fontSize: "0.95rem" }}>From</span>
+                    )}
+                    <span style={{ ...DM, fontWeight: 800, fontSize: "2.6rem", letterSpacing: "-0.04em", lineHeight: 1 }}>{o.price}</span>
+                  </div>
+                  <span style={{ ...CARD_CTA, fontSize: "0.8rem", gap: "0.5rem" }}>
+                    {o.cta} <Ic n="arrow" sz={15} col={C.accent} />
+                  </span>
+                </motion.a>
               </Reveal>
             ))}
           </div>
