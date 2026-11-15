@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maison Aurelle | Skin and aesthetics studio, Dublin 2 (demo)</title>
+<meta name="description" content="Demo landing page by The Method Co. for a fictional aesthetics studio. Book a skin consultation.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F2ECE4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #F2ECE4; --bone: #FBF8F4; --ink: #2A2320; --soft: #6E625B; --line: #E2D7CB;
+  --blush: #E6CFC3; --clay: #9C6656; --deep: #3B2E29;
+  --serif: "Bodoni Moda", "Didot", Georgia, serif; --sans: "Jost", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--sand); color: var(--ink); font: 300 17px/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+.wrap { width: min(1240px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; }
+p { margin: 0; }
+.eyebrow { font: 400 .72rem/1 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--soft); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 54px; padding: 0 30px; border: 0; border-radius: 0; font: 400 .78rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .3s, color .3s, letter-spacing .3s; }
+.btn-ink { background: var(--ink); color: var(--bone); }
+.btn-ink:hover { background: var(--deep); letter-spacing: .28em; }
+.btn-ghost { box-shadow: inset 0 0 0 1px var(--ink); background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--bone); }
+.link { font: 400 .76rem/1 var(--sans); letter-spacing: .24em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 6px; }
+
+header { position: fixed; inset: 0 0 auto; z-index: 20; transition: background .4s, box-shadow .4s; }
+header.solid { background: rgba(242,236,228,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+.bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 78px; }
+.bar nav { display: flex; gap: 30px; }
+.bar nav a { font: 400 .74rem/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; text-decoration: none; }
+.wordmark { font: 400 1.6rem/1 var(--serif); letter-spacing: .3em; text-transform: uppercase; text-decoration: none; text-align: center; padding-left: .3em; }
+.wordmark small { display: block; font: 400 .52rem/1 var(--sans); letter-spacing: .5em; margin-top: 6px; color: var(--soft); }
+.bar .end { justify-self: end; }
+.bar .end .btn { min-height: 44px; padding: 0 20px; }
+@media (max-width: 860px) { .bar { grid-template-columns: 1fr auto; } .bar nav { display: none; } .wordmark { text-align: left; font-size: 1.3rem; } .bar .end .btn { padding: 0 14px; letter-spacing: .18em; } }
+
+/* Hero: editorial split with arched portrait */
+.hero { min-height: 100svh; padding: 110px 0 60px; display: grid; align-items: center; position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 80px); align-items: end; }
+.hero h1 { font-size: clamp(3.4rem, 8.6vw, 8.4rem); line-height: .9; letter-spacing: -.02em; margin: 22px 0 28px; }
+.hero h1 i { font-style: italic; color: var(--clay); }
+.hero .lede { max-width: 40ch; color: var(--soft); margin-bottom: 36px; font-size: 1.08rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 22px 30px; }
+.portrait { position: relative; aspect-ratio: 3 / 4.3; border-radius: 999px 999px 0 0; overflow: hidden; background: radial-gradient(120% 80% at 30% 20%, #F7E7DE 0%, #E9CDBF 45%, #C99A86 100%); }
+.portrait .orb { position: absolute; border-radius: 50%; filter: blur(30px); mix-blend-mode: soft-light; animation: drift 14s ease-in-out infinite alternate; }
+.portrait .o1 { width: 70%; height: 55%; left: -10%; top: 6%; background: #FFF4EC; }
+.portrait .o2 { width: 60%; height: 50%; right: -15%; bottom: 8%; background: #A86E5C; animation-duration: 18s; }
+.portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+@keyframes drift { to { transform: translate(8%, 6%) scale(1.08); } }
+.caption { position: absolute; left: 22px; right: 22px; bottom: 22px; display: flex; justify-content: space-between; font: 400 .7rem/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--bone); }
+.vertical { position: absolute; right: 18px; top: 50%; writing-mode: vertical-rl; font: 400 .66rem/1 var(--sans); letter-spacing: .4em; text-transform: uppercase; color: var(--soft); transform: translateY(-50%); }
+@media (max-width: 900px) { .hero { min-height: auto; padding-top: 100px; } .hero .wrap { grid-template-columns: 1fr; } .portrait { aspect-ratio: 4 / 4.2; max-height: 70vh; } .vertical { display: none; } }
+
+/* Marquee */
+.ticker { border-block: 1px solid var(--line); overflow: hidden; background: var(--bone); }
+.ticker div { display: flex; gap: 60px; width: max-content; padding: 20px 0; animation: tick 40s linear infinite; font: italic 400 1.5rem/1 var(--serif); color: var(--soft); }
+.ticker span::after { content: "✦"; font-style: normal; font-size: .8rem; margin-left: 60px; color: var(--clay); vertical-align: middle; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+section { padding: clamp(80px, 11vw, 150px) 0; }
+.intro { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 6vw, 100px); }
+.intro h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; }
+.intro h2 i { color: var(--clay); }
+.intro .body { display: grid; gap: 22px; color: var(--soft); align-content: start; padding-top: 10px; }
+.intro .body p:first-child { font: 400 1.4rem/1.5 var(--serif); color: var(--ink); }
+@media (max-width: 860px) { .intro { grid-template-columns: 1fr; } }
+
+/* Treatments */
+.t-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
+.t-head h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; margin-top: 18px; }
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filters button { border: 1px solid var(--line); background: transparent; padding: 10px 16px; font: 400 .7rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; cursor: pointer; color: var(--soft); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bone); border-color: var(--ink); }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.card { background: var(--bone); display: flex; flex-direction: column; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s; }
+.card:hover { transform: translateY(-8px); }
+.card[hidden] { display: none; }
+.swatch { aspect-ratio: 4 / 5; position: relative; overflow: hidden; }
+.swatch::after { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 60% at 70% 30%, rgba(255,255,255,.55), transparent 60%); transition: transform .8s ease; }
+.card:hover .swatch::after { transform: scale(1.2) translate(-6%, 4%); }
+.swatch span { position: absolute; left: 18px; top: 16px; font: italic 400 3.4rem/1 var(--serif); color: rgba(255,255,255,.85); z-index: 1; }
+.card .txt { padding: 22px 22px 26px; display: flex; flex-direction: column; flex: 1; }
+.card h3 { font-size: 1.55rem; line-height: 1.1; margin-bottom: 10px; }
+.card p { color: var(--soft); font-size: .95rem; margin-bottom: 18px; }
+.card dl { display: flex; justify-content: space-between; margin: auto 0 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .82rem; }
+.card dt { color: var(--soft); letter-spacing: .14em; text-transform: uppercase; font-size: .66rem; }
+.card dd { margin: 4px 0 0; font-weight: 400; }
+.card button { align-self: flex-start; background: none; border: 0; padding: 0 0 5px; border-bottom: 1px solid var(--ink); font: 400 .7rem/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; cursor: pointer; color: var(--ink); }
+@media (max-width: 1060px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .swatch { aspect-ratio: 16 / 10; } }
+
+/* Approach */
+.approach { background: var(--deep); color: var(--bone); }
+.approach .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(251,248,244,.2); }
+.approach article { padding: 40px 34px 10px 0; }
+.approach article + article { padding-left: 34px; border-left: 1px solid rgba(251,248,244,.2); }
+.approach h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; margin: 18px 0 60px; max-width: 16ch; }
+.approach .eyebrow { color: #CFBFB3; }
+.approach h3 { font-size: 1.6rem; margin: 14px 0 12px; }
+.approach p { color: #CFBFB3; }
+.approach small { font: 400 .7rem/1 var(--sans); letter-spacing: .3em; color: var(--blush); }
+@media (max-width: 860px) { .approach .grid { grid-template-columns: 1fr; } .approach article + article { padding-left: 0; border-left: 0; border-top: 1px solid rgba(251,248,244,.2); } }
+
+/* Booking */
+.book { display: grid; grid-template-columns: 1fr 1fr; background: var(--bone); }
+.book-art { position: relative; min-height: 520px; background: radial-gradient(90% 70% at 30% 30%, #F6E4DA, #D7AE9C 60%, #A57462); overflow: hidden; }
+.book-art p { position: absolute; left: clamp(24px, 5vw, 60px); bottom: clamp(24px, 5vw, 60px); right: 24px; font: italic 400 clamp(2rem, 4vw, 3.2rem)/1.1 var(--serif); color: var(--bone); max-width: 14ch; }
+.book form { padding: clamp(28px, 6vw, 80px); }
+.book h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1; margin: 16px 0 14px; }
+.book .sub { color: var(--soft); margin-bottom: 34px; }
+.f { display: grid; gap: 4px; margin-bottom: 22px; position: relative; }
+.f label { font: 400 .68rem/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--soft); }
+.f input, .f select, .f textarea { font: 300 1.05rem/1.4 var(--sans); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 10px 0; border-radius: 0; width: 100%; transition: border-color .3s; }
+.f input:focus, .f select:focus, .f textarea:focus { outline: none; border-color: var(--ink); }
+.f [aria-invalid="true"] { border-color: #A3473A; }
+.f .err { font-size: .78rem; color: #A3473A; min-height: 1.1em; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.slots input { position: absolute; opacity: 0; pointer-events: none; }
+.slots label { border: 1px solid var(--line); padding: 11px 14px; font: 400 .74rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; cursor: pointer; color: var(--ink); }
+.slots input:checked + label { background: var(--ink); color: var(--bone); border-color: var(--ink); }
+.slots input:focus-visible + label { outline: 1px solid var(--ink); outline-offset: 3px; }
+.book .btn { width: 100%; margin-top: 8px; }
+.note { margin-top: 14px; font-size: .8rem; color: var(--soft); text-align: center; }
+.sent { padding: 40px 0; }
+.sent h3 { font-size: 2.4rem; margin: 18px 0 14px; }
+.sent p { color: var(--soft); margin-bottom: 14px; }
+.sent .flag { display: inline-block; border: 1px solid var(--line); padding: 10px 14px; font-size: .82rem; }
+@media (max-width: 860px) { .book { grid-template-columns: 1fr; } .book-art { min-height: 280px; } .two { grid-template-columns: 1fr; } }
+
+footer { padding: 60px 0 120px; text-align: center; color: var(--soft); font-size: .88rem; }
+footer .wordmark { display: inline-block; margin-bottom: 18px; }
+footer p + p { margin-top: 8px; }
+.mobile-book { display: none; }
+@media (max-width: 700px) { .mobile-book { display: flex; position: fixed; inset: auto 0 0; z-index: 30; padding-bottom: env(safe-area-inset-bottom, 0); min-height: 60px; transform: translateY(100%); transition: transform .4s ease; } .mobile-book.show { transform: none; } }
+.r { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+.r.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .r { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+
+.mc-demo { position: fixed; z-index: 40; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 8px; background: #0A0F14; color: #fff; text-decoration: none; font: 500 12px/1 system-ui, sans-serif; padding: 9px 12px 9px 10px; border-radius: 999px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.45); }
+.mc-demo svg { width: 20px; height: 14px; }
+.mc-demo span { color: #22D87A; }
+@media (max-width: 700px) { .mc-demo { top: 86px; bottom: auto; left: auto; right: 10px; padding: 7px 10px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<a class="mc-demo" href="/landing-pages/#demos" aria-label="Demo by The Method Co. Back to all landing page demos"><svg viewBox="0 0 160 112" aria-hidden="true"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="#fff"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="#22D87A"/></svg>Demo by The Method Co. <span>All demos</span></a>
+
+<header>
+  <div class="wrap bar">
+    <nav aria-label="Main"><a href="#treatments">Treatments</a><a href="#approach">Approach</a></nav>
+    <a class="wordmark" href="#" aria-label="Maison Aurelle home">Aurelle<small>Maison · Dublin 2</small></a>
+    <div class="end"><a class="btn btn-ink" href="#book">Book</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h">
+    <div class="wrap">
+      <div class="r">
+        <p class="eyebrow">Skin &amp; aesthetics studio</p>
+        <h1 id="h">Skin, <i>quietly</i> brilliant.</h1>
+        <p class="lede">Considered treatments, planned around your skin rather than a menu. Every first visit begins with a private consultation and an honest plan.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-ink" href="#book">Book a consultation</a>
+          <a class="link" href="#treatments">Explore treatments</a>
+        </div>
+      </div>
+      <div class="portrait r" role="img" aria-label="Abstract portrait in warm blush and clay tones">
+        <div class="orb o1"></div><div class="orb o2"></div>
+        <svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M150 70c46 0 74 40 74 96 0 70-36 130-74 130s-74-60-74-130c0-56 28-96 74-96Z" fill="#F7E2D7" opacity=".55"/>
+          <path d="M80 430c6-80 34-120 70-120s64 40 70 120" fill="#F2D3C5" opacity=".55"/>
+          <path d="M150 70c-60 0-92 60-80 130" fill="none" stroke="#FFF7F2" stroke-width="1.2" opacity=".8"/>
+          <path d="M128 200c8 6 36 6 44 0" fill="none" stroke="#9C6553" stroke-width="1.4" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <div class="caption"><span>Consultation led</span><span>Est. Dublin</span></div>
+      </div>
+    </div>
+    <span class="vertical">Book a consultation · 45 minutes</span>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div><span>Facials</span><span>Chemical peels</span><span>Microneedling</span><span>LED therapy</span><span>Skin consultations</span><span>Facials</span><span>Chemical peels</span><span>Microneedling</span><span>LED therapy</span><span>Skin consultations</span></div></div>
+
+  <section aria-labelledby="intro-title">
+    <div class="wrap intro">
+      <h2 id="intro-title" class="r">Fewer treatments. <i>Better</i> results.</h2>
+      <div class="body r">
+        <p>We'd rather recommend one treatment that suits you than sell you five that don't.</p>
+        <p>Your consultation covers your skin history, your routine and what you'd like to change. You leave with a written plan and a clear price, whether or not you book anything that day.</p>
+        <a class="link" href="#book" style="justify-self:start">Start with a consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="treatments" style="padding-top:0" aria-labelledby="t-title">
+    <div class="wrap">
+      <div class="t-head r">
+        <div><p class="eyebrow">Treatments</p><h2 id="t-title">Chosen for your skin.</h2></div>
+        <div class="filters" role="group" aria-label="Filter treatments">
+          <button type="button" aria-pressed="true" data-f="all">All</button>
+          <button type="button" aria-pressed="false" data-f="glow">Glow</button>
+          <button type="button" aria-pressed="false" data-f="texture">Texture</button>
+          <button type="button" aria-pressed="false" data-f="calm">Calm</button>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card r" data-k="glow"><div class="swatch" style="background:linear-gradient(160deg,#EBD3C6,#C99683)"><span>i</span></div><div class="txt"><h3>Signature facial</h3><p>A deep cleanse, gentle exfoliation and a mask chosen on the day for how your skin looks.</p><dl><div><dt>Time</dt><dd>60 min</dd></div><div><dt>From</dt><dd>€95</dd></div></dl><button type="button" data-t="Signature facial">Ask about this</button></div></article>
+        <article class="card r" data-k="texture"><div class="swatch" style="background:linear-gradient(160deg,#E2CDBE,#A9786A)"><span>ii</span></div><div class="txt"><h3>Chemical peel</h3><p>A tailored peel for dullness or uneven tone, with aftercare to see you through the week.</p><dl><div><dt>Time</dt><dd>45 min</dd></div><div><dt>From</dt><dd>€110</dd></div></dl><button type="button" data-t="Chemical peel">Ask about this</button></div></article>
+        <article class="card r" data-k="texture"><div class="swatch" style="background:linear-gradient(160deg,#D9C3B8,#8F6656)"><span>iii</span></div><div class="txt"><h3>Microneedling</h3><p>A course of sessions for texture and scarring, planned at your consultation and reviewed as you go.</p><dl><div><dt>Time</dt><dd>75 min</dd></div><div><dt>From</dt><dd>€180</dd></div></dl><button type="button" data-t="Microneedling">Ask about this</button></div></article>
+        <article class="card r" data-k="calm"><div class="swatch" style="background:linear-gradient(160deg,#EFE0D6,#C7A79A)"><span>iv</span></div><div class="txt"><h3>LED therapy</h3><p>Quiet, relaxing light therapy, on its own or added to a facial for calmer-looking skin.</p><dl><div><dt>Time</dt><dd>30 min</dd></div><div><dt>From</dt><dd>€55</dd></div></dl><button type="button" data-t="LED therapy">Ask about this</button></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach" aria-labelledby="a-title">
+    <div class="wrap">
+      <p class="eyebrow r">Our approach</p>
+      <h2 id="a-title" class="r">An honest plan, before anything else.</h2>
+      <div class="grid r">
+        <article><small>01</small><h3>Listen</h3><p>A private, unhurried consultation about your skin, your history and what you'd like to change.</p></article>
+        <article><small>02</small><h3>Plan</h3><p>A written plan with the treatments that suit you, how many sessions and exactly what it costs.</p></article>
+        <article><small>03</small><h3>Review</h3><p>We check in after each treatment and change the plan if your skin asks for something different.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" style="padding:0" aria-labelledby="b-title">
+    <div class="book">
+      <div class="book-art r" aria-hidden="true"><p>Your first visit is a conversation.</p></div>
+      <form id="book-form" novalidate>
+        <div id="book-body">
+          <p class="eyebrow">Consultation · 45 min · €40, redeemable on treatment</p>
+          <h2 id="b-title">Book a consultation</h2>
+          <p class="sub">Choose what you're interested in and a time that suits. We'll confirm by email.</p>
+          <div class="f"><label for="interest">Interested in</label>
+            <select id="interest" name="interest"><option value="">Not sure yet, advise me</option><option>Signature facial</option><option>Chemical peel</option><option>Microneedling</option><option>LED therapy</option></select><span class="err"></span></div>
+          <div class="f"><label id="slot-l">Preferred time</label>
+            <div class="slots" role="radiogroup" aria-labelledby="slot-l">
+              <input type="radio" name="slot" id="s1" value="Weekday morning"><label for="s1">Weekday a.m.</label>
+              <input type="radio" name="slot" id="s2" value="Weekday afternoon"><label for="s2">Weekday p.m.</label>
+              <input type="radio" name="slot" id="s3" value="Weekday evening"><label for="s3">Evening</label>
+              <input type="radio" name="slot" id="s4" value="Saturday"><label for="s4">Saturday</label>
+            </div><span class="err" id="slot-err"></span></div>
+          <div class="two">
+            <div class="f"><label for="bn">Full name</label><input id="bn" name="name" autocomplete="name"><span class="err" id="bn-err"></span></div>
+            <div class="f"><label for="bp">Mobile</label><input id="bp" name="phone" type="tel" autocomplete="tel" placeholder="08x xxx xxxx"><span class="err" id="bp-err"></span></div>
+          </div>
+          <div class="f"><label for="be">Email</label><input id="be" name="email" type="email" autocomplete="email"><span class="err" id="be-err"></span></div>
+          <button class="btn btn-ink" type="submit">Request my consultation</button>
+          <p class="note">Demo page: this form is not connected, so nothing is sent.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="wordmark" href="#">Aurelle<small>Maison · Dublin 2</small></a>
+  <p>Maison Aurelle is a fictional studio, created as a demo by The Method Co.</p>
+  <p><a href="/landing-pages/">Get a landing page like this</a></p>
+</footer>
+<a class="btn btn-ink mobile-book" href="#book">Book a consultation</a>
+
+<script>
+(function () {
+  var header = document.querySelector('header'), mob = document.querySelector('.mobile-book'), book = document.getElementById('book');
+  function onScroll() {
+    header.classList.toggle('solid', scrollY > 30);
+    var r = book.getBoundingClientRect();
+    mob.classList.toggle('show', scrollY > 500 && !(r.top < innerHeight && r.bottom > 0));
+  }
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .1 }) : null;
+  document.querySelectorAll('.r').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  document.querySelectorAll('.filters button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.filters button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      document.querySelectorAll('.card').forEach(function (c) { c.hidden = b.dataset.f !== 'all' && c.dataset.k !== b.dataset.f; });
+    });
+  });
+  document.querySelectorAll('[data-t]').forEach(function (b) {
+    b.addEventListener('click', function () { document.getElementById('interest').value = b.dataset.t; book.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); setTimeout(function () { document.getElementById('interest').focus({ preventScroll: true }); }, 600); });
+  });
+
+  var form = document.getElementById('book-form');
+  function set(id, msg) { var el = document.getElementById(id); if (el.tagName !== 'SPAN') el.setAttribute('aria-invalid', !!msg); document.getElementById(id + '-err').textContent = msg; return !msg; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = [
+      set('bn', form.elements['name'].value.trim() ? '' : 'Please add your name.'),
+      set('bp', /^[+0-9 ()-]{7,}$/.test(form.elements['phone'].value.trim()) ? '' : 'Please add a mobile number.'),
+      set('be', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.elements['email'].value.trim()) ? '' : 'Please add a valid email.')
+    ];
+    var slot = form.querySelector('[name=slot]:checked');
+    document.getElementById('slot-err').textContent = slot ? '' : 'Please choose a time that suits.';
+    if (!slot) ok.push(false);
+    if (ok.indexOf(false) > -1) { var first = form.querySelector('[aria-invalid="true"]') || form.querySelector('[name=slot]'); first.focus(); return; }
+    document.getElementById('book-body').innerHTML = '<div class="sent" role="status"><p class="eyebrow">Request received</p><h3>Thank you.</h3><p>On a live site, the studio would now confirm your ' + slot.value.toLowerCase() + ' consultation by email, usually the same day.</p><span class="flag">Demo only: nothing was sent or stored.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>

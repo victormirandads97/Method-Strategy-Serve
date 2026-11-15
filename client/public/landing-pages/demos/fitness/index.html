@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VOLT Coaching | Personal training and coaching, Cork (demo)</title>
+<meta name="description" content="Demo landing page by The Method Co. for a fictional personal trainer. Apply for a consultation.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0B0B0B; --char: #161616; --steel: #262626; --white: #F4F4F0; --mute: #9A9A93;
+  --volt: #D4FF3A; --heat: #FF5A1F;
+  --disp: "Big Shoulders Display", Impact, sans-serif; --body: "Space Grotesk", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { margin: 0; background: var(--black); color: var(--white); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--volt); outline-offset: 3px; }
+.wrap { width: min(1280px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--disp); font-weight: 900; text-transform: uppercase; margin: 0; line-height: .86; letter-spacing: .005em; }
+p { margin: 0; }
+.tag { display: inline-flex; align-items: center; gap: 8px; font: 600 .76rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--volt); }
+.tag::before { content: ""; width: 8px; height: 8px; background: var(--volt); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 58px; padding: 0 28px; border: 0; border-radius: 6px; font: 700 1rem/1 var(--body); letter-spacing: .02em; text-transform: uppercase; text-decoration: none; cursor: pointer; overflow: hidden; transition: transform .15s; }
+.btn:active { transform: scale(.97); }
+.btn-volt { background: var(--volt); color: var(--black); }
+.btn-volt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.6) 50%, transparent 70%); transform: translateX(-120%); transition: transform .6s ease; }
+.btn-volt:hover::after { transform: translateX(120%); }
+.btn-out { box-shadow: inset 0 0 0 2px var(--white); background: transparent; color: var(--white); }
+.btn-out:hover { background: var(--white); color: var(--black); }
+
+header { position: fixed; inset: 0 0 auto; z-index: 30; mix-blend-mode: normal; transition: background .3s; }
+header.solid { background: rgba(11,11,11,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.bar { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; }
+.logo { font: 900 1.9rem/1 var(--disp); letter-spacing: .02em; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.logo b { color: var(--volt); }
+.bar nav { display: flex; gap: 28px; font-weight: 500; font-size: .92rem; }
+.bar nav a { text-decoration: none; color: var(--mute); transition: color .2s; }
+.bar nav a:hover { color: var(--white); }
+.bar .btn { min-height: 44px; padding: 0 18px; font-size: .84rem; }
+@media (max-width: 820px) { .bar nav { display: none; } }
+
+/* Hero */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 110px 0 50px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(60% 60% at 75% 40%, rgba(212,255,58,.16), transparent 60%), radial-gradient(40% 50% at 20% 80%, rgba(255,90,31,.14), transparent 60%); }
+.lines { position: absolute; inset: 0; opacity: .5; }
+.lines span { position: absolute; left: -10%; right: -10%; height: 2px; background: linear-gradient(90deg, transparent, var(--volt), transparent); transform: rotate(-12deg); animation: sweep 5s linear infinite; opacity: .5; }
+.lines span:nth-child(2) { animation-delay: 1.6s; top: 40%; } .lines span:nth-child(3) { animation-delay: 3.2s; top: 70%; }
+@keyframes sweep { from { transform: translateY(-40vh) rotate(-12deg); } to { transform: translateY(60vh) rotate(-12deg); } }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.3fr .7fr; gap: 40px; align-items: end; }
+.hero h1 { font-size: clamp(4.4rem, 15vw, 15rem); margin: 18px 0 0; }
+.hero h1 span { display: block; }
+.hero h1 .v { color: var(--volt); }
+.hero h1 .s { -webkit-text-stroke: 2px var(--white); color: transparent; }
+.hero-side { display: grid; gap: 22px; padding-bottom: 14px; }
+.hero-side p { color: #CFCFC8; font-size: 1.1rem; }
+.hero-side .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-side .btn { white-space: nowrap; }
+.seal { position: absolute; right: 5%; top: 120px; width: min(22vw, 260px); aspect-ratio: 1; pointer-events: none; }
+.seal svg { width: 100%; height: 100%; animation: rot 24s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+.seal span { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font: 900 clamp(3rem, 6vw, 5rem)/.8 var(--disp); color: var(--volt); }
+.seal small { display: block; font: 700 .8rem/1 var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--white); margin-top: 8px; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .seal { width: 130px; top: 96px; right: 16px; } }
+
+.marq { background: var(--volt); color: var(--black); overflow: hidden; transform: rotate(-1.5deg); margin: -6px -10px 0; }
+.marq div { display: flex; gap: 40px; width: max-content; padding: 16px 0; animation: m 22s linear infinite; font: 900 2.2rem/1 var(--disp); text-transform: uppercase; }
+.marq span::after { content: "✕"; margin-left: 40px; font-size: 1.4rem; vertical-align: middle; }
+@keyframes m { to { transform: translateX(-50%); } }
+
+section { padding: clamp(80px, 10vw, 140px) 0; }
+.h2 { font-size: clamp(3rem, 8vw, 7rem); margin: 16px 0 24px; }
+.h2 em { font-style: normal; color: var(--volt); }
+.sub { color: var(--mute); max-width: 52ch; font-size: 1.05rem; }
+
+/* Method */
+.phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 50px; background: var(--steel); border-radius: 12px; overflow: hidden; }
+.phase { background: var(--char); padding: 30px 26px 34px; position: relative; overflow: hidden; }
+.phase::before { content: attr(data-n); position: absolute; right: 10px; top: -20px; font: 900 9rem/1 var(--disp); color: rgba(244,244,240,.05); }
+.phase small { font: 600 .74rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--volt); }
+.phase h3 { font-size: 2.6rem; margin: 12px 0 10px; }
+.phase p { color: var(--mute); }
+.bar-viz { height: 6px; background: var(--steel); border-radius: 3px; margin-top: 22px; overflow: hidden; }
+.bar-viz i { display: block; height: 100%; width: 0; background: var(--volt); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.in .bar-viz i { width: var(--w); }
+@media (max-width: 860px) { .phases { grid-template-columns: 1fr; } }
+
+/* Programmes */
+.prog { background: var(--white); color: var(--black); }
+.prog .sub { color: #55554F; }
+.switch { display: inline-flex; background: #E6E6E0; border-radius: 10px; padding: 5px; margin: 34px 0 30px; flex-wrap: wrap; }
+.switch button { border: 0; background: transparent; padding: 14px 20px; border-radius: 7px; font: 700 .9rem/1 var(--body); text-transform: uppercase; cursor: pointer; color: #55554F; }
+.switch button[aria-selected="true"] { background: var(--black); color: var(--volt); }
+.plan { display: grid; grid-template-columns: 1.1fr .9fr; gap: 0; border: 2px solid var(--black); border-radius: 14px; overflow: hidden; }
+.plan-main { padding: clamp(24px, 4vw, 44px); }
+.plan-main h3 { font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 14px; }
+.plan-main p { color: #55554F; max-width: 46ch; margin-bottom: 24px; }
+.plan-main ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.plan-main li { display: flex; gap: 12px; font-weight: 500; }
+.plan-main li::before { content: ""; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--black) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5l3.2 3.2L16 8' fill='none' stroke='%23D4FF3A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.plan-side { background: var(--black); color: var(--white); padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 18px; }
+.price { font: 900 clamp(4rem, 8vw, 6.4rem)/.9 var(--disp); color: var(--volt); }
+.price small { font: 500 1rem/1 var(--body); color: var(--mute); margin-left: 6px; }
+.plan-side dl { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; margin: 0; font-size: .95rem; }
+.plan-side dt { color: var(--mute); }
+.plan-side dd { margin: 0; font-weight: 600; }
+.plan-side .btn { margin-top: auto; }
+.swap { animation: swap .4s ease; }
+@keyframes swap { from { opacity: 0; transform: translateY(10px); } }
+@media (max-width: 860px) { .plan { grid-template-columns: 1fr; } }
+
+/* Who it's for */
+.fit { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
+.fit div { border-radius: 12px; padding: 30px; }
+.fit .yes { background: var(--volt); color: var(--black); }
+.fit .no { background: var(--char); border: 1px solid var(--steel); }
+.fit h3 { font-size: 2.4rem; margin-bottom: 18px; }
+.fit ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-weight: 500; }
+.fit .no ul { color: var(--mute); }
+@media (max-width: 760px) { .fit { grid-template-columns: 1fr; } }
+
+/* Application */
+.apply { background: var(--char); border-top: 2px solid var(--volt); }
+.app { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(30px, 6vw, 80px); align-items: start; }
+.qcard { background: var(--black); border: 1px solid var(--steel); border-radius: 16px; padding: clamp(22px, 4vw, 40px); }
+.count { display: flex; justify-content: space-between; font: 600 .78rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
+.meter { height: 4px; background: var(--steel); border-radius: 2px; margin-bottom: 30px; }
+.meter i { display: block; height: 100%; background: var(--volt); border-radius: 2px; width: 20%; transition: width .4s ease; }
+.q { display: none; } .q.on { display: block; animation: swap .35s ease; }
+.q h3 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 22px; }
+.pick { display: grid; gap: 10px; }
+.pick button { text-align: left; background: var(--char); border: 1px solid var(--steel); color: var(--white); border-radius: 10px; padding: 18px 20px; font: 600 1.05rem/1.3 var(--body); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: border-color .15s, background .15s; }
+.pick button:hover { border-color: var(--volt); }
+.pick button::after { content: "→"; color: var(--volt); }
+.fl { display: grid; gap: 6px; margin-bottom: 16px; }
+.fl label { font: 600 .76rem/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
+.fl input { background: var(--char); border: 1px solid var(--steel); color: var(--white); border-radius: 10px; padding: 15px 16px; font: 500 1rem/1.3 var(--body); width: 100%; }
+.fl input:focus { outline: none; border-color: var(--volt); }
+.fl [aria-invalid="true"] { border-color: var(--heat); }
+.fl .err { color: var(--heat); font-size: .82rem; min-height: 1.1em; }
+.backq { background: none; border: 0; color: var(--mute); font: 500 .9rem/1 var(--body); cursor: pointer; padding: 14px 0 0; }
+.small { color: var(--mute); font-size: .8rem; margin-top: 14px; }
+.result h3 { font-size: clamp(2.6rem, 5vw, 4rem); margin: 10px 0 14px; color: var(--volt); }
+.result p { color: #CFCFC8; margin-bottom: 14px; }
+.result .flag { display: inline-block; border: 1px dashed var(--mute); border-radius: 8px; padding: 10px 14px; font-size: .84rem; color: var(--mute); }
+@media (max-width: 860px) { .app { grid-template-columns: 1fr; } }
+
+footer { padding: 40px 0 110px; color: var(--mute); font-size: .88rem; border-top: 1px solid var(--steel); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+.mob { display: none; }
+@media (max-width: 700px) { .mob { display: flex; position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 30; } }
+.rv { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .rv { opacity: 1; transform: none; } .bar-viz i { width: var(--w); } html { scroll-behavior: auto; } }
+
+.mc-demo { position: fixed; z-index: 40; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 8px; background: #0A0F14; color: #fff; text-decoration: none; font: 500 12px/1 system-ui, sans-serif; padding: 9px 12px 9px 10px; border-radius: 999px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12); }
+.mc-demo svg { width: 20px; height: 14px; }
+.mc-demo span { color: #22D87A; }
+@media (max-width: 700px) { .mc-demo { top: 78px; bottom: auto; left: auto; right: 10px; padding: 7px 10px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<a class="mc-demo" href="/landing-pages/#demos" aria-label="Demo by The Method Co. Back to all landing page demos"><svg viewBox="0 0 160 112" aria-hidden="true"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="#fff"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="#22D87A"/></svg>Demo by The Method Co. <span>All demos</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#" aria-label="VOLT Coaching home">VOLT<b>/</b></a>
+    <nav aria-label="Main"><a href="#method">Method</a><a href="#programmes">Programmes</a><a href="#fit">Who it's for</a></nav>
+    <a class="btn btn-volt" href="#apply">Apply now</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="lines" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <defs><path id="circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+        <text font-family="Space Grotesk, sans-serif" font-size="12.6" font-weight="700" letter-spacing="3.1" fill="#F4F4F0"><textPath href="#circ">12-WEEK PROGRAMME · STRENGTH · CONDITIONING · </textPath></text>
+      </svg>
+      <span>12<small>weeks</small></span>
+    </div>
+    <div class="wrap">
+      <div>
+        <p class="tag">1:1 coaching · Cork city and online</p>
+        <h1 id="h"><span>Stronger.</span><span class="s">Every</span><span class="v">week.</span></h1>
+      </div>
+      <div class="hero-side">
+        <p>Structured strength coaching for busy people. A plan built around your week, sessions you'll actually show up for, and a coach who checks the numbers with you.</p>
+        <div class="btns"><a class="btn btn-volt" href="#apply">Apply for a consultation</a><a class="btn btn-out" href="#programmes">Programmes</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div><span>Strength</span><span>Conditioning</span><span>Mobility</span><span>Habits</span><span>Accountability</span><span>Strength</span><span>Conditioning</span><span>Mobility</span><span>Habits</span><span>Accountability</span></div></div>
+
+  <section id="method" aria-labelledby="mt">
+    <div class="wrap">
+      <p class="tag rv">The method</p>
+      <h2 class="h2 rv" id="mt">Twelve weeks.<br><em>Three phases.</em></h2>
+      <p class="sub rv">No random workouts. Each phase builds on the last, and we review your training log together before moving on.</p>
+      <div class="phases rv">
+        <div class="phase" data-n="01"><small>Weeks 1 to 4</small><h3>Foundation</h3><p>Technique, baseline lifts and a routine that fits your calendar.</p><div class="bar-viz"><i style="--w:33%"></i></div></div>
+        <div class="phase" data-n="02"><small>Weeks 5 to 8</small><h3>Build</h3><p>Progressive loading and conditioning, adjusted to how you recover.</p><div class="bar-viz"><i style="--w:66%"></i></div></div>
+        <div class="phase" data-n="03"><small>Weeks 9 to 12</small><h3>Perform</h3><p>Test your lifts, review the log and set the next block with confidence.</p><div class="bar-viz"><i style="--w:100%"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prog" id="programmes" aria-labelledby="pt">
+    <div class="wrap">
+      <p class="tag rv" style="color:#0B0B0B">Programmes</p>
+      <h2 class="h2 rv" id="pt">Pick your pace.</h2>
+      <p class="sub rv">Every programme includes a written plan, form reviews and weekly check-ins. Choose how much time with your coach you need.</p>
+      <div class="switch" role="tablist" aria-label="Programmes"></div>
+      <div class="plan" role="tabpanel" id="plan" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="fit" aria-labelledby="ft">
+    <div class="wrap">
+      <p class="tag rv">Who it's for</p>
+      <h2 class="h2 rv" id="ft">Honest about <em>fit.</em></h2>
+      <div class="fit rv">
+        <div class="yes"><h3>A good fit</h3><ul><li>You can train two to four times a week</li><li>You want structure, not just motivation</li><li>You're happy to log your sessions</li><li>You want strength that lasts</li></ul></div>
+        <div class="no"><h3>Not for you if</h3><ul><li>You want a quick fix before a holiday</li><li>You won't follow a written plan</li><li>You need medical rehabilitation (see a physio first)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply" id="apply" aria-labelledby="at">
+    <div class="wrap app">
+      <div class="rv">
+        <p class="tag">Apply</p>
+        <h2 class="h2" id="at">Apply in<br><em>60 seconds.</em></h2>
+        <p class="sub">Five quick questions so your first call is useful. If coaching isn't the right fit, we'll tell you and point you somewhere better.</p>
+      </div>
+      <form class="qcard rv" id="qf" novalidate>
+        <div id="qbody">
+          <div class="count"><span id="qn">Question 1 of 5</span><span>Takes about a minute</span></div>
+          <div class="meter" aria-hidden="true"><i id="mt-bar"></i></div>
+          <div class="q on" data-q="goal"><h3>What's your main goal?</h3><div class="pick"><button type="button">Get stronger</button><button type="button">Lose body fat</button><button type="button">Train for a sport or event</button><button type="button">Feel fitter and move better</button></div></div>
+          <div class="q" data-q="experience"><h3>How long have you trained?</h3><div class="pick"><button type="button">New to the gym</button><button type="button">Under 2 years</button><button type="button">2 years or more</button></div></div>
+          <div class="q" data-q="days"><h3>Days a week you can train?</h3><div class="pick"><button type="button">1 to 2 days</button><button type="button">3 days</button><button type="button">4 days or more</button></div></div>
+          <div class="q" data-q="budget"><h3>Monthly coaching budget?</h3><div class="pick"><button type="button">Up to €150</button><button type="button">€150 to €300</button><button type="button">Over €300</button></div></div>
+          <div class="q" data-q="contact">
+            <h3>Where do we reach you?</h3>
+            <div class="fl"><label for="cn">First name</label><input id="cn" autocomplete="given-name"><span class="err" id="cn-err"></span></div>
+            <div class="fl"><label for="ce">Email</label><input id="ce" type="email" autocomplete="email"><span class="err" id="ce-err"></span></div>
+            <div class="fl"><label for="cp">Mobile</label><input id="cp" type="tel" autocomplete="tel"><span class="err" id="cp-err"></span></div>
+            <button class="btn btn-volt" type="submit" style="width:100%">Send my application</button>
+          </div>
+          <button type="button" class="backq" hidden>← Back</button>
+          <p class="small">Demo page: this form is not connected, so nothing is sent.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>VOLT Coaching is a fictional business, created as a demo by The Method Co.</span><a href="/landing-pages/">Get a landing page like this</a></div></footer>
+<a class="btn btn-volt mob" href="#apply">Apply for a consultation</a>
+
+<script>
+(function () {
+  var header = document.querySelector('header');
+  addEventListener('scroll', function () { header.classList.toggle('solid', scrollY > 20); }, { passive: true });
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .15 }) : null;
+  document.querySelectorAll('.rv').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  var PLANS = [
+    { k: 'One to one', t: 'In person', price: '€240', per: '/ month', p: 'Two coached sessions a week in our Cork studio, with your full plan and check-ins between sessions.', inc: ['8 coached sessions a month', 'Written 12-week plan', 'Weekly check-in and log review', 'Nutrition habits guide'], d: [['Sessions', '2 a week'], ['Location', 'Cork city'], ['Minimum', '3 months']] },
+    { k: 'Hybrid', t: 'Hybrid', price: '€160', per: '/ month', p: 'One coached session a month to check technique, with the rest of your training done on your own from the plan.', inc: ['1 coached session a month', 'Written 12-week plan', 'Video form reviews', 'Weekly check-in'], d: [['Sessions', '1 a month'], ['Location', 'Studio and your gym'], ['Minimum', '3 months']] },
+    { k: 'Online', t: 'Online', price: '€95', per: '/ month', p: 'Fully remote coaching for people who already have a gym, with your plan and feedback in an app.', inc: ['Written 12-week plan', 'Video form reviews', 'Weekly written check-in', 'Message support on weekdays'], d: [['Sessions', 'Remote'], ['Location', 'Anywhere'], ['Minimum', '3 months']] }
+  ];
+  var sw = document.querySelector('.switch'), plan = document.getElementById('plan');
+  function show(i) {
+    var p = PLANS[i];
+    sw.querySelectorAll('button').forEach(function (b, j) { b.setAttribute('aria-selected', i === j); b.tabIndex = i === j ? 0 : -1; });
+    plan.innerHTML = '<div class="plan-main swap"><h3>' + p.t + '</h3><p>' + p.p + '</p><ul>' + p.inc.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="plan-side swap"><div class="price">' + p.price + '<small>' + p.per + '</small></div><dl>' + p.d.map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('') + '</dl><a class="btn btn-volt" href="#apply">Apply for ' + p.k.toLowerCase() + '</a></div>';
+  }
+  PLANS.forEach(function (p, i) { var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-controls', 'plan'); b.textContent = p.k; b.onclick = function () { show(i); }; sw.appendChild(b); });
+  show(0);
+
+  var qs = [].slice.call(document.querySelectorAll('.q')), n = 0, answers = {}, back = document.querySelector('.backq');
+  function go(i) {
+    n = i;
+    qs.forEach(function (q, j) { q.classList.toggle('on', j === i); });
+    document.getElementById('qn').textContent = 'Question ' + (i + 1) + ' of ' + qs.length;
+    document.getElementById('mt-bar').style.width = ((i + 1) / qs.length * 100) + '%';
+    back.hidden = i === 0;
+    var f = qs[i].querySelector('button, input'); if (f && i > 0) f.focus();
+  }
+  qs.forEach(function (q, i) {
+    q.querySelectorAll('.pick button').forEach(function (b) { b.addEventListener('click', function () { answers[q.dataset.q] = b.textContent; go(i + 1); }); });
+  });
+  back.addEventListener('click', function () { go(n - 1); });
+  function v(id, ok, msg) { var el = document.getElementById(id), bad = !ok(el.value.trim()); el.setAttribute('aria-invalid', bad); document.getElementById(id + '-err').textContent = bad ? msg : ''; return !bad; }
+  document.getElementById('qf').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = [v('cn', function (x) { return x; }, 'Add your first name.'), v('ce', function (x) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(x); }, 'Add a valid email.'), v('cp', function (x) { return /^[+0-9 ()-]{7,}$/.test(x); }, 'Add a mobile number.')];
+    if (ok.indexOf(false) > -1) { document.querySelector('[aria-invalid="true"]').focus(); return; }
+    var light = answers.days === '1 to 2 days' || answers.budget === 'Up to €150';
+    var rec = light ? 'Online coaching' : answers.days === '4 days or more' && answers.budget === 'Over €300' ? 'One to one' : 'Hybrid coaching';
+    var name = document.getElementById('cn').value.trim().replace(/[<>&]/g, '');
+    document.getElementById('qbody').innerHTML = '<div class="result" role="status"><p class="tag">Application in</p><h3>Nice one, ' + name + '.</h3><p>Based on your answers, <strong>' + rec + '</strong> looks like the best starting point for "' + answers.goal.toLowerCase() + '". On a live site, the coach would now text you to book a free 15-minute call.</p><span class="flag">Demo only: nothing was sent or stored.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>

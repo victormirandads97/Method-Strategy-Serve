@@ -439,16 +439,16 @@ const PROJECTS: Project[] = [
   },
   {
     id: "calculators",
-    name: "Quote Calculators",
+    name: "Instant Pricing Tool",
     icon: "card",
-    tagline: "Show the price. Get the job.",
-    summary: "Instant quote calculators for Irish service businesses. Customers see their price in 30 seconds and send it, with every detail filled in, straight to the business on WhatsApp.",
+    tagline: "Give customers a price. Get more enquiries.",
+    summary: "An instant price estimate on a service business's own website. Customers see their price in seconds and send the enquiry, with every detail filled in, straight to the business on WhatsApp.",
     role: "Product, offer, copy, design, frontend and launch.",
     tech: "HTML, CSS and JavaScript with no framework, WhatsApp click-to-chat, Stripe payments, hosted on Cloudflare.",
     problem:
       "Most small service websites say \"call for a quote\". Most people never call. They move on to the next company that shows a price, and the leads that do arrive say \"how much?\" with no details, so every quote starts five messages back.",
     built:
-      "A sales site and five working demo calculators for made-up businesses: a solar installer, a builder, a cleaning company, an accountant and a personal trainer. Each one prices the job live as you change the inputs, then opens WhatsApp with a ready-made message carrying every answer and the agreed price. The offer is productised: a free preview built with the client's real prices, then a one-off fee to put it on their existing site.",
+      "A sales site and five working demo pricing tools for made-up businesses: a solar installer, a builder, a cleaning company, an accountant and a personal trainer. Each one prices the job live as you change the inputs, then opens WhatsApp with a ready-made message carrying every answer and the agreed price. The offer is productised: a free preview built with the client's real prices, then a one-off fee to put it on their existing site.",
     decisions: [
       "WhatsApp as the hand-off, not a form, because that is where small Irish businesses already answer customers. The lead arrives as one message they can reply to.",
       "Ranges for jobs that need a site visit, like \"€68k to €84k\" for an extension, so a business with variable pricing still gets the lead and the details.",
@@ -461,7 +461,7 @@ const PROJECTS: Project[] = [
     statusCol: C.green,
     flagship: true,
     liveUrl: CALCULATORS_URL,
-    liveLabel: "Try the live calculators",
+    liveLabel: "Try the Instant Pricing Tool",
     frameUrl: "calculators.themethodco.co",
   },
   {
@@ -542,6 +542,7 @@ const SERVICES = [
   {
     icon: "layout", idx: "03", title: "Landing pages and funnels",
     body: "The path that turns a click into a booked client, written and built rather than themed.",
+    link: { href: "/landing-pages/", label: "Landing pages from €250, with five live demos" },
   },
   {
     icon: "spark", idx: "04", title: "AI built into the product",
@@ -570,7 +571,7 @@ const SKILL_GROUPS = [
   {
     icon: "code", title: "Build",
     items: ["React", "TypeScript", "JavaScript", "Node.js", "Express", "REST APIs", "SQL: SQLite and Postgres", "PWA", "Stripe"],
-    proof: "Onishi, Dezorzi, Quote Calculators, Orbit, The Method Chat",
+    proof: "Onishi, Dezorzi, Instant Pricing Tool, Orbit, The Method Chat",
   },
   {
     icon: "spark", title: "AI",
@@ -585,7 +586,7 @@ const SKILL_GROUPS = [
   {
     icon: "pen", title: "Growth and communication",
     items: ["Copywriting", "Marketing", "Landing pages", "Go-to-market"],
-    proof: "Quote Calculators, The Last Human Job, The Method Co.",
+    proof: "Instant Pricing Tool, Landing pages, The Last Human Job",
   },
 ] as const;
 
@@ -812,7 +813,7 @@ export default function Landing() {
             <Sub>Each one designed, built and shipped by me. Every case study covers the problem, what I built, my role, the stack, and where it runs today.</Sub>
           </Reveal>
 
-          {/* Featured: Onishi, Dezorzi and Quote Calculators */}
+          {/* Featured: Onishi, Dezorzi and the Instant Pricing Tool */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div
@@ -1160,6 +1161,13 @@ export default function Landing() {
                     lineHeight: 1.7, margin: 0 }}>
                     {card.body}
                   </p>
+                  {"link" in card && (
+                    <a href={card.link.href}
+                      style={{ ...CARD_CTA, fontSize: "0.72rem", gap: "0.45rem", marginTop: "auto",
+                        textDecoration: "none" }}>
+                      {card.link.label} <Ic n="arrow" sz={14} col={C.accent} />
+                    </a>
+                  )}
                 </motion.div>
               </Reveal>
             ))}

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Halcyon Clean | Premium home and office cleaning in Dublin (demo)</title>
+<meta name="description" content="Demo landing page by The Method Co. for a fictional premium cleaning company. Request a cleaning quote.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF8F4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FAF8F4; --stone: #F1EDE5; --ink: #12302B; --soft: #52645F; --line: #E2DCD0;
+  --brass: #A9844D; --sage: #DCE5DE; --white: #FFFFFF;
+  --serif: "Cormorant Garamond", Georgia, serif; --sans: "Manrope", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -.01em; }
+p { margin: 0; }
+.kicker { font: 600 .74rem/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--brass); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 0; font: 600 .95rem/1 var(--sans); text-decoration: none; cursor: pointer; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+.btn-dark { background: var(--ink); color: var(--paper); box-shadow: 0 12px 28px -14px rgba(18,48,43,.7); }
+.btn-dark:hover { transform: translateY(-2px); background: #0C2420; }
+.btn-line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 20; background: rgba(250,248,244,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+header.scrolled { border-color: var(--line); }
+.bar { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 20px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 1.55rem/1 var(--serif); letter-spacing: .02em; }
+.logo svg { width: 30px; height: 30px; }
+nav ul { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; font-size: .92rem; font-weight: 500; }
+nav a { text-decoration: none; color: var(--soft); transition: color .2s; }
+nav a:hover { color: var(--ink); }
+.bar .btn { min-height: 44px; padding: 0 20px; font-size: .88rem; }
+.menu-btn { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--ink); }
+@media (max-width: 880px) {
+  nav { position: fixed; inset: 76px 0 auto; background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 20px 24px; transform: translateY(-120%); transition: transform .35s ease; z-index: -1; }
+  nav.open { transform: none; }
+  nav ul { flex-direction: column; gap: 0; }
+  nav li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 1.05rem; color: var(--ink); }
+  .menu-btn { display: block; }
+  .bar .btn { display: none; }
+}
+
+/* Hero */
+.hero { padding: clamp(36px, 6vw, 80px) 0 clamp(60px, 8vw, 110px); }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+.hero h1 { font-size: clamp(3rem, 6.4vw, 5.6rem); line-height: .98; margin: 18px 0 22px; }
+.hero h1 em { font-style: italic; color: var(--brass); }
+.hero .lede { font-size: 1.12rem; color: var(--soft); max-width: 46ch; margin-bottom: 30px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+.assure { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 0; margin: 0; list-style: none; font-size: .88rem; color: var(--soft); }
+.assure li { display: flex; align-items: center; gap: 8px; }
+.assure li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: var(--sage) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.4l2.6 2.6L13 6.6' fill='none' stroke='%2312302B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100%; }
+.scene { position: relative; aspect-ratio: 4 / 4.6; border-radius: 240px 240px 28px 28px; overflow: hidden; background: linear-gradient(180deg, #EFE9DE 0%, #E6DED0 100%); box-shadow: 0 50px 80px -50px rgba(18,48,43,.45); }
+.scene svg { width: 100%; height: 100%; }
+.sun { animation: sun 9s ease-in-out infinite alternate; transform-origin: 70% 30%; }
+@keyframes sun { from { opacity: .55; transform: translateX(-2%); } to { opacity: .9; transform: translateX(3%); } }
+.note-card { position: absolute; left: -26px; bottom: 34px; background: var(--white); border-radius: 18px; padding: 16px 18px; box-shadow: 0 24px 50px -24px rgba(18,48,43,.4); display: flex; gap: 12px; align-items: center; max-width: 260px; animation: float 6s ease-in-out infinite; }
+.note-card b { font: 600 1.15rem/1.1 var(--serif); display: block; }
+.note-card small { color: var(--soft); font-size: .8rem; }
+.note-card i { width: 42px; height: 42px; border-radius: 50%; background: var(--sage); display: grid; place-items: center; flex: none; }
+@keyframes float { 50% { transform: translateY(-8px); } }
+.hero-art { position: relative; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .scene { aspect-ratio: 4 / 3.6; border-radius: 180px 180px 24px 24px; } .note-card { left: 14px; bottom: 14px; } }
+
+/* Strip */
+.strip { border-block: 1px solid var(--line); background: var(--stone); }
+.strip ul { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; margin: 0; padding: 0; }
+.strip li { padding: 26px 22px; border-left: 1px solid var(--line); font-size: .92rem; color: var(--soft); }
+.strip li:first-child { border-left: 0; }
+.strip b { display: block; font: 600 1.2rem/1.2 var(--serif); color: var(--ink); margin-bottom: 4px; }
+@media (max-width: 760px) { .strip ul { grid-template-columns: 1fr 1fr; } .strip li:nth-child(3) { border-left: 0; } .strip li { border-top: 1px solid var(--line); } }
+
+/* Sections */
+section { padding: clamp(70px, 9vw, 120px) 0; }
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 60px; align-items: end; margin-bottom: 48px; }
+.head h2 { font-size: clamp(2.3rem, 4.6vw, 3.8rem); line-height: 1.02; margin-top: 14px; }
+.head p { color: var(--soft); font-size: 1.05rem; max-width: 48ch; }
+@media (max-width: 820px) { .head { grid-template-columns: 1fr; } }
+
+/* Services selector */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.tab { border: 1px solid var(--line); background: var(--white); color: var(--soft); border-radius: 999px; padding: 11px 20px; font: 600 .9rem/1 var(--sans); cursor: pointer; transition: all .2s ease; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.panel { display: grid; grid-template-columns: 1fr 1.1fr; background: var(--white); border-radius: 28px; overflow: hidden; border: 1px solid var(--line); min-height: 380px; }
+.panel-art { background: var(--stone); position: relative; }
+.panel-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.panel-body { padding: clamp(26px, 4vw, 48px); display: flex; flex-direction: column; }
+.panel-body h3 { font-size: 2.2rem; line-height: 1.05; margin: 10px 0 12px; }
+.panel-body > p { color: var(--soft); margin-bottom: 22px; }
+.inc { list-style: none; padding: 0; margin: 0 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; font-size: .92rem; }
+.inc li { display: flex; gap: 8px; }
+.inc li::before { content: ""; flex: none; width: 12px; height: 1px; margin-top: .8em; background: var(--brass); }
+.panel-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-top: 22px; border-top: 1px solid var(--line); }
+.panel-foot span { font-size: .9rem; color: var(--soft); }
+.panel-foot b { font: 600 1.5rem/1 var(--serif); color: var(--ink); }
+.fade { animation: fade .45s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+@media (max-width: 820px) { .panel { grid-template-columns: 1fr; } .panel-art { min-height: 220px; } .inc { grid-template-columns: 1fr; } }
+
+/* Standard */
+.standard { background: var(--ink); color: var(--paper); }
+.standard .kicker { color: #D9B985; }
+.standard .head p { color: #B7C6C1; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(250,248,244,.14); border-radius: 24px; overflow: hidden; }
+.col { background: var(--ink); padding: 34px 30px; }
+.col span { font: 500 3rem/1 var(--serif); color: #D9B985; display: block; margin-bottom: 18px; font-style: italic; }
+.col h3 { font-size: 1.6rem; margin-bottom: 10px; }
+.col p { color: #B7C6C1; font-size: .95rem; }
+@media (max-width: 820px) { .cols { grid-template-columns: 1fr; } }
+
+/* Quote */
+.quote { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 5vw, 70px); align-items: start; }
+.quote h2 { font-size: clamp(2.3rem, 4.6vw, 3.8rem); line-height: 1.02; margin: 14px 0 18px; }
+.quote .side p { color: var(--soft); margin-bottom: 18px; }
+.steps { list-style: none; padding: 0; margin: 30px 0 0; display: grid; gap: 16px; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; font-size: .95rem; color: var(--soft); }
+.steps li::before { counter-increment: s; content: counter(s); width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--brass); display: grid; place-items: center; font: 600 1.1rem/1 var(--serif); color: var(--brass); }
+.steps b { color: var(--ink); display: block; font-weight: 600; }
+form { background: var(--white); border: 1px solid var(--line); border-radius: 28px; padding: clamp(22px, 4vw, 40px); box-shadow: 0 40px 70px -50px rgba(18,48,43,.35); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+.field { display: grid; gap: 6px; margin-bottom: 16px; }
+label, legend { font-size: .82rem; font-weight: 600; color: var(--ink); }
+input, select, textarea { width: 100%; font: 400 1rem/1.4 var(--sans); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; transition: border-color .2s, box-shadow .2s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(18,48,43,.1); }
+[aria-invalid="true"] { border-color: #B4472F; }
+.err { color: #B4472F; font-size: .8rem; min-height: 1em; }
+fieldset { border: 0; padding: 0; margin: 0 0 16px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.choices input { position: absolute; opacity: 0; pointer-events: none; }
+.choices label { border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 500; cursor: pointer; background: var(--paper); transition: all .15s; }
+.choices input:checked + label { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.choices input:focus-visible + label { outline: 2px solid var(--brass); outline-offset: 2px; }
+form .btn { width: 100%; margin-top: 6px; }
+.fineprint { margin-top: 12px; font-size: .78rem; color: var(--soft); text-align: center; }
+.done { text-align: center; padding: 30px 10px; }
+.done svg { width: 64px; height: 64px; margin: 0 auto 18px; }
+.done h3 { font-size: 2rem; margin-bottom: 10px; }
+.done p { color: var(--soft); max-width: 40ch; margin: 0 auto 8px; }
+.demo-flag { display: inline-block; margin-top: 10px; background: var(--stone); border-radius: 10px; padding: 10px 14px; font-size: .84rem; color: var(--soft); }
+@media (max-width: 900px) { .quote { grid-template-columns: 1fr; } }
+
+/* FAQ + footer */
+.faq { max-width: 760px; margin: 0 auto; }
+.faq h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); text-align: center; margin: 14px 0 34px; }
+.faq .kicker { display: block; text-align: center; }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 22px 40px 22px 0; position: relative; font: 600 1.35rem/1.3 var(--serif); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 300 1.6rem/1 var(--sans); color: var(--brass); transition: transform .25s; }
+details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+details p { color: var(--soft); padding-bottom: 22px; max-width: 62ch; }
+footer { background: var(--stone); border-top: 1px solid var(--line); padding: 48px 0 110px; font-size: .9rem; color: var(--soft); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+.mobile-cta { display: none; }
+@media (max-width: 700px) { .mobile-cta { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; box-shadow: 0 18px 40px -12px rgba(18,48,43,.6); } }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+
+/* The Method Co. demo badge */
+.mc-demo { position: fixed; z-index: 40; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 8px; background: #0A0F14; color: #fff; text-decoration: none; font: 600 12px/1 Manrope, system-ui, sans-serif; padding: 9px 12px 9px 10px; border-radius: 999px; box-shadow: 0 10px 24px -8px rgba(0,0,0,.45); }
+.mc-demo svg { width: 20px; height: 14px; }
+.mc-demo span { color: #22D87A; }
+@media (max-width: 700px) { .mc-demo { top: 84px; bottom: auto; left: auto; right: 10px; padding: 7px 10px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<a class="mc-demo" href="/landing-pages/#demos" aria-label="Demo by The Method Co. Back to all landing page demos"><svg viewBox="0 0 160 112" aria-hidden="true"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="#fff"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="#22D87A"/></svg>Demo by The Method Co. <span>All demos</span></a>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Halcyon Clean home">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="#A9844D"/><path d="M8 18c3-6 11-6 14 0" fill="none" stroke="#12302B" stroke-width="1.6" stroke-linecap="round"/><circle cx="15" cy="11" r="2.4" fill="#A9844D"/></svg>
+      Halcyon
+    </a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#standard">Our standard</a></li>
+        <li><a href="#quote">Get a quote</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-dark" href="#quote">Request a quote</a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="kicker">Residential and commercial cleaning, Dublin</p>
+        <h1 id="hero-title">A home that feels <em>looked after.</em></h1>
+        <p class="lede">Discreet, detailed cleaning by the same small team every visit. Tell us about your space and we'll send a fixed quote within one working day.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-dark" href="#quote">Request a quote <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-line" href="#services">See our services</a>
+        </div>
+        <ul class="assure"><li>Fully insured team</li><li>Products and equipment included</li><li>Fixed price, agreed upfront</li></ul>
+      </div>
+      <div class="hero-art reveal">
+        <div class="scene" role="img" aria-label="Illustration of a sunlit, tidy living room with an arched window">
+          <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EEE5"/><stop offset="1" stop-color="#E4DACA"/></linearGradient>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE7E3"/><stop offset="1" stop-color="#F6EFE2"/></linearGradient>
+              <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF6E0" stop-opacity=".85"/><stop offset="1" stop-color="#FFF6E0" stop-opacity="0"/></linearGradient>
+              <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6C7AF"/><stop offset="1" stop-color="#C4B192"/></linearGradient>
+            </defs>
+            <rect width="400" height="460" fill="url(#wall)"/>
+            <path d="M210 70a70 70 0 0 1 140 0v170H210Z" fill="url(#sky)" stroke="#CDBFA8" stroke-width="6"/>
+            <path d="M280 0v240M210 140h140" stroke="#CDBFA8" stroke-width="4"/>
+            <circle cx="320" cy="96" r="22" fill="#FFF3D6" opacity=".9"/>
+            <polygon class="sun" points="210,240 350,240 260,460 40,460" fill="url(#beam)"/>
+            <rect y="330" width="400" height="130" fill="url(#floor)"/>
+            <path d="M0 330h400" stroke="#BBA88A" stroke-width="2"/>
+            <rect x="40" y="250" width="190" height="70" rx="14" fill="#E9E3D7"/>
+            <rect x="30" y="285" width="210" height="52" rx="16" fill="#F7F3EA"/>
+            <rect x="52" y="262" width="56" height="34" rx="10" fill="#DCE5DE"/>
+            <rect x="116" y="262" width="56" height="34" rx="10" fill="#EFE6D4"/>
+            <rect x="44" y="335" width="8" height="18" fill="#9E8B6C"/><rect x="218" y="335" width="8" height="18" fill="#9E8B6C"/>
+            <ellipse cx="150" cy="420" rx="120" ry="18" fill="#F4EBDC" opacity=".8"/>
+            <rect x="300" y="300" width="64" height="40" rx="6" fill="#12302B"/>
+            <path d="M332 300c-14-40 10-70 0-110M332 300c14-34-6-56 10-84M332 300c-26-22-30-50-24-74" stroke="#5E7F6C" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <ellipse cx="318" cy="200" rx="14" ry="7" fill="#7FA08A" transform="rotate(-30 318 200)"/>
+            <ellipse cx="344" cy="226" rx="14" ry="7" fill="#6B8F78" transform="rotate(30 344 226)"/>
+            <ellipse cx="312" cy="238" rx="12" ry="6" fill="#8DB098" transform="rotate(-50 312 238)"/>
+            <rect x="60" y="120" width="90" height="70" rx="4" fill="#F7F3EA" stroke="#CDBFA8" stroke-width="4"/>
+            <path d="M72 175l22-26 16 18 12-12 18 20" fill="none" stroke="#A9844D" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="note-card"><i aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#12302B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div><b>Same team, every visit</b><small>No new faces in your home</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <ul class="wrap">
+      <li><b>Fixed quotes</b>Within one working day</li>
+      <li><b>Vetted team</b>Background checked staff</li>
+      <li><b>Flexible visits</b>Weekly, fortnightly or once</li>
+      <li><b>Re-clean promise</b>Missed something? We return</li>
+    </ul>
+  </div>
+
+  <section id="services" aria-labelledby="svc-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="kicker">Services</p><h2 id="svc-title">Choose the clean that suits your space.</h2></div>
+        <p>Every service is priced on your space and your schedule, so you know the cost before we arrive. Pick one to see what's included.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Cleaning services"></div>
+      <div class="panel" role="tabpanel" id="svc-panel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="standard" id="standard" aria-labelledby="std-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="kicker">The Halcyon standard</p><h2 id="std-title">Calm, careful and consistent.</h2></div>
+        <p>We keep teams small and schedules steady, so the people cleaning your space learn how you like it done.</p>
+      </div>
+      <div class="cols reveal">
+        <div class="col"><span>i.</span><h3>A walkthrough first</h3><p>Your first visit starts with a short walkthrough, so we agree priorities, access and anything to avoid.</p></div>
+        <div class="col"><span>ii.</span><h3>A checklist per room</h3><p>Each visit follows a written checklist for your home, signed off by your team lead before they leave.</p></div>
+        <div class="col"><span>iii.</span><h3>One point of contact</h3><p>Questions, changes and keys go through one named person, by phone, email or WhatsApp.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote" aria-labelledby="quote-title">
+    <div class="wrap quote">
+      <div class="side reveal">
+        <p class="kicker">Request a quote</p>
+        <h2 id="quote-title">Your fixed price, within a day.</h2>
+        <p>Two minutes is all it takes. No call needed unless you'd like one.</p>
+        <ol class="steps">
+          <li><div><b>Tell us about your space</b>Type of clean, size and how often.</div></li>
+          <li><div><b>Get a fixed quote</b>By email within one working day.</div></li>
+          <li><div><b>Pick a start date</b>We confirm your team and your first visit.</div></li>
+        </ol>
+      </div>
+      <form id="quote-form" class="reveal" novalidate>
+        <div id="form-body">
+          <fieldset>
+            <legend>What do you need?</legend>
+            <div class="choices" id="svc-choices"></div>
+          </fieldset>
+          <div class="row">
+            <div class="field"><label for="size">Size of space</label>
+              <select id="size" name="size" required><option value="">Choose one</option><option>Apartment, 1 to 2 bed</option><option>House, 3 bed</option><option>House, 4 bed or more</option><option>Office, up to 150 m²</option><option>Office, over 150 m²</option></select>
+              <span class="err" id="size-err"></span></div>
+            <div class="field"><label for="freq">How often?</label>
+              <select id="freq" name="freq" required><option value="">Choose one</option><option>Weekly</option><option>Every two weeks</option><option>Monthly</option><option>Just once</option></select>
+              <span class="err" id="freq-err"></span></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required><span class="err" id="name-err"></span></div>
+            <div class="field"><label for="area">Area or Eircode</label><input id="area" name="area" autocomplete="postal-code" placeholder="e.g. Ranelagh or D06" required><span class="err" id="area-err"></span></div>
+          </div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required><span class="err" id="email-err"></span></div>
+          <button class="btn btn-dark" type="submit">Send my quote request</button>
+          <p class="fineprint">Demo page: this form is not connected, so nothing is sent.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title" style="background:var(--stone)">
+    <div class="wrap faq">
+      <p class="kicker">Questions</p>
+      <h2 id="faq-title">Before you book</h2>
+      <details><summary>Do I need to be home?</summary><p>No. Many clients leave a key or a code with us. Keys are labelled with a reference, never your address, and returned whenever you ask.</p></details>
+      <details><summary>Do you bring your own products?</summary><p>Yes. Products and equipment are included. If you prefer we use your own, or have surfaces that need something specific, just tell us when you book.</p></details>
+      <details><summary>Can I change or skip a visit?</summary><p>Yes, with 48 hours' notice. Changes inside that window may be charged, and we'll always tell you before we do.</p></details>
+      <details><summary>What if something isn't right?</summary><p>Tell us within 24 hours and we'll come back and put it right at no cost.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Halcyon Clean is a fictional business, created as a demo by The Method Co.</span>
+    <a href="/landing-pages/">Get a landing page like this</a>
+  </div>
+</footer>
+<a class="btn btn-dark mobile-cta" href="#quote">Request a quote</a>
+
+<script>
+(function () {
+  var SERVICES = [
+    { id: 'home', name: 'Home cleaning', title: 'Regular home cleaning', from: '€95',
+      blurb: 'A thorough, steady routine for busy households. The same team, the same standard, every visit.',
+      inc: ['Kitchen surfaces, hob and sink', 'Bathrooms descaled and polished', 'Floors vacuumed and mopped', 'Dusting, including skirting', 'Beds made, linen changed on request', 'Bins emptied and relined'] },
+    { id: 'deep', name: 'Deep clean', title: 'Top-to-bottom deep clean', from: '€240',
+      blurb: 'For a fresh start, a seasonal reset or before guests arrive. Every room, every surface.',
+      inc: ['Inside oven and fridge', 'Limescale removal throughout', 'Doors, frames and switches', 'Inside windows and sills', 'Behind and under furniture', 'Upholstery vacuumed'] },
+    { id: 'tenancy', name: 'End of tenancy', title: 'End of tenancy cleaning', from: '€280',
+      blurb: 'Handover-ready, room by room, so the property is ready for its inspection.',
+      inc: ['Every cupboard, inside and out', 'Oven, hob and extractor', 'Bathrooms deep cleaned', 'Walls spot cleaned', 'Windows and frames inside', 'Room-by-room checklist'] },
+    { id: 'office', name: 'Office', title: 'Office and studio cleaning', from: '€120',
+      blurb: 'Early morning or after hours, so your space is ready before your team arrives.',
+      inc: ['Desks and shared surfaces', 'Kitchen and meeting rooms', 'Washrooms and supplies', 'Floors and entrances', 'Recycling sorted', 'Out of hours visits'] }
+  ];
+  var ART = {
+    home: '<rect width="400" height="400" fill="#EDE6DA"/><rect x="40" y="250" width="320" height="110" rx="18" fill="#F7F3EA"/><rect x="70" y="210" width="120" height="60" rx="14" fill="#DCE5DE"/><rect x="210" y="210" width="120" height="60" rx="14" fill="#EFE6D4"/><circle cx="300" cy="110" r="44" fill="#FFF3D6"/><path d="M60 140h120" stroke="#CDBFA8" stroke-width="6" stroke-linecap="round"/>',
+    deep: '<rect width="400" height="400" fill="#E3EAE5"/><circle cx="200" cy="200" r="120" fill="#F7F3EA"/><circle cx="200" cy="200" r="84" fill="none" stroke="#A9844D" stroke-width="3" stroke-dasharray="4 10"/><path d="M160 205l28 28 56-64" fill="none" stroke="#12302B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>',
+    tenancy: '<rect width="400" height="400" fill="#EFE9DE"/><rect x="120" y="90" width="160" height="240" rx="6" fill="#F7F3EA" stroke="#CDBFA8" stroke-width="5"/><circle cx="252" cy="214" r="7" fill="#A9844D"/><path d="M60 330h280" stroke="#BBA88A" stroke-width="5" stroke-linecap="round"/><rect x="152" y="130" width="96" height="10" rx="5" fill="#DCE5DE"/>',
+    office: '<rect width="400" height="400" fill="#E6E9E4"/><rect x="60" y="200" width="280" height="16" rx="8" fill="#12302B"/><rect x="90" y="216" width="10" height="110" fill="#12302B"/><rect x="300" y="216" width="10" height="110" fill="#12302B"/><rect x="150" y="120" width="110" height="74" rx="8" fill="#F7F3EA" stroke="#CDBFA8" stroke-width="4"/><circle cx="110" cy="176" r="18" fill="#A9844D"/>'
+  };
+  var tabs = document.querySelector('.tabs'), panel = document.getElementById('svc-panel'), choices = document.getElementById('svc-choices');
+  function show(i, focus) {
+    var s = SERVICES[i];
+    tabs.querySelectorAll('.tab').forEach(function (t, j) { t.setAttribute('aria-selected', j === i); t.tabIndex = j === i ? 0 : -1; if (j === i && focus) t.focus(); });
+    panel.innerHTML = '<div class="panel-art" aria-hidden="true"><svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">' + ART[s.id] + '</svg></div>' +
+      '<div class="panel-body fade"><p class="kicker">' + s.name + '</p><h3>' + s.title + '</h3><p>' + s.blurb + '</p><ul class="inc">' +
+      s.inc.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul><div class="panel-foot"><span>From <b>' + s.from + '</b> per visit</span>' +
+      '<a class="btn btn-dark" href="#quote" data-pick="' + s.id + '">Quote for ' + s.name.toLowerCase() + '</a></div></div>';
+  }
+  SERVICES.forEach(function (s, i) {
+    var b = document.createElement('button'); b.className = 'tab'; b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-controls', 'svc-panel'); b.textContent = s.name;
+    b.addEventListener('click', function () { show(i); });
+    b.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { show((i + (e.key === 'ArrowRight' ? 1 : SERVICES.length - 1)) % SERVICES.length, true); } });
+    tabs.appendChild(b);
+    choices.insertAdjacentHTML('beforeend', '<input type="radio" name="service" id="c-' + s.id + '" value="' + s.name + '"' + (i === 0 ? ' checked' : '') + '><label for="c-' + s.id + '">' + s.name + '</label>');
+  });
+  show(0);
+  panel.addEventListener('click', function (e) { var a = e.target.closest('[data-pick]'); if (a) document.getElementById('c-' + a.dataset.pick).checked = true; });
+
+  var header = document.querySelector('header'), nav = document.getElementById('nav'), mb = document.querySelector('.menu-btn');
+  addEventListener('scroll', function () { header.classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+  mb.addEventListener('click', function () { var o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); } });
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 }) : null;
+  document.querySelectorAll('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  var form = document.getElementById('quote-form');
+  var RULES = { size: function (v) { return v ? '' : 'Choose the size of your space.'; }, freq: function (v) { return v ? '' : 'Choose how often.'; },
+    name: function (v) { return v.trim() ? '' : 'Tell us your name.'; }, area: function (v) { return v.trim() ? '' : 'Add your area or Eircode.'; },
+    email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Add a valid email address.'; } };
+  function check(id) { var el = form.elements[id], msg = RULES[id](el.value); el.setAttribute('aria-invalid', !!msg); document.getElementById(id + '-err').textContent = msg; return !msg; }
+  Object.keys(RULES).forEach(function (id) { form.elements[id].addEventListener('blur', function () { check(id); }); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = Object.keys(RULES).filter(function (id) { return !check(id); });
+    if (bad.length) { form.elements[bad[0]].focus(); return; }
+    var name = form.elements.name.value.trim().split(' ')[0];
+    document.getElementById('form-body').innerHTML = '<div class="done" role="status"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#DCE5DE"/><path d="M20 33l8 8 16-18" fill="none" stroke="#12302B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Thank you, ' + name.replace(/[<>&]/g, '') + '.</h3><p>On a live site, your request would now be with the Halcyon team, and you would have a fixed quote by email within one working day.</p><span class="demo-flag">Demo only: nothing was sent or stored.</span></div>';
+  });
+})();
+</script>
+</body>
+</html>
