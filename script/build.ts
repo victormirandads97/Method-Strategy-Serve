@@ -1,6 +1,6 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile } from "fs/promises";
+import { rm, readFile, mkdir, copyFile, access } from "fs/promises";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -37,6 +37,16 @@ async function buildAll() {
 
   console.log("building client...");
   await viteBuild();
+
+  // The paid ebook is bundled into the Cloudflare Pages Functions, never into
+  // the public files: functions/api/ebook-download.ts imports this copy and
+  // serves it only after Stripe confirms payment. Wrangler bundles .bin files
+  // as binary data, so the deploy fails loudly if this step was skipped.
+  const ebook = "private/The_Last_Human_Job_-_ebook.pdf";
+  await access(ebook);
+  await mkdir("functions/_generated", { recursive: true });
+  await copyFile(ebook, "functions/_generated/ebook.bin");
+  console.log("bundled ebook for Pages Functions: functions/_generated/ebook.bin");
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
