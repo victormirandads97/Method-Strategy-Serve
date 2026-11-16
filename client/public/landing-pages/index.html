@@ -38,7 +38,7 @@
 </script>
 <style>
 /* The Method Co. brand system: Inter, navy #0A0F14, green #22D87A, white.
-   Same tokens and components as the Instant Pricing Tool page, so the two
+   Same tokens and components as the Method Instant Quotes page, so the two
    products read as one company. */
 :root {
   --bg: #FFFFFF; --tint: #F5F7F9; --ink: #0A0F14; --navy: #0A0F14; --surface: #111827; --raise: #172131;
@@ -291,6 +291,39 @@ p { margin: 0; }
 .done p { color: var(--soft); max-width: 44ch; margin: 0 auto 10px; }
 .done .btn { width: auto; margin-top: 10px; }
 @media (max-width: 900px) { .start .wrap { grid-template-columns: minmax(0, 1fr); } }
+/* Discount attached to the form after the exit offer is claimed */
+.offer-tag { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 16px; border-radius: 14px; background: var(--mint); border: 1.5px solid var(--green-deep); color: #064E2D; }
+.offer-tag[hidden] { display: none; }
+.offer-tag .pct { flex: none; display: grid; place-items: center; min-width: 50px; height: 42px; padding: 0 6px; border-radius: 12px; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: .86rem; letter-spacing: -.02em; white-space: nowrap; }
+.offer-tag div { flex: 1; min-width: 0; font-size: .92rem; line-height: 1.4; }
+.offer-tag b { display: block; color: var(--ink); }
+.offer-tag s { color: var(--soft); }
+.offer-tag button { flex: none; background: none; border: 0; padding: 8px; margin: -8px -6px -8px 0; font: 600 .84rem var(--font); color: #064E2D; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 8px; }
+.offer-tag .err { display: block; color: #B42318; font-size: .82rem; }
+.offer-tag .err:empty { display: none; }
+
+/* Exit offer */
+.xo { padding: 0; border: 0; background: transparent; width: min(480px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow: visible; color: #fff; }
+.xo::backdrop { background: rgba(5,8,12,.72); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.xo[open] { animation: xo-in .35s var(--ease); }
+@keyframes xo-in { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+.xo-card { position: relative; overflow: hidden; border-radius: 26px; background: var(--navy); padding: 34px clamp(22px, 5vw, 36px) 26px; box-shadow: 0 50px 100px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.1); text-align: center; }
+.xo-card::before { content: ""; position: absolute; width: 520px; height: 520px; left: 50%; top: -330px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(34,216,122,.32), transparent); pointer-events: none; }
+.xo-card > * { position: relative; }
+.xo-x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.xo-x:hover { background: rgba(255,255,255,.16); }
+.xo-badge { display: inline-block; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+.xo h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.04; margin-bottom: 18px; }
+.xo-price { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 14px; }
+.xo-price small { color: var(--mute); font-size: 1rem; }
+.xo-price s { color: var(--mute); font-size: 1.5rem; font-weight: 600; text-decoration-thickness: 2px; }
+.xo-price b { font-size: clamp(3.4rem, 13vw, 4.4rem); line-height: .9; font-weight: 800; letter-spacing: -.05em; color: #fff; }
+.xo p { color: #C9CED6; max-width: 36ch; margin: 0 auto 22px; }
+.xo .btn { width: 100%; }
+.xo-no { margin-top: 10px; background: none; border: 0; color: var(--mute); font: 500 .92rem var(--font); padding: 12px; min-height: 44px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; border-radius: 8px; }
+.xo-no:hover { color: #fff; }
+.xo-fine { margin-top: 4px; font-size: .78rem; color: var(--mute); }
+html.xo-lock { overflow: hidden; }
 
 .site-footer { background: var(--navy); color: var(--mute); border-top: 1px solid var(--line-d); padding: 40px 0 110px; font-size: .9rem; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
@@ -539,6 +572,11 @@ p { margin: 0; }
           <h3>Tell us about your business</h3>
           <p class="req-note">Takes about a minute. Fields marked optional can be left blank.</p>
           <div class="status bad" id="lead-status" role="alert"></div>
+          <div class="offer-tag" id="offer-tag" hidden><span class="pct" aria-hidden="true">−20%</span><div><b>20% off attached</b>Your landing page from €200 instead of <s>from €250</s>. We'll apply it to your fixed price.<span class="err" id="offer-err"></span></div><button type="button" id="offer-remove">Remove</button></div>
+          <input type="hidden" name="offer" id="offer" value="">
+          <div class="fld"><label for="enquiry_type">What are you asking about?</label>
+            <select id="enquiry_type" name="enquiry_type" required><option selected>High-Conversion Landing Pages</option><option>Method Instant Quotes</option><option>Both</option></select>
+            <span class="err" id="enquiry_type-err"></span></div>
           <div class="grid2">
             <div class="fld"><label for="business_name">Business name</label><input id="business_name" name="business_name" autocomplete="organization" maxlength="120" required><span class="err" id="business_name-err"></span></div>
             <div class="fld"><label for="contact_name">Your name</label><input id="contact_name" name="contact_name" autocomplete="name" maxlength="120" required><span class="err" id="contact_name-err"></span></div>
@@ -571,7 +609,7 @@ p { margin: 0; }
   <div class="wrap">
     <a class="brand" href="/" aria-label="The Method Co. home"><svg aria-hidden="true"><use href="#mark"/></svg><span class="word">The Method Co<i>.</i></span></a>
     <nav aria-label="Footer">
-      <a href="https://calculators.themethodco.co/">Instant Pricing Tool</a>
+      <a href="https://calculators.themethodco.co/">Method Instant Quotes</a>
       <a href="/">Our work</a>
       <a href="/terms">Terms</a>
       <a href="/privacy">Privacy</a>
@@ -581,6 +619,101 @@ p { margin: 0; }
 </footer>
 <a class="btn btn-go mobile-cta" href="#start">Request your landing page</a>
 
+<dialog class="xo" id="exit-offer" aria-labelledby="xo-title" aria-describedby="xo-desc">
+  <form method="dialog" class="xo-card">
+    <button class="xo-x" value="close" aria-label="Close this offer"><span aria-hidden="true">×</span></button>
+    <span class="xo-badge">20% off</span>
+    <h2 id="xo-title">Before you go, take 20% off your landing page.</h2>
+    <div class="xo-price" aria-label="From €200 instead of from €250"><small aria-hidden="true">From</small><b aria-hidden="true">€200</b><s aria-hidden="true">from €250</s></div>
+    <p id="xo-desc">Same page, same scope, same free preview. Nothing to pay until you've approved it.</p>
+    <button class="btn btn-go" value="claim" autofocus>Claim 20% off</button>
+    <button class="xo-no" value="close">No thanks</button>
+    <p class="xo-fine">The discount is attached to your request when you send the form.</p>
+  </form>
+</dialog>
+
+<script>window.EXIT_OFFER = { offerSection: "#pricing", formSection: "start" };</script>
+<script>
+/* Exit offer (same code on both sales pages; each page sets window.EXIT_OFFER first).
+   - Desktop: shown when the cursor leaves through the top of the window.
+   - Touch: shown only after the pricing has been on screen, when the visitor
+     then scrolls most of the way back up. In-page link jumps don't count.
+   - At most once per browser session on this site. Never after an enquiry
+     was sent or the offer was claimed. History and the back button are left alone.
+   - A native <dialog>: Escape, the close button, "No thanks" and a tap on the
+     backdrop all close it; focus stays inside while open and returns after.
+   Claiming fires "exitoffer:claim" on document; the page attaches the offer to its form. */
+var ExitOffer = (function () {
+  var cfg = window.EXIT_OFFER || {}, mem = {};
+  var K = { shown: 'mco-xo-shown', claimed: 'mco-xo-claimed', enquired: 'mco-enquired' };
+  function get(area, k) { try { return window[area].getItem(k); } catch (e) { return mem[area + k] || null; } }
+  function put(area, k, v) { mem[area + k] = v; try { if (v === null) window[area].removeItem(k); else window[area].setItem(k, v); } catch (e) {} }
+  var dlg = document.getElementById('exit-offer'), armed = false, lastFocus = null;
+  var api = {
+    claimed: function () { return get('sessionStorage', K.claimed) === '1'; },
+    release: function () { put('sessionStorage', K.claimed, null); },
+    enquired: function () { put('localStorage', K.enquired, '1'); put('sessionStorage', K.enquired, '1'); }
+  };
+  if (!dlg || typeof dlg.showModal !== 'function') return api;
+
+  function blocked() {
+    return get('sessionStorage', K.shown) || get('sessionStorage', K.claimed) || get('sessionStorage', K.enquired) ||
+      get('localStorage', K.enquired) || (cfg.active && !cfg.active());
+  }
+  function busy() {
+    var a = document.activeElement;
+    if (a && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)) return true;
+    if (document.querySelector('dialog[open]')) return true;
+    var f = cfg.formSection && document.getElementById(cfg.formSection);
+    if (!f) return false;
+    var r = f.getBoundingClientRect();
+    return r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.4;
+  }
+  function show(trigger) {
+    if (!armed || blocked() || busy()) return;
+    put('sessionStorage', K.shown, '1');
+    lastFocus = document.activeElement;
+    dlg.returnValue = '';
+    dlg.setAttribute('data-trigger', trigger);
+    document.documentElement.classList.add('xo-lock');
+    dlg.showModal();
+  }
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close('close'); });
+  dlg.addEventListener('close', function () {
+    document.documentElement.classList.remove('xo-lock');
+    if (dlg.returnValue === 'claim') {
+      put('sessionStorage', K.claimed, '1');
+      document.dispatchEvent(new CustomEvent('exitoffer:claim'));
+    } else if (lastFocus && lastFocus.focus && lastFocus !== document.body) {
+      try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
+    }
+  });
+  setTimeout(function () { armed = true; }, cfg.armAfter || 4000);
+
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 10) show('exit-intent'); });
+  } else {
+    var seen = false, deepest = 0, jumped = 0, timer = null;
+    var offer = cfg.offerSection && document.querySelector(cfg.offerSection);
+    if (offer && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { if (!timer) timer = setTimeout(function () { seen = true; }, 1200); }
+          else if (!seen) { clearTimeout(timer); timer = null; }
+        });
+      }, { rootMargin: '-30% 0px -30% 0px' }).observe(offer);
+    }
+    document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a[href^="#"]')) jumped = Date.now(); }, true);
+    addEventListener('scroll', function () {
+      var y = scrollY;
+      if (y > deepest) deepest = y;
+      if (!seen || Date.now() - jumped < 2500) return;
+      if (y < innerHeight * 0.75 && deepest - y > innerHeight * 1.5) show('scroll-up');
+    }, { passive: true });
+  }
+  return api;
+})();
+</script>
 <script>
 (function () {
   var DEMOS = [
@@ -652,7 +785,8 @@ p { margin: 0; }
     email: function (v) { return EMAIL.test(v) ? '' : 'Please add a valid email address.'; },
     website: function (v) { return !v || /^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(v) ? '' : "That doesn't look like a web address."; },
     category: function (v) { return v ? '' : 'Please choose a category.'; },
-    goal: function (v) { return v ? '' : 'Please choose the main goal.'; }
+    goal: function (v) { return v ? '' : 'Please choose the main goal.'; },
+    enquiry_type: function (v) { return v ? '' : "Please choose what you're asking about."; }
   };
   function setErr(id, msg) { var el = form.elements[id]; if (!el) return; el.setAttribute('aria-invalid', msg ? 'true' : 'false'); var e = document.getElementById(id + '-err'); if (e) e.textContent = msg || ''; if (msg) el.setAttribute('aria-describedby', id + '-err'); }
   function check(id) { var msg = RULES[id](form.elements[id].value.trim()); setErr(id, msg); return !msg; }
@@ -663,7 +797,8 @@ p { margin: 0; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fallback(data) {
     var body = 'Business: ' + data.business_name + '\nName: ' + data.contact_name + '\nEmail: ' + data.email + '\nWebsite: ' + (data.website || '-') +
-      '\nCategory: ' + data.category + '\nGoal: ' + data.goal + '\nFull website quote too: ' + (data.website_upgrade ? 'yes' : 'no') + '\n\n' + (data.notes || '');
+      '\nEnquiry type: ' + data.enquiry_type + '\nCategory: ' + data.category + '\nGoal: ' + data.goal + '\nFull website quote too: ' + (data.website_upgrade ? 'yes' : 'no') +
+      (data.offer ? '\nDiscount: 20% exit offer, from €200 instead of from €250' : '') + '\nPage: ' + data.page + '\n\n' + (data.notes || '');
     return 'mailto:support@themethodco.co?subject=' + encodeURIComponent('Landing page request: ' + data.business_name) + '&body=' + encodeURIComponent(body);
   }
   form.addEventListener('submit', function (e) {
@@ -672,22 +807,27 @@ p { margin: 0; }
     var bad = Object.keys(RULES).filter(function (id) { return !check(id); });
     if (bad.length) { form.elements[bad[0]].focus(); return; }
     var data = {};
-    ['business_name', 'contact_name', 'email', 'website', 'category', 'goal', 'notes', 'source', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    ['business_name', 'contact_name', 'email', 'website', 'enquiry_type', 'category', 'goal', 'notes', 'source', 'offer', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
     data.website_upgrade = form.elements.website_upgrade.checked;
+    data.page = location.href.split('#')[0];
+    document.getElementById('offer-err').textContent = '';
     submit.disabled = true; submit.firstChild.textContent = 'Sending… ';
     fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
       .then(function (r) {
         if (r.body && r.body.ok) {
+          ExitOffer.enquired();
           document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
             '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>We\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
+            (r.body.offer ? '<p><strong>Your 20% discount is saved with your request.</strong></p>' : '') +
             '<p>Want to get started sooner? Send us a message and mention your business name.</p><a class="btn btn-go" href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">Message us on WhatsApp</a></div>';
           document.querySelector('#lead-body .done').focus();
           return;
         }
         if (r.status === 422 && r.body.errors) {
+          if (r.body.errors.offer) { document.getElementById('offer-err').textContent = r.body.errors.offer; delete r.body.errors.offer; document.getElementById('offer-remove').focus(); }
           Object.keys(r.body.errors).forEach(function (k) { setErr(k, r.body.errors[k]); });
-          var first = Object.keys(r.body.errors)[0]; if (form.elements[first]) form.elements[first].focus();
+          var first = Object.keys(r.body.errors)[0]; if (first && form.elements[first]) form.elements[first].focus();
         } else {
           status.innerHTML = 'Sorry, your request wasn\'t saved, so nothing has been sent yet. Please <a href="' + esc(fallback(data)) + '">email it to us instead</a> (we\'ve filled it in for you) or <a href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">message us on WhatsApp</a>.';
           status.classList.add('show'); status.focus && status.setAttribute('tabindex', '-1'); status.focus();
@@ -699,6 +839,19 @@ p { margin: 0; }
       })
       .then(function () { if (document.body.contains(submit)) { submit.disabled = false; submit.firstChild.textContent = 'Request my landing page '; } });
   });
+
+  /* Exit offer claimed: attach the discount to the form and take the visitor there */
+  var offerTag = document.getElementById('offer-tag'), offerInput = document.getElementById('offer');
+  function attachOffer(go) {
+    offerInput.value = 'exit20'; offerTag.hidden = false;
+    if (go) { form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); form.elements.business_name.focus({ preventScroll: true }); }
+  }
+  document.getElementById('offer-remove').addEventListener('click', function () {
+    offerInput.value = ''; offerTag.hidden = true; document.getElementById('offer-err').textContent = '';
+    ExitOffer.release(); form.elements.business_name.focus();
+  });
+  document.addEventListener('exitoffer:claim', function () { attachOffer(true); });
+  if (ExitOffer.claimed()) attachOffer(false);
 })();
 </script>
 </body>

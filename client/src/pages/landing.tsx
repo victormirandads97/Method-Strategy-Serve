@@ -25,13 +25,13 @@ const OFFERS = [
   {
     id: "pricing-tool",
     icon: "card",
-    name: "Instant Pricing Tool",
-    line: "Give your customers an instant price estimate. Capture more enquiries automatically.",
+    name: "Method Instant Quotes",
+    line: "Instant estimates for service businesses. Capture more enquiries automatically.",
     body: "A pricing tool on your own website. Customers see their price in seconds, then send you the enquiry on WhatsApp with every detail filled in.",
     was: "€299",
     price: "€150",
     note: "Launch price, one-off",
-    cta: "See the pricing tool",
+    cta: "See Method Instant Quotes",
     href: CALCULATORS_URL,
   },
   {
@@ -468,7 +468,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "calculators",
-    name: "Instant Pricing Tool",
+    name: "Method Instant Quotes",
     icon: "card",
     tagline: "Give customers a price. Get more enquiries.",
     summary: "An instant price estimate on a service business's own website. Customers see their price in seconds and send the enquiry, with every detail filled in, straight to the business on WhatsApp.",
@@ -490,7 +490,7 @@ const PROJECTS: Project[] = [
     statusCol: C.green,
     flagship: true,
     liveUrl: CALCULATORS_URL,
-    liveLabel: "Try the Instant Pricing Tool",
+    liveLabel: "Try Method Instant Quotes",
     frameUrl: "calculators.themethodco.co",
   },
   {
@@ -600,7 +600,7 @@ const SKILL_GROUPS = [
   {
     icon: "code", title: "Build",
     items: ["React", "TypeScript", "JavaScript", "Node.js", "Express", "REST APIs", "SQL: SQLite and Postgres", "PWA", "Stripe"],
-    proof: "Onishi, Dezorzi, Instant Pricing Tool, Orbit, The Method Chat",
+    proof: "Onishi, Dezorzi, Method Instant Quotes, Orbit, The Method Chat",
   },
   {
     icon: "spark", title: "AI",
@@ -615,7 +615,7 @@ const SKILL_GROUPS = [
   {
     icon: "pen", title: "Growth and communication",
     items: ["Copywriting", "Marketing", "Landing pages", "Go-to-market"],
-    proof: "Instant Pricing Tool, Landing pages, The Last Human Job",
+    proof: "Method Instant Quotes, Landing pages, The Last Human Job",
   },
 ] as const;
 
@@ -842,7 +842,7 @@ export default function Landing() {
             <Sub>Each one designed, built and shipped by me. Every case study covers the problem, what I built, my role, the stack, and where it runs today.</Sub>
           </Reveal>
 
-          {/* Featured: Onishi, Dezorzi and the Instant Pricing Tool */}
+          {/* Featured: Onishi, Dezorzi and Method Instant Quotes */}
           {PROJECTS.filter(p => p.flagship).map(project => (
             <Reveal key={project.id} delay={0.05}>
               <motion.div

@@ -3,17 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Instant Pricing Tool | The Method Co.</title>
-<meta name="description" content="Give your customers an instant price estimate and capture more enquiries automatically. Built for Irish service businesses. €150 instead of €299 for the first 5 businesses.">
+<title>Method Instant Quotes | Instant estimates for service businesses</title>
+<meta name="description" content="Method Instant Quotes: instant estimates for service businesses. Give customers a price on your own website and capture more enquiries automatically. €150 instead of €299 for the first 5 businesses.">
 <meta name="theme-color" content="#0A0F14">
 <link rel="canonical" href="https://calculators.themethodco.co/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Method Co.">
-<meta property="og:title" content="Instant Pricing Tool | The Method Co.">
-<meta property="og:description" content="Give your customers an instant price estimate. Capture more enquiries automatically.">
+<meta property="og:title" content="Method Instant Quotes | Instant estimates for service businesses">
+<meta property="og:description" content="Instant estimates for service businesses. Give customers a price on your website and capture more enquiries automatically.">
 <meta property="og:url" content="https://calculators.themethodco.co/">
 <meta property="og:image" content="https://themethodco.co/og-image.png">
+<meta property="og:locale" content="en_IE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Method Instant Quotes | Instant estimates for service businesses">
+<meta name="twitter:description" content="Give customers a price on your website and capture more enquiries automatically.">
+<meta name="application-name" content="Method Instant Quotes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&family=Barlow+Condensed:wght@700;800&family=Fredoka:wght@600;700&family=Newsreader:opsz,wght@6..72,600&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
@@ -262,6 +266,73 @@ p { margin: 0; }
 .cta-logo svg { width: 100%; height: auto; display: block; animation: bob 6s ease-in-out infinite; }
 @media (max-width: 760px) { .cta-card { grid-template-columns: minmax(0, 1fr); } .cta-logo { grid-row: 1; justify-self: start; width: 84px; } }
 
+/* Enquiry form: same fields, validation and states as the landing pages form */
+.enquire .wrap { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+@media (max-width: 900px) { .enquire .wrap { grid-template-columns: minmax(0, 1fr); } }
+.enquire h2 { margin-bottom: 18px; }
+.enquire .lede { margin-bottom: 26px; }
+.next-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.next-steps li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; color: var(--soft); }
+.next-steps b { color: var(--ink); display: block; }
+.next-steps .n { width: 34px; height: 34px; border-radius: 10px; background: var(--mint); display: grid; place-items: center; font-weight: 800; color: #075E36; }
+.alt { margin-top: 28px; font-size: .92rem; color: var(--soft); }
+.lead { background: var(--bg); color: var(--ink); border-radius: 24px; padding: clamp(22px, 4vw, 36px); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+@media (max-width: 560px) { .lead { box-shadow: 5px 5px 0 var(--ink); } }
+.lead h3 { font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 4px; }
+.lead .req-note { color: var(--soft); font-size: .88rem; margin-bottom: 20px; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 14px; }
+@media (max-width: 560px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.fld { display: grid; gap: 6px; margin-bottom: 14px; }
+.fld label { font-weight: 600; font-size: .88rem; }
+.fld label span { color: var(--soft); font-weight: 400; }
+.fld input, .fld select, .fld textarea { width: 100%; font: 400 1rem/1.4 var(--body); color: var(--ink); background: var(--tint); border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 14px; transition: border-color .15s, box-shadow .15s, background .15s; }
+.fld textarea { resize: vertical; min-height: 92px; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; background: #fff; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(34,216,122,.25); }
+.fld [aria-invalid="true"] { border-color: #C0392B; background: #FFF7F6; }
+.fld .err { color: #B42318; font-size: .82rem; min-height: 1.1em; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lead .btn { width: 100%; }
+.lead .btn[disabled] { opacity: .7; cursor: progress; }
+.fine { margin-top: 12px; color: var(--soft); font-size: .8rem; text-align: center; }
+.fine a { color: inherit; }
+.status { border-radius: 14px; padding: 16px; margin-bottom: 16px; font-size: .95rem; display: none; }
+.status.show { display: block; }
+.status.bad { background: #FEF3F2; color: #7A271A; border: 1px solid #FECDCA; }
+.status.bad a { color: #7A271A; font-weight: 700; }
+.done { text-align: center; padding: 26px 6px; }
+.done .ok { width: 64px; height: 64px; border-radius: 50%; background: var(--mint); display: grid; place-items: center; margin: 0 auto 18px; }
+.done h3 { font-size: 1.8rem; margin-bottom: 10px; }
+.done p { color: var(--soft); max-width: 44ch; margin: 0 auto 10px; }
+.done .btn { width: auto; margin-top: 10px; }
+.offer-tag { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 16px; border-radius: 14px; background: var(--mint); border: 1.5px solid var(--green-deep); color: #064E2D; }
+.offer-tag[hidden] { display: none; }
+.offer-tag .pct { flex: none; display: grid; place-items: center; min-width: 50px; height: 42px; padding: 0 6px; border-radius: 12px; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: .86rem; letter-spacing: -.02em; white-space: nowrap; }
+.offer-tag div { flex: 1; min-width: 0; font-size: .92rem; line-height: 1.4; }
+.offer-tag b { display: block; color: var(--ink); }
+.offer-tag s { color: var(--soft); }
+.offer-tag button { flex: none; background: none; border: 0; padding: 8px; margin: -8px -6px -8px 0; font: 600 .84rem var(--body); color: #064E2D; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 8px; }
+.offer-tag .err { display: block; color: #B42318; font-size: .82rem; }
+.offer-tag .err:empty { display: none; }
+
+/* Exit offer: the €150 ticket, reprinted at €120 */
+.xo { padding: 0; border: 0; background: transparent; width: min(460px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow: visible; color: var(--ink); }
+.xo::backdrop { background: rgba(10,15,20,.6); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.xo[open] { animation: xo-in .35s cubic-bezier(.2,.8,.2,1); }
+@keyframes xo-in { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+.xo-card { position: relative; border-radius: 26px; background: var(--bg); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); padding: 34px clamp(22px, 5vw, 34px) 24px; text-align: center; }
+.xo-x { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--tint); color: var(--ink); font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
+.xo-x:hover { background: var(--line); }
+.xo-badge { display: inline-block; background: var(--mint); color: #075E36; font: 700 .82rem/1 var(--body); padding: 8px 12px; border-radius: 999px; margin-bottom: 14px; }
+.xo h2 { font-size: clamp(1.9rem, 6.4vw, 2.5rem); line-height: 1.02; margin-bottom: 16px; }
+.xo .price { justify-content: center; margin-bottom: 12px; }
+.xo .price b { font-size: clamp(4rem, 15vw, 5rem); }
+.xo p { color: var(--soft); max-width: 34ch; margin: 0 auto 22px; }
+.xo .btn { width: 100%; }
+.xo-no { margin-top: 10px; background: none; border: 0; color: var(--soft); font: 500 .92rem var(--body); padding: 12px; min-height: 44px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; border-radius: 8px; }
+.xo-no:hover { color: var(--ink); }
+.xo-fine { margin-top: 4px; font-size: .78rem; color: var(--soft); }
+html.xo-lock { overflow: hidden; }
+
 .site-footer { padding-block: 40px 110px; color: var(--soft); font-size: .88rem; }
 .site-footer .cross { color: var(--ink); font-weight: 600; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
@@ -295,7 +366,7 @@ p { margin: 0; }
 <div class="top">
   <div class="offer-bar when-live" role="region" aria-label="Current offer">
     <div class="wrap">
-      <span>Launch offer: Instant Pricing Tool for <s>€299</s> <b>€150</b>. First 5 businesses, until <span data-end-date>30 November</span>.</span>
+      <span>Launch offer: Method Instant Quotes for <s>€299</s> <b>€150</b>. First 5 businesses, until <span data-end-date>30 November</span>.</span>
     </div>
   </div>
   <header class="site-header">
@@ -306,7 +377,8 @@ p { margin: 0; }
         <a href="#how">How it works</a>
         <a href="#deal">Price</a>
         <a href="#faq">FAQ</a>
-        <a class="btn btn-go" aria-label="Free preview on WhatsApp" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg><span class="long">Free preview</span></a>
+        <a href="#enquire">Enquire</a>
+        <a class="btn btn-go" aria-label="Free preview on WhatsApp" data-wa="Hi Victor! I'd like a free preview of Method Instant Quotes. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg><span class="long">Free preview</span></a>
       </nav>
     </div>
   </header>
@@ -316,7 +388,7 @@ p { margin: 0; }
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="hook"><b>Instant Pricing Tool</b>For Irish service businesses</p>
+        <p class="hook"><b>Method Instant Quotes</b>Instant estimates for service businesses</p>
         <h1><span>Give customers a price.</span><span><em>Get more enquiries.</em></span></h1>
         <p class="lede">Most people won't ring for a quote. Give them an instant price estimate on your own website instead, any hour of the day. <strong>When they like the number, one tap sends you the enquiry on WhatsApp with every detail already filled in.</strong></p>
         <div class="deal">
@@ -327,7 +399,7 @@ p { margin: 0; }
           </div>
         </div>
         <div class="hero-ctas">
-          <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Get my free preview</a>
+          <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of Method Instant Quotes. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Get my free preview</a>
           <a class="btn btn-ghost" href="#demos">Try the 5 demos</a>
         </div>
         <ul class="ticks"><li>Built free before you pay</li><li>Works on your current website</li><li>No monthly fees</li></ul>
@@ -432,7 +504,7 @@ p { margin: 0; }
         <div class="price"><s class="when-live" aria-label="Was €299">€299</s><b data-price>€150</b><small class="when-live">launch price for the first 5 businesses, then €299</small></div>
         <p class="ends when-live">Launch price ends <b data-end-date>30 November</b></p>
         <div class="slots when-live" data-slots></div>
-        <a class="btn btn-go" data-wa="Hi Victor! I'd like one of the €150 Instant Pricing Tool spots. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Claim my spot on WhatsApp</a>
+        <a class="btn btn-go" data-wa="Hi Victor! I'd like one of the €150 Method Instant Quotes spots. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Claim my spot on WhatsApp</a>
         <a class="btn btn-ink" data-pay>Approved your preview? Pay €150</a>
         <p class="pay-note">You only pay after you've tried your free preview. Secure card payment by Stripe. <span class="when-live">Ends <span data-end-date>30 November</span> or when 5 spots are gone.</span></p>
       </div>
@@ -453,6 +525,55 @@ p { margin: 0; }
     </div>
   </section>
 
+  <section class="section enquire" id="enquire" aria-labelledby="enquire-title">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Prefer a form?</p>
+        <h2 id="enquire-title">Tell me about your business.</h2>
+        <p class="lede">Not a WhatsApp person? Send the details here instead. I'll reply within one working day with next steps and your free preview.</p>
+        <ol class="next-steps">
+          <li><span class="n">1</span><div><b>I read your enquiry</b>And reply by email within one working day.</div></li>
+          <li><span class="n">2</span><div><b>A few quick questions</b>What changes your price: size, extras, location, frequency.</div></li>
+          <li><span class="n">3</span><div><b>Your free preview</b>Your own quote tool with your real prices, ready to try on your phone.</div></li>
+        </ol>
+        <p class="alt">Or email <a href="mailto:support@themethodco.co?subject=Method%20Instant%20Quotes">support@themethodco.co</a>.</p>
+      </div>
+      <form class="lead" id="lead-form" action="https://themethodco.co/api/leads" method="post" novalidate>
+        <div id="lead-body">
+          <h3>Your free preview starts here</h3>
+          <p class="req-note">Takes about a minute. Fields marked optional can be left blank.</p>
+          <div class="status bad" id="lead-status" role="alert"></div>
+          <div class="offer-tag" id="offer-tag" hidden><span class="pct" aria-hidden="true">−20%</span><div><b>20% off attached</b>Method Instant Quotes for €120 instead of <s>€150</s>. Still free to preview first.<span class="err" id="offer-err"></span></div><button type="button" id="offer-remove">Remove</button></div>
+          <input type="hidden" name="offer" id="offer" value="">
+          <div class="fld"><label for="enquiry_type">What are you asking about?</label>
+            <select id="enquiry_type" name="enquiry_type" required><option selected>Method Instant Quotes</option><option>High-Conversion Landing Pages</option><option>Both</option></select>
+            <span class="err" id="enquiry_type-err"></span></div>
+          <div class="grid2">
+            <div class="fld"><label for="business_name">Business name</label><input id="business_name" name="business_name" autocomplete="organization" maxlength="120" required><span class="err" id="business_name-err"></span></div>
+            <div class="fld"><label for="contact_name">Your name</label><input id="contact_name" name="contact_name" autocomplete="name" maxlength="120" required><span class="err" id="contact_name-err"></span></div>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="200" required><span class="err" id="email-err"></span></div>
+            <div class="fld"><label for="website">Current website <span>(optional)</span></label><input id="website" name="website" inputmode="url" autocomplete="url" placeholder="yourbusiness.ie" maxlength="300"><span class="err" id="website-err"></span></div>
+          </div>
+          <div class="grid2">
+            <div class="fld"><label for="category">Business category</label>
+              <select id="category" name="category" required><option value="">Choose one</option><option>Trades and home services</option><option>Cleaning</option><option>Beauty and wellness</option><option>Health and fitness</option><option>Food and hospitality</option><option>Professional services</option><option>Retail</option><option>Other</option></select>
+              <span class="err" id="category-err"></span></div>
+            <div class="fld"><label for="goal">Main goal</label>
+              <select id="goal" name="goal" required><option value="">Choose one</option><option>Show prices instantly on my website</option><option>Get more quote requests</option><option>Answer fewer "how much?" messages</option><option>Qualify leads before I reply</option><option>Something else</option></select>
+              <span class="err" id="goal-err"></span></div>
+          </div>
+          <div class="fld"><label for="notes">How do you price? <span>(optional)</span></label><textarea id="notes" name="notes" maxlength="2000" placeholder="What changes your price: size, extras, location, frequency. Rough numbers are fine."></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="company_fax">Leave this empty</label><input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="source" value="instant-quotes">
+          <button class="btn btn-go" type="submit" id="lead-submit">Send my enquiry</button>
+          <p class="fine">I'll only use your details to reply to this enquiry. See the <a href="legal.html#privacy">privacy notice</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <section class="section" aria-labelledby="cta-title">
     <div class="wrap">
       <div class="cta-card">
@@ -461,8 +582,8 @@ p { margin: 0; }
           <h2 id="cta-title">Send one message. Get your preview free.</h2>
           <p class="lede">Tell me your business and how you price. I'll build a working preview in a few days. Like it? It's €150. Don't? You owe me nothing.</p>
           <div class="contact">
-            <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Message me on WhatsApp</a>
-            <a class="btn btn-ghost" href="mailto:support@themethodco.co?subject=Instant%20Pricing%20Tool%20preview">Email instead</a>
+            <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of Method Instant Quotes. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Message me on WhatsApp</a>
+            <a class="btn btn-ghost" href="mailto:support@themethodco.co?subject=Method%20Instant%20Quotes%20preview">Email instead</a>
           </div>
           <p class="email-line">Email: <span><a href="mailto:support@themethodco.co">support@themethodco.co</a></span></p>
         </div>
@@ -481,14 +602,113 @@ p { margin: 0; }
   </div>
 </footer>
 
-<a class="wa-float" data-wa="Hi Victor! I'd like a free preview of the Instant Pricing Tool. My business is: " aria-label="Chat on WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg><span>Chat with Victor</span></a>
+<dialog class="xo" id="exit-offer" aria-labelledby="xo-title" aria-describedby="xo-desc">
+  <form method="dialog" class="xo-card">
+    <button class="xo-x" value="close" aria-label="Close this offer"><span aria-hidden="true">×</span></button>
+    <span class="xo-badge">20% off, this visit only</span>
+    <h2 id="xo-title">Before you go, take 20% off.</h2>
+    <div class="price" aria-label="€120 instead of €150"><s aria-hidden="true">€150</s><b aria-hidden="true">€120</b></div>
+    <p id="xo-desc">Your own Method Instant Quotes tool for €120, one-off. The free preview still comes first. You only pay once you've tried it.</p>
+    <button class="btn btn-go" value="claim" autofocus>Claim my €120 offer</button>
+    <button class="xo-no" value="close">No thanks</button>
+    <p class="xo-fine">The discount is attached to your enquiry when you send the form.</p>
+  </form>
+</dialog>
 
+<a class="wa-float" data-wa="Hi Victor! I'd like a free preview of Method Instant Quotes. My business is: " aria-label="Chat on WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg><span>Chat with Victor</span></a>
+
+<script>/* The 20% exit offer (€120 instead of €150) only runs while the €150 launch price is on. */
+window.EXIT_OFFER = { offerSection: "#deal", formSection: "enquire", active: function () { return !document.documentElement.classList.contains("offer-ended"); } };</script>
+<script>
+/* Exit offer (same code on both sales pages; each page sets window.EXIT_OFFER first).
+   - Desktop: shown when the cursor leaves through the top of the window.
+   - Touch: shown only after the pricing has been on screen, when the visitor
+     then scrolls most of the way back up. In-page link jumps don't count.
+   - At most once per browser session on this site. Never after an enquiry
+     was sent or the offer was claimed. History and the back button are left alone.
+   - A native <dialog>: Escape, the close button, "No thanks" and a tap on the
+     backdrop all close it; focus stays inside while open and returns after.
+   Claiming fires "exitoffer:claim" on document; the page attaches the offer to its form. */
+var ExitOffer = (function () {
+  var cfg = window.EXIT_OFFER || {}, mem = {};
+  var K = { shown: 'mco-xo-shown', claimed: 'mco-xo-claimed', enquired: 'mco-enquired' };
+  function get(area, k) { try { return window[area].getItem(k); } catch (e) { return mem[area + k] || null; } }
+  function put(area, k, v) { mem[area + k] = v; try { if (v === null) window[area].removeItem(k); else window[area].setItem(k, v); } catch (e) {} }
+  var dlg = document.getElementById('exit-offer'), armed = false, lastFocus = null;
+  var api = {
+    claimed: function () { return get('sessionStorage', K.claimed) === '1'; },
+    release: function () { put('sessionStorage', K.claimed, null); },
+    enquired: function () { put('localStorage', K.enquired, '1'); put('sessionStorage', K.enquired, '1'); }
+  };
+  if (!dlg || typeof dlg.showModal !== 'function') return api;
+
+  function blocked() {
+    return get('sessionStorage', K.shown) || get('sessionStorage', K.claimed) || get('sessionStorage', K.enquired) ||
+      get('localStorage', K.enquired) || (cfg.active && !cfg.active());
+  }
+  function busy() {
+    var a = document.activeElement;
+    if (a && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)) return true;
+    if (document.querySelector('dialog[open]')) return true;
+    var f = cfg.formSection && document.getElementById(cfg.formSection);
+    if (!f) return false;
+    var r = f.getBoundingClientRect();
+    return r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.4;
+  }
+  function show(trigger) {
+    if (!armed || blocked() || busy()) return;
+    put('sessionStorage', K.shown, '1');
+    lastFocus = document.activeElement;
+    dlg.returnValue = '';
+    dlg.setAttribute('data-trigger', trigger);
+    document.documentElement.classList.add('xo-lock');
+    dlg.showModal();
+  }
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close('close'); });
+  dlg.addEventListener('close', function () {
+    document.documentElement.classList.remove('xo-lock');
+    if (dlg.returnValue === 'claim') {
+      put('sessionStorage', K.claimed, '1');
+      document.dispatchEvent(new CustomEvent('exitoffer:claim'));
+    } else if (lastFocus && lastFocus.focus && lastFocus !== document.body) {
+      try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
+    }
+  });
+  setTimeout(function () { armed = true; }, cfg.armAfter || 4000);
+
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 10) show('exit-intent'); });
+  } else {
+    var seen = false, deepest = 0, jumped = 0, timer = null;
+    var offer = cfg.offerSection && document.querySelector(cfg.offerSection);
+    if (offer && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { if (!timer) timer = setTimeout(function () { seen = true; }, 1200); }
+          else if (!seen) { clearTimeout(timer); timer = null; }
+        });
+      }, { rootMargin: '-30% 0px -30% 0px' }).observe(offer);
+    }
+    document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a[href^="#"]')) jumped = Date.now(); }, true);
+    addEventListener('scroll', function () {
+      var y = scrollY;
+      if (y > deepest) deepest = y;
+      if (!seen || Date.now() - jumped < 2500) return;
+      if (y < innerHeight * 0.75 && deepest - y > innerHeight * 1.5) show('scroll-up');
+    }, { passive: true });
+  }
+  return api;
+})();
+</script>
 <script>
 /* ===== EDIT THESE ===== */
 var CONFIG = {
   whatsappLink: "https://api.whatsapp.com/message/42QCB5YMFIP3M1", // your WhatsApp Business message link
   whatsapp: "",                                    // optional: your number (e.g. 353871234567) to pre-fill a message per button
-  stripeLink: "https://buy.stripe.com/REPLACE_ME",  // your Stripe Payment Link for €150 (the charge stays €150)
+  stripeLink: "https://buy.stripe.com/REPLACE_ME",  // your Stripe Payment Link for €150 (the charge stays €150).
+                                                   // Visitors who claimed the 20% exit offer never get this link: a
+                                                   // Payment Link can't check a discount, so they pay €120 by invoice.
+  leadsEndpoint: "https://themethodco.co/api/leads", // enquiry form: saved and emailed by the main site's server
   offerEnds: "2026-11-30T23:59:00Z",               // when €150 ends (Dublin is UTC in winter)
   spotsTotal: 5,                                   // spots at €150
   spotsTaken: 0,                                   // update this honestly as you sell them
@@ -504,10 +724,22 @@ var CONFIG = {
     return 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Free calculator preview') + '&body=' + encodeURIComponent(msg);
   }
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = waUrl(a.getAttribute('data-wa')); a.target = '_blank'; a.rel = 'noopener'; });
-  document.querySelectorAll('[data-pay]').forEach(function (a) {
-    a.href = payReady ? CONFIG.stripeLink : waUrl("Hi Victor! I've approved my calculator preview and I'd like to pay. My business is: ");
-    a.target = '_blank'; a.rel = 'noopener';
-  });
+  var ended = false;
+  // Regular price: the Stripe link (or WhatsApp until it exists). With the exit offer claimed: €120, arranged on WhatsApp.
+  function setPay() {
+    var claimed = !ended && ExitOffer.claimed();
+    document.querySelectorAll('[data-pay]').forEach(function (a) {
+      if (claimed) {
+        a.href = waUrl("Hi Victor! I've approved my preview and claimed the 20% offer (€120 instead of €150). My business is: ");
+        a.textContent = 'Approved your preview? Pay €120';
+      } else {
+        a.href = payReady ? CONFIG.stripeLink : waUrl("Hi Victor! I've approved my Method Instant Quotes preview and I'd like to pay. My business is: ");
+        a.textContent = 'Approved your preview? Pay ' + (ended ? '€299' : '€150');
+      }
+      a.target = '_blank'; a.rel = 'noopener';
+    });
+  }
+  setPay();
 
   var end = new Date(CONFIG.offerEnds), left = Math.max(0, CONFIG.spotsTotal - CONFIG.spotsTaken);
   document.querySelectorAll('[data-end-date]').forEach(function (el) { el.textContent = end.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', timeZone: 'Europe/Dublin' }); });
@@ -520,9 +752,10 @@ var CONFIG = {
   var yr = document.querySelector('[data-year]'); if (yr) yr.textContent = new Date().getFullYear();
 
   function endOffer() {
+    ended = true;
     document.documentElement.classList.add('offer-ended');
     document.querySelectorAll('[data-price]').forEach(function (el) { el.textContent = '€299'; });
-    document.querySelectorAll('[data-pay]').forEach(function (a) { a.textContent = 'Approved your preview? Pay €299'; });
+    setPay();
   }
   // The launch price is shown until the end date or until the spots are gone. No ticking clock.
   if (end - new Date() <= 0 || left <= 0) endOffer();
@@ -564,6 +797,82 @@ var CONFIG = {
   stage.addEventListener('mouseleave', function () { hover = false; tilt.style.transform = ''; });
   cards.forEach(function (c, i) { c.addEventListener('focus', function () { angle = -i * 360 / n; }); });
   render(); requestAnimationFrame(loop);
+
+  /* Enquiry form: posted to the main site's /api/leads, which stores it and emails it to the owner.
+     Same fields, validation and states as the landing pages form. Success only once the server confirms. */
+  var endpoint = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:8788/api/leads' : CONFIG.leadsEndpoint;
+  var form = document.getElementById('lead-form'), status = document.getElementById('lead-status'), submit = document.getElementById('lead-submit');
+  var offerTag = document.getElementById('offer-tag'), offerInput = document.getElementById('offer'), offerErr = document.getElementById('offer-err');
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var RULES = {
+    business_name: function (v) { return v ? '' : 'Please add your business name.'; },
+    contact_name: function (v) { return v ? '' : 'Please add your name.'; },
+    email: function (v) { return EMAIL.test(v) ? '' : 'Please add a valid email address.'; },
+    website: function (v) { return !v || /^(https?:\/\/)?[^\s.]+\.[^\s]{2,}$/i.test(v) ? '' : "That doesn't look like a web address."; },
+    enquiry_type: function (v) { return v ? '' : "Please choose what you're asking about."; },
+    category: function (v) { return v ? '' : 'Please choose a category.'; },
+    goal: function (v) { return v ? '' : 'Please choose the main goal.'; }
+  };
+  function setErr(id, msg) { var el = form.elements[id]; if (!el) return; el.setAttribute('aria-invalid', msg ? 'true' : 'false'); var e = document.getElementById(id + '-err'); if (e) e.textContent = msg || ''; if (msg) el.setAttribute('aria-describedby', id + '-err'); }
+  function check(id) { var msg = RULES[id](form.elements[id].value.trim()); setErr(id, msg); return !msg; }
+  Object.keys(RULES).forEach(function (id) {
+    form.elements[id].addEventListener('blur', function () { if (form.elements[id].value || form.elements[id].getAttribute('aria-invalid') === 'true') check(id); });
+    form.elements[id].addEventListener('input', function () { if (form.elements[id].getAttribute('aria-invalid') === 'true') check(id); });
+  });
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fallback(data) {
+    var body = 'Business: ' + data.business_name + '\nName: ' + data.contact_name + '\nEmail: ' + data.email + '\nWebsite: ' + (data.website || '-') +
+      '\nEnquiry type: ' + data.enquiry_type + '\nCategory: ' + data.category + '\nGoal: ' + data.goal +
+      (data.offer ? '\nDiscount: 20% exit offer, €120 instead of €150' : '') + '\nPage: ' + data.page + '\n\n' + (data.notes || '');
+    return 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Method Instant Quotes enquiry: ' + data.business_name) + '&body=' + encodeURIComponent(body);
+  }
+  function showStatus(html) { status.innerHTML = html; status.classList.add('show'); status.setAttribute('tabindex', '-1'); status.focus(); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.classList.remove('show'); offerErr.textContent = '';
+    var bad = Object.keys(RULES).filter(function (id) { return !check(id); });
+    if (bad.length) { form.elements[bad[0]].focus(); return; }
+    var data = {};
+    ['business_name', 'contact_name', 'email', 'website', 'enquiry_type', 'category', 'goal', 'notes', 'source', 'offer', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    data.page = location.href.split('#')[0];
+    submit.disabled = true; submit.textContent = 'Sending…';
+    fetch(endpoint, { method: 'POST', mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
+      .then(function (r) {
+        if (r.body && r.body.ok) {
+          ExitOffer.enquired();
+          document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
+            '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Enquiry received.</h3><p>I\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps for ' + esc(data.business_name) + '\'s free preview.</p>' +
+            (r.body.offer ? '<p><strong>Your €120 offer is saved with your enquiry.</strong></p>' : '') +
+            '<p>Want to get started sooner? Send me a message and mention your business name.</p><a class="btn btn-go" href="' + esc(waUrl('Hi Victor! I just sent an enquiry for ' + data.business_name + '.')) + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Message me on WhatsApp</a></div>';
+          document.querySelector('#lead-body .done').focus();
+          return;
+        }
+        if (r.status === 422 && r.body.errors) {
+          if (r.body.errors.offer) { offerErr.textContent = r.body.errors.offer; delete r.body.errors.offer; document.getElementById('offer-remove').focus(); }
+          Object.keys(r.body.errors).forEach(function (k) { setErr(k, r.body.errors[k]); });
+          var first = Object.keys(r.body.errors)[0]; if (first && form.elements[first]) form.elements[first].focus();
+        } else {
+          showStatus('Sorry, your enquiry wasn\'t saved, so nothing has been sent yet. Please <a href="' + esc(fallback(data)) + '">email it to me instead</a> (it\'s filled in for you) or <a href="' + esc(waUrl('Hi Victor! I\'d like a free preview of Method Instant Quotes. My business is: ' + data.business_name)) + '" target="_blank" rel="noopener">message me on WhatsApp</a>.');
+        }
+      })
+      .catch(function () {
+        showStatus('I couldn\'t reach the server, so your enquiry wasn\'t sent. Check your connection and try again, or <a href="' + esc(fallback(data)) + '">email it to me instead</a>.');
+      })
+      .then(function () { if (document.body.contains(submit)) { submit.disabled = false; submit.textContent = 'Send my enquiry'; } });
+  });
+
+  /* Exit offer claimed: attach the discount to the form and take the visitor there */
+  function attachOffer(go) {
+    offerInput.value = 'exit20'; offerTag.hidden = false; setPay();
+    if (go) { form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); form.elements.business_name.focus({ preventScroll: true }); }
+  }
+  document.getElementById('offer-remove').addEventListener('click', function () {
+    offerInput.value = ''; offerTag.hidden = true; offerErr.textContent = '';
+    ExitOffer.release(); setPay(); form.elements.business_name.focus();
+  });
+  document.addEventListener('exitoffer:claim', function () { attachOffer(true); });
+  if (!ended && ExitOffer.claimed()) attachOffer(false);
 })();
 </script>
 

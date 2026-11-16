@@ -106,7 +106,7 @@ const SHOT_ALT: Record<string, readonly string[]> = {
     "The Dezorzi day by day itinerary for a Lisbon trip. Four colour coded days are listed: Down to the river on Wednesday 30 September, Alfama uphill on Thursday 1 October, Gulbenkian and the gardens on Friday 2 October, and Out to Sintra on Saturday 3 October, each with four ideas and controls to add, remove or open the day.",
   ],
   calculators: [
-    "The Instant Pricing Tool sales page. A navy offer bar shows the launch price of 150 euro, down from 299 euro, above the headline Give customers a price. Get more enquiries., with a ring of demo pricing tools for a solar installer and a builder.",
+    "The Method Instant Quotes sales page. A navy offer bar shows the launch price of 150 euro, down from 299 euro, above the headline Give customers a price. Get more enquiries., with a ring of demo pricing tools for a solar installer and a builder.",
     "Five demo pricing tools side by side: Brightfield Solar showing 1,240 euro saved per year, Kestrel Build estimating 68k to 84k euro for an extension, Spruce cleaning at 162 euro per clean, Ledger and Lane at 247 euro per month, and Forge PT at 1,850 calories a day.",
     "The Spruce cleaning demo. Options for regular, deep or end of tenancy cleans, bedroom and bathroom counters and frequency choices on the left; on the right the live price of 81 euro per clean every two weeks and a Book on WhatsApp button.",
     "A WhatsApp chat showing the enquiry a pricing tool produces: a booking request for a deep clean, 3 bed, 2 bath, with extras and a price of 237 euro per clean, and the business replying with a time.",

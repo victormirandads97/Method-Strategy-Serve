@@ -11,7 +11,7 @@ One folder per project, under `client/public/media/projects/`:
 | Project            | Folder                                    |
 | ------------------ | ----------------------------------------- |
 | Onishi             | `client/public/media/projects/onishi/`            |
-| Instant Pricing Tool | `client/public/media/projects/calculators/`     |
+| Method Instant Quotes | `client/public/media/projects/calculators/`     |
 | The Method Chat    | `client/public/media/projects/method-chat/`       |
 | Orbit              | `client/public/media/projects/orbit/`             |
 | The Last Human Job | `client/public/media/projects/last-human-job/`    |

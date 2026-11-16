@@ -12,8 +12,14 @@ branch, `main`.
     price. GET redirects (303) to Stripe, POST returns `{ url }`.
   - `/api/ebook-download?session_id=cs_...` checks with Stripe that the session
     is paid and bought this book, then returns the PDF.
-  - `/api/leads` stores enquiries from the landing pages funnel in D1 (POST),
-    and exports them as CSV for you (GET, behind `LEADS_ADMIN_TOKEN`).
+  - `/api/leads` stores enquiries from both sales pages in D1 (POST), and
+    exports them as CSV for you (GET, behind `LEADS_ADMIN_TOKEN`). The landing
+    pages form posts to it from the same origin. The Method Instant Quotes form
+    on calculators.themethodco.co posts to it cross-origin: CORS is answered
+    only for that origin (and `*.method-calculators.pages.dev` previews), and a
+    POST from any other browser origin is refused with 403. Each enquiry stores
+    its enquiry type, the page it came from, and any claimed discount. The
+    discount wording comes from the server, never from the page.
 - `/thank-you-last-human-job` is a static page, no Function needed.
 - `/landing-pages/` is the High-Conversion Landing Pages sales page, and
   `/landing-pages/demos/<name>/` its five demos. Plain HTML in
@@ -53,6 +59,25 @@ The `leads` table creates itself on the first enquiry. Until `LEADS_DB` is
 bound, the form says the request was not saved and offers email instead; it
 never shows a false success.
 
+## The 20% exit offer
+
+Both sales pages show a one-time popup when a visitor looks like leaving:
+the cursor heading out through the top of the window on desktop, or, on
+phones, scrolling most of the way back up after the pricing has been on
+screen. It shows at most once per browser session per site, and never after
+an enquiry was sent or the offer claimed. It doesn't touch history or the
+back button.
+
+- Method Instant Quotes: €120 instead of €150. Only while the €150 launch
+  price is on (it stops with the launch offer).
+- Landing pages: from €200 instead of from €250.
+
+"Claim" scrolls to the page's enquiry form and attaches the offer (code
+`exit20`). The server turns that into the wording stored in the `offer`
+column and in the email subject ("20% offer claimed"). Neither page sells
+through Stripe Checkout today, so no discounted checkout exists; claimed
+Instant Quotes visitors are never sent to the €150 Payment Link.
+
 ## Reading enquiries
 
 - Cloudflare dashboard > Storage & Databases > D1 > method-leads > Console:
@@ -86,7 +111,7 @@ npx wrangler pages dev dist/public --d1 LEADS_DB=local-leads --binding LEADS_ADM
 
 Then open http://localhost:8788/landing-pages/.
 
-## The Instant Pricing Tool site
+## The Method Instant Quotes site
 
 `sites/calculators/` is the source of calculators.themethodco.co, a separate
 Pages project called `method-calculators`. It is plain HTML with no build step.
@@ -100,6 +125,14 @@ npx wrangler pages deploy sites/calculators --project-name method-calculators --
 Its Stripe Payment Link is set in `CONFIG.stripeLink` near the bottom of
 `sites/calculators/index.html`. Until a real link is there, the pay buttons
 open WhatsApp instead.
+
+Its enquiry form posts to `CONFIG.leadsEndpoint`
+(`https://themethodco.co/api/leads`), so the main site must be deployed with
+the CORS change before the form works from this origin. Opened on localhost,
+the page posts to `http://localhost:8788/api/leads` instead; start
+`wrangler pages dev` with
+`--binding LEADS_EXTRA_ORIGINS=http://localhost:8790` (the port you serve
+`sites/calculators` on).
 
 ## Roll back
 

@@ -1,8 +1,8 @@
-# Deploys sites/calculators (calculators.themethodco.co, the Instant Pricing
-# Tool) to its own Cloudflare Pages project when that folder changes on main.
+# Deploys sites/calculators (calculators.themethodco.co, Method Instant
+# Quotes) to its own Cloudflare Pages project when that folder changes on main.
 # Uses the same CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets as the
 # main site, and skips the deploy until both exist.
-name: Deploy Instant Pricing Tool
+name: Deploy Method Instant Quotes
 
 on:
   push:
