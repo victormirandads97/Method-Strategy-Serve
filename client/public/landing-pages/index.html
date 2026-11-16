@@ -635,9 +635,11 @@ html.xo-lock { overflow: hidden; }
 <script>window.EXIT_OFFER = { offerSection: "#pricing", formSection: "start" };</script>
 <script>
 /* Exit offer (same code on both sales pages; each page sets window.EXIT_OFFER first).
-   - Desktop: shown when the cursor leaves through the top of the window.
-   - Touch: shown only after the pricing has been on screen, when the visitor
-     then scrolls most of the way back up. In-page link jumps don't count.
+   Only when the visitor looks like they are leaving, never while reading:
+   - Desktop: after 15 s on the page, the cursor moves up and out through the
+     very top edge and stays out for a moment.
+   - Touch: after 15 s and after the pricing has been on screen for 3 s, a fast
+     flick all the way back to the top. Normal scrolling and link jumps don't count.
    - At most once per browser session on this site. Never after an enquiry
      was sent or the offer was claimed. History and the back button are left alone.
    - A native <dialog>: Escape, the close button, "No thanks" and a tap on the
@@ -688,27 +690,52 @@ var ExitOffer = (function () {
       try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
     }
   });
-  setTimeout(function () { armed = true; }, cfg.armAfter || 4000);
+  // Never while the visitor is still settling in: 15 seconds on the page first.
+  setTimeout(function () { armed = true; }, cfg.armAfter || 15000);
 
   if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 10) show('exit-intent'); });
+    // Desktop: the cursor has to travel upward and leave through the very top
+    // edge (towards the tabs, address bar or close button), then stay out for
+    // a moment. Grazing the edge, or sitting on the menu, does nothing.
+    var trail = [], pending = null;
+    var cancel = function () { if (pending) { clearTimeout(pending); pending = null; } };
+    document.addEventListener('mousemove', function (e) {
+      var now = Date.now();
+      trail.push([now, e.clientY]);
+      while (trail.length && now - trail[0][0] > 400) trail.shift();
+      cancel();
+    }, { passive: true });
+    document.addEventListener('mouseover', cancel);
+    document.addEventListener('mouseout', function (e) {
+      if (e.relatedTarget || e.clientY > 5 || trail.length < 2) return;
+      var now = Date.now(), recent = trail.filter(function (p) { return now - p[0] < 400; });
+      if (recent.length < 2 || recent[0][1] - recent[recent.length - 1][1] < 30) return;
+      cancel();
+      pending = setTimeout(function () { pending = null; show('exit-intent'); }, 350);
+    });
   } else {
-    var seen = false, deepest = 0, jumped = 0, timer = null;
+    // Touch: phones give no signal for leaving. Only a hard flick all the way
+    // back to the top counts (the move people make to reach the address bar or
+    // tabs), and only after the pricing has been on screen for a few seconds.
+    // Scrolling back up at reading speed never triggers it.
+    var seen = false, jumped = 0, timer = null, path = [];
     var offer = cfg.offerSection && document.querySelector(cfg.offerSection);
     if (offer && 'IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
         es.forEach(function (e) {
-          if (e.isIntersecting) { if (!timer) timer = setTimeout(function () { seen = true; }, 1200); }
+          if (e.isIntersecting) { if (!timer) timer = setTimeout(function () { seen = true; }, 3000); }
           else if (!seen) { clearTimeout(timer); timer = null; }
         });
       }, { rootMargin: '-30% 0px -30% 0px' }).observe(offer);
     }
     document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a[href^="#"]')) jumped = Date.now(); }, true);
     addEventListener('scroll', function () {
-      var y = scrollY;
-      if (y > deepest) deepest = y;
-      if (!seen || Date.now() - jumped < 2500) return;
-      if (y < innerHeight * 0.75 && deepest - y > innerHeight * 1.5) show('scroll-up');
+      var now = Date.now(), y = scrollY;
+      path.push([now, y]);
+      while (path.length && now - path[0][0] > 600) path.shift();
+      if (!seen || now - jumped < 2500 || y > 40) return;
+      var from = path[0], dist = from[1] - y, ms = Math.max(1, now - from[0]);
+      if (dist >= innerHeight * 2 && dist / ms >= 2.5) show('flick-to-top');
     }, { passive: true });
   }
   return api;

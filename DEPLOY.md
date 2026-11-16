@@ -61,10 +61,12 @@ never shows a false success.
 
 ## The 20% exit offer
 
-Both sales pages show a one-time popup when a visitor looks like leaving:
-the cursor heading out through the top of the window on desktop, or, on
-phones, scrolling most of the way back up after the pricing has been on
-screen. It shows at most once per browser session per site, and never after
+Both sales pages show a one-time popup only when a visitor looks like
+leaving, never while they read. On desktop: after 15 seconds on the page, the
+cursor moves up and out through the very top edge and stays out for a moment
+(grazing the edge or using the menu does nothing). On phones: after 15 seconds
+and once the pricing has been on screen for 3 seconds, a fast flick all the
+way back to the top; scrolling back up at reading speed never triggers it. It shows at most once per browser session per site, and never after
 an enquiry was sent or the offer claimed. It doesn't touch history or the
 back button.
 
