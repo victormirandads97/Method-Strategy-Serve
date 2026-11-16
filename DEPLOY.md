@@ -92,6 +92,8 @@ curl -H "Authorization: Bearer YOUR_LEADS_ADMIN_TOKEN" https://themethodco.co/ap
 
 Automatic: every push to `main` runs `.github/workflows/deploy-pages.yml`, once
 the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets exist.
+Until then the workflows pass but skip the deploy (they print a warning), so
+deploy by hand as below.
 
 By hand, from the repository root so `functions/` is picked up:
 
@@ -116,10 +118,11 @@ Then open http://localhost:8788/landing-pages/.
 `sites/calculators/` is the source of calculators.themethodco.co, a separate
 Pages project called `method-calculators`. It is plain HTML with no build step.
 `.github/workflows/deploy-calculators.yml` deploys it when that folder changes
-on `main`; by hand:
+on `main`; by hand, from inside the folder (from the repository root Wrangler
+would also bundle the main site's `functions/` into this project):
 
 ```bash
-npx wrangler pages deploy sites/calculators --project-name method-calculators --branch main
+cd sites/calculators && npx wrangler pages deploy . --project-name method-calculators --branch main
 ```
 
 Its Stripe Payment Link is set in `CONFIG.stripeLink` near the bottom of
