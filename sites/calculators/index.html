@@ -88,10 +88,13 @@ p { margin: 0; }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
 .hook { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: .9rem; font-weight: 500; margin-bottom: 20px; box-shadow: 0 4px 14px -8px rgba(12,18,38,.2); }
 .hook b { white-space: nowrap; flex: none; background: var(--green); color: var(--green-ink); border-radius: 999px; padding: 3px 10px; font-size: .78rem; font-weight: 700; }
-.hero h1 { font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -0.05em; font-weight: 800; margin-bottom: 22px; }
+.hero h1 { font-size: clamp(2.4rem, 4.6vw, 4.2rem); line-height: .98; letter-spacing: -0.05em; font-weight: 800; margin-bottom: 20px; }
 .hero h1 span { display: block; }
 .hero h1 em { font-style: normal; color: var(--green-deep); }
 .hero .lede { margin-bottom: 26px; }
+.hero h1 + .deal { margin-top: 4px; }
+.hero .hero-lede { margin: 22px 0 0; }
+.hero .hero-lede + .ticks { margin-top: 14px; }
 .hero .lede strong { color: var(--ink); font-weight: 600; }
 .deal { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding: 16px 20px; border-radius: 18px; background: var(--bg); border: 1.5px solid var(--ink); margin-bottom: 22px; max-width: 540px; box-shadow: 6px 6px 0 var(--ink); }
 .price { display: flex; align-items: baseline; gap: 10px; }
@@ -104,10 +107,32 @@ p { margin: 0; }
 .slots i.gone { background: var(--line); }
 .slots span { margin-left: 6px; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+/* No-risk promise: sits between the price and the main button */
+.promise { max-width: 540px; margin-bottom: 22px; display: grid; gap: 10px; }
+.promise-main { font: 700 1.14rem/1.4 var(--display); letter-spacing: -.01em; color: var(--ink); padding: 14px 16px; border-radius: 14px; background: var(--mint); border-left: 4px solid var(--green-deep); }
+.promise-guarantee { display: flex; align-items: flex-start; gap: 10px; font-size: .93rem; line-height: 1.5; color: var(--soft); }
+.promise-guarantee svg { width: 22px; height: 22px; flex: none; color: var(--green-deep); margin-top: 1px; }
+.promise-guarantee b { color: var(--ink); font-weight: 700; }
 .ticks { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 18px 0 0; font-size: .88rem; color: var(--soft); }
 .ticks li { display: flex; align-items: center; gap: 6px; }
 .ticks li::before, .included li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23052E16' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; flex: none; }
 @media (max-width: 480px) { .hero-ctas .btn { flex: 1 1 100%; } .deal-copy { flex: 1 1 100%; } }
+@media (max-width: 560px) {
+  .hero { padding-top: 22px; }
+  .hook { margin-bottom: 14px; font-size: .8rem; padding: 4px 12px 4px 4px; gap: 8px; }
+  .hook b { font-size: .74rem; padding: 3px 8px; }
+  .offer-bar { font-size: .8rem; }
+  .offer-bar .wrap { padding-block: 6px; }
+  .hero h1 { margin-bottom: 14px; font-size: 2.2rem; }
+  .deal { padding: 12px 16px; gap: 6px 14px; margin-bottom: 14px; box-shadow: 4px 4px 0 var(--ink); }
+  .deal .price b { font-size: 2.8rem; }
+  .deal .price s { font-size: 1.3rem; }
+  .promise { margin-bottom: 16px; gap: 8px; }
+  .promise-main { font-size: 1.04rem; padding: 12px 14px; }
+  .promise-guarantee { font-size: .88rem; }
+}
+.wa-float.away { opacity: 0; pointer-events: none; transform: translateY(12px); }
+.wa-float { transition: transform .15s ease, opacity .25s ease; }
 
 /* 3D ring */
 .stage { position: relative; height: 540px; perspective: 1500px; perspective-origin: 50% 35%; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
@@ -390,7 +415,6 @@ html.xo-lock { overflow: hidden; }
       <div>
         <p class="hook"><b>Method Instant Quotes</b>Instant estimates for service businesses</p>
         <h1><span>Give customers a price.</span><span><em>Get more enquiries.</em></span></h1>
-        <p class="lede">Most people won't ring for a quote. Give them an instant price estimate on your own website instead, any hour of the day. <strong>When they like the number, one tap sends you the enquiry on WhatsApp with every detail already filled in.</strong></p>
         <div class="deal">
           <div class="price"><s class="when-live" aria-label="Was €299">€299</s><b data-price>€150</b></div>
           <div class="deal-copy">
@@ -398,10 +422,15 @@ html.xo-lock { overflow: hidden; }
             <div class="slots when-live" data-slots aria-label="Spots left"></div>
           </div>
         </div>
-        <div class="hero-ctas">
-          <a class="btn btn-go" data-wa="Hi Victor! I'd like a free preview of Method Instant Quotes. My business is: "><svg aria-hidden="true"><use href="#wa"/></svg>Get my free preview</a>
-          <a class="btn btn-ghost" href="#demos">Try the 5 demos</a>
+        <div class="promise">
+          <p class="promise-main">We build your quote calculator first. You only pay if you try it and like it.</p>
+          <p class="promise-guarantee"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.6-7.5 10-4.3-1.4-7.5-5.4-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Money-back guarantee.</b> If you’re not happy with what we deliver after you’ve paid, we’ll refund your payment.</span></p>
         </div>
+        <div class="hero-ctas">
+          <a class="btn btn-go" href="#enquire">Request my free preview</a>
+          <a class="btn btn-ghost" href="#demos">Try the live demos</a>
+        </div>
+        <p class="lede hero-lede">Most people won't ring for a quote. Give them an instant price estimate on your own website instead, any hour of the day. <strong>When they like the number, one tap sends you the enquiry on WhatsApp with every detail already filled in.</strong></p>
         <ul class="ticks"><li>Built free before you pay</li><li>Works on your current website</li><li>No monthly fees</li></ul>
       </div>
 
@@ -824,6 +853,12 @@ var CONFIG = {
   stage.addEventListener('mouseleave', function () { hover = false; tilt.style.transform = ''; });
   cards.forEach(function (c, i) { c.addEventListener('focus', function () { angle = -i * 360 / n; }); });
   render(); requestAnimationFrame(loop);
+
+  /* Keep the floating WhatsApp button off the first screen, where it would cover the promise */
+  var waFloat = document.querySelector('.wa-float'), heroCtas = document.querySelector('.hero-ctas');
+  if (waFloat && heroCtas && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { waFloat.classList.toggle('away', es[0].isIntersecting); }).observe(heroCtas);
+  }
 
   /* Enquiry form: posted to the main site's /api/leads, which stores it and emails it to the owner.
      Same fields, validation and states as the landing pages form. Success only once the server confirms. */

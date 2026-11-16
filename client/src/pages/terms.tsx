@@ -51,7 +51,7 @@ export default function Terms() {
           Terms of Service
         </h1>
         <p style={{ ...MONO, fontSize: "0.75rem", color: C.muted, marginBottom: "3rem" }}>
-          Last updated: May 2025
+          Last updated: November 2026
         </p>
 
         <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: "3rem", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
@@ -101,6 +101,13 @@ export default function Terms() {
               Payment terms are specified in each client agreement. Generally, projects require a deposit before
               work begins, with the balance due upon completion or at agreed milestones. Refunds are not issued
               for work already completed. Any disputes must be raised within 14 days of delivery.
+            </p>
+            <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.95rem", marginTop: "1rem" }}>
+              High-Conversion Landing Pages and Method Instant Quotes work differently. There is no deposit and
+              nothing to pay up front: we build your preview first, and you only pay once you've seen and approved
+              it. Both come with a money-back guarantee: if you're not happy with what we deliver after you've paid,
+              tell us at support@themethodco.co and we'll refund your payment in full. If you're refunded after
+              launch, the page or calculator comes down and you stop using it.
             </p>
           </section>
 
