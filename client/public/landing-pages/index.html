@@ -328,6 +328,16 @@ p { margin: 0; }
   .reveal { opacity: 1; transform: none; }
   .card:hover .shot img { transform: none; }
 }
+
+/* Cookie choice for the Meta Pixel */
+.cc { position: fixed; z-index: 60; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: min(560px, calc(100% - 24px)); background: #0A0F14; color: #E6E9EE; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 16px 18px; box-shadow: 0 18px 40px -12px rgba(0,0,0,.55); font-size: .92rem; line-height: 1.5; }
+.cc[hidden] { display: none; }
+.cc p { margin: 0 0 12px; }
+.cc a { color: #4BF59A; }
+.cc .cc-row { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.cc button { font: 700 .9rem/1 inherit; font-family: inherit; padding: 11px 16px; border-radius: 999px; cursor: pointer; border: 0; }
+.cc .cc-no { background: transparent; color: #E6E9EE; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.3); }
+.cc .cc-yes { background: #22D87A; color: #052E16; }
 </style>
 </head>
 <body>
@@ -622,6 +632,7 @@ p { margin: 0; }
       <a href="/">My work</a>
       <a href="/terms">Terms</a>
       <a href="/privacy">Privacy</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
     </nav>
     <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
   </div>
@@ -743,6 +754,7 @@ p { margin: 0; }
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
       .then(function (r) {
         if (r.body && r.body.ok) {
+          if (window.tmcLead) window.tmcLead();
           document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
             '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>I\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
             '<p>Want to get started sooner? Send me a message and mention your business name.</p><a class="btn btn-go" data-wa href="' + esc(waUrl('Hi Victor, I just sent a landing page request for ' + data.business_name + '.')) + '" data-track="thanks" target="_blank" rel="noopener">Message me on WhatsApp</a></div>';
@@ -764,6 +776,40 @@ p { margin: 0; }
       .then(function () { if (document.body.contains(submit)) { submit.disabled = false; submit.firstChild.textContent = 'Request my landing page '; } });
   });
 
+})();
+</script>
+
+<div class="cc" id="cc" role="region" aria-label="Cookie choice" hidden>
+  <p>Can I use a Meta Pixel cookie to see which of my ads bring enquiries? Nothing is tracked unless you say yes. <a href="/privacy#cookies">Cookie details</a></p>
+  <div class="cc-row"><button type="button" class="cc-no" data-cc="no">No thanks</button><button type="button" class="cc-yes" data-cc="yes">Accept</button></div>
+</div>
+<script>
+/* Meta Pixel (dataset "The Method Co - Website"). It loads only after the visitor presses Accept,
+   and the choice is remembered on this device. "Cookie settings" in the footer reopens the choice. */
+(function () {
+  var PIXEL_ID = '29511278675176705', KEY = 'tmc_consent', bar = document.getElementById('cc');
+  function load() {
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+  var choice = null; try { choice = localStorage.getItem(KEY); } catch (e) {}
+  if (choice === 'yes') load(); else if (choice !== 'no') bar.hidden = false;
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-cc]'); if (!b) return;
+    var v = b.getAttribute('data-cc');
+    try { localStorage.setItem(KEY, v); } catch (err) {}
+    bar.hidden = true;
+    if (v === 'yes') load();
+    else if (window.fbq) location.reload(); /* withdrawing consent: reload so the pixel stops */
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-cookie-settings]'); if (!a) return;
+    e.preventDefault(); bar.hidden = false; bar.querySelector('.cc-yes').focus();
+  });
+  /* Called after a form enquiry is saved. Does nothing without consent. */
+  window.tmcLead = function () { try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Landing Pages' }); } catch (err) {} };
 })();
 </script>
 </body>

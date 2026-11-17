@@ -102,14 +102,20 @@ export default function Privacy() {
             </p>
           </section>
 
-          <section>
+          <section id="cookies">
             <h2 style={{ ...BEBAS, fontSize: "1.5rem", letterSpacing: "0.05em", marginBottom: "0.75rem" }}>
               4. Cookies and Tracking
             </h2>
             <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.95rem" }}>
-              This website may use minimal cookies necessary for basic functionality (e.g., form state). We do not
-              use invasive advertising trackers or third-party behavioral profiling cookies. Analytics, if used,
-              are configured to anonymize IP addresses and respect Do Not Track signals.
+              This website may use minimal cookies necessary for basic functionality (e.g., form state).
+            </p>
+            <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.95rem", marginTop: "1rem" }}>
+              The Landing Pages sales page (/landing-pages/) can also load the Meta Pixel, but only if you press
+              Accept on its cookie banner. The pixel sets cookies (such as _fbp) and tells Meta when you view the
+              page, press a WhatsApp button or send the enquiry form, so I can see which of my Facebook and
+              Instagram ads bring enquiries. Meta processes this data under its own privacy policy. If you press
+              No thanks, the pixel never loads. Your choice is stored in your browser, and you can change it any
+              time with "Cookie settings" at the bottom of that page.
             </p>
           </section>
 
