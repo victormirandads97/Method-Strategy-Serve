@@ -332,6 +332,16 @@ p { margin: 0; }
 .wa-float::before { content: ""; position: absolute; inset: 0; border-radius: inherit; animation: ping 2.6s ease-out infinite; }
 @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34,216,122,.5); } 70%, 100% { box-shadow: 0 0 0 16px rgba(34,216,122,0); } }
 @media (max-width: 480px) { .wa-float span { display: none; } .wa-float { padding: 14px; } }
+
+/* Cookie choice for the Meta Pixel */
+.cc { position: fixed; z-index: 60; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); width: min(560px, calc(100% - 24px)); background: #0A0F14; color: #E6E9EE; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 16px 18px; box-shadow: 0 18px 40px -12px rgba(0,0,0,.55); font-size: .92rem; line-height: 1.5; }
+.cc[hidden] { display: none; }
+.cc p { margin: 0 0 12px; }
+.cc a { color: #4BF59A; }
+.cc .cc-row { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.cc button { font: 700 .9rem/1 inherit; font-family: inherit; padding: 11px 16px; border-radius: 999px; cursor: pointer; border: 0; }
+.cc .cc-no { background: transparent; color: #E6E9EE; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.3); }
+.cc .cc-yes { background: #22D87A; color: #052E16; }
 </style>
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='80' y1='85.2' x2='160' y2='0'%3E%3Cstop offset='0' stop-color='%230F8A54'/%3E%3Cstop offset='.55' stop-color='%2322D87A'/%3E%3Cstop offset='1' stop-color='%234BF59A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='13' fill='%230A0F14'/%3E%3Cg transform='translate(7.68 14.98) scale(.304)'%3E%3Cpath d='M0 0L80 63.2V85.2L29 44.91V112H0Z' fill='%23fff'/%3E%3Cpath d='M160 0L80 63.2V85.2L131 44.91V112H160Z' fill='url(%23g)'/%3E%3C/g%3E%3C/svg%3E">
@@ -590,7 +600,7 @@ p { margin: 0; }
 <footer class="site-footer">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="The Method Co., back to top"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg><span class="word">The Method Co<i>.</i></span></a>
-    <nav class="legal-links" aria-label="Legal"><a href="legal.html#terms">Terms</a><a href="legal.html#refunds">Refunds</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#cookies">Cookies</a></nav>
+    <nav class="legal-links" aria-label="Legal"><a href="legal.html#terms">Terms</a><a href="legal.html#refunds">Refunds</a><a href="legal.html#privacy">Privacy</a><a href="legal.html#cookies">Cookies</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
     <p>Also from The Method Co.: <a class="cross" href="https://themethodco.co/landing-pages/">High-Conversion Landing Pages</a></p>
     <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
   </div>
@@ -729,6 +739,7 @@ var CONFIG = {
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
       .then(function (r) {
         if (r.body && r.body.ok) {
+          if (window.tmcLead) window.tmcLead();
           document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
             '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Enquiry received.</h3><p>I\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps for ' + esc(data.business_name) + '\'s free preview.</p>' +
             '<p>Want to get started sooner? Send me a message and mention your business name.</p><a class="btn btn-go" href="' + esc(waUrl('Hi Victor, I just sent an Instant Quotes enquiry for ' + data.business_name + '.')) + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Message me on WhatsApp</a></div>';
@@ -751,5 +762,39 @@ var CONFIG = {
 })();
 </script>
 
+
+<div class="cc" id="cc" role="region" aria-label="Cookie choice" hidden>
+  <p>Can I use a Meta Pixel cookie to see which of my ads bring enquiries? Nothing is tracked unless you say yes. <a href="legal.html#cookies">Cookie details</a></p>
+  <div class="cc-row"><button type="button" class="cc-no" data-cc="no">No thanks</button><button type="button" class="cc-yes" data-cc="yes">Accept</button></div>
+</div>
+<script>
+/* Meta Pixel (dataset "The Method Co - Website"). It loads only after the visitor presses Accept,
+   and the choice is remembered on this device. "Cookie settings" in the footer reopens the choice. */
+(function () {
+  var PIXEL_ID = '29511278675176705', KEY = 'tmc_consent', bar = document.getElementById('cc');
+  function load() {
+    if (window.fbq) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+  var choice = null; try { choice = localStorage.getItem(KEY); } catch (e) {}
+  if (choice === 'yes') load(); else if (choice !== 'no') bar.hidden = false;
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-cc]'); if (!b) return;
+    var v = b.getAttribute('data-cc');
+    try { localStorage.setItem(KEY, v); } catch (err) {}
+    bar.hidden = true;
+    if (v === 'yes') load();
+    else if (window.fbq) location.reload(); /* withdrawing consent: reload so the pixel stops */
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-cookie-settings]'); if (!a) return;
+    e.preventDefault(); bar.hidden = false; bar.querySelector('.cc-yes').focus();
+  });
+  /* Called after a form enquiry is saved. Does nothing without consent. */
+  window.tmcLead = function () { try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Instant Quotes' }); } catch (err) {} };
+})();
+</script>
 </body>
 </html>
