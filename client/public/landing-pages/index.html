@@ -621,7 +621,7 @@ p { margin: 0; }
       <a href="https://calculators.themethodco.co/">Instant Quotes</a>
       <a href="/">My work</a>
       <a href="/terms">Terms</a>
-      <a href="/privacy">Privacy</a>
+      <a href="/privacy">Privacy</a> <button type="button" class="cookie-settings" data-cookie-settings>Cookie settings</button>
     </nav>
     <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
   </div>
@@ -743,6 +743,7 @@ p { margin: 0; }
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
       .then(function (r) {
         if (r.body && r.body.ok) {
+          try { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Landing Pages' }); } catch (err) {}
           document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
             '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>I\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
             '<p>Want to get started sooner? Send me a message and mention your business name.</p><a class="btn btn-go" data-wa href="' + esc(waUrl('Hi Victor, I just sent a landing page request for ' + data.business_name + '.')) + '" data-track="thanks" target="_blank" rel="noopener">Message me on WhatsApp</a></div>';
@@ -766,5 +767,16 @@ p { margin: 0; }
 
 })();
 </script>
+<style>.cookie-choice{position:fixed;z-index:99999;left:1rem;right:1rem;bottom:1rem;margin:auto;max-width:720px;background:#101820;color:#fff;border:1px solid #617269;border-radius:14px;padding:18px;box-shadow:0 8px 30px #0008;font:15px/1.5 system-ui,sans-serif}.cookie-choice[hidden]{display:none}.cookie-choice p{margin:0 0 12px}.cookie-choice a{color:#8bf0b1}.cookie-actions{display:flex;gap:10px;flex-wrap:wrap}.cookie-actions button{padding:10px 14px;border:1px solid #d4e7da;border-radius:8px;font:inherit;cursor:pointer;background:#fff;color:#101820}.cookie-actions .allow{background:#22d87a;border-color:#22d87a}.cookie-settings{background:transparent;border:0;color:inherit;text-decoration:underline;font:inherit;cursor:pointer;padding:0}</style><div id="method-cookie-choice" class="cookie-choice" role="region" aria-label="Cookie choices" hidden><p>May we use the Meta Pixel to measure our ads and understand visits and enquiries? Meta may use this data for advertising. Accept or reject optional cookies and change your choice later. <a href="/privacy">Privacy and cookies</a></p><div class="cookie-actions"><button type="button" id="method-cookie-reject">Reject optional cookies</button><button type="button" id="method-cookie-accept" class="allow">Accept optional cookies</button></div></div><script>(function(){
+ var key='method_meta_consent_v1',choice=null,loaded=false;try{choice=localStorage.getItem(key)}catch(e){}
+ var box=document.getElementById('method-cookie-choice');
+ function save(v){try{localStorage.setItem(key,v)}catch(e){}choice=v}
+ function load(){if(loaded||choice!=='accepted')return;loaded=true;if(!window.fbq){var f=window.fbq=function(){f.callMethod?f.callMethod.apply(f,arguments):f.queue.push(arguments)};if(!window._fbq)window._fbq=f;f.push=f;f.loaded=true;f.version='2.0';f.queue=[];var s=document.createElement('script');s.async=true;s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s)}window.fbq('init','29511278675176705');window.fbq('track','PageView')}
+ document.getElementById('method-cookie-accept').addEventListener('click',function(){save('accepted');box.hidden=true;load()});
+ document.getElementById('method-cookie-reject').addEventListener('click',function(){var had=loaded;save('rejected');box.hidden=true;if(had)location.reload()});
+ document.querySelectorAll('[data-cookie-settings]').forEach(function(el){el.addEventListener('click',function(){box.hidden=false;document.getElementById('method-cookie-reject').focus()})});
+ if(choice==='accepted')load();else if(choice!=='rejected')box.hidden=false;
+})();</script>
 </body>
 </html>
+
