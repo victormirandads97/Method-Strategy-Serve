@@ -116,9 +116,10 @@ would also bundle the main site's `functions/` into this project):
 cd sites/calculators && npx wrangler pages deploy . --project-name method-calculators --branch main
 ```
 
-Its Stripe Payment Link is set in `CONFIG.stripeLink` near the bottom of
-`sites/calculators/index.html`. Until a real link is there, the pay buttons
-open WhatsApp instead.
+Instant Quotes has no public payment button. Customers request a free preview
+on WhatsApp or through the enquiry form. After they approve the preview, Victor
+sends the payment details directly. No Stripe Payment Link is needed on this
+sales page. The ebook's Stripe checkout and download Functions are unchanged.
 
 Its enquiry form posts to `CONFIG.leadsEndpoint`
 (`https://themethodco.co/api/leads`), so the main site must be deployed with
