@@ -18,8 +18,8 @@ branch, `main`.
     on calculators.themethodco.co posts to it cross-origin: CORS is answered
     only for that origin (and `*.method-calculators.pages.dev` previews), and a
     POST from any other browser origin is refused with 403. Each enquiry stores
-    its enquiry type, the page it came from, and any claimed discount. The
-    discount wording comes from the server, never from the page.
+    its enquiry type and the page it came from. No discount offers run today;
+    an old offer code from a stale tab is ignored, never refused.
 - `/thank-you-last-human-job` is a static page, no Function needed.
 - `/landing-pages/` is the High-Conversion Landing Pages sales page, and
   `/landing-pages/demos/<name>/` its five demos. Plain HTML in
@@ -59,26 +59,15 @@ The `leads` table creates itself on the first enquiry. Until `LEADS_DB` is
 bound, the form says the request was not saved and offers email instead; it
 never shows a false success.
 
-## The 20% exit offer
+## WhatsApp buttons
 
-Both sales pages show a one-time popup only when a visitor looks like
-leaving, never while they read. On desktop: after 15 seconds on the page, the
-cursor moves up and out through the very top edge and stays out for a moment
-(grazing the edge or using the menu does nothing). On phones: after 15 seconds
-and once the pricing has been on screen for 3 seconds, a fast flick all the
-way back to the top; scrolling back up at reading speed never triggers it. It shows at most once per browser session per site, and never after
-an enquiry was sent or the offer claimed. It doesn't touch history or the
-back button.
-
-- Method Instant Quotes: €120 instead of €150. Only while the €150 launch
-  price is on (it stops with the launch offer).
-- Landing pages: from €200 instead of from €250.
-
-"Claim" scrolls to the page's enquiry form and attaches the offer (code
-`exit20`). The server turns that into the wording stored in the `offer`
-column and in the email subject ("20% offer claimed"). Neither page sells
-through Stripe Checkout today, so no discounted checkout exists; claimed
-Instant Quotes visitors are never sent to the €150 Payment Link.
+WhatsApp is the main call to action on both sales pages. Every button opens a
+chat with a message written for that product. The number lives in one place
+per page: `CONFIG.whatsapp` in `sites/calculators/index.html`, and `WHATSAPP`
+in the script of `client/public/landing-pages/index.html`. Clear it and the
+buttons fall back to the WhatsApp Business link (without the message). Clicks
+are reported as a Meta Pixel `Contact` event, a Google tag `whatsapp_click`
+event or a dataLayer push, but only if one of those is already on the page.
 
 ## Reading enquiries
 
@@ -127,9 +116,10 @@ would also bundle the main site's `functions/` into this project):
 cd sites/calculators && npx wrangler pages deploy . --project-name method-calculators --branch main
 ```
 
-Its Stripe Payment Link is set in `CONFIG.stripeLink` near the bottom of
-`sites/calculators/index.html`. Until a real link is there, the pay buttons
-open WhatsApp instead.
+Instant Quotes has no public payment button. Customers request a free preview
+on WhatsApp or through the enquiry form. After they approve the preview, Victor
+sends the payment details directly. No Stripe Payment Link is needed on this
+sales page. The ebook's Stripe checkout and download Functions are unchanged.
 
 Its enquiry form posts to `CONFIG.leadsEndpoint`
 (`https://themethodco.co/api/leads`), so the main site must be deployed with
