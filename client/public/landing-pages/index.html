@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>High-Conversion Landing Pages from €250 | The Method Co.</title>
-<meta name="description" content="Fast, beautiful landing pages that turn interested visitors into enquiries, bookings and sales. Built for Irish businesses, from €250 per page. See five live demos.">
+<meta name="description" content="Focused landing pages for Irish small businesses: one offer, a clear WhatsApp button and a form that reaches your inbox. From €250 per page. See five live demos.">
 <link rel="canonical" href="https://themethodco.co/landing-pages/">
 <meta name="theme-color" content="#0A0F14">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Method Co.">
 <meta property="og:locale" content="en_IE">
 <meta property="og:title" content="High-Conversion Landing Pages from €250 | The Method Co.">
-<meta property="og:description" content="Your business deserves more than just clicks. Landing pages built to turn visitors into paying customers.">
+<meta property="og:description" content="Clicks are easy. Enquiries are the hard part. Focused landing pages that explain your offer and make it easy to enquire.">
 <meta property="og:url" content="https://themethodco.co/landing-pages/">
 <meta property="og:image" content="https://themethodco.co/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -65,7 +65,8 @@ p { margin: 0; }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 24px; font: 700 1rem/1.15 var(--font); border-radius: 14px; text-decoration: none; cursor: pointer; border: 0; transition: transform .15s ease, background-color .15s ease, box-shadow .2s ease; white-space: nowrap; }
 .btn svg { width: 18px; height: 18px; flex: none; transition: transform .2s ease; }
-.btn:hover svg { transform: translateX(3px); }
+.btn:hover svg:not(.wa-ic) { transform: translateX(3px); }
+.btn .wa-ic { width: 22px; height: 22px; }
 .btn-go { background: var(--green); color: var(--green-ink); box-shadow: 0 12px 28px -12px rgba(34,216,122,.85); }
 .btn-go:hover { background: var(--green-glow); transform: translateY(-2px); }
 .btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
@@ -97,14 +98,12 @@ p { margin: 0; }
 .hero h1 { font-size: clamp(2.7rem, 5.6vw, 4.9rem); line-height: .98; font-weight: 800; margin-bottom: 22px; }
 .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--green), var(--green-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero .lede { color: #C9CED6; font-size: 1.12rem; margin-bottom: 28px; }
-.from { display: flex; align-items: baseline; gap: 10px; margin-bottom: 26px; }
-.from small { color: var(--mute); font-size: .95rem; }
-.from b { font-size: 2.6rem; line-height: 1; font-weight: 800; letter-spacing: -.04em; }
-.from span { color: var(--mute); font-size: .95rem; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.ticks { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 24px 0 0; font-size: .9rem; color: #C9CED6; }
-.ticks li, .incl li { display: flex; align-items: center; gap: 8px; }
-.ticks li::before, .incl li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23052E16' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+.hero-alt { margin-top: 16px; font-size: .98rem; color: #C9CED6; }
+.hero-alt a { color: #fff; font-weight: 600; text-underline-offset: 3px; }
+.hero-note { margin-top: 22px; font-size: .9rem; color: var(--mute); }
+.incl li { display: flex; align-items: center; gap: 8px; }
+.incl li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23052E16' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
 @media (max-width: 960px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 480px) { .hero-ctas .btn { flex: 1 1 100%; } }
 
@@ -203,14 +202,15 @@ p { margin: 0; }
 @media (max-width: 560px) { .benefits { grid-template-columns: minmax(0, 1fr); } }
 
 /* Steps */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
 .step { position: relative; background: var(--bg); border: 1px solid var(--line); border-radius: 22px; padding: 28px; }
 .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--tint); font: 800 1.15rem/1 var(--font); margin-bottom: 20px; }
 .step:last-child::before { background: var(--green); color: var(--green-ink); }
 .step h3 { font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 8px; }
 .step p { color: var(--soft); }
 .step small { display: block; margin-top: 14px; color: var(--green-deep); font-weight: 600; font-size: .88rem; }
-@media (max-width: 860px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 1000px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .steps { grid-template-columns: minmax(0, 1fr); } }
 
 /* Pricing */
 .pricing { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
@@ -227,9 +227,10 @@ p { margin: 0; }
 .incl li::before { margin-top: 3px; }
 .price-card .btn { width: 100%; }
 .price-note { margin-top: 14px; color: var(--mute); font-size: .86rem; text-align: center; }
-.guarantee { display: flex; align-items: flex-start; gap: 10px; max-width: 520px; margin: -8px 0 24px; font-size: .95rem; line-height: 1.5; color: #C9CED6; }
+.guarantee { display: flex; align-items: flex-start; gap: 10px; max-width: 520px; margin: 0; font-size: .95rem; line-height: 1.5; color: #C9CED6; }
 .guarantee svg { width: 22px; height: 22px; flex: none; color: var(--green); margin-top: 1px; }
 .guarantee b { color: #fff; font-weight: 700; }
+.guarantee a { color: #C9CED6; }
 .guarantee-card { margin: 16px 0 0; padding: 14px; border-radius: 14px; background: rgba(34,216,122,.1); border: 1px solid rgba(34,216,122,.35); font-size: .9rem; text-align: left; }
 .scope h3 { font-size: 1.25rem; letter-spacing: -.02em; margin: 26px 0 10px; }
 .scope h3:first-of-type { margin-top: 0; }
@@ -239,6 +240,21 @@ p { margin: 0; }
 .upsell p { color: var(--soft); font-size: .95rem; }
 .upsell a { font-weight: 700; color: var(--green-deep); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 @media (max-width: 900px) { .pricing { grid-template-columns: minmax(0, 1fr); } }
+
+/* Founder and real work */
+.founder-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.founder-photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 24px; box-shadow: 0 30px 60px -30px rgba(10,15,20,.55); }
+.founder-copy h2 { margin-bottom: 16px; }
+.founder-copy .lede { margin-bottom: 26px; }
+.work { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); text-decoration: none; color: var(--ink); max-width: 760px; transition: transform .2s ease, box-shadow .2s ease; }
+.work:hover { transform: translateY(-3px); box-shadow: 0 24px 40px -28px rgba(10,15,20,.4); }
+.work img { width: 100%; height: 100%; object-fit: cover; object-position: left top; background: var(--tint); }
+.work > div { padding: 18px 20px; display: grid; gap: 6px; align-content: center; }
+.work-tag { font-size: .78rem; font-weight: 700; color: var(--green-deep); text-transform: uppercase; letter-spacing: .05em; }
+.work h3 { font-size: 1.3rem; letter-spacing: -.02em; }
+.work p { color: var(--soft); font-size: .93rem; }
+.work-link { font-weight: 700; font-size: .9rem; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .founder-grid { grid-template-columns: minmax(0, 1fr); } .founder-photo { width: min(220px, 60%); } .work { grid-template-columns: minmax(0, 1fr); } .work img { aspect-ratio: 16 / 8; height: auto; } }
 
 /* FAQ */
 .faq { max-width: 860px; display: grid; gap: 10px; }
@@ -295,41 +311,9 @@ p { margin: 0; }
 .done p { color: var(--soft); max-width: 44ch; margin: 0 auto 10px; }
 .done .btn { width: auto; margin-top: 10px; }
 @media (max-width: 900px) { .start .wrap { grid-template-columns: minmax(0, 1fr); } }
-/* Discount attached to the form after the exit offer is claimed */
-.offer-tag { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-bottom: 16px; border-radius: 14px; background: var(--mint); border: 1.5px solid var(--green-deep); color: #064E2D; }
-.offer-tag[hidden] { display: none; }
-.offer-tag .pct { flex: none; display: grid; place-items: center; min-width: 50px; height: 42px; padding: 0 6px; border-radius: 12px; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: .86rem; letter-spacing: -.02em; white-space: nowrap; }
-.offer-tag div { flex: 1; min-width: 0; font-size: .92rem; line-height: 1.4; }
-.offer-tag b { display: block; color: var(--ink); }
-.offer-tag s { color: var(--soft); }
-.offer-tag button { flex: none; background: none; border: 0; padding: 8px; margin: -8px -6px -8px 0; font: 600 .84rem var(--font); color: #064E2D; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; border-radius: 8px; }
-.offer-tag .err { display: block; color: #B42318; font-size: .82rem; }
-.offer-tag .err:empty { display: none; }
 
-/* Exit offer */
-.xo { padding: 0; border: 0; background: transparent; width: min(480px, calc(100% - 32px)); max-height: calc(100% - 32px); overflow: visible; color: #fff; }
-.xo::backdrop { background: rgba(5,8,12,.72); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
-.xo[open] { animation: xo-in .35s var(--ease); }
-@keyframes xo-in { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
-.xo-card { position: relative; overflow: hidden; border-radius: 26px; background: var(--navy); padding: 34px clamp(22px, 5vw, 36px) 26px; box-shadow: 0 50px 100px -30px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.1); text-align: center; }
-.xo-card::before { content: ""; position: absolute; width: 520px; height: 520px; left: 50%; top: -330px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(34,216,122,.32), transparent); pointer-events: none; }
-.xo-card > * { position: relative; }
-.xo-x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; }
-.xo-x:hover { background: rgba(255,255,255,.16); }
-.xo-badge { display: inline-block; background: var(--green); color: var(--green-ink); font-weight: 800; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
-.xo h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.04; margin-bottom: 18px; }
-.xo-price { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 14px; }
-.xo-price small { color: var(--mute); font-size: 1rem; }
-.xo-price s { color: var(--mute); font-size: 1.5rem; font-weight: 600; text-decoration-thickness: 2px; }
-.xo-price b { font-size: clamp(3.4rem, 13vw, 4.4rem); line-height: .9; font-weight: 800; letter-spacing: -.05em; color: #fff; }
-.xo p { color: #C9CED6; max-width: 36ch; margin: 0 auto 22px; }
-.xo .btn { width: 100%; }
-.xo-no { margin-top: 10px; background: none; border: 0; color: var(--mute); font: 500 .92rem var(--font); padding: 12px; min-height: 44px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; border-radius: 8px; }
-.xo-no:hover { color: #fff; }
-.xo-fine { margin-top: 4px; font-size: .78rem; color: var(--mute); }
-html.xo-lock { overflow: hidden; }
 
-.site-footer { background: var(--navy); color: var(--mute); border-top: 1px solid var(--line-d); padding: 40px 0 110px; font-size: .9rem; }
+.site-footer { background: var(--navy); color: var(--mute); border-top: 1px solid var(--line-d); padding: 40px 0 calc(110px + env(safe-area-inset-bottom, 0px)); font-size: .9rem; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .site-footer a { color: #C9CED6; }
@@ -351,6 +335,7 @@ html.xo-lock { overflow: hidden; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs><linearGradient id="mgrad" gradientUnits="userSpaceOnUse" x1="80" y1="85.2" x2="160" y2="0"><stop offset="0" stop-color="#0F8A54"/><stop offset=".55" stop-color="#22D87A"/><stop offset="1" stop-color="#4BF59A"/></linearGradient></defs>
   <symbol id="mark" viewBox="0 0 160 112"><path d="M0 0L80 63.2V85.2L29 44.91V112H0Z" fill="currentColor"/><path d="M160 0L80 63.2V85.2L131 44.91V112H160Z" fill="url(#mgrad)"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.7l4.8-1.3A9.8 9.8 0 1 0 12 2.2Zm0 17.8c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1 .1-1.2l-.5-.2Z"/></symbol>
   <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -362,7 +347,7 @@ html.xo-lock { overflow: hidden; }
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-go" href="#start" aria-label="Request your landing page"><span class="long">Request your page</span><span aria-hidden="true">→</span></a>
+      <a class="btn btn-go" data-wa="Hi Victor, I&#39;d like to discuss a landing page for my business. My business is: " data-track="nav" aria-label="Discuss my landing page on WhatsApp"><svg class="wa-ic" aria-hidden="true"><use href="#wa"/></svg><span class="long">Discuss my page</span></a>
     </nav>
   </div>
 </header>
@@ -372,15 +357,13 @@ html.xo-lock { overflow: hidden; }
     <div class="wrap">
       <div>
         <p class="pill"><b>New</b>High-Conversion Landing Pages</p>
-        <h1 id="hero-title">Your business deserves more than <em>just clicks.</em></h1>
-        <p class="lede">We build beautiful, lightning-fast landing pages designed to turn interested visitors into paying customers. One page, one offer, one clear next step.</p>
-        <div class="from"><small>From</small><b>€250</b><span>per landing page</span></div>
-        <p class="guarantee"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.6-7.5 10-4.3-1.4-7.5-5.4-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Money-back guarantee.</b> If you’re not happy with what we deliver after you’ve paid, we’ll refund your payment.</span></p>
+        <h1 id="hero-title">Clicks are easy. <em>Enquiries are the hard part.</em></h1>
+        <p class="lede">Sending people from your ads to a page that leaves them guessing? I build focused landing pages that explain your offer and make it easy to enquire.</p>
         <div class="hero-ctas">
-          <a class="btn btn-go" href="#start">Request your landing page <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-          <a class="btn btn-ghost" href="#demos">See 5 live demos</a>
+          <a class="btn btn-go" data-wa="Hi Victor, I&#39;d like to discuss a landing page for my business. My business is: " data-track="hero"><svg class="wa-ic" aria-hidden="true"><use href="#wa"/></svg>Discuss my landing page</a>
         </div>
-        <ul class="ticks"><li>See a preview before you pay</li><li>Usually ready in about a week</li><li>The page is yours to keep</li></ul>
+        <p class="hero-alt"><a href="#start">Prefer a form? Tell me about your project.</a></p>
+        <p class="hero-note">From €250 per page. Nothing to pay until you've seen and approved your preview.</p>
       </div>
 
       <div>
@@ -399,7 +382,7 @@ html.xo-lock { overflow: hidden; }
   <section class="section tinted" aria-labelledby="problem-title">
     <div class="wrap">
       <div class="head reveal">
-        <div><p class="eyebrow">The problem</p><h2 id="problem-title">Clicks are easy. Enquiries are the hard part.</h2></div>
+        <div><p class="eyebrow">The problem</p><h2 id="problem-title">Why visitors leave without getting in touch.</h2></div>
         <p class="lede">You pay for ads, post on social and send people to your website. Then most of them leave without getting in touch. It's rarely the product. It's usually the page.</p>
       </div>
       <div class="problems">
@@ -458,7 +441,7 @@ html.xo-lock { overflow: hidden; }
     <div class="wrap">
       <div class="head reveal">
         <div><p class="eyebrow">Live demos</p><h2 id="demos-title">Five businesses. Five very different pages.</h2></div>
-        <p class="lede">Each one is a working page with its own look, layout and conversion goal. Open them on your phone, use the menus and fill in the forms. This is what we'd build for you.</p>
+        <p class="lede">Each one is a working page with its own look, layout and conversion goal. Open them on your phone, use the menus and fill in the forms. This is the kind of page I'd build for you.</p>
       </div>
       <div class="cards" id="cards"></div>
       <div class="swipe" id="swipe" aria-hidden="true"></div>
@@ -466,19 +449,23 @@ html.xo-lock { overflow: hidden; }
     </div>
   </section>
 
-  <section class="section" aria-labelledby="benefits-title">
-    <div class="wrap">
-      <div class="head reveal">
-        <div><p class="eyebrow">What you get</p><h2 id="benefits-title">Everything a page needs to earn its keep.</h2></div>
-        <p class="lede">Not a template with your logo swapped in. A page designed around your offer, your customers and the one thing you want them to do.</p>
-      </div>
-      <div class="benefits">
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Built for every screen</h3><p>Designed phone-first, then scaled up, so it looks right wherever your customers find you.</p></article>
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Loads fast</h3><p>Lean code and optimised images, hosted on a global network. No slow page builder underneath.</p></article>
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div><h3>Words that sell</h3><p>Clear, persuasive copy written for your customers, in plain English. Or we sharpen what you have.</p></article>
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M14 12h3"/></svg></div><h3>Calls to action that stand out</h3><p>The next step is visible at every point on the page, including a sticky button on phones.</p></article>
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Enquiries straight to you</h3><p>A short form that sends leads to your inbox, plus WhatsApp or phone buttons if that's how you work.</p></article>
-        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div><h3>Looks the part</h3><p>Typography, colour and layout that make a small business look as considered as a big one.</p></article>
+
+  <section class="section" id="about" aria-labelledby="founder-title">
+    <div class="wrap founder-grid">
+      <img class="founder-photo reveal" src="assets/victor.jpg" width="480" height="600" alt="Victor Miranda, founder of The Method Co." loading="lazy">
+      <div class="founder-copy reveal">
+        <p class="eyebrow">Who builds it</p>
+        <h2 id="founder-title">Built by Victor, in Dublin.</h2>
+        <p class="lede">I'm Victor, the founder of The Method Co. Before building websites, I worked as a chef in Dublin. Now I help small businesses explain what they offer and make it easier for customers to get in touch.</p>
+        <a class="work" href="/work/onishi">
+          <img src="assets/onishi.jpg" width="960" height="475" alt="The Onishi manager dashboard, with weekly rank, daily tasks and pending requests" loading="lazy">
+          <div>
+            <span class="work-tag">Independent project · Live in production</span>
+            <h3>Onishi</h3>
+            <p>A roster, hours and time-off app I designed and built for a restaurant floor team, drawing on my own years in hospitality.</p>
+            <span class="work-link">Read the case study</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -486,14 +473,32 @@ html.xo-lock { overflow: hidden; }
   <section class="section tinted" id="how" aria-labelledby="how-title">
     <div class="wrap">
       <div class="head reveal">
-        <div><p class="eyebrow">How it works</p><h2 id="how-title">Three steps. You approve before anything goes live.</h2></div>
-        <p class="lede">No long meetings and no technical jargon. You tell us about the offer, we do the building.</p>
+        <div><p class="eyebrow">How it works</p><h2 id="how-title">Four steps. You approve before anything goes live.</h2></div>
+        <p class="lede">Diagnose, Design, Deploy, Deliver. No long meetings and no technical jargon. You tell me about the offer, I do the building.</p>
       </div>
       <ol class="steps">
-        <li class="step reveal"><h3>Tell us about your business</h3><p>Fill in the short form below. We'll follow up with a few questions about your offer, your customers and the action you want.</p><small>About 10 minutes of your time</small></li>
-        <li class="step reveal"><h3>Review your preview</h3><p>We design and write your page, then send you a private link to try on your own phone. Ask for changes; two rounds are included.</p><small>Usually within 5 working days</small></li>
-        <li class="step reveal"><h3>Approve the final page</h3><p>Happy with it? We publish it on your domain, connect your enquiry form and check everything works before you share it.</p><small>Live the same week you approve</small></li>
+        <li class="step reveal"><h3>Diagnose</h3><p>A short chat on WhatsApp, or the form below. I ask about your business, your offer, your customers and the action you want them to take.</p><small>About 10 minutes of your time</small></li>
+        <li class="step reveal"><h3>Design</h3><p>I write and design your page, then send a private link to try on your own phone. Two rounds of changes are included.</p><small>Usually within 5 working days</small></li>
+        <li class="step reveal"><h3>Deploy</h3><p>Approve it and pay, and I publish it on your domain and connect your enquiry form and WhatsApp button.</p><small>Live the same week you approve</small></li>
+        <li class="step reveal"><h3>Deliver</h3><p>I send test enquiries to check everything arrives, then show you where enquiries land and how to share the page.</p><small>Small text changes free for 30 days</small></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="benefits-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <div><p class="eyebrow">What you get</p><h2 id="benefits-title">What goes on your page.</h2></div>
+        <p class="lede">Not a template with your logo swapped in. A page planned around your offer, your customers and the one thing you want them to do.</p>
+      </div>
+      <div class="benefits">
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div><h3>A page focused on one offer</h3><p>Up to six sections about the one thing you're promoting. No menus or blog posts pulling people away.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.7-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg></div><h3>A clear WhatsApp enquiry button</h3><p>Visitors message you on WhatsApp in one tap, or call you if that's how you work.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>A contact form that reaches your inbox</h3><p>A short form that sends each enquiry to your email, so nothing gets lost in a contact page.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Layouts checked on phones</h3><p>Laid out for phones first, then desktop. You try the preview on your own phone before anything goes live.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></div><h3>Copy written from your answers</h3><p>Plain English about what you do, who it's for and what it costs. Or I tidy up the words you already have.</p></article>
+        <article class="ben reveal"><div class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Your brand, on your domain</h3><p>Your colours and logo, published on your domain or a subdomain like offer.yourbusiness.ie.</p></article>
+      </div>
     </div>
   </section>
 
@@ -501,13 +506,13 @@ html.xo-lock { overflow: hidden; }
     <div class="wrap">
       <div class="head reveal">
         <div><p class="eyebrow">Pricing</p><h2 id="pricing-title">A clear starting price. A clear scope.</h2></div>
-        <p class="lede">€250 covers a complete landing page for one offer. If you need more than that, you'll get a fixed quote before any work starts.</p>
+        <p class="lede">€250 covers a complete landing page for one offer. If you need more than that, I'll give you a fixed quote before any work starts.</p>
       </div>
       <div class="pricing">
         <div class="price-card reveal on-dark">
           <span class="tag">One landing page</span>
           <div class="amount"><small>From</small><b>€250</b></div>
-          <p class="per">One-off price. No monthly fee to us.</p>
+          <p class="per">One-off price. No monthly fee to me.</p>
           <ul class="incl">
             <li>One page built around one offer, up to six sections</li>
             <li>Copywriting from your answers, or a polish of your own</li>
@@ -517,15 +522,15 @@ html.xo-lock { overflow: hidden; }
             <li>Published on your domain or a subdomain, like offer.yourbusiness.ie</li>
             <li>Two rounds of changes before launch</li>
           </ul>
-          <a class="btn btn-go" href="#start">Request your landing page <svg aria-hidden="true"><use href="#arrow"/></svg></a>
-          <p class="price-note">Nothing to pay until you've seen and approved your preview.</p>
-          <p class="guarantee guarantee-card"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.6-7.5 10-4.3-1.4-7.5-5.4-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Money-back guarantee.</b> If you’re not happy with what we deliver after you’ve paid, we’ll refund your payment.</span></p>
+          <a class="btn btn-go" data-wa="Hi Victor, I&#39;d like to discuss a landing page for my business. My business is: " data-track="pricing"><svg class="wa-ic" aria-hidden="true"><use href="#wa"/></svg>Discuss my landing page</a>
+          <p class="price-note">Nothing to pay until you've seen and approved your preview. <a href="#start" style="color:#fff">Prefer a form?</a></p>
+          <p class="guarantee guarantee-card"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.6-7.5 10-4.3-1.4-7.5-5.4-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Money-back guarantee.</b> If you're not happy with what I deliver after you've paid, I'll refund your payment. <a href="/terms">Terms</a></span></p>
         </div>
         <div class="scope reveal">
           <h3>Good to know</h3>
           <ul>
-            <li>You'll need a domain name. If you don't have one, we'll help you register it in your own name.</li>
-            <li>Photos: we use yours, or suitable licensed images where needed.</li>
+            <li>You'll need a domain name. If you don't have one, I'll help you register it in your own name.</li>
+            <li>Photos: I use yours, or suitable licensed images where needed.</li>
             <li>Small text changes in the first 30 days after launch are free.</li>
           </ul>
           <h3>Quoted separately</h3>
@@ -537,7 +542,7 @@ html.xo-lock { overflow: hidden; }
           </ul>
           <div class="upsell">
             <b>Thinking bigger than one page?</b>
-            <p>Many projects start with a landing page and grow into a full website once the offer is proven. If you'd like a quote for a complete site, tick the box in the form and we'll include it.</p>
+            <p>Many projects start with a landing page and grow into a full website once the offer is proven. If you'd like a quote for a complete site, tick the box in the form and I'll include it.</p>
             <a href="#start" data-upsell>Ask about a full website</a>
           </div>
         </div>
@@ -549,13 +554,13 @@ html.xo-lock { overflow: hidden; }
     <div class="wrap">
       <div class="head reveal"><div><p class="eyebrow">Questions</p><h2 id="faq-title">The things people ask first.</h2></div></div>
       <div class="faq">
-        <details><summary>How long does it take?</summary><p>Most previews are ready within five working days of getting your answers. Once you approve, the page usually goes live within a couple of days. If you have a launch date, tell us in the form.</p></details>
-        <details><summary>Where is the page hosted, and is there a monthly fee?</summary><p>There's no monthly fee to us. We set up hosting on a fast global network in your own name. For a single page like this, that's usually free. If your setup would cost anything to run, you'll know before you approve.</p></details>
+        <details><summary>How long does it take?</summary><p>Most previews are ready within five working days of getting your answers. Once you approve, the page usually goes live within a couple of days. If you have a launch date, tell me in the form.</p></details>
+        <details><summary>Where is the page hosted, and is there a monthly fee?</summary><p>There's no monthly fee to me. I set up hosting on a fast global network in your own name. For a single page like this, that's usually free. If your setup would cost anything to run, you'll know before you approve.</p></details>
         <details><summary>How many changes can I ask for?</summary><p>Two rounds of changes are included before launch, which is enough for almost everyone. After launch, small text changes in the first 30 days are free. Bigger changes are quoted first.</p></details>
         <details><summary>Who owns the page?</summary><p>You do. The page, the words and the design are yours, and the domain and hosting sit in your name. If we stop working together, you keep everything.</p></details>
-        <details><summary>When and how do I pay?</summary><p>Nothing up front. Once you've seen your preview and approved it, we'll send an invoice for the agreed price, payable by card or bank transfer. The page goes live once it's paid. And if you're not happy with what we deliver after you've paid, we'll refund your payment: that's our money-back guarantee.</p></details>
-        <details><summary>I already have a website. Do I still need this?</summary><p>Keep your website. A landing page sits alongside it for a specific campaign or offer, and you link to it from your ads, social profiles, Google Business Profile or a QR code. We can also link it from your main site.</p></details>
-        <details><summary>What do you need from me?</summary><p>Your logo, any photos you'd like to use, and answers to a short set of questions about the offer and your customers. If you're short on photos, we'll suggest options.</p></details>
+        <details><summary>When and how do I pay?</summary><p>Nothing up front. Once you've seen your preview and approved it, I'll send an invoice for the agreed price, payable by card or bank transfer. The page goes live once it's paid. And if you're not happy with what I deliver after you've paid, I'll refund your payment. That's my money-back guarantee.</p></details>
+        <details><summary>I already have a website. Do I still need this?</summary><p>Keep your website. A landing page sits alongside it for a specific campaign or offer, and you link to it from your ads, social profiles, Google Business Profile or a QR code. I can also link it from your main site.</p></details>
+        <details><summary>What do you need from me?</summary><p>Your logo, any photos you'd like to use, and answers to a short set of questions about the offer and your customers. If you're short on photos, I'll suggest options.</p></details>
       </div>
     </div>
   </section>
@@ -563,25 +568,23 @@ html.xo-lock { overflow: hidden; }
   <section class="section start on-dark" id="start" aria-labelledby="start-title">
     <div class="wrap">
       <div class="reveal">
-        <p class="eyebrow">Request your landing page</p>
-        <h2 id="start-title">Let's turn your clicks into customers.</h2>
-        <p class="lede">Tell us about your business and what the page should do. We'll reply within one working day with next steps and a fixed price.</p>
+        <p class="eyebrow">Prefer a form?</p>
+        <h2 id="start-title">Tell me about your project.</h2>
+        <p class="lede">Not a WhatsApp person? Tell me about your business and what the page should do. I'll reply within one working day with next steps and a fixed price.</p>
         <ol class="next-steps">
-          <li><span class="n">1</span><div><b>We read your request</b>And reply by email within one working day.</div></li>
+          <li><span class="n">1</span><div><b>I read your request</b>And reply by email within one working day.</div></li>
           <li><span class="n">2</span><div><b>A few quick questions</b>About your offer, your customers and the action you want.</div></li>
           <li><span class="n">3</span><div><b>Your preview</b>Ready to try on your phone, usually within five working days.</div></li>
         </ol>
-        <p class="alt">Prefer to talk first? Email <a href="mailto:support@themethodco.co?subject=Landing%20page">support@themethodco.co</a> or <a href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">message us on WhatsApp</a>.</p>
+        <p class="alt">Prefer to talk first? <a data-wa="Hi Victor, I&#39;d like to discuss a landing page for my business. My business is: " data-track="form-side">Message me on WhatsApp</a> or email <a href="mailto:support@themethodco.co?subject=Landing%20page">support@themethodco.co</a>.</p>
       </div>
       <form class="lead reveal" id="lead-form" action="/api/leads" method="post" novalidate>
         <div id="lead-body">
-          <h3>Tell us about your business</h3>
+          <h3>Tell me about your business</h3>
           <p class="req-note">Takes about a minute. Fields marked optional can be left blank.</p>
           <div class="status bad" id="lead-status" role="alert"></div>
-          <div class="offer-tag" id="offer-tag" hidden><span class="pct" aria-hidden="true">−20%</span><div><b>20% off attached</b>Your landing page from €200 instead of <s>from €250</s>. We'll apply it to your fixed price.<span class="err" id="offer-err"></span></div><button type="button" id="offer-remove">Remove</button></div>
-          <input type="hidden" name="offer" id="offer" value="">
           <div class="fld"><label for="enquiry_type">What are you asking about?</label>
-            <select id="enquiry_type" name="enquiry_type" required><option selected>High-Conversion Landing Pages</option><option>Method Instant Quotes</option><option>Both</option></select>
+            <select id="enquiry_type" name="enquiry_type" required><option selected>High-Conversion Landing Pages</option><option value="Method Instant Quotes">Instant Quotes</option><option>Both</option></select>
             <span class="err" id="enquiry_type-err"></span></div>
           <div class="grid2">
             <div class="fld"><label for="business_name">Business name</label><input id="business_name" name="business_name" autocomplete="organization" maxlength="120" required><span class="err" id="business_name-err"></span></div>
@@ -600,11 +603,11 @@ html.xo-lock { overflow: hidden; }
               <span class="err" id="goal-err"></span></div>
           </div>
           <div class="fld"><label for="notes">Anything else? <span>(optional)</span></label><textarea id="notes" name="notes" maxlength="2000" placeholder="The offer, a launch date, pages you like, anything that helps."></textarea></div>
-          <label class="check"><input type="checkbox" name="website_upgrade" id="website_upgrade" value="yes"><span><b>I'd also like a quote for a full website</b>Optional. We'll include it alongside your landing page price.</span></label>
+          <label class="check"><input type="checkbox" name="website_upgrade" id="website_upgrade" value="yes"><span><b>I'd also like a quote for a full website</b>Optional. I'll include it alongside your landing page price.</span></label>
           <div class="hp" aria-hidden="true"><label for="company_fax">Leave this empty</label><input id="company_fax" name="company_fax" tabindex="-1" autocomplete="off"></div>
           <input type="hidden" name="source" value="landing-pages">
           <button class="btn btn-go" type="submit" id="lead-submit">Request my landing page <svg aria-hidden="true"><use href="#arrow"/></svg></button>
-          <p class="fine">We'll only use your details to reply to this request. See our <a href="/privacy">privacy policy</a>.</p>
+          <p class="fine">I'll only use your details to reply to this request. See the <a href="/privacy">privacy policy</a>.</p>
         </div>
       </form>
     </div>
@@ -615,138 +618,16 @@ html.xo-lock { overflow: hidden; }
   <div class="wrap">
     <a class="brand" href="/" aria-label="The Method Co. home"><svg aria-hidden="true"><use href="#mark"/></svg><span class="word">The Method Co<i>.</i></span></a>
     <nav aria-label="Footer">
-      <a href="https://calculators.themethodco.co/">Method Instant Quotes</a>
-      <a href="/">Our work</a>
+      <a href="https://calculators.themethodco.co/">Instant Quotes</a>
+      <a href="/">My work</a>
       <a href="/terms">Terms</a>
       <a href="/privacy">Privacy</a>
     </nav>
     <p>© <span data-year>2026</span> The Method Co. Dublin, Ireland.</p>
   </div>
 </footer>
-<a class="btn btn-go mobile-cta" href="#start">Request your landing page</a>
+<a class="btn btn-go mobile-cta" data-wa="Hi Victor, I&#39;d like to discuss a landing page for my business. My business is: " data-track="sticky"><svg class="wa-ic" aria-hidden="true"><use href="#wa"/></svg>Discuss my landing page</a>
 
-<dialog class="xo" id="exit-offer" aria-labelledby="xo-title" aria-describedby="xo-desc">
-  <form method="dialog" class="xo-card">
-    <button class="xo-x" value="close" aria-label="Close this offer"><span aria-hidden="true">×</span></button>
-    <span class="xo-badge">20% off</span>
-    <h2 id="xo-title">Before you go, take 20% off your landing page.</h2>
-    <div class="xo-price" aria-label="From €200 instead of from €250"><small aria-hidden="true">From</small><b aria-hidden="true">€200</b><s aria-hidden="true">from €250</s></div>
-    <p id="xo-desc">Same page, same scope, same free preview. Nothing to pay until you've approved it.</p>
-    <button class="btn btn-go" value="claim" autofocus>Claim 20% off</button>
-    <button class="xo-no" value="close">No thanks</button>
-    <p class="xo-fine">The discount is attached to your request when you send the form.</p>
-  </form>
-</dialog>
-
-<script>window.EXIT_OFFER = { offerSection: "#pricing", formSection: "start" };</script>
-<script>
-/* Exit offer (same code on both sales pages; each page sets window.EXIT_OFFER first).
-   Only when the visitor looks like they are leaving, never while reading:
-   - Desktop: after 15 s on the page, the cursor moves up and out through the
-     very top edge and stays out for a moment.
-   - Touch: after 15 s and after the pricing has been on screen for 3 s, a fast
-     flick all the way back to the top. Normal scrolling and link jumps don't count.
-   - At most once per browser session on this site. Never after an enquiry
-     was sent or the offer was claimed. History and the back button are left alone.
-   - A native <dialog>: Escape, the close button, "No thanks" and a tap on the
-     backdrop all close it; focus stays inside while open and returns after.
-   Claiming fires "exitoffer:claim" on document; the page attaches the offer to its form. */
-var ExitOffer = (function () {
-  var cfg = window.EXIT_OFFER || {}, mem = {};
-  var K = { shown: 'mco-xo-shown', claimed: 'mco-xo-claimed', enquired: 'mco-enquired' };
-  function get(area, k) { try { return window[area].getItem(k); } catch (e) { return mem[area + k] || null; } }
-  function put(area, k, v) { mem[area + k] = v; try { if (v === null) window[area].removeItem(k); else window[area].setItem(k, v); } catch (e) {} }
-  var dlg = document.getElementById('exit-offer'), armed = false, lastFocus = null;
-  var api = {
-    claimed: function () { return get('sessionStorage', K.claimed) === '1'; },
-    release: function () { put('sessionStorage', K.claimed, null); },
-    enquired: function () { put('localStorage', K.enquired, '1'); put('sessionStorage', K.enquired, '1'); }
-  };
-  if (!dlg || typeof dlg.showModal !== 'function') return api;
-
-  function blocked() {
-    return get('sessionStorage', K.shown) || get('sessionStorage', K.claimed) || get('sessionStorage', K.enquired) ||
-      get('localStorage', K.enquired) || (cfg.active && !cfg.active());
-  }
-  function busy() {
-    var a = document.activeElement;
-    if (a && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)) return true;
-    if (document.querySelector('dialog[open]')) return true;
-    var f = cfg.formSection && document.getElementById(cfg.formSection);
-    if (!f) return false;
-    var r = f.getBoundingClientRect();
-    return r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.4;
-  }
-  function show(trigger) {
-    if (!armed || blocked() || busy()) return;
-    put('sessionStorage', K.shown, '1');
-    lastFocus = document.activeElement;
-    dlg.returnValue = '';
-    dlg.setAttribute('data-trigger', trigger);
-    document.documentElement.classList.add('xo-lock');
-    dlg.showModal();
-  }
-  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close('close'); });
-  dlg.addEventListener('close', function () {
-    document.documentElement.classList.remove('xo-lock');
-    if (dlg.returnValue === 'claim') {
-      put('sessionStorage', K.claimed, '1');
-      document.dispatchEvent(new CustomEvent('exitoffer:claim'));
-    } else if (lastFocus && lastFocus.focus && lastFocus !== document.body) {
-      try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
-    }
-  });
-  // Never while the visitor is still settling in: 15 seconds on the page first.
-  setTimeout(function () { armed = true; }, cfg.armAfter || 15000);
-
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    // Desktop: the cursor has to travel upward and leave through the very top
-    // edge (towards the tabs, address bar or close button), then stay out for
-    // a moment. Grazing the edge, or sitting on the menu, does nothing.
-    var trail = [], pending = null;
-    var cancel = function () { if (pending) { clearTimeout(pending); pending = null; } };
-    document.addEventListener('mousemove', function (e) {
-      var now = Date.now();
-      trail.push([now, e.clientY]);
-      while (trail.length && now - trail[0][0] > 400) trail.shift();
-      cancel();
-    }, { passive: true });
-    document.addEventListener('mouseover', cancel);
-    document.addEventListener('mouseout', function (e) {
-      if (e.relatedTarget || e.clientY > 5 || trail.length < 2) return;
-      var now = Date.now(), recent = trail.filter(function (p) { return now - p[0] < 400; });
-      if (recent.length < 2 || recent[0][1] - recent[recent.length - 1][1] < 30) return;
-      cancel();
-      pending = setTimeout(function () { pending = null; show('exit-intent'); }, 350);
-    });
-  } else {
-    // Touch: phones give no signal for leaving. Only a hard flick all the way
-    // back to the top counts (the move people make to reach the address bar or
-    // tabs), and only after the pricing has been on screen for a few seconds.
-    // Scrolling back up at reading speed never triggers it.
-    var seen = false, jumped = 0, timer = null, path = [];
-    var offer = cfg.offerSection && document.querySelector(cfg.offerSection);
-    if (offer && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (e.isIntersecting) { if (!timer) timer = setTimeout(function () { seen = true; }, 3000); }
-          else if (!seen) { clearTimeout(timer); timer = null; }
-        });
-      }, { rootMargin: '-30% 0px -30% 0px' }).observe(offer);
-    }
-    document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a[href^="#"]')) jumped = Date.now(); }, true);
-    addEventListener('scroll', function () {
-      var now = Date.now(), y = scrollY;
-      path.push([now, y]);
-      while (path.length && now - path[0][0] > 600) path.shift();
-      if (!seen || now - jumped < 2500 || y > 40) return;
-      var from = path[0], dist = from[1] - y, ms = Math.max(1, now - from[0]);
-      if (dist >= innerHeight * 2 && dist / ms >= 2.5) show('flick-to-top');
-    }, { passive: true });
-  }
-  return api;
-})();
-</script>
 <script>
 (function () {
   var DEMOS = [
@@ -757,6 +638,20 @@ var ExitOffer = (function () {
     { id: 'restaurant', cat: 'Restaurant event', name: 'Oriel', goal: 'Request a table', url: 'oriel-galway.ie', blurb: 'Cinematic and candlelit, with the menu, the dates and a reservation request.' }
   ];
   var BASE = 'demos/';
+
+  /* WhatsApp: each button opens a chat with a message about landing pages.
+     If the number is ever cleared, buttons fall back to the WhatsApp Business link. */
+  var WHATSAPP = '353899522094', WA_LINK = 'https://api.whatsapp.com/message/42QCB5YMFIP3M1';
+  function waUrl(msg) { return /^\d{8,15}$/.test(WHATSAPP) ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg) : WA_LINK; }
+  document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = waUrl(a.getAttribute('data-wa')); a.target = '_blank'; a.rel = 'noopener'; });
+  /* WhatsApp clicks: reported to Meta Pixel, Google tag or a dataLayer if one is on the page. Nothing loads from here. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-wa]'); if (!a) return;
+    var where = a.getAttribute('data-track') || 'other';
+    try { if (window.fbq) window.fbq('track', 'Contact', { content_name: 'Landing Pages', content_category: 'whatsapp-' + where }); } catch (err) {}
+    try { if (window.gtag) window.gtag('event', 'whatsapp_click', { product: 'landing-pages', placement: where }); } catch (err) {}
+    try { if (window.dataLayer) window.dataLayer.push({ event: 'whatsapp_click', product: 'landing-pages', placement: where }); } catch (err) {}
+  });
 
   /* Hero device stack */
   var view = document.getElementById('hero-view'), phone = document.getElementById('hero-phone'), dots = document.getElementById('hero-dots');
@@ -801,9 +696,9 @@ var ExitOffer = (function () {
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .1, rootMargin: '0px 0px -40px 0px' }) : null;
   document.querySelectorAll('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
 
-  /* Sticky mobile CTA: hidden over the hero and the form */
+  /* Sticky mobile CTA: hidden over the hero, and from the form down, so it never covers a field, the send button or the footer */
   var mob = document.querySelector('.mobile-cta'), hero = document.querySelector('.hero'), start = document.getElementById('start');
-  function sticky() { var h = hero.getBoundingClientRect(), s = start.getBoundingClientRect(); mob.classList.toggle('show', h.bottom < 0 && !(s.top < innerHeight && s.bottom > 0)); }
+  function sticky() { var h = hero.getBoundingClientRect(), s = start.getBoundingClientRect(); mob.classList.toggle('show', h.bottom < 0 && s.top > innerHeight); }
   addEventListener('scroll', sticky, { passive: true }); sticky();
 
   document.querySelector('[data-upsell]').addEventListener('click', function () { document.getElementById('website_upgrade').checked = true; });
@@ -831,7 +726,7 @@ var ExitOffer = (function () {
   function fallback(data) {
     var body = 'Business: ' + data.business_name + '\nName: ' + data.contact_name + '\nEmail: ' + data.email + '\nWebsite: ' + (data.website || '-') +
       '\nEnquiry type: ' + data.enquiry_type + '\nCategory: ' + data.category + '\nGoal: ' + data.goal + '\nFull website quote too: ' + (data.website_upgrade ? 'yes' : 'no') +
-      (data.offer ? '\nDiscount: 20% exit offer, from €200 instead of from €250' : '') + '\nPage: ' + data.page + '\n\n' + (data.notes || '');
+'\nPage: ' + data.page + '\n\n' + (data.notes || '');
     return 'mailto:support@themethodco.co?subject=' + encodeURIComponent('Landing page request: ' + data.business_name) + '&body=' + encodeURIComponent(body);
   }
   form.addEventListener('submit', function (e) {
@@ -840,51 +735,35 @@ var ExitOffer = (function () {
     var bad = Object.keys(RULES).filter(function (id) { return !check(id); });
     if (bad.length) { form.elements[bad[0]].focus(); return; }
     var data = {};
-    ['business_name', 'contact_name', 'email', 'website', 'enquiry_type', 'category', 'goal', 'notes', 'source', 'offer', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
+    ['business_name', 'contact_name', 'email', 'website', 'enquiry_type', 'category', 'goal', 'notes', 'source', 'company_fax'].forEach(function (k) { data[k] = form.elements[k].value.trim(); });
     data.website_upgrade = form.elements.website_upgrade.checked;
     data.page = location.href.split('#')[0];
-    document.getElementById('offer-err').textContent = '';
     submit.disabled = true; submit.firstChild.textContent = 'Sending… ';
     fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { return { status: res.status, body: j }; }); })
       .then(function (r) {
         if (r.body && r.body.ok) {
-          ExitOffer.enquired();
           document.getElementById('lead-body').innerHTML = '<div class="done" role="status" tabindex="-1"><div class="ok" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0F8A54" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
-            '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>We\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
-            (r.body.offer ? '<p><strong>Your 20% discount is saved with your request.</strong></p>' : '') +
-            '<p>Want to get started sooner? Send us a message and mention your business name.</p><a class="btn btn-go" href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">Message us on WhatsApp</a></div>';
+            '<h3>Thanks, ' + esc(data.contact_name.split(' ')[0]) + '. Request received.</h3><p>I\'ll reply to <strong>' + esc(data.email) + '</strong> within one working day with next steps and a fixed price for ' + esc(data.business_name) + '.</p>' +
+            '<p>Want to get started sooner? Send me a message and mention your business name.</p><a class="btn btn-go" data-wa href="' + esc(waUrl('Hi Victor, I just sent a landing page request for ' + data.business_name + '.')) + '" data-track="thanks" target="_blank" rel="noopener">Message me on WhatsApp</a></div>';
           document.querySelector('#lead-body .done').focus();
           return;
         }
         if (r.status === 422 && r.body.errors) {
-          if (r.body.errors.offer) { document.getElementById('offer-err').textContent = r.body.errors.offer; delete r.body.errors.offer; document.getElementById('offer-remove').focus(); }
           Object.keys(r.body.errors).forEach(function (k) { setErr(k, r.body.errors[k]); });
           var first = Object.keys(r.body.errors)[0]; if (first && form.elements[first]) form.elements[first].focus();
         } else {
-          status.innerHTML = 'Sorry, your request wasn\'t saved, so nothing has been sent yet. Please <a href="' + esc(fallback(data)) + '">email it to us instead</a> (we\'ve filled it in for you) or <a href="https://api.whatsapp.com/message/42QCB5YMFIP3M1" target="_blank" rel="noopener">message us on WhatsApp</a>.';
+          status.innerHTML = 'Sorry, your request wasn\'t saved, so nothing has been sent yet. Please <a href="' + esc(fallback(data)) + '">email it to me instead</a> (it\'s filled in for you) or <a href="' + esc(waUrl('Hi Victor, I\'d like to discuss a landing page for my business. My business is: ' + data.business_name)) + '" target="_blank" rel="noopener">message me on WhatsApp</a>.';
           status.classList.add('show'); status.focus && status.setAttribute('tabindex', '-1'); status.focus();
         }
       })
       .catch(function () {
-        status.innerHTML = 'We couldn\'t reach our server, so your request wasn\'t sent. Check your connection and try again, or <a href="' + esc(fallback(data)) + '">email it to us instead</a>.';
+        status.innerHTML = 'I couldn\'t reach the server, so your request wasn\'t sent. Check your connection and try again, or <a href="' + esc(fallback(data)) + '">email it to me instead</a>.';
         status.classList.add('show'); status.setAttribute('tabindex', '-1'); status.focus();
       })
       .then(function () { if (document.body.contains(submit)) { submit.disabled = false; submit.firstChild.textContent = 'Request my landing page '; } });
   });
 
-  /* Exit offer claimed: attach the discount to the form and take the visitor there */
-  var offerTag = document.getElementById('offer-tag'), offerInput = document.getElementById('offer');
-  function attachOffer(go) {
-    offerInput.value = 'exit20'; offerTag.hidden = false;
-    if (go) { form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); form.elements.business_name.focus({ preventScroll: true }); }
-  }
-  document.getElementById('offer-remove').addEventListener('click', function () {
-    offerInput.value = ''; offerTag.hidden = true; document.getElementById('offer-err').textContent = '';
-    ExitOffer.release(); form.elements.business_name.focus();
-  });
-  document.addEventListener('exitoffer:claim', function () { attachOffer(true); });
-  if (ExitOffer.claimed()) attachOffer(false);
 })();
 </script>
 </body>

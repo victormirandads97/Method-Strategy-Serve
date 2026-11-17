@@ -15,9 +15,9 @@
  * refused, so another site cannot submit enquiries through a visitor's
  * browser. Formspree and D1 stay server-side; the pages never see them.
  *
- * A claimed discount is sent as an offer code. The server, not the page,
- * decides what that code means for the page it came from, and stores and
- * emails that wording.
+ * A page can send an offer code. The server, not the page, decides what that
+ * code means for the page it came from, and stores and emails that wording.
+ * No offers are active at the moment; unknown codes are ignored.
  *
  * GET lists enquiries as CSV for the owner, behind LEADS_ADMIN_TOKEN:
  *   curl -H "Authorization: Bearer <token>" https://themethodco.co/api/leads
@@ -87,12 +87,7 @@ const SOURCES = ["landing-pages", "instant-quotes"] as const;
 type Source = (typeof SOURCES)[number];
 
 /** Offers a page can attach. The wording stored and emailed comes from here, never from the browser. */
-const OFFERS: Record<string, Partial<Record<Source, string>>> = {
-  exit20: {
-    "instant-quotes": "20% exit offer: Method Instant Quotes for €120 instead of €150",
-    "landing-pages": "20% exit offer: landing page from €200 instead of from €250",
-  },
-};
+const OFFERS: Record<string, Partial<Record<Source, string>>> = {};
 
 /** Hosts a stored source page may point at. Anything else is replaced by the request's origin. */
 const PAGE_HOSTS = /^(themethodco\.co|www\.themethodco\.co|calculators\.themethodco\.co|([a-z0-9-]+\.)?method-(calculators|portfolio-preview)\.pages\.dev|localhost|127\.0\.0\.1)$/;
@@ -231,10 +226,11 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
   if (!(CATEGORIES as readonly string[]).includes(lead.category)) errors.category = "Please choose a category.";
   if (!(ENQUIRY_TYPES as readonly string[]).includes(lead.enquiry_type)) errors.enquiry_type = "Please choose what you're asking about.";
   if (!(GOALS as readonly string[]).includes(lead.goal)) errors.goal = "Please choose the main goal.";
+  // No discounts run today. A code from an old open tab is ignored, so the
+  // enquiry still goes through instead of being blocked.
   if (offerCode) {
     const wording = OFFERS[offerCode]?.[lead.source];
-    if (!wording) errors.offer = "That offer isn't available any more. Remove it and send your request without it.";
-    else lead.offer = wording;
+    if (wording) lead.offer = wording;
   }
   if (Object.keys(errors).length) return reply({ ok: false, errors }, 422);
 
@@ -300,7 +296,7 @@ async function email(env: Env, lead: Lead): Promise<boolean> {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
-        _subject: `New ${what}: ${lead.business_name}${lead.offer ? " (20% offer claimed)" : ""}`,
+        _subject: `New ${what}: ${lead.business_name}${lead.offer ? " (offer claimed)" : ""}`,
         name: lead.contact_name,
         email: lead.email,
         business: lead.business_name,
