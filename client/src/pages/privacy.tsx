@@ -82,8 +82,7 @@ export default function Privacy() {
             </ul>
             <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.95rem", marginTop: "1rem" }}>
               This includes your name, email address, business name, and any information you share in free-text fields.
-              We also collect standard web analytics data (page views, referrers, device type) through privacy-respecting
-              analytics tools.
+              On our landing-page offer, with your permission, Meta Pixel collects information about page visits and interactions to help measure advertising.
             </p>
           </section>
 
@@ -107,9 +106,7 @@ export default function Privacy() {
               4. Cookies and Tracking
             </h2>
             <p style={{ color: C.muted, lineHeight: 1.8, fontSize: "0.95rem" }}>
-              This website may use minimal cookies necessary for basic functionality (e.g., form state). We do not
-              use invasive advertising trackers or third-party behavioral profiling cookies. Analytics, if used,
-              are configured to anonymize IP addresses and respect Do Not Track signals.
+              On our landing-page offer, we ask permission before loading Meta Pixel. It can set advertising cookies and send Meta page visits and interactions; Meta may use this information for advertising. You can reject optional cookies or change your choice using Cookie settings in the landing-page footer. Storage may still be used to remember your choice.
             </p>
           </section>
 
@@ -186,3 +183,4 @@ export default function Privacy() {
     </div>
   );
 }
+
