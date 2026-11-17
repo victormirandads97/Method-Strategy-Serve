@@ -499,8 +499,7 @@ p { margin: 0; }
         <p class="terms when-live">Launch price: €150. Planned standard price: €299.<br>For the first 5 businesses, until <b data-end-date>30 November</b>.</p>
         <p class="payback">One extra job could cover the cost.</p>
         <a class="btn btn-go" data-wa="Hi Victor, I&#39;d like a free Instant Quotes preview for my business. My business is: " data-track="pricing"><svg aria-hidden="true"><use href="#wa"/></svg>Get my free preview</a>
-        <a class="btn btn-ink" data-pay>Approved your preview? Pay €150</a>
-        <p class="pay-note">You only pay after you've tried your free preview. Secure card payment by Stripe.</p>
+        <p class="pay-note">You only pay after you've approved your free preview. I'll send you the payment details directly.</p>
         <p class="guarantee"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.6-7.5 10-4.3-1.4-7.5-5.4-7.5-10v-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Money-back guarantee.</b> If you're not happy with what I deliver after you've paid, I'll refund your payment. <a href="legal.html#refunds">Refund terms</a></span></p>
       </div>
     </div>
@@ -603,7 +602,6 @@ p { margin: 0; }
 var CONFIG = {
   whatsappLink: "https://api.whatsapp.com/message/42QCB5YMFIP3M1", // your WhatsApp Business message link
   whatsapp: "353899522094",                        // your number, so each button opens WhatsApp with its own message
-  stripeLink: "https://buy.stripe.com/REPLACE_ME",  // your Stripe Payment Link for €150
   leadsEndpoint: "https://themethodco.co/api/leads", // enquiry form: saved and emailed by the main site's server
   offerEnds: "2026-11-30T23:59:00Z",               // when the €150 launch price ends (Dublin is UTC in winter)
   spotsTotal: 5,                                   // businesses at the launch price
@@ -613,7 +611,6 @@ var CONFIG = {
 /* ====================== */
 (function () {
   var waReady = /^\d{8,15}$/.test(CONFIG.whatsapp) && !/^3530+$/.test(CONFIG.whatsapp);
-  var payReady = /^https:\/\/(buy\.)?stripe\.com\//.test(CONFIG.stripeLink) && CONFIG.stripeLink.indexOf('REPLACE') < 0;
   function waUrl(msg) {
     if (waReady) return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
     if (/^https:\/\/(api\.whatsapp\.com|wa\.me)\//.test(CONFIG.whatsappLink || '')) return CONFIG.whatsappLink;
@@ -628,26 +625,14 @@ var CONFIG = {
     try { if (window.gtag) window.gtag('event', 'whatsapp_click', { product: 'instant-quotes', placement: where }); } catch (err) {}
     try { if (window.dataLayer) window.dataLayer.push({ event: 'whatsapp_click', product: 'instant-quotes', placement: where }); } catch (err) {}
   });
-  var ended = false;
-  // The Stripe link, or WhatsApp until it exists.
-  function setPay() {
-    document.querySelectorAll('[data-pay]').forEach(function (a) {
-      a.href = payReady ? CONFIG.stripeLink : waUrl("Hi Victor, I've approved my Instant Quotes preview and I'd like to pay. My business is: ");
-      a.textContent = 'Approved your preview? Pay ' + (ended ? '€299' : '€150');
-      a.target = '_blank'; a.rel = 'noopener';
-    });
-  }
-  setPay();
 
   var end = new Date(CONFIG.offerEnds), left = Math.max(0, CONFIG.spotsTotal - CONFIG.spotsTaken);
   document.querySelectorAll('[data-end-date]').forEach(function (el) { el.textContent = end.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', timeZone: 'Europe/Dublin' }); });
   var yr = document.querySelector('[data-year]'); if (yr) yr.textContent = new Date().getFullYear();
 
   function endOffer() {
-    ended = true;
     document.documentElement.classList.add('offer-ended');
     document.querySelectorAll('[data-price]').forEach(function (el) { el.textContent = '€299'; });
-    setPay();
   }
   // The launch price is shown until the end date or until the spots are gone. No ticking clock.
   if (end - new Date() <= 0 || left <= 0) endOffer();
