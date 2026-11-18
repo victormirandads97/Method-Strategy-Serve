@@ -780,3 +780,20 @@ p { margin: 0; }
 </body>
 </html>
 
+
+<script>
+(function(){
+  var product="Landing Pages";
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a"); if(!a||!window.fbq||a.hasAttribute("data-wa"))return;
+    var h=a.getAttribute("href")||"", kind="", detail="";
+    if(/^(https?:\/\/)?(wa\.me|api\.whatsapp\.com)\//i.test(h)){window.fbq("track","Contact",{content_name:product,content_category:"whatsapp-after-form"});return;}
+    var demo=h.match(/(?:^|\/)demos\/([a-z0-9-]+)/i);
+    if(demo){kind="DemoClick";detail=demo[1];}
+    else if(/^mailto:/i.test(h)){kind="EmailClick";detail="email";}
+    else if(h==="#start"){kind="EnquiryFormClick";detail=a.hasAttribute("data-upsell")?"full-website":"form";}
+    else if(h==="#pricing"){kind="PricingClick";detail="pricing";}
+    if(kind)window.fbq("trackCustom",kind,{content_name:product,content_category:detail});
+  });
+})();
+</script>
