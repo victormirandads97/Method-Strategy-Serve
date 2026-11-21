@@ -33,18 +33,23 @@ deploy stops with a missing-file error.
 ## Little Plot Books (/books)
 
 - Page: `client/books.html` (Vite entry) and `client/src/books/`, built to
-  `dist/public/books.html` and served at `/books`. Copy, price line, CTAs,
-  stories and FAQ live in `client/src/books/config.ts`.
-- Launch list: `functions/api/book-waitlist.ts`. Uses the same `LEADS_DB`
-  binding (its own `book_waitlist` table, created on first signup) and the
-  same Formspree form. Same origin only. Adult email plus optional story;
-  no child details, photos or payments.
-- Download the list:
+  `dist/public/books.html` and served at `/books`. Copy, price, CTAs, stories,
+  heroes and FAQ live in `client/src/books/config.ts`.
+- Launch list (live): `functions/api/book-waitlist.ts`. Uses the same
+  `LEADS_DB` binding (its own `book_waitlist` table, created on first signup)
+  and the same Formspree form. Same origin only. Adult email plus optional
+  story; no child details, photos or payments. Download the list:
   `curl -H "Authorization: Bearer YOUR_LEADS_ADMIN_TOKEN" https://themethodco.co/api/book-waitlist -o book-waitlist.csv`
+- Pre-orders (built, switched off): `functions/api/book-checkout.ts` creates a
+  €39.95 Stripe Checkout (Ireland shipping) on the existing Stripe account.
+  It answers 404 and never contacts Stripe until `BOOK_CHECKOUT_ENABLED=true`
+  is set in the Pages project. To turn on: set that variable, set
+  `OFFER.mode = "preorder"` in config.ts, add `PAYPAL_LINK` if wanted,
+  confirm `PREORDER_TERMS`, and redeploy.
 - Meta Pixel: the site's existing Pixel, loaded only after the shared cookie
-  choice is "Accept". A `Lead` fires only after the server confirms a signup
-  and carries no form values. UTM tags are stored with each signup; `fbclid`
-  only with consent.
+  choice is "Accept". `Lead` fires only after the server confirms a signup and
+  carries no form values. UTM tags are stored with each signup; `fbclid` only
+  with consent.
 - Reviews: add real, approved quotes to `client/src/books/reviews.ts`. Layout
   placeholders in `reviews.placeholder.ts` load in local development only.
 

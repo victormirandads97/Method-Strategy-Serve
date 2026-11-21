@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Cover, DedicationOrnament, SpreadEgg, SpreadFootprints } from "./art";
 import { AVA, OFFER, SAMPLE } from "./config";
@@ -9,6 +10,7 @@ export function SampleReader({ open, onOpenChange, onJoin, returnFocus }: { open
   const [page, setPage] = useState(0);
   const [dir, setDir] = useState<"next" | "prev">("next");
   const joining = useRef(false);
+  const reduce = useReducedMotion();
   const last = PAGES.length - 1;
 
   useEffect(() => {
@@ -56,7 +58,18 @@ export function SampleReader({ open, onOpenChange, onJoin, returnFocus }: { open
           </div>
 
           <div className="lp-reader-stage">
-            <div key={page} className={`lp-reader-page lp-turn-${dir}`} aria-roledescription="page" aria-label={PAGES[page]}>
+            <AnimatePresence mode="wait" initial={false} custom={dir}>
+            <motion.div
+              key={page}
+              className="lp-reader-page"
+              aria-roledescription="page"
+              aria-label={PAGES[page]}
+              custom={dir}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, rotateY: dir === "next" ? -35 : 35, x: dir === "next" ? 60 : -60 }}
+              animate={{ opacity: 1, rotateY: 0, x: 0 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, rotateY: dir === "next" ? 30 : -30, x: dir === "next" ? -60 : 60 }}
+              transition={{ duration: reduce ? 0.12 : 0.28, ease: "easeOut" }}
+            >
               {page === 0 && (
                 <div className="lp-reader-cover">
                   <div className="lp-mini-book"><Cover story="dinosaur" name={AVA.name} look={AVA.look} /></div>
@@ -74,17 +87,27 @@ export function SampleReader({ open, onOpenChange, onJoin, returnFocus }: { open
               )}
               {page === 2 && (
                 <figure className="lp-reader-spread">
-                  <div className="lp-spread-art"><SpreadFootprints look={AVA.look} /></div>
-                  <figcaption className="lp-story-text">{SAMPLE.spread1}</figcaption>
+                  <div className="lp-spread-art">
+                    <SpreadFootprints look={AVA.look} />
+                    <figcaption className="lp-story-text lp-spread-text">{SAMPLE.spread1}</figcaption>
+                  </div>
                 </figure>
               )}
               {page === 3 && (
+                <>
                 <figure className="lp-reader-spread">
-                  <div className="lp-spread-art"><SpreadEgg look={AVA.look} /></div>
-                  <figcaption className="lp-story-text">{SAMPLE.spread2}</figcaption>
+                  <div className="lp-spread-art">
+                    <SpreadEgg look={AVA.look} />
+                    <figcaption className="lp-story-text lp-spread-text">{SAMPLE.spread2}</figcaption>
+                  </div>
                 </figure>
+                <div className="lp-reader-end">
+                  <p>Want one with your child in it? Join the first print run and we’ll tell you when orders open.</p>
+                </div>
+                </>
               )}
-            </div>
+            </motion.div>
+            </AnimatePresence>
           </div>
 
           <div className="lp-reader-nav">

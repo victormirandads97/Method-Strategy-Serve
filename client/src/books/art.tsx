@@ -192,9 +192,9 @@ function Footprint({ x, y, s = 1, r = 0 }: { x: number; y: number; s?: number; r
 export function Egg({ x, y, s = 1 }: { x: number; y: number; s?: number }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <ellipse cx="0" cy="0" rx="22" ry="28" fill="#3F9E9A" />
-      <ellipse cx="-7" cy="-10" rx="7" ry="10" fill="#fff" opacity=".25" />
-      <g fill="#1F6B6A" opacity=".7">
+      <ellipse cx="0" cy="0" rx="22" ry="28" fill="#BFE3CC" />
+      <ellipse cx="-7" cy="-10" rx="7" ry="10" fill="#fff" opacity=".45" />
+      <g fill="#5E9C7C" opacity=".75">
         <circle cx="8" cy="-8" r="3" /><circle cx="-6" cy="8" r="3.5" /><circle cx="10" cy="12" r="2.2" /><circle cx="-12" cy="-2" r="2" /><circle cx="2" cy="20" r="2.4" />
       </g>
     </g>
@@ -231,7 +231,7 @@ function Flowers({ items }: { items: [number, number, string][] }) {
 }
 
 /** Spread 1: the footprints and the whisper. Two pages, 800 x 400. */
-export function SpreadFootprints({ look, title, viewBox = "0 0 800 400", fit }: { look: Look; title?: string; viewBox?: string; fit?: "slice" }) {
+export function SpreadFootprints({ look, title, viewBox = "0 0 800 400", fit, mirror }: { look: Look; title?: string; viewBox?: string; fit?: "slice"; mirror?: boolean }) {
   const id = useSvgId();
   return (
     <svg viewBox={viewBox} preserveAspectRatio={fit ? "xMidYMid slice" : undefined} aria-hidden={title === "" ? true : undefined} role={title === "" ? undefined : "img"} aria-label={title || "Ava in her yellow wellies follows three huge footprints across the garden to a dinosaur peeking over the fence."}>
@@ -239,9 +239,9 @@ export function SpreadFootprints({ look, title, viewBox = "0 0 800 400", fit }: 
       <defs>
         <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFF1DC" /><stop offset="1" stopColor="#F8D5BE" /></linearGradient>
       </defs>
-      <g filter={`url(#${id}-grain)`}>
+      <g filter={`url(#${id}-grain)`} transform={mirror ? "matrix(-1 0 0 1 800 0)" : undefined}>
         <rect width="800" height="400" fill={`url(#${id}-sky)`} />
-        <circle cx="120" cy="80" r="38" fill="#F7C97A" opacity=".8" />
+        <circle cx="500" cy="64" r="34" fill="#F7C97A" opacity=".8" />
         <path d="M0 240 Q120 200 260 226 T520 214 T800 224 L800 400 L0 400 Z" fill="#B9D3B0" />
         <g filter={`url(#${id}-wob)`}>
           <Dino x={560} y={10} s={1} />
@@ -305,7 +305,7 @@ export function Cover({ story, name, look, label, viewBox = "0 0 400 400" }: { s
   const dark = story === "moonlight";
   const titleFill = dark ? "#FFF8ED" : INK;
   return (
-    <svg viewBox={viewBox} role="img" aria-label={label || `Cover: ${name} and the ${full}`}>
+    <svg viewBox={viewBox} {...(label === "" ? { "aria-hidden": true } : { role: "img", "aria-label": label || `Cover: ${name} and the ${full}` })}>
       <PaintDefs id={id} />
       <g filter={`url(#${id}-grain)`}>
         {story === "dinosaur" && (

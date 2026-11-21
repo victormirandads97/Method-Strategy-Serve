@@ -23,8 +23,8 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
     return !msg;
   }
 
-  async function submit(e: FormEvent) {
-    e.preventDefault();
+  async function submit(e?: FormEvent) {
+    e?.preventDefault();
     if (status.kind === "sending") return;
     const value = email.trim();
     if (!validate(value)) {
@@ -70,10 +70,10 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
         <img className="lp-done-star" src="/books/clay-star.svg" width="88" height="88" alt="" />
         <h3>You’re on the list.</h3>
         <p>
-          We’ll email <strong>{status.email}</strong> when the first print run opens.
+          We’ll email <strong>{status.email}</strong> when the first books are ready to order.
           {story ? <> We’ve noted <strong>{STORIES.find((s) => s.id === story)?.title}</strong> as your favourite.</> : null}
         </p>
-        <p className="lp-small">Nothing to pay now. Nothing is ordered until you choose to.</p>
+        <p className="lp-small">Nothing to pay, and nothing is ordered until you choose to.</p>
       </div>
     );
   }
@@ -106,7 +106,7 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
           aria-describedby={emailError ? "lp-email-err lp-email-hint" : "lp-email-hint"}
           placeholder="you@example.ie"
         />
-        <p id="lp-email-hint" className="lp-hint">The adult’s email only. We never need your child’s details to join.</p>
+        <p id="lp-email-hint" className="lp-hint">Your email only. No child details needed.</p>
         {emailError && <p id="lp-email-err" className="lp-err">{emailError}</p>}
       </div>
 
@@ -130,20 +130,20 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
         {status.kind === "sending" ? (
           <><span className="lp-spinner" aria-hidden="true" /> Joining the list…</>
         ) : (
-          OFFER.primaryCta
+          OFFER.listCta
         )}
       </button>
-      <p className="lp-form-note">{OFFER.formNote}</p>
       <p className="lp-small">
-        Free to join. We only use your email for Little Plot Books. <a href={LINKS.privacy}>Privacy</a>
+        Free. No payment. We only use your email for Little Plot Books. <a href={LINKS.privacy}>Privacy</a>
       </p>
 
       {status.kind === "error" && (
         <div className="lp-form-error" role="alert" tabIndex={-1} ref={errorRef}>
           <p>{status.message}</p>
-          <p>
-            Please try again, or <a href={mailto}>email us to join instead</a>.
-          </p>
+          <div className="lp-retry-row">
+            <button type="button" className="lp-btn lp-btn-primary" onClick={() => submit()}>Try again</button>
+            <a href={mailto}>Or email us to join</a>
+          </div>
         </div>
       )}
     </form>

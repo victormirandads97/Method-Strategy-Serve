@@ -106,3 +106,30 @@ export function getAttribution(): Record<string, string> {
   if (landingFbclid && getConsent() === "accepted") out.fbclid = landingFbclid;
   return out;
 }
+
+/** Counts a checkout start. No personal data. */
+export function trackInitiateCheckout(method: "stripe" | "paypal") {
+  if (getConsent() !== "accepted" || !window.fbq) return;
+  try {
+    window.fbq("track", "InitiateCheckout", { content_name: "Little Plot Books pre-order", currency: "EUR", value: 39.95, content_category: method });
+  } catch {
+    /* never let measurement break the page */
+  }
+}
+
+/** Counts a purchase once Stripe has confirmed it is paid. Once per checkout session. */
+export function trackPurchase(sessionId: string) {
+  if (getConsent() !== "accepted" || !window.fbq) return;
+  const key = "lpb_purchase_" + sessionId;
+  try {
+    if (sessionStorage.getItem(key)) return;
+    sessionStorage.setItem(key, "1");
+  } catch {
+    /* storage blocked: may count twice on reload, acceptable */
+  }
+  try {
+    window.fbq("track", "Purchase", { content_name: "Little Plot Books pre-order", currency: "EUR", value: 39.95 }, { eventID: sessionId });
+  } catch {
+    /* never let measurement break the page */
+  }
+}
