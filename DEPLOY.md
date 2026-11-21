@@ -30,6 +30,24 @@ The ebook PDF lives in `private/`. `npm run build` copies it to
 It is never one of the public files. Run the build before every deploy, or the
 deploy stops with a missing-file error.
 
+## Little Plot Books (/books)
+
+- Page: `client/books.html` (Vite entry) and `client/src/books/`, built to
+  `dist/public/books.html` and served at `/books`. Copy, price line, CTAs,
+  stories and FAQ live in `client/src/books/config.ts`.
+- Launch list: `functions/api/book-waitlist.ts`. Uses the same `LEADS_DB`
+  binding (its own `book_waitlist` table, created on first signup) and the
+  same Formspree form. Same origin only. Adult email plus optional story;
+  no child details, photos or payments.
+- Download the list:
+  `curl -H "Authorization: Bearer YOUR_LEADS_ADMIN_TOKEN" https://themethodco.co/api/book-waitlist -o book-waitlist.csv`
+- Meta Pixel: the site's existing Pixel, loaded only after the shared cookie
+  choice is "Accept". A `Lead` fires only after the server confirms a signup
+  and carries no form values. UTM tags are stored with each signup; `fbclid`
+  only with consent.
+- Reviews: add real, approved quotes to `client/src/books/reviews.ts`. Layout
+  placeholders in `reviews.placeholder.ts` load in local development only.
+
 ## Settings the Functions read
 
 Set in Cloudflare: Pages project > Settings > Variables and Secrets. They are

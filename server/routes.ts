@@ -37,6 +37,15 @@ export async function registerRoutes(
     res.sendFile(filePath);
   });
 
+  // ── /books (Little Plot Books) ─────────────────────────────────────
+  // Cloudflare Pages serves dist/public/books.html at /books by itself. This
+  // keeps the Express server in step: the built file in production, and the
+  // Vite-served entry in development.
+  app.get("/books", (_req, res) => {
+    if (process.env.NODE_ENV !== "production") return res.redirect(302, "/books.html");
+    res.sendFile(path.resolve(__dirname, "public", "books.html"));
+  });
+
   // ── POST /api/create-checkout-session ─────────────────────────────
   // Also handles GET so static HTML buttons can use plain <a href>
   async function createCheckoutSession(req: any, res: any) {
