@@ -63,7 +63,9 @@ export default defineConfig({
         blog_future: path.resolve(import.meta.dirname, "client/insights/the-future-of-ai-driven-marketing.html"),
         blog_method_explained: path.resolve(import.meta.dirname, "client/insights/the-method-explained.html"),
         landing_last_human_job: path.resolve(import.meta.dirname, "client/landing-last-human-job.html"),
-        thank_you_last_human_job: path.resolve(import.meta.dirname, "client/thank-you-last-human-job.html")
+        thank_you_last_human_job: path.resolve(import.meta.dirname, "client/thank-you-last-human-job.html"),
+        // Little Plot Books launch page, served at /books (dist/public/books.html)
+        books: path.resolve(import.meta.dirname, "client/books.html")
       }
     }
   },
