@@ -7,7 +7,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Cover, SpreadFootprints } from "./art";
-import { AVA } from "./config";
+import { AVA, asset } from "./config";
 
 export function HeroBook() {
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export function HeroBook() {
         <SpreadFootprints look={AVA.look} title="" mirror />
       </div>
 
-      <img className="lp-hb-star" src="/books/clay-star.svg" alt="" width={160} height={160} />
+      <img className="lp-hb-star" src={asset("clay-star.svg")} alt="" width={160} height={160} />
 
       <div className="lp-hb-float">
         <div className="lp-hb-book">
@@ -46,7 +46,7 @@ export function HeroBook() {
         <div className="lp-hb-shadow" aria-hidden="true" />
       </div>
 
-      <img className="lp-hb-wellies" src="/books/clay-wellies.svg" alt="" width={200} height={170} />
+      <img className="lp-hb-wellies" src={asset("clay-wellies.svg")} alt="" width={200} height={170} />
 
       <div className="lp-hb-egg-wrap">
         <button
@@ -57,9 +57,9 @@ export function HeroBook() {
           onClick={() => setEggOpen((o) => !o)}
         >
           <span className="lp-egg-inner">
-            <img className="lp-egg-dino" src="/books/baby-dino.svg" alt="" width={160} height={200} />
-            <img className="lp-egg-bottom" src="/books/egg-bottom.svg" alt="" width={160} height={200} />
-            <img className="lp-egg-top" src="/books/egg-top.svg" alt="" width={160} height={200} />
+            <img className="lp-egg-dino" src={asset("baby-dino.svg")} alt="" width={160} height={200} />
+            <img className="lp-egg-bottom" src={asset("egg-bottom.svg")} alt="" width={160} height={200} />
+            <img className="lp-egg-top" src={asset("egg-top.svg")} alt="" width={160} height={200} />
           </span>
         </button>
         <span className="lp-egg-label" aria-hidden="true">{eggOpen ? "Hello!" : "Tap the egg"}</span>

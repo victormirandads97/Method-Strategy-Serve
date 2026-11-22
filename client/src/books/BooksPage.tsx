@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Cover, DedicationOrnament, SpreadFootprints } from "./art";
 import { BuyBox } from "./BuyBox";
-import { BRAND, CHECKOUT_ENDPOINT, FAQS, HEROES, LINKS, OFFER } from "./config";
+import { asset, BRAND, CHECKOUT_ENDPOINT, FAQS, HEROES, LINKS, OFFER, PREVIEW } from "./config";
 import { CoverSwap } from "./CoverSwap";
 import { HeroBook } from "./HeroBook";
 import { REVIEWS, type Review } from "./reviews";
@@ -136,6 +136,7 @@ export default function BooksPage() {
 
   useEffect(() => {
     captureAttribution();
+    if (PREVIEW) return; // no Pixel or cookie banner in previews
     if (getConsent() === "accepted") loadPixel();
     else if (getConsent() === null) setConsentOpen(true);
     if (OFFER.mode !== "preorder") return;
@@ -181,6 +182,7 @@ export default function BooksPage() {
   return (
     <div className="lp">
       <a className="lp-skip" href="#join">Skip to the signup form</a>
+      {PREVIEW && <p className="lp-preview-bar">Preview: signups here are simulated and not saved. Type fail@example.ie to see the error state.</p>}
       <header className="lp-top">
         <div className="lp-wrap lp-top-inner">
           <a href="#top" aria-label={`${BRAND.name}, ${BRAND.endorsement}. Back to top`} className="lp-home"><Wordmark /></a>
@@ -299,7 +301,7 @@ export default function BooksPage() {
               <p className="lp-lede">Leave your email and we’ll tell you when the first books are ready to order.</p>
               <div className="lp-join3-book" aria-hidden="true">
                 <div className="lp-mini-book"><Cover story="dinosaur" name={hero.name} look={hero.look} label="" /></div>
-                <img src="/books/clay-star.svg" alt="" width="64" height="64" className="lp-join3-star" />
+                <img src={asset("clay-star.svg")} alt="" width="64" height="64" className="lp-join3-star" />
               </div>
               <p className="lp-price">{OFFER.priceLine}</p>
             </div>
@@ -340,7 +342,7 @@ export default function BooksPage() {
         {order && (
           <motion.div className="lp-order-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="lp-order" role="dialog" aria-modal="true" aria-labelledby="lp-order-h" tabIndex={-1} ref={orderRef}>
-              <span className="lp-burst-anchor"><img src="/books/clay-star.svg" alt="" width="96" height="96" />{order.paid && <Burst show />}</span>
+              <span className="lp-burst-anchor"><img src={asset("clay-star.svg")} alt="" width="96" height="96" />{order.paid && <Burst show />}</span>
               {order.paid ? (
                 <><h2 id="lp-order-h">Your pre-order is in!</h2><p>Stripe has emailed your receipt{order.story ? <> for <strong>{order.story}</strong></> : null}. Next, we’ll email you to set up their book.</p></>
               ) : (

@@ -5,7 +5,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { Cover, type Look } from "./art";
-import { OFFER, STORIES } from "./config";
+import { asset, OFFER, STORIES } from "./config";
 
 export function Burst({ show }: { show: boolean }) {
   const reduce = useReducedMotion();
@@ -19,7 +19,7 @@ export function Burst({ show }: { show: boolean }) {
             return (
               <motion.img
                 key={i}
-                src="/books/clay-star.svg"
+                src={asset("clay-star.svg")}
                 alt=""
                 className="lp-burst-star"
                 initial={{ x: 0, y: 0, scale: 0.2, opacity: 1, rotate: 0 }}

@@ -4,6 +4,12 @@
  */
 import type { Look, StoryArt } from "./art";
 
+/** Path to a file in client/public/books/. Follows Vite's base so preview builds work from any folder. */
+export const asset = (file: string) => `${import.meta.env.BASE_URL}books/${file}`;
+
+/** Preview builds (VITE_BOOKS_PREVIEW=1) simulate signups and show a banner. Never set for the live site. */
+export const PREVIEW = import.meta.env.VITE_BOOKS_PREVIEW === "1";
+
 export const BRAND = {
   name: "Little Plot Books",
   /** Exact endorsement wording. Shown under the wordmark and in the footer. */

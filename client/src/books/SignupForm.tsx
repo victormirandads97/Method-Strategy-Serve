@@ -1,5 +1,5 @@
 import { forwardRef, useRef, useState, type FormEvent } from "react";
-import { LINKS, OFFER, STORIES, WAITLIST_ENDPOINT } from "./config";
+import { asset, LINKS, OFFER, PREVIEW, STORIES, WAITLIST_ENDPOINT } from "./config";
 import { getAttribution, trackLead } from "./tracking";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "done"; email: string } | { kind: "error"; message: string };
@@ -32,6 +32,18 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
       return;
     }
     setStatus({ kind: "sending" });
+    if (PREVIEW) {
+      // Preview only: nothing is sent. Type "fail@example.ie" to see the error state.
+      await new Promise((r) => setTimeout(r, 900));
+      if (value.toLowerCase().startsWith("fail@")) {
+        setStatus({ kind: "error", message: "Sorry, we couldn’t add you to the list just now, so nothing was saved." });
+        requestAnimationFrame(() => errorRef.current?.focus());
+      } else {
+        setStatus({ kind: "done", email: value });
+        requestAnimationFrame(() => doneRef.current?.focus());
+      }
+      return;
+    }
     try {
       const res = await fetch(WAITLIST_ENDPOINT, {
         method: "POST",
@@ -67,7 +79,7 @@ export const SignupForm = forwardRef<HTMLInputElement, { story: string; onStoryC
   if (status.kind === "done") {
     return (
       <div className="lp-form lp-form-done" ref={doneRef} tabIndex={-1} role="status">
-        <img className="lp-done-star" src="/books/clay-star.svg" width="88" height="88" alt="" />
+        <img className="lp-done-star" src={asset("clay-star.svg")} width="88" height="88" alt="" />
         <h3>You’re on the list.</h3>
         <p>
           We’ll email <strong>{status.email}</strong> when the first books are ready to order.
