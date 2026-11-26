@@ -48,6 +48,8 @@ async function buildAll() {
   await copyFile(ebook, "functions/_generated/ebook.bin");
   console.log("bundled ebook for Pages Functions: functions/_generated/ebook.bin");
 
+  await bundleBookFonts();
+
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
   const allDeps = [
@@ -71,7 +73,31 @@ async function buildAll() {
   });
 }
 
-buildAll().catch((err) => {
+/**
+ * Little Plot Books composes sample PDFs inside Pages Functions with Young
+ * Serif and Figtree (OFL fonts from @fontsource). Latin and Latin Extended are separate
+ * files; the PDF code switches between them per character, so names like
+ * Seán, Zoë or Łucja print correctly.
+ */
+export async function bundleBookFonts() {
+  const out = "functions/_generated/fonts";
+  await mkdir(out, { recursive: true });
+  const fonts: [string, string][] = [];
+  for (const subset of ["latin", "latin-ext"]) {
+    fonts.push([`node_modules/@fontsource/young-serif/files/young-serif-${subset}-400-normal.woff`, `young-serif-400-${subset}.bin`]);
+    fonts.push([`node_modules/@fontsource/figtree/files/figtree-${subset}-400-normal.woff`, `figtree-400-${subset}.bin`]);
+    fonts.push([`node_modules/@fontsource/figtree/files/figtree-${subset}-600-normal.woff`, `figtree-600-${subset}.bin`]);
+  }
+  for (const [src, name] of fonts) await copyFile(src, `${out}/${name}`);
+  console.log(`bundled ${fonts.length} book fonts for Pages Functions: ${out}`);
+}
+
+if (process.argv[2] === "fonts") {
+  bundleBookFonts().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+} else buildAll().catch((err) => {
   console.error(err);
   process.exit(1);
 });

@@ -16,3 +16,6 @@ private/onishi-withheld/
 functions/_generated/
 # Local Wrangler state
 .wrangler/
+
+# Local secrets for wrangler pages dev (Little Plot Books)
+.dev.vars

@@ -1,0 +1,9 @@
+# Little Plot Books is a single-page app under /books. Its deep links all load the same page.
+/books/create /books/ 200
+/books/cart /books/ 200
+/books/order/* /books/ 200
+/books/contact /books/ 200
+/books/owner /books/ 200
+/books/owner/* /books/ 200
+/books/test-checkout/* /books/ 200
+/books/dev/outbox /books/ 200

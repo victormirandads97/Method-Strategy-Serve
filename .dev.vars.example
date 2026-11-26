@@ -1,0 +1,24 @@
+# Little Plot Books, local test settings for `npm run books:dev`.
+# Copy to .dev.vars (git-ignored) and fill in. Never commit real keys.
+BASE_URL=http://localhost:8788
+# Signs private order links and owner sessions (48+ random characters).
+BOOKS_TOKEN_SECRET=change-me-to-a-long-random-string-48-chars-min
+# Owner dashboard sign-in. Make the hash with: npm run books:owner-password
+BOOKS_OWNER_EMAIL=you@example.com
+BOOKS_OWNER_PASSWORD_HASH=pbkdf2$100000$...$...
+# Where "new paid order" and contact notifications go.
+BOOKS_OWNER_NOTIFY_EMAIL=you@example.com
+# Built-in test checkout (no real money). Never set in production.
+BOOKS_TEST_CHECKOUT=on
+BOOKS_TEST_WEBHOOK_SECRET=whsec_local_test_change_me
+# Stripe test mode (optional locally): secret key and the signing secret from `stripe listen`.
+# STRIPE_SECRET_KEY=sk_test_...
+# STRIPE_WEBHOOK_SECRET=whsec_...
+# BOOKS_STRIPE_PAYPAL=auto
+# PayPal sandbox (only if PayPal is not available inside Stripe):
+# PAYPAL_CLIENT_ID=...
+# PAYPAL_CLIENT_SECRET=...
+# PAYPAL_ENV=sandbox
+# Email via Resend (optional). Without it, emails appear at /books/dev/outbox in test mode.
+# RESEND_API_KEY=re_...
+# BOOKS_EMAIL_FROM=Little Plot Books <books@themethodco.co>
